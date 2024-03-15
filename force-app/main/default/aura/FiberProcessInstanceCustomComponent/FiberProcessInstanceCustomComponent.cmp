@@ -1,0 +1,25 @@
+<aura:component controller="FiberProcessInstanceCustomController" implements="flexiPage:availableForAllPageTypes,force:hasRecordId">
+<aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="Quote" type="Object"/>
+	<aura:attribute name="QuoteLineitem" type="String"/>
+        <aura:attribute name="data" type="object" description="Stores records displayed in the data table"/>
+            <aura:attribute name="data2" type="object" description="Stores records displayed in the data table"/>
+
+    <aura:attribute name="wrapper" type="Object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+        <aura:attribute name="columns" type="list" description="Stores column names of the data table"/>
+              <aura:attribute name="columns2" type="list" description="Stores column names of the data table"/>
+
+    <br/>
+    <lightning:datatable data="{!v.data2}"   
+                          columns="{!v.columns2}"
+                          keyField="id"
+                           showRowNumberColumn="false"
+                          hideCheckboxColumn = "true"/>
+    <br/> <br/>
+     <lightning:datatable data="{!v.data}"   
+                          columns="{!v.columns}"
+                          keyField="id"
+                           showRowNumberColumn="false"
+                          hideCheckboxColumn = "true"/>
+</aura:component>

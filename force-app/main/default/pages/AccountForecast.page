@@ -1,0 +1,8 @@
+<apex:page standardcontroller="Account" id="ResourceHeroPage">
+        <ResourceHeroApp:Matrix ActualOrForecast="Forecast"
+            ForceReadOnly="False"
+            PageURL="/apex/c__AccountForecast"
+            DefaultViewBy="Week"
+            DefaultTimeRange=""
+         /> 
+</apex:page>

@@ -1,0 +1,61 @@
+<apex:component >
+        <tr>
+                                        <td align="center" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" valign="top">
+                                            <!-- BEGIN FOOTER // -->
+                                            <table border="0" cellpadding="0" cellspacing="0" id="templateFooter" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background-color: #FFFFFF; border-collapse: collapse !important; border-top-color: #FFFFFF; border-top-style: solid; border-top-width: 1px; mso-table-lspace: 0pt; mso-table-rspace: 0pt" width="100%">
+                                                <tbody>
+                                                    <br/><br/><br/>
+                                                    <tr pardot-removable="" class="">
+                                                        <td align="left" class="footerContent" pardot-data="" pardot-region="footer_content00" style="color: rgb(255, 255, 255); font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif; font-size: 12px; line-height: 15px; text-align: left; padding: 20px; background: rgb(153, 10, 227) none repeat scroll 0% 0%;" valign="top">
+                                                            &nbsp;
+                                                            <table align="center" border="0" cellpadding="1" cellspacing="1" class="pd-table" style="width: 100%;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="text-align: center;"><a href="http://www.telia.se/foretag/minasidorpaarbetet" marked="1" target="_blank"><img alt="" border="0" height="50" src="http://go.pardot.com/l/16092/2015-10-09/4bq75p/16092/123168/TS_mina_sidor.png" style="width: 50px; height: 50px; border-width: 0px; border-style: solid;" width="50" /></a><br/>
+                                                                            <br />
+                                                                            <span style="color:#FFFFFF;"><span style="font-size: 14px;"><span style="font-family: arial,helvetica,sans-serif;">Mina Sidor</span></span></span>
+                                                                        </td>
+                                                                        <td style="text-align: center;"><a href="http://www.telia.se/foretag/support" marked="1" target="_blank"><img alt="" border="0" src="http://go.pardot.com/l/16092/2015-10-08/4bmlxy/16092/123046/TS_icon_support.png" style="border-width: 0px; border-style: solid;" /></a><br/>
+                                                                            <br/>
+                                                                            <span style="color:#FFFFFF;"><span style="font-size: 14px;"><span style="font-family: arial,helvetica,sans-serif;">Support</span></span></span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div style="text-align: center;"><a href="http://www.telia.se/foretag/kontakt" marked="1" target="_blank"><img alt="" border="0" src="http://go.pardot.com/l/16092/2015-10-08/4bmlxt/16092/123040/TS_icon_kontaktaoss.png" style="border-width: 0px; border-style: solid;" /></a></div>
+                                                                            <div style="text-align: center;"><br />
+                                                                                <span style="color:#FFFFFF;"><span style="font-size: 14px;"><span style="font-family: arial,helvetica,sans-serif;">Kontakta oss</span></span></span>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            &nbsp; &nbsp;<br />
+                                                            <br />
+                                                            &nbsp;
+                                                            <table border="0" cellpadding="1" cellspacing="1" class="pd-table" style="width: 100%;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="text-align: center;">
+                                                                            <div><a href="http://blogg.telia.se/battreaffarer/" marked="1" target="_blank"><img border="0" height="30" src="http://go.pardot.com/l/16092/2015-10-08/4bmlxp/16092/123036/TS_icon_blogg.png" style="max-width: 50px; line-height: 100%; outline: medium none; text-decoration: none; width: 30px; height: 30px; border-width: 0px; border-style: solid;" width="30" /></a></div>
+                                                                        </td>
+                                                                        <td style="text-align: center;"><a href="http://www.youtube.com/user/teliaforetag" marked="1" target="_blank"><img alt="" border="0" height="30" src="http://go.pardot.com/l/16092/2015-10-09/4bq75k/16092/123164/youtube.png" style="border-width: 0px; border-style: solid; height: 30px; width: 30px;" width="30" /></a></td>
+                                                                        <td style="text-align: center;"><a href="http://www.twitter.com/telia_service" marked="1" target="_blank"><img border="0" height="30" src="http://go.pardot.com/l/16092/2015-10-08/4bmly3/16092/123048/TS_icon_twitter.png" style="max-width: 50px; line-height: 100%; outline: medium none; text-decoration: none; width: 30px; height: 30px; border-width: 0px; border-style: solid;" width="30" /></a></td>
+                                                                        <td style="text-align: center;"><a href="http://www.facebook.com/telia" marked="1"><img alt="" border="0" height="25" src="http://go.pardot.com/l/16092/2016-04-22/5j2rwh/16092/138148/facebook_white_30_30.png" style="height: 25px; width: 25px; border-width: 0px; border-style: solid;" width="25" /></a></td>
+                                                                        <td style="text-align: center;"><a href="http://www.linkedin.com/grp/home?gid=3717322" marked="1" target="_blank"><img alt="" border="0" height="25" src="http://go.pardot.com/l/16092/2016-04-22/5j2rwk/16092/138150/linkedin_white_30_30.png" style="height: 25px; width: 25px; border-width: 0px; border-style: solid;" width="25" /></a></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            &nbsp; &nbsp; &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="footerContent" pardot-region="footer_content01" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #808080; font-family: Helvetica; font-size: 10px; line-height: 15px; text-align: left; padding: 0 20px 20px;" valign="top"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="footerContent" pardot-region="footer_content02" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #808080; font-family: Helvetica; font-size: 10px; line-height: 15px; text-align: left; padding: 0 20px 20px;" valign="top">&nbsp;</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- // END FOOTER -->
+                                        </td>
+                                    </tr>
+</apex:component>

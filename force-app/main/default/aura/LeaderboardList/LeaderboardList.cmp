@@ -1,0 +1,93 @@
+<aura:component controller="LeaderboardListController" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <aura:dependency resource="markup://force:navigateToURL" type="EVENT"/>
+    <ltng:require styles="/resource/sldsnew/styles/salesforce-lightning-design-system.css" />
+    <aura:attribute name="scores" type="Yearly_Performance_Score__c[]"/>
+    <aura:attribute name="showList" type="Boolean" default="true"/>
+    <aura:attribute name="results" type="Yearly_Performance_Score__c[]"/>
+    <aura:registerEvent name="destroyMyPerformance" type="c:destroyComponentEvent"/>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"></aura:handler>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+    
+    <aura:renderIf isTrue="{!!v.showList}">       
+        <div class="slds-button-group back-button-position" role="group">
+            <button class="slds-button slds-button--neutral" onclick="{!c.backButtonClicked}">Back</button>
+        </div>
+        
+        {!v.body}
+    </aura:renderIf>
+    
+    
+    <aura:renderIf isTrue="{!v.showList}">
+        <div class="slds-tabs--scoped">
+            <ul class="slds-tabs--scoped__nav" role="tablist">
+                <li class="slds-tabs--scoped__item slds-text-heading--label" title="Resultat" role="presentation"  aura:id="resultTab">
+                    <span class="slds-tabs--scoped__link" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-1" id="tab-scoped-1__item" onclick="{!c.showResults}">{!$Label.c.Result}</span>
+                </li>
+                <li class="slds-tabs--scoped__item slds-text-heading--label slds-active" title="Insats / Kompotens" role="presentation" aura:id="scoreTab">
+                    <span class="slds-tabs--scoped__link" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-scoped-2" id="tab-scoped-2__item" onclick="{!c.showScores}">{!$Label.c.Contribution} / {!$Label.c.Competence}</span>
+                </li>          
+            </ul>
+            <div id="tab-scoped-1" class="slds-tabs--scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-1__item"  aura:id="resultContent">
+                <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">                           
+                    <aura:iteration items="{!v.results}" var="s"  indexVar="i">                   
+                        <li class="slds-list__item">
+                            <div class="slds-grid slds-wrap">                            
+                                <div class="slds-media slds-tile">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                            <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" />
+                                        </span>
+                                        <span class="slds-badge slds-theme--shade">
+                                            {!i+1}
+                                        </span>
+                                    </div>                                 
+                                    
+                                    <p class="slds-tile__title slds-truncate name">
+                                        <a onclick="{!c.navigateToView}" data-id="{!s.Id}"> {!s.User_Performance__r.User__r.Name}</a> 
+                                    </p>                                                          
+                                </div>  
+                                <div class="slds-col--bump-left">
+                                    <div class="slds-text-heading--label points">{!s.Result__c} %</div>  
+                                </div>  
+                            </div>
+                        </li>
+                    </aura:iteration>
+                </ul>
+            </div>
+            <div id="tab-scoped-2" class="slds-tabs--scoped__content slds-show " role="tabpanel" aria-labelledby="tab-scoped-2__item" aura:id="scoreContent">           
+                <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">
+                    <aura:iteration items="{!v.scores}" var="s" indexVar="i">                      
+                        <li class="slds-list__item">
+                            <div class="slds-grid slds-wrap">                            
+                                <div class="slds-media slds-tile">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                            <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" />
+                                        </span>
+                                        <span class="slds-badge slds-theme--shade">
+                                            {!i+1}
+                                        </span>
+                                    </div>                                 
+                                    
+                                    <p class="slds-tile__title slds-truncate name">
+                                        <a onclick="{!c.navigateToView}" data-id="{!s.Id}"> {!s.User_Performance__r.User__r.Name}</a>
+                                    </p>                                                          
+                                </div>  
+                                <div class="slds-col--bump-left">
+                                    <div class="slds-text-heading--label points">{!s.Total_Score__c} P</div>  
+                                </div>  
+                            </div>
+                        </li>
+                    </aura:iteration>
+                </ul>
+            </div>
+        </div>    
+    </aura:renderIf>
+</aura:component>

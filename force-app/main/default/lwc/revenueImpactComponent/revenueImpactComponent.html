@@ -1,0 +1,160 @@
+<template>
+    <!--Header Part-->
+    <!-- Title -->
+    <div class="slds-page-header">
+        <h1 class="slds-page-header__title slds-align_absolute-center">
+            {componentTitle}
+        </h1>
+        <!-- Action to render new Revenue Effect list -->
+        <template if:true={showRelatedRevenueEffectTables}>
+            <div class="slds-float_right" title="Add New">
+                <a onclick={renderNewRevenueEffectTable}>
+                    <lightning-icon icon-name="utility:add" 
+                                    class="slds-icon slds-icon_small"
+                                    size="small"
+                                    alternative-text="add"
+                    >
+                    </lightning-icon>
+                    <span class="slds-assistive-text">Add Icon</span>
+                </a>
+            </div>
+            <br/>
+        </template>
+        <p class="slds-text-body_small slds-line-height_reset"></p>
+    </div>
+    <!-- Body Part -->
+    <!-- Error Panel -->
+    <template if:true={error}>
+        <c-error-panel-component errors={error} type="inlineMessage"></c-error-panel-component>
+    </template>
+    <!-- Error Panel ENDS-->
+    <!-- Revenue Effect Tables -->
+    <div style="height: 300px; width: 1300px slds-scrollable_y">
+        <template if:false={error}>
+            <div class="slds-is-relative">
+
+                <!-- Main Component Spinner -->
+                <div if:true={showWholeCmpSpinner}>
+                    <div class="slds-spinner_container mainSpinner">
+                        <lightning-spinner variant="brand" alternative-text="Loading" size="large"></lightning-spinner>
+                    </div>
+                </div>
+                <!-- Main Component Spinner ENDS-->
+
+                <!-- Existing Opportunity related Revenue Effect Table Section -->
+                <div class="slds-is-relative">
+
+                    <!-- Related Record Spinner -->
+                    <div if:true={showRelatedRecordsSpinner}>
+                        <div class="slds-spinner_container relatedSpinner">
+                            <lightning-spinner variant="brand" alternative-text="Loading" size="large"></lightning-spinner>
+                        </div>
+                    </div>
+                    <!-- Related Record Spinner ENDS-->
+
+                    <!-- Existing Opportunity related Revenue Effect Tables-->
+                    <template if:true={showRelatedRevenueEffectTables}>
+                        <!-- Existing Opportunity related Revenue Effect Table -->
+                        <lightning-card>
+                            <lightning-datatable
+                                columns={lstOpportunityRelatedRETableCols}
+                                data={lstOpportunityRelatedRERecords}
+                                key-field="Id"
+                                wrap-text-max-lines="2"
+                                hide-checkbox-column="true"
+                                onrowaction={deleteRevenueEffectRecord}
+                                onsave={handleSaveEditedRevenueEffects}
+                                draft-values={lstEditedRevenueEffectDraftValues}
+                            >
+                            </lightning-datatable>
+                        </lightning-card>
+
+                        <!-- Existing Opportunity related Revenue Effect SUMMARY Table -->
+                        <div class="slds-box slds-theme_shade summaryTableStyle">
+                            <div class="slds-grid slds-grid_vertical">
+                                <div class="slds-col slds-size_1-of-1 slds-page-header slds-align_absolute-center">
+                                    <span class="slds-text-title_bold"> 
+                                        {revenueEffectSummaryTitle}
+                                    </span>
+                                    <p class="slds-text-body_small slds-line-height_reset"></p>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-datatable
+                                        columns={lstRevenueEffectSummaryTableCols}
+                                        data={lstRevenueEffectSummaryTableDataDisplay}
+                                        key-field="Id"
+                                        wrap-text-max-lines="2"
+                                        hide-checkbox-column="true"
+                                    >
+                                    </lightning-datatable>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Existing Opportunity related Revenue Effect SUMMARY Table ENDS-->
+                    </template>
+                </div>
+
+                <!-- New Revenue Effect list/table section-->
+                <template if:true={showNewRevenueEffectTable}>
+                    <div class="slds-is-relative newRETableContainer">
+                        <table  class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-table_fixed-layout"
+                        aria-label="Add new Revenue Effect records"
+                        role="grid">
+                            <!-- New Revenue Effect list/table Header -->
+                            <thead>
+                                <tr class="slds-line-height_reset slds-text-title_caps">
+                                    <template iterator:it={lstRevenueEffectNewRecordTableHeaders}>
+                                        <th scope="col" class={it.value.class} key={it.value.col}>
+                                            <template if:false={it.last}>
+                                                <span class="slds-cell-wrap" title={it.value.headerLabel}>{it.value.headerLabel}</span>
+                                            </template>
+                                            <template if:true={it.last}>
+                                                <a onclick={addNewRevenueEffectsToInsertRow}>
+                                                    <lightning-icon 
+                                                        icon-name="utility:add"
+                                                        class="slds-icon slds-icon_small"
+                                                        size="small"
+                                                        alternative-text="Add"
+                                                    >
+                                                    </lightning-icon>
+                                                    <span class="slds-assistive-text">Add Icon</span>
+                                                </a>
+                                            </template>
+                                        </th>
+                                    </template>
+                                </tr>
+                            </thead>
+                            <!-- New Revenue Effect list/table Header ENDS -->
+                            <!-- New Revenue Effect list/table Body -->
+                            <tbody>
+                                <template for:each={lstRevenueEffectsToInsert} for:item="revenueEffect" for:index="rowIndex">
+                                    <!-- Omit dependent-picklist-field param -->        
+                                    <c-utility-revenue-impact-new-record-dynamic-row
+                                        key={revenueEffect.id}
+                                        row-index={rowIndex}
+                                        object-api-name={revenueEffectObjName}
+                                        record-type-id={revenueEffectDefaultRecTypeId}
+                                        controlling-picklist-field={categoryField}
+                                        opportunity-id={recordId}
+                                        revenue-effect-to-insert-json={revenueEffect.rowJSON}
+                                        ondeleterow={removeREToInsertDeletedRow}>
+                                    </c-utility-revenue-impact-new-record-dynamic-row>
+                                </template>
+                            </tbody>
+                            <!-- New Revenue Effect list/table Body ENDS -->
+                        </table>
+                        <footer class="newRETableFooter slds-theme_shade">
+                            <lightning-button 
+                                label={saveButtonLabel}
+                                variant="brand"
+                                class="slds-align_absolute-center"
+                                onclick={addRevenueEffectRecords}>
+                            </lightning-button>
+                        </footer>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </div>
+    <!-- Revenue Effect Tables END-->
+</template>

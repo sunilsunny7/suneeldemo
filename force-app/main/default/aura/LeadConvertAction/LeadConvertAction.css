@@ -1,0 +1,8 @@
+.THIS.slds-notify_container{
+    position:relative !important;
+    
+}
+
+.THIS .slds-notify {
+    min-height:40px;
+}

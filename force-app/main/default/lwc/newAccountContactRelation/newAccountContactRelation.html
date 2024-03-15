@@ -1,0 +1,27 @@
+<!--
+ - Created by uly8476 on 2022-11-16.
+ -->
+
+<!-- New Account Contact Relation -->
+<template>
+    <div class="slds-is-relative">
+        <lightning-quick-action-panel header="Create Account Contact Role">
+            <lightning-spinner alternative-text="Loading" size="medium" variant="brand"
+                               if:true={isLoading}></lightning-spinner>
+            <lightning-record-edit-form
+                    object-api-name={accountContactRelationObject}
+                    onsubmit={handleSubmit}
+                    onsuccess={handleSuccess}
+                    onerror={handleError}>
+                <lightning-input-field field-name={AccContactRelationAccountField} required="true" value={recordId} disabled="true"></lightning-input-field>
+                <lightning-input-field field-name={AccContactRelationContactField} required="true"></lightning-input-field>
+                <lightning-input-field field-name={AccContactRelationEsigningRoleField}></lightning-input-field>
+            </lightning-record-edit-form>
+            <div slot="footer">
+                <lightning-button variant="neutral" label="Cancel" onclick={handleClose}></lightning-button>
+                <lightning-button variant="brand" label="Submit" onclick={handleSubmit} type="submit"
+                                  class="slds-m-left_x-small"></lightning-button>
+            </div>
+        </lightning-quick-action-panel>
+    </div>
+</template>

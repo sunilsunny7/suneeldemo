@@ -1,0 +1,78 @@
+<apex:component >
+    <script id="commit-table-template" type="text/x-handlebars-template">
+    <table class="table table-hover" id="forecasting-table">
+        <thead>
+            <tr>
+        		<th class="col-md-1"></th>
+                <th class="col-md-1">{!$Label.Commit}</th>
+                <th class="col-md-1">{!$Label.Upside}</th>
+                <th class="col-md-1">{!$Label.Risk}</th>
+                <th class="col-md-1">{!$Label.Judge} {{salesType}}</th> 
+                <th class="col-md-1">{!$Label.Actual_Outcome}</th>
+                <th class="col-md-1 tableBorderRight">{!$Label.Outcome_Commit}</th>
+                <th class="col-md-1">{!$Label.Commit}</th>
+                <th class="col-md-1">{!$Label.Upside}</th>                
+                <th class="col-md-1">{!$Label.Risk}</th>
+                <th class="col-md-1">{!$Label.Judge} {{salesType}}</th>
+                <th class="col-md-1">{!$Label.Actual_Outcome}</th>
+                <th class="col-md-1">{!$Label.Outcome_Commit}</th>
+                <th class="col-md-1">{!$Label.Revenue_this_year}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#each weeks}}
+        {{#if item.Active_Week__c}}
+         <tr class="parentRow" data-week="{{item.Name}}" data-owner="{{ownerName}}" data-seller="{{item.Seller__c}}">
+         	{{#ifEquals item.Seller__r.Type__c 'Seller'}}
+         	<td class="clickable">{!$Label.Week} {{item.Name}}</td>
+         	{{else}}
+         	     <td class="clickable"><button class="btn btn-default">+</button>{!$Label.Week} {{item.Name}}</td>
+            {{/ifEquals}}            
+            <td class="clickable" data-type="NS" data-column="Commit">{{formatCurrency item.New_Sales_Amount_Open_Opps__c}} kr</td>
+            <td class="clickable" data-type="NS" data-column="Upside">{{formatCurrency item.Upside_New_Sales__c}} kr</td>            
+            <td class="clickable" data-type="NS" data-column="Risk">{{formatCurrency item.Risk_New_Sales__c}} kr</td>
+            {{#if isPrevWeek}}
+            <td><input class="form-control input-sm" type="text" value="{{formatCurrency item.Judge_NS__c}}" readonly></td>
+            {{else}}
+             <td><input class="form-control input-sm" type="text" value="{{formatCurrency item.Judge_NS__c}}"></td>
+            {{/if}}
+            <td class="clickable" data-type="NS" data-column="ActualOutcome">{{formatCurrency item.Accumulated_New_Sales_Outcome_X__c}} kr</td>
+            <td class="clickable tableBorderRight" data-type="NS" data-column="OutcomeCommit">{{formatCurrency item.Outcome_Commit_NS__c}} kr</td>
+            <td class="clickable" data-type="CS" data-column="Commit">{{formatCurrency item.Continuation_Sales_Amount_Open_Opps__c}} kr</td>
+            <td class="clickable" data-type="CS" data-column="Upside">{{formatCurrency item.Upside_Continuation_Sales__c}} kr</td>            
+            <td class="clickable" data-type="CS" data-column="Risk">{{formatCurrency item.Risk_Continuation_Sales__c}} kr</td>
+            {{#if isPrevWeek}}
+            <td><input class="form-control input-sm" type="text" value="{{formatCurrency item.Judge_CS__c}}" readonly></td>
+            {{else}}
+             <td><input class="form-control input-sm" type="text" value="{{formatCurrency item.Judge_CS__c}}"></td>
+            {{/if}}
+            <td class="clickable" data-type="CS" data-column="ActualOutcome">{{formatCurrency item.Accumulated_Continuation_Sales_Outcome_X__c}} kr</td>
+            <td class="clickable" data-type="CS" data-column="OutcomeCommit">{{formatCurrency item.Outcome_Commit_CS__c}} kr</td>
+            <td>{{formatCurrency item.Revenue_Impact_This_Year__c}} kr</td>
+         </tr>
+        	{{#each subWeeks}}
+            <tr class="childRow" data-week="{{item.Name}}" data-owner="{{ownerName}}" data-seller="{{item.Seller__c}}">
+         	<td class="clickable">{{title}}</td>
+ 			<td class="clickable" data-type="NS" data-column="Commit">{{formatCurrency item.New_Sales_Amount_Open_Opps__c}} kr</td>
+            <td class="clickable" data-type="NS" data-column="Upside">{{formatCurrency item.Upside_New_Sales__c}} kr</td>            
+            <td class="clickable" data-type="NS" data-column="Risk">{{formatCurrency item.Risk_New_Sales__c}} kr</td>
+         	<td><input class="form-control input-sm" type="text" value="{{formatCurrency item.Judge_NS__c}}" readonly></td>
+            <td class="clickable" data-type="NS" data-column="ActualOutcome">{{formatCurrency item.Accumulated_New_Sales_Outcome_X__c}} kr</td>
+            <td class="clickable tableBorderRight" data-type="NS" data-column="OutcomeCommit">{{formatCurrency item.Outcome_Commit_NS__c}} kr</td>
+            <td class="clickable" data-type="CS" data-column="Commit">{{formatCurrency item.Continuation_Sales_Amount_Open_Opps__c}} kr</td>
+            <td class="clickable" data-type="CS" data-column="Upside">{{formatCurrency item.Upside_Continuation_Sales__c}} kr</td>            
+            <td class="clickable" data-type="CS" data-column="Risk">{{formatCurrency item.Risk_Continuation_Sales__c}} kr</td>
+         	<td><input class="form-control input-sm" type="text" value="{{formatCurrency item.Judge_CS__c}}" readonly></td>
+            <td class="clickable" data-type="CS" data-column="ActualOutcome">{{formatCurrency item.Accumulated_Continuation_Sales_Outcome_X__c}} kr</td>
+            <td class="clickable" data-type="CS" data-column="OutcomeCommit">{{formatCurrency item.Outcome_Commit_CS__c}} kr</td>
+            <td>{{formatCurrency item.Revenue_Impact_This_Year__c}} kr</td>
+        	</tr>
+            {{/each}}
+         {{/if}}
+        {{/each}}
+        </tbody>
+    </table>
+   	</script>
+    
+    
+</apex:component>

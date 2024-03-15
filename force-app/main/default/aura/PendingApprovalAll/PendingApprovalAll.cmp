@@ -1,0 +1,49 @@
+<aura:component controller="PendingApprovalRequestsController" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="pageheader" type="String" access="public" />
+    <aura:attribute name="isOpen" type="boolean" default="true" access="public" />
+    <aura:attribute name="frstbtn" type="String" access="public" />
+    <aura:attribute name="secBtn" type="String" access="public" />
+    <aura:attribute name="workItemId" type="String" access="public" />
+    <aura:attribute name="modalView" type="boolean" default = "false" access="public" />
+    <aura:attribute name="dataView" type="boolean" default = "true" access="public" />
+    <aura:attribute name="columns" type="list" description="Stores column names of the data table"/>
+    <aura:attribute name="data" type="object" description="Stores records displayed in the data table"/>
+    <aura:attribute name="sortedBy" type="string" description="Stores name of column used for sorting"/>
+    <aura:attribute name="sortedDirection" type="string" description="Stores direction of sorting(ascending or descending)"/>
+    <aura:attribute name="dynamicheight" type="Integer" />
+    
+    <lightning:spinner aura:id="spinnerId" variant="brand" size="medium"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    
+    <div class="slds-page-header" role="banner">
+        <!--<span class="slds-page-header__title" >Items to Approve (Min lista)</span>-->
+        <b><span class="slds-card__header-title.slds-truncate" >Alla Godkännanden</span></b>
+    </div>
+    
+    
+    
+    <div class="slds-scrollable_y slds-clearfix slds-card" style="{!'height:' + v.dynamicheight+'px'}"> 
+      <aura:if isTrue="{!v.dataView}"> 
+          
+          
+          
+        <lightning:datatable aura:id="approvalTableId"
+                             keyField="workItemId"
+                             columns="{!v.columns}"
+                             data="{!v.data}"
+                             sortedBy="{!v.sortedBy}"
+                             sortedDirection="{!v.sortedDirection}"
+                             hideCheckboxColumn = "true"
+                             onsort="{!c.handleSort}"
+                             showRowNumberColumn="true"
+                             onrowaction= "{!c.handleRowAction}"/>
+       <aura:set attribute="else">
+           <center><br/>För närvarande finns inga godkännandebegäranden som behöver granskas av dig.</center>
+    </aura:set>
+  </aura:if> 
+    </div>
+         
+        <aura:if isTrue="{!v.modalView}">
+    <c:ModelComponentBody workId="{!v.workItemId}" globalheader="{!v.pageheader}" firstbtn ="{!v.frstbtn}" secondbtn = "{!v.secBtn}" isOpen = "{!v.isOpen}"/> 
+    </aura:if>
+</aura:component>

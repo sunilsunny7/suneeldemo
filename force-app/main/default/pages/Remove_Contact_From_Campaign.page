@@ -1,0 +1,16 @@
+<apex:page standardController="Contact" extensions="CampaignMemberContact" recordSetVar="Contact">
+    <apex:form >
+        <apex:pageBlock title="Campaign">
+            <apex:pageBlockSection title="Select Campaign">
+                <apex:selectList multiselect="false" label="Campaign:" size="1" value="{!Campqueue}">
+                    <apex:selectOptions value="{!CampaignName}">
+                    </apex:selectOptions>
+                </apex:selectList>
+                <br/> <br/>
+                
+                <apex:commandButton value="Ta bort medlemmar" action="{!Delnow}" id="Del" />
+                <apex:commandButton action="{!Cancel}" value="Avbryt"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

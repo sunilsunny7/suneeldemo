@@ -1,0 +1,94 @@
+<aura:component controller="SolutionVerificationController" implements="flexipage:availableForAllPageTypes,force:appHostable,force:hasRecordId"  >
+    <ltng:require styles="/resource/sldsnew/styles/salesforce-lightning-design-system.css" />
+    <ltng:require styles="{!$Resource.datatablecss}"  />
+    <ltng:require scripts="{!$Resource.datatables}" />
+    
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />      
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:locationChange" action="{!c.update}"/>
+    
+    <aura:handler name="change" value="{!v.SV.SV_Opportunity__c}" action="{!c.onOpportunityChange}"/>  
+    
+    <aura:attribute name="HasError" type="Boolean" default="False" />
+    <aura:attribute name="IsSuccess" type="Boolean" default="False" />
+    <aura:attribute name="ErrorMsg" type="String" default="" />
+    <aura:attribute name="HasApproval" type="Boolean" default="False" />
+    <aura:attribute name="ApprovalID" type="String" default="" />
+    <aura:attribute name="SV" type="Solution_Verification__c" default="{ 'sobjectType': 'Solution_Verification__c' }"/>  
+    <aura:attribute name="Requirements" type="Requirement__c[]" />
+    
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert" style="z-index:9999">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+    <aura:If isTrue="{!v.HasError}">  
+        <div class="slds-notify_container">
+            <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
+                <button onclick="{!c.hideError}" class="slds-button slds-button--icon-inverse slds-notify__close slds-icon--small slds-m-right--x-small" aria-haspopup="true">                             
+                </button>
+                <span class="slds-assistive-text">Info</span>
+                <h2>{!v.ErrorMsg}</h2>
+            </div>
+        </div>
+    </aura:If> 
+    <div class="slds-modal__header">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <c:svgIcon svgPath="/resource/slds213/assets/icons/utility-sprite/svg/symbols.svg#mark_all_as_read" class="slds-icon-text-default" size="small"  /> 
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-text-heading--large" >{!$Label.c.SV_Header}</div>
+            </div>
+        </div>
+    <div class="slds-grid slds-grid--vertical-align-end slds-grid--align-center slds-m-top--medium">
+        <lightning:button variant="brand" label="{!$Label.c.SV_Connect_Btn}" onclick="{!c.submitClick }" />
+        <lightning:button variant="brand" label="{!$Label.c.SV_Open_Approval_Btn}" disabled="{!!v.HasApproval}"  onclick="{!c.openApproval }" />
+    </div>        
+    </div>
+    
+    
+    <force:inputField aura:id="oppLookup" value="{!v.SV.SV_Opportunity__c}"/>
+    <div class="slds-modal__content">
+        <div class="slds-form--stacked slds-m-top--medium">
+            
+            <div class="slds-modal__header">       
+                <h2  class="slds-text-heading--medium">{!$Label.c.SV_SubHeader}</h2>
+                <p class="slds-m-top--x-small">{!$Label.c.SV_Header_Description}</p>
+            </div>   
+            <table role="grid" class="slds-table slds-table--fixed-layout slds-table--bordered slds-no-row-hover slds-scrollable--none" id="req-table"  cellspacing="0" width="100%">
+                <thead  class="slds-line-height--reset">
+                    <tr>
+                        <th aria-label="Connected" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                            <span class="slds-truncate" title="{!$Label.c.SV_Connected}">{!$Label.c.SV_Connected}</span>
+                        </th>
+                        <th aria-label="Name" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                            <span class="slds-truncate" title="{!$Label.c.SV_Name}">{!$Label.c.SV_Name}</span>
+                        </th>
+                        <th aria-label="Description" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                            <span class="slds-truncate" title="{!$Label.c.SV_Description}">{!$Label.c.SV_Description}</span>
+                        </th>
+                        <th aria-label="Status" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                            <span class="slds-truncate" title="{!$Label.c.SV_Status}">{!$Label.c.SV_Status}</span>
+                        </th>
+                        <th aria-label="Related Solution" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                            <span class="slds-truncate" title="{!$Label.c.SV_Related_Solution}">{!$Label.c.SV_Related_Solution}</span>
+                        </th>
+                        <th aria-label="Owner Alias" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                            <span class="slds-truncate" title="{!$Label.c.SV_Owner_Alias}">{!$Label.c.SV_Owner_Alias}</span>
+                        </th>
+                        <th aria-label="External RequirementId" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                            <span class="slds-truncate" title="{!$Label.c.SV_External_ID}">{!$Label.c.SV_External_ID}</span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="slds-grid slds-grid--vertical-align-end slds-grid--align-center slds-m-top--medium">
+        <lightning:button variant="brand" label="{!$Label.c.SV_Connect_Btn}" onclick="{!c.submitClick }" />
+        <lightning:button variant="brand" label="{!$Label.c.SV_Open_Approval_Btn}" disabled="{!!v.HasApproval}"  onclick="{!c.openApproval }" />
+    </div>
+</aura:component>

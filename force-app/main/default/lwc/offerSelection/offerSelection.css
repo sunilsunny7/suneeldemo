@@ -1,0 +1,13 @@
+.arrowIcon {
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 20px auto;
+    justify-content: start;
+    align-items: center;
+}
+
+.arrowIcon::before {
+    content: ">";
+    font-size: 15px;
+    color: #021b39;
+}

@@ -1,0 +1,316 @@
+<!--
+* This is the controller for the mass update app
+* 
+* Author & Date Update: Varma Alluri,  21.03.2017
+* Description: JIRA Ticket: SAEN-2201
+-->
+
+<apex:page standardController="Requirement__c" recordSetvar="unused" extensions="MassUpdateSimpleController" id="page" docType="html-5.0">
+  
+  <!-- for this page to work with a specific custom object, change standController="entityname" to custom object api name  
+    For example, if custom object name is Warehouse__c, change first part of the first line to standardController="warehouse__c" -->
+  <html>
+        <apex:variable var="uiTheme" value="lightningDesktop" rendered="{!$User.UIThemeDisplayed == 'Theme4d'}">
+            <apex:stylesheet value="{!URLFOR($Resource.LDS_212, 'assets/styles/salesforce-lightning-design-system.css')}" />
+        </apex:variable>
+  <apex:includeScript value="{!$Resource.UtilJS}" />
+
+<apex:outputPanel id="lightningwizard" rendered="{!$User.UIThemeDisplayed == 'Theme4d' }">        
+            
+            <style type="text/css">
+                @font-face {
+                font-family: "SalesforceSans";
+                src: url('{!URLFOR($Resource.LDS_212, 'assets/fonts/SalesforceSans-Regular.ttf')}');
+                }
+                
+                html body.sfdcBody, tr, td{
+                font-family: "SalesforceSans";
+                }
+                
+                 html {
+                    height:100%;
+                    background-color: rgb(244, 246, 249); 
+                  }
+            </style>
+             <script>   
+            
+            
+            setTimeout(function(){
+                
+                var currentStep = parseInt("{!step}");
+                var progressBar = document.getElementById("progressBar");
+                var wlis = document.getElementById("wizardlist").getElementsByTagName("li");
+                for (i=0; i<wlis.length; i++){
+                    
+                    if (i<currentStep) {
+                        wlis[i].classList.add("slds-is-active");
+                    }else {
+                        wlis[i].classList.remove("slds-is-active");
+                    }
+                }
+                switch (currentStep) {
+                    case 1:
+                        progressBar.style.width="0%";
+                        break;
+                    case 2:
+                        progressBar.style.width="25%";
+                        break;
+                    case 3:
+                        progressBar.style.width="50%";
+                        break;
+                    case 4:
+                        progressBar.style.width="75%";
+                        break;
+                    case 5:
+                        progressBar.style.width="100%";
+                }
+                // debugger;
+                var spinningEl = document.getElementById("spinning");
+                spinningEl.style.visibility  = "hidden";
+                
+                
+            });
+            
+            function showSpinning(){
+                
+                var spinningEl = document.getElementById("spinning");
+                spinningEl.style.visibility  = "visible";
+            }
+            
+            </script>
+ 
+                    <script>
+                    function selectField(){
+                        var fieldSelection = document.getElementById("fieldSelection").getElementsByTagName("span");
+                        var selectedValue = fieldSelection[0].innerHTML;
+                        debugger;
+                        if (!(selectedValue==null||selectedValue=='')){
+                            setFieldName(selectedValue);
+                        }        
+                    } 
+                    </script>
+   
+                    <script>
+                    function selectValue(){
+                        
+                        var selectedValue=''; 
+                        var isTextField = "{!displayTexField}";
+                        var isTextAreaField = "{!displayTextArea}";
+                        var isCheckboxField = "{!displayCheckBox}";
+                        var isPicklistField = "{!displayPicklist}"
+                        if (isTextField=='true' || isTextAreaField=='true'){
+                            selectedValue = document.getElementById("fieldValue").value;
+                        }
+                        if (isCheckboxField=='true'){
+                            selectedValue = document.querySelector('input[name="fieldValue"]:checked').value;
+                        } 
+                        if (isPicklistField=='true'){
+                            var fieldSelection = document.getElementById("fieldSelection").getElementsByTagName("span");
+                            selectedValue = fieldSelection[0].innerHTML;
+                        }  
+                        setFieldValue(selectedValue);                          
+                    } 
+                    </script> 
+                    
+      
+                    <script>
+                    var elm = document.getElementById("approvalIcon");
+                    var svgTag = document.createElement("svg");
+                    var useTag = document.createElement("use");
+                    svgTag.setAttribute("aria-hidden","true");
+                    svgTag.setAttribute("class","slds-icon slds-icon--medium");
+                    useTag.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+                    useTag.setAttribute("xlink:href", "/resource/LDS_212/assets/icons/action-sprite/svg/symbols.svg#approval");
+                    svgTag.appendChild(useTag);
+                    elm.appendChild(svgTag);
+                    elm.innerHTML = elm.innerHTML;
+                    </script>
+      
+			<apex:form id="wizard2">
+ 
+  <apex:sectionHeader title="Mass Update Wizard" subtitle="Step {!step} of 5"/>
+
+      <apex:pageBlock id="step1" title="Step 1. Confirm records to be updated" mode="edit" rendered="{!step='1'}">
+            <apex:pagemessages escape="false"></apex:pagemessages>
+            <apex:pageBlockSection >
+            <apex:pageBlockTable var="a" value="{!selected}">
+                <apex:column value="{!a.Name}"/>
+            </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <apex:panelGrid columns="2">
+            </apex:panelGrid>
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!cancel}" value="Previous"/>
+              <apex:commandButton action="{!step2}" value="Next"/>
+          </apex:pageBlockButtons>
+      </apex:pageBlock> 
+  
+      <apex:pageBlock id="field" title="Step 2. Specify the field to be udpated" mode="edit" rendered="{!step='2'}">
+          <apex:pagemessages escape="false"></apex:pagemessages>
+          <apex:selectList id="pickList" size="1" value="{!fieldName}" required="true">
+              <apex:selectOptions value="{!fieldTypeOptions}"/>
+          </apex:selectList>
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!step3}" value="Next"/>
+              <apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true" style="margin-left: 2em"/>
+          </apex:pageBlockButtons>
+      </apex:pageBlock> 
+  
+      <apex:pageBlock id="step3" title="Step 3. Specify the new value for field - {!fieldName}" mode="edit" rendered="{!step='3'}">
+         <apex:pagemessages escape="false"></apex:pagemessages>
+           <apex:outputPanel rendered="{!fieldType='REFERENCE'}">
+         		<apex:outputLabel value="Enter Name :"/>
+         		<apex:inputtext style="width: 25%;box-sizing: border-box;border: 2px solid #ccc; border-radius: 2px;font-size: 14px; background-color: white;
+     padding: 1px 1px 1px 1px;" value="{!SearchKey}" /> 
+         		<apex:commandButton style="background-color: green; padding: 5px 5px 5px 5px;text-align: center;font-size: 14px;color:black;" value="Search" action="{!Searchacc}" />
+          </apex:outputPanel><br/>
+      <!--  <apex:selectList value="{!reId}" size="1" rendered="{!showrecords}" > 
+        	<apex:selectOptions value="{!records}"/>
+   		 </apex:selectList> -->
+         <br/><apex:outputLabel value="Select Record:" rendered="{!showrecords}"/>
+          <apex:inputtext style="width: 24.5%;box-sizing: border-box;border: 2px solid #ccc; border-radius: 2px;font-size: 14px;padding: 1px 1px 1px 1px;" list="{!lststrings}" value="{!valueToUpdate}" rendered="{!showrecords}"/> 
+         <apex:inputText rendered="{!fieldType='CURRENCY'}" value="{!valueToUpdate}"  />
+         <apex:inputText rendered="{!fieldType='DATE'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='DATETIME'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='TEXT'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='NUMBER'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='COMBOBOX'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='DOUBLE'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='EMAIL'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='ID'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='INTEGER'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='PERCENT'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='MULTIPICKLIST'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='PHONE'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='STRING'}" value="{!valueToUpdate}" />
+       <!--  <apex:inputText rendered="{!fieldType='REFERENCE'}" list="{!listOfString}" value="{!valueToUpdate}" />  -->
+       <!--  <apex:inputField rendered="{!fieldType='REFERENCE'}" value="{!req.Opportunity__c}"/> -->
+         <apex:inputText rendered="{!fieldType='BASE64'}" value="{!valueToUpdate}" />
+         <apex:inputTextArea rendered="{!fieldType='TEXTAREA'}" rows="15" cols="100" value="{!valueToUpdate}" />
+         <apex:inputCheckBox rendered="{!fieldType='BOOLEAN'}" value="{!valueToUpdate}" />
+         <apex:selectList rendered="{!fieldType='PICKLIST'}" value="{!valueToUpdate}" size="1">
+         <apex:selectOptions value="{!picklistvalues}"/>
+         </apex:selectList>  
+             <apex:pageBlockButtons >
+              <apex:commandButton action="{!step2}" value="Previous"/>
+              <apex:commandButton action="{!step4}" value="Next" />
+              <apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true" style="margin-left: 2em"/>
+             </apex:pageBlockButtons>
+      </apex:pageBlock> 
+      
+      <apex:pageBlock id="step4" title="Step 4. Confirmation" mode="edit" rendered="{!step='4'}">
+          <apex:pagemessages escape="false"></apex:pagemessages>
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!step3}" value="Previous"/>
+              <apex:commandButton action="{!step5}" value="Update"/>
+              <apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true" style="margin-left: 2em"/>
+          </apex:pageBlockButtons>
+      </apex:pageBlock> 
+      
+      
+      <apex:pageBlock id="step5" title="Step 5. Results" mode="edit" rendered="{!step='5'}">
+          <apex:pagemessages escape="false"></apex:pagemessages>
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!cancel}" value="Done"/>
+          </apex:pageBlockButtons>
+      </apex:pageBlock> 
+      
+  </apex:form>
+            
+        </apex:outputPanel>
+
+ <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3' }"> 
+  <apex:form id="wizard1">
+ 
+  <apex:sectionHeader title="Mass Update Wizard" subtitle="Step {!step} of 5"/>
+
+      <apex:pageBlock id="step1" title="Step 1. Confirm records to be updated" mode="edit" rendered="{!step='1'}">
+            <apex:pagemessages escape="false"></apex:pagemessages>
+            <apex:pageBlockSection >
+            <apex:pageBlockTable var="a" value="{!selected}">
+                <apex:column value="{!a.Name}"/>
+            </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <apex:panelGrid columns="2">
+            </apex:panelGrid>
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!cancel}" value="Previous"/>
+              <apex:commandButton action="{!step2}" value="Next"/>
+          </apex:pageBlockButtons>
+      </apex:pageBlock> 
+  
+      <apex:pageBlock id="field" title="Step 2. Specify the field to be udpated" mode="edit" rendered="{!step='2'}">
+          <apex:pagemessages escape="false"></apex:pagemessages>
+          <apex:selectList id="pickList" size="1" value="{!fieldName}" required="true">
+              <apex:selectOptions value="{!fieldTypeOptions}"/>
+          </apex:selectList>
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!step3}" value="Next"/>
+              <apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true" style="margin-left: 2em"/>
+          </apex:pageBlockButtons>
+      </apex:pageBlock> 
+  
+      <apex:pageBlock id="step3" title="Step 3. Specify the new value for field - {!fieldName}" mode="edit" rendered="{!step='3'}">
+         <apex:pagemessages escape="false"></apex:pagemessages>
+           <apex:outputPanel rendered="{!fieldType='REFERENCE'}">
+         		<apex:outputLabel value="Enter Name :"/>
+         		<apex:inputtext style="width: 25%;box-sizing: border-box;border: 2px solid #ccc; border-radius: 2px;font-size: 14px; background-color: white;
+     padding: 1px 1px 1px 1px;" value="{!SearchKey}" /> 
+         		<apex:commandButton style="background-color: green; padding: 5px 5px 5px 5px;text-align: center;font-size: 14px;color:black;" value="Search" action="{!Searchacc}" />
+          </apex:outputPanel><br/>
+      <!--  <apex:selectList value="{!reId}" size="1" rendered="{!showrecords}" > 
+        	<apex:selectOptions value="{!records}"/>
+   		 </apex:selectList> -->
+         <br/><apex:outputLabel value="Select Record:" rendered="{!showrecords}"/>
+          <apex:inputtext style="width: 24.5%;box-sizing: border-box;border: 2px solid #ccc; border-radius: 2px;font-size: 14px;padding: 1px 1px 1px 1px;" list="{!lststrings}" value="{!valueToUpdate}" rendered="{!showrecords}"/> 
+         <apex:inputText rendered="{!fieldType='CURRENCY'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='DATE'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='DATETIME'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='TEXT'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='NUMBER'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='COMBOBOX'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='DOUBLE'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='EMAIL'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='ID'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='INTEGER'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='PERCENT'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='MULTIPICKLIST'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='PHONE'}" value="{!valueToUpdate}" />
+         <apex:inputText rendered="{!fieldType='STRING'}" value="{!valueToUpdate}" />
+  <!--    <apex:inputText rendered="{!fieldType='REFERENCE'}" list="{!listOfString}" value="{!valueToUpdate}" />  -->
+       <!--  <apex:inputField rendered="{!fieldType='REFERENCE'}" value="{!req.Opportunity__c}"/> -->
+         <apex:inputText rendered="{!fieldType='BASE64'}" value="{!valueToUpdate}" />
+         <apex:inputTextArea rendered="{!fieldType='TEXTAREA'}" rows="15" cols="100" value="{!valueToUpdate}" />
+         <apex:inputCheckBox rendered="{!fieldType='BOOLEAN'}" value="{!valueToUpdate}" />
+         <apex:selectList rendered="{!fieldType='PICKLIST'}" value="{!valueToUpdate}" size="1">
+         <apex:selectOptions value="{!picklistvalues}"/>
+         </apex:selectList>
+             <apex:pageBlockButtons >
+              <apex:commandButton action="{!step2}" value="Previous"/>
+              <apex:commandButton action="{!step4}" value="Next"/>
+              <apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true" style="margin-left: 2em"/>
+             </apex:pageBlockButtons>
+      </apex:pageBlock> 
+      
+      <apex:pageBlock id="step4" title="Step 4. Confirmation" mode="edit" rendered="{!step='4'}">
+          <apex:pagemessages escape="false"></apex:pagemessages>
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!step3}" value="Previous"/>
+              <apex:commandButton action="{!step5}" value="Update"/>
+              <apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true" style="margin-left: 2em"/>
+          </apex:pageBlockButtons>
+      </apex:pageBlock> 
+      
+      
+      <apex:pageBlock id="step5" title="Step 5. Results" mode="edit" rendered="{!step='5'}">
+          <apex:pagemessages escape="false"></apex:pagemessages>
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!cancel}" value="Done"/>
+          </apex:pageBlockButtons>
+      </apex:pageBlock> 
+      
+  </apex:form>
+  </apex:outputPanel>
+      
+  </html>
+</apex:page>

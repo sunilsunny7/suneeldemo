@@ -1,0 +1,55 @@
+<template>
+    <div class="slds-page-header slds-page-header__row slds-page-header__col-title slds-media">
+        <div class="slds-media__figure">
+            <span class="slds-icon_container slds-icon-standard-opportunity" title="opportunity">
+                <lightning-icon
+                    icon-name="standard:account"
+                    alternative-text="Subscription"
+                    size="small">
+                </lightning-icon>
+                <span class="slds-assistive-text">Account</span>
+            </span>
+        </div>
+        <div class="slds-media__body">
+            <div class="slds-page-header__name-title slds-page-header__name">
+                <h1>
+                    <span class="slds-page-header__title slds-truncate" title="Abonnemangslista">Abonnemangslista</span>
+                </h1>
+            </div>
+            <p class="slds-page-header__name-meta">{accountName}</p>
+        </div>
+        <div class="slds-grid slds-gutters slds-align_absolute-center">
+            <div class="slds-col slds-size_8-of-12" style="text-align: right;">
+                <lightning-input  
+                    onchange={searchTable} 
+                    type="search" 
+                    label="Searh" 
+                    variant="label-hidden" 
+                    placeholder="Sök I denna lista…">
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-size_8-of-12" style="text-align: left;">
+                <lightning-button icon-name="utility:download" 
+                        label="Ladda ner som Excel"
+                        wrap="false"
+                        icon-position="right"
+                        onclick={downloadCSVFile} >
+                </lightning-button>
+            </div>
+        </div>
+                
+    </div>
+
+    <lightning-datatable
+        key-field="Subscription_Id__c"
+        id="htmlTableValues" 
+        name="htmlTableValues" 
+        data={subscriptions}
+        columns={columns}
+        hide-checkbox-column
+        default-sort-direction={defaultSortDirection}
+        sorted-direction={sortDirection}
+        sorted-by={sortedBy}
+        onsort={onHandleSort}>
+    </lightning-datatable>
+</template>

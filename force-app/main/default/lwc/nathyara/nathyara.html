@@ -1,0 +1,184 @@
+<template>
+    <table>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Epost för underlagen</td>
+                <td>
+                    <lightning-textarea name="Nathyra_ip1" class="textarea_size" value="" onchange={changeHandler}>
+                    </lightning-textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Månad eller kvartaslvis underlag?</td>
+                <td>
+                    <lightning-combobox name="Nathyra_ip2" label="" value={value} placeholder="" options={manad}
+                        onchange={changeHandler}></lightning-combobox>
+                </td>
+            </tr>
+            <tr>
+                <td>Minimi näthyra?</td>
+                <td>
+                    <lightning-combobox name="Nathyra_ip3" label="" value="" placeholder="" options={bool}
+                        onchange={changeHandler}></lightning-combobox>
+                </td>
+            </tr>
+            <tr>
+                <td>Om ja – summa exkl moms/mån</td>
+                <td>
+                    <lightning-textarea name="Nathyra_ip4" class="textarea_size" value="" onchange={changeHandler}>
+                    </lightning-textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Aktiveringsdatum eller kalendermånadsbaserad näthyra?</td>
+                <td>
+                    <lightning-textarea name="Nathyra_ip5" class="textarea_size" value="" onchange={changeHandler}>
+                    </lightning-textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <b>Med aktiv näthyra:</b>
+                </td>
+            </tr>
+            <tr>
+                <td>Tjänst</td>
+                <td>Aktiv näthyra kr exkl moms/månad</td>
+            </tr>
+            <tr>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="text" name="aktiv_LHS1" onchange={changeHandler} value="Bredband 1 MDU">
+                    </lightning-input>
+                </td>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="number" name="aktiv_RHS1" onchange={changeHandler} formatter="currency"
+                        step="1" value="" class="form-control is-invalid">
+                    </lightning-input>
+                </td>
+            </tr>
+            <tr>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="text" name="aktiv_LHS2" onchange={changeHandler} value="Bredband >10 MDU">
+                    </lightning-input>
+                </td>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="number" name="aktiv_RHS2" onchange={changeHandler} formatter="currency"
+                        step="1" value="" class="form-control is-invalid">
+                    </lightning-input>
+                </td>
+            </tr>
+            <tr>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="text" name="aktiv_LHS3" onchange={changeHandler} value="Bredband 1 SDU">
+                    </lightning-input>
+                </td>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="number" name="aktiv_RHS3" onchange={changeHandler} formatter="currency"
+                        step="1" value="" class="form-control is-invalid">
+                    </lightning-input>
+                </td>
+            </tr>
+            <tr>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="text" name="aktiv_LHS4" onchange={changeHandler} value="Bredband >10 SDU">
+                    </lightning-input>
+                </td>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="number" name="aktiv_RHS4" onchange={changeHandler} formatter="currency"
+                        step="1" value="" class="form-control is-invalid">
+                    </lightning-input>
+                </td>
+            </tr>
+            <tr>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="text" name="aktiv_LHS5" onchange={changeHandler} value="Bredband 1 FTG">
+                    </lightning-input>
+                </td>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="number" name="aktiv_RHS5" onchange={changeHandler} formatter="currency"
+                        step="1" value="" class="form-control is-invalid">
+                    </lightning-input>
+                </td>
+            </tr>
+            <tr>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="text" name="aktiv_LHS6" onchange={changeHandler} value="Bredband >10 FTG">
+                    </lightning-input>
+                </td>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="number" name="aktiv_RHS6" onchange={changeHandler} formatter="currency"
+                        step="1" value="" class="form-control is-invalid">
+                    </lightning-input>
+                </td>
+            </tr>
+            <tr>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="text" name="aktiv_LHS7" onchange={changeHandler} value="Samma">
+                    </lightning-input>
+                </td>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="number" name="aktiv_RHS7" onchange={changeHandler} formatter="currency"
+                        step="1" value="" class="form-control is-invalid">
+                    </lightning-input>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <b>Med passiv näthyra:</b>
+                </td>
+            </tr>
+            <tr>
+                <td>Tjänst</td>
+                <td>Passiv näthyra kr exkl moms/månad</td>
+            </tr>
+            <tr>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="text" name="passiv_LHS1" value="MDU" onchange={changeHandler}>
+                    </lightning-input>
+                </td>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="number" name="passiv_RHS1" onchange={changeHandler} formatter="currency"
+                        step="1" value="" class="form-control is-invalid">
+                    </lightning-input>
+                </td>
+            </tr>
+            <tr>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="text" name="passiv_LHS2" value="SDU" onchange={changeHandler}>
+                    </lightning-input>
+                </td>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="number" name="passiv_RHS2" onchange={changeHandler} formatter="currency"
+                        step="1" value="" class="form-control is-invalid">
+                    </lightning-input>
+                </td>
+            </tr>
+            <tr>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="text" name="passiv_LHS3" value="FTG" onchange={changeHandler}>
+                    </lightning-input>
+                </td>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="number" name="passiv_RHS3" onchange={changeHandler} formatter="currency"
+                        step="1" value="" class="form-control is-invalid">
+                    </lightning-input>
+                </td>
+            </tr>
+            <tr>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="text" name="passiv_LHS4" value="Samma" onchange={changeHandler}>
+                    </lightning-input>
+                </td>
+                <td class="slds-p-right_medium">
+                    <lightning-input type="number" name="passiv_RHS4" onchange={changeHandler} formatter="currency"
+                        step="1" value="" class="form-control is-invalid">
+                    </lightning-input>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</template>

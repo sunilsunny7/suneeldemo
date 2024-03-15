@@ -1,0 +1,21 @@
+<apex:component >
+    <apex:attribute name="gaugeId" description="Id of gauge element" type="String"/> 
+    <apex:attribute name="value" description="Value of the gauge" type="String"/> 
+    <apex:attribute name="label" description="Label header for the gauge" type="String"/>   
+    <div style="width:100%" class="gauge" id="{!gaugeId}"></div>
+    <script>
+     function loadGauge() {  
+        var g = new JustGage({
+            id: '{!gaugeId}',
+            value: Math.round('{!value}'),
+            min: 0,
+            max: 150,
+            relativeGaugeSize: true,
+            symbol: "%",
+            levelColors: ['#ee1111', '#ffc40d', '#99b433'],
+            gaugeWidthScale: 0.5
+        });    
+    }
+    loadGauge();
+    </script>
+</apex:component>

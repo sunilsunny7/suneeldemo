@@ -1,0 +1,25 @@
+<apex:component >
+       <tr>
+                                        <td align="center" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" valign="top">
+                                            <!-- BEGIN HEADER // -->
+                                            <table border="0" cellpadding="0" cellspacing="0" id="templateHeader" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background-color: #FFFFFF; border-bottom-color: #CCCCCC; border-bottom-style: solid; border-bottom-width: 1px; border-collapse: collapse !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt" width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left" class="headerContent" pardot-data="" pardot-region="header_image" style="color: rgb(255, 255, 255); font-family: Helvetica; font-size: 20px; font-weight: bold; line-height: 20px; text-align: left; vertical-align: middle; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%;" valign="top">
+                                                            <table border="0" cellpadding="8" cellspacing="8" class="pd-table" style="width: 100%;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><a href="http://www.telia.se/foretag"><img alt="" border="0" height="60" src="http://go.pardot.com/l/16092/2016-02-25/563dzd/16092/134275/telia.png" style="width: 160px; height: 60px; border-width: 0px; border-style: solid;" width="160" /></a></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <br />
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- // END HEADER -->
+                                        </td>
+                                    </tr>
+</apex:component>

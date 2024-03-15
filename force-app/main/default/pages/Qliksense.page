@@ -1,0 +1,30 @@
+<apex:page >
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+function getQueryStringValue (key) {  
+            return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+        } 
+        
+    $(document).ready(function(){
+      //alert('inside ready');
+      var id = getQueryStringValue("id");
+      //alert('id = '+id);
+        if(id){
+            console.debug("id = "+id);
+            var url = "{!$Label.Qliksense}"+id;
+            var qs = document.getElementById("QliksenseUrl");
+            qs.src = url;
+        }else{
+            console.log("where is Id");
+        }
+    });
+
+</script>
+<body>
+  <iframe id="QliksenseUrl" style="border: 0px;" width="100%" height="1000px">
+      
+  </iframe>
+</body>
+</apex:page>

@@ -1,0 +1,44 @@
+.slds-th__action-button{
+    display: none;
+}
+
+th{
+    font-weight:bold;
+    font-size:large;
+}
+
+.custom-spacing-for-checkbox{
+    justify-content:flex-start !important;
+}
+
+.purple-color{
+    color: #A21FE2;
+}
+
+.red-color{
+    color: #fe1b1b;
+}
+
+.exampleHolder{
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.slds-grid_align-center{
+    text-align: center !important;
+}
+
+.underline_text{
+    text-decoration : underline;
+}
+
+.salesforce_color{
+    color: #009ddc;
+   
+}
+
+.background{
+    background-color: #f4f6f9
+}

@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="gourl" type="String" access="public" default="/lightning/r/Report/00O1p000005W572EAC/view?fv0=" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    <lightning:card title="Affärsmöjligheter" iconName="standard:opportunity">
+        <div class="slds-size_6-of-12 slds-p-left_xx-small slds-p-horizontal_x-large ">
+
+            <p><b>
+                <lightning:formattedUrl value="{!v.gourl}" label="Affärer på underliggande konton" target="_blank" />
+            </b></p>
+        </div>
+
+    </lightning:card>
+</aura:component>

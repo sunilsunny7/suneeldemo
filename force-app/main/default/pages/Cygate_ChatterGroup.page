@@ -1,0 +1,16 @@
+<apex:page showQuickActionVfHeader="false" >
+    <apex:includeScript value="{!$Resource.jQuery}"/>
+    
+    <script>
+    jQuery(document).ready(function($) {
+        $(".publisherattachtext").hide();
+        $(".truncateLabel").hide();
+        $(".publisherDropdown").hide();
+        $(".publisherFeedItemTypeChoice").hide();
+        $(".publishericon").hide();
+        $("#publishersharebutton").hide();
+        $(".publisherTextAreaInner").hide();
+    });
+    </script>
+    <chatter:feed entityId="0F924000000QEwE" showPublisher="false"/>
+</apex:page>

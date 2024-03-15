@@ -1,0 +1,97 @@
+<template>
+	<div if:false={processingProducts} style="text-align:center;">
+		<div class="exampleHolder">
+			<lightning-spinner alternative-text="Loading" variant="brand" size="medium">
+			</lightning-spinner>
+		</div>
+	</div>
+	<div style="min-height:350px" if:true={processingProducts}>
+		<div class="slds-grid slds-grid_align-end slds-m-bottom_medium">
+			<!--div class="slds-col">
+				<lightning-button variant="brand" label="Manuellt skapad/ändrad produkt" title="Submit" onclick={handleClick}
+					class="slds-m-left_x-small"></lightning-button>
+			</div-->
+		</div>
+		<table class="slds-table slds-table_cell-buffer">
+			<thead>
+				<tr>
+					<th class="size-6">
+					</th>
+					<th class="size-20"><label class="slds-form-element__label"
+												for="text-input-id-1" >
+												Produktkod</label></th>
+					<th class="size-7"><label class="slds-form-element__label"
+												for="text-input-id-1">
+												Antal </label></th>
+					<th class="size-10"><label class="slds-form-element__label"
+												for="text-input-id-1">
+												Pris</label></th>
+					<th class="size-20"><label class="slds-form-element__label"
+												for="text-input-id-1">
+												Månadsavgift eller engångsavgift</label></th>
+					<th class="size-15"><label class="slds-form-element__label"
+												for="text-input-id-1">
+												Aktiveringstyp</label></th>
+					<th class="size-15"><label class="slds-form-element__label"
+												for="text-input-id-1">
+												Omförhandling </label></th>
+					<th class="size-5"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<template for:each={listOfProducts} for:item="item" for:index="index">
+					<tr key={key}>
+						<!-- <tr> -->
+						<td class="size-6">
+							<div class="slds-m-top_medium" if:true={item.addButton}>
+								<lightning-button-icon icon-name="utility:add" size="medium"
+									alternative-text="View More" class="slds-m-left_xx-small" onclick={addRow}>
+								</lightning-button-icon>
+							</div>
+						</td>
+						<td class="size-20">
+							<lightning-input class="slds-text-body_small" name="productCode" data-opp={index}
+								type="text" value={item.productCode} onchange={handleChange}>
+							</lightning-input>
+						</td>
+						<td class="size-7">
+							<lightning-input class="slds-text-body_small" name="quantity" data-opp={index} type="text"
+								value={item.quantity} onchange={handleChange}>
+							</lightning-input>
+						</td>
+						<td class="size-10">
+							<lightning-input class="slds-text-body_small" name="price" data-opp={index} type="text"
+								value={item.price} onchange={handleChange}>
+							</lightning-input>
+						</td>
+						<td class="size-20">
+							<lightning-combobox class="slds-text-body_small" dropdown-alignment="auto" value={item.otc} name="otc"
+								data-opp={index} options={typeofcharge} onchange={handleChange} type="text">
+							</lightning-combobox>
+						</td>
+						<td class="size-15">
+							<lightning-combobox class="slds-text-body_small" dropdown-alignment="auto" name="activationtype" data-opp={index}
+								type="text" options={Aktiveringstyp} value={item.activationtype} disabled= {item.disablefield}
+								onchange={handleChange}>
+							</lightning-combobox>
+						</td>
+						<td class="size-15">
+							<lightning-combobox class="slds-text-body_small" dropdown-alignment="auto" name="Omforhandling" data-opp={index}
+								type="text" options={retention} value={item.Omforhandling} onchange={handleChange}>
+							</lightning-combobox>
+						</td>
+						<td class="size-5">
+							<div class="slds-m-top_medium slds-text-align_center">
+								<lightning-icon icon-name="action:delete" size="x-small" class="my-icon"
+									data-opp={index} alternative-text="delete" onclick={deleteRow}>
+								</lightning-icon>
+							</div>
+						</td>
+					</tr>
+				</template>
+			</tbody>
+
+		</table>
+	</div>
+</template>

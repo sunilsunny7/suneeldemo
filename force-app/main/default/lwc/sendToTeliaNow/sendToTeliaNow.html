@@ -1,0 +1,35 @@
+<template>
+    <template if:true={loaded}>
+        <template if:true={error}>
+            <c-error-panel-component errors={error} type="inlineMessage"></c-error-panel-component>
+        </template>
+        <div class="slds-box">
+            <table>
+                <tr>
+                    <td style="width: 50%;">
+                        <lightning-button variant="brand" label={label.buttonTNOW} icon-name="utility:integration"
+                            icon-position="left" onclick={handleClick} disabled={buttonDisabled}>
+                        </lightning-button>
+                    </td>
+                    <td style="padding-left: 2%;">
+                        <template if:true={subject}>
+                            <div class="slds-text-color_error"> {label.subjectTNOW} </div><br>
+                        </template>
+                        <template if:true={assignmentGroup}>
+                            <div class="slds-text-color_error">{label.productTypeTNOW} </div><br>
+                        </template>
+                        <template if:true={description}>
+                            <div class="slds-text-color_error">{label.descriptionTNOW}</div><br>
+                        </template>
+                        <template if:true={email}>
+                            <div class="slds-text-color_error">{label.emailTNOW}</div> <br>
+                        </template>
+                        <template if:true={tnowCaseId}>
+                            <div class="slds-text-color_success"> {label.createdTNOW} {tnowCaseId} </div><br>
+                        </template>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+</template>

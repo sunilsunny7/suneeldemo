@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Load Yearly Performance Score" >
+     <aura:attribute name="yearlyPerformanceScore" type="Yearly_Performance_Score__c"/>
+</aura:event>

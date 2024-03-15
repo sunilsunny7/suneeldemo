@@ -1,0 +1,167 @@
+<template>
+
+	<lightning-tabset active-tab-value={activeTab}>
+		<lightning-tab label="Allmänt" value="one">
+			<lightning-tabset variant="vertical" active-tab-value={activeTabAllmantTabs}>
+
+				<lightning-tab class="myTabCss" label="Allmänt" onactive={handleActive} value="1" style="height:350px">
+					<c-allmant-tab parentvalue={data} version={version} onchildevent={getDataFromChild}
+						onsubtabchange={getSubTabNumber}></c-allmant-tab>
+				</lightning-tab>
+
+				<lightning-tab class="myTabCss" label="Kundinformation" onactive={handleActive} value="2">
+					<c-kundaninformation parentvalue={data} version={version} onchildevent={getDataFromChild}>
+					</c-kundaninformation>
+				</lightning-tab>
+
+				<lightning-tab class="myTabCss" label="Kontaktpersoner" onactive={handleActive} value="3">
+					<c-kontaktpersoner parentvalue={data} version={version} onchildevent={getDataFromChild}>
+					</c-kontaktpersoner>
+				</lightning-tab>
+
+				<lightning-tab class="myTabCss" label="Affärsinformation" onactive={handleActive} value="4"
+					style="height:450px">
+					<c-affar-information parentvalue={data} version={version} onchildevent={getDataFromChild}>
+					</c-affar-information>
+				</lightning-tab>
+
+				<lightning-tab class="myTabCss" label="Anslutning" onactive={handleActive} value="5">
+					<c-anslutning parentvalue={data} version={version} onchildevent={getDataFromChild}></c-anslutning>
+
+				</lightning-tab>
+				<lightning-tab class="myTabCss" label="Övrigt" onactive={handleActive} value="6" style="height:400px">
+					<c-ovrigt parentvalue={data} version={version} onchildevent={getDataFromChild}></c-ovrigt>
+				</lightning-tab>
+			</lightning-tabset>
+
+			<div class="slds-grid slds-grid_align-end slds-m-top_medium">
+				<div class="slds-col slds-m-right_medium">
+					<lightning-button label="Föregående" onclick={goBack} disabled={bDisablePrevBtn}></lightning-button>
+				</div>
+				<div class="slds-col">
+					<lightning-button label="Nästa" onclick={goNext}></lightning-button>
+				</div>
+			</div>
+		</lightning-tab>
+		<template if:false={version}>
+			<div class="slds-grid slds-grid_align-end slds-m-top_medium">
+				<div class="slds-col">
+					<lightning-button label="Skapa Orderunderlaget" onclick={OpenConfirmationModal}
+						disabled={bNextStepDisablelight}>
+					</lightning-button>
+				</div>
+			</div>
+		</template>
+
+		<template if:true={version}>
+			<lightning-tab class="myTabCss" label="Produkter" value="two">
+				<lightning-tabset variant="vertical" active-tab-value={activeTabProdukterTabs}>
+					<lightning-tab class="myTabCss" label="Hårdvara" onactive={handleActiveProdukterTab}
+						value="Hardvara" style="height:200px">
+						<c-hardvara parentvalue={data} version={version} onproduktertabevent={getDataFromChild4}
+							onsubtabchange={getSubTabNumber} name="hardvara"></c-hardvara>
+					</lightning-tab>
+					<lightning-tab class="myTabCss" label="FÄ-tjänster" onactive={handleActiveProdukterTab}
+						value="FAtjanster">
+						<c-fatjanster parentvalue={data} version={version} onproduktertabevent={getDataFromChild4}
+							onsubtabchange={getSubTabNumber} name="fatjanster"></c-fatjanster>
+					</lightning-tab>
+					<lightning-tab class="myTabCss" label="Produkter" onactive={handleActiveProdukterTab}
+						value="Produkter">
+						<c-produkter-tab parentvalue={data} ontabchange={getTabName}
+							onproduktertabevent={getDataFromChild4} name="produkter" activationtypemapinprodukter = {activationtypemapinprodukter}  onsubtabchange={getSubTabNumber}>
+						</c-produkter-tab>
+					</lightning-tab>
+				</lightning-tabset>
+				<div class="slds-grid slds-grid_align-end slds-m-top_medium">
+					<div class="slds-col slds-m-right_medium">
+						<lightning-button label="Föregående" onclick={goBack2}>
+						</lightning-button>
+					</div>
+					<div class="slds-col">
+						<lightning-button label="Nästa" onclick={goNext2}></lightning-button>
+					</div>
+				</div>
+			</lightning-tab>
+		</template>
+
+		<template if:true={version}>
+			<template if:true={toggleOptionalTab3}>
+
+				<lightning-tab class="myTabCss" label="FLIT" onactive={handleActive} value="flit">
+					<c-flit parentvalue={data} onchildevent5={getDataFromChild5} onsubtabchange={getSubTabNumber}>
+					</c-flit>
+					<div class="slds-grid slds-grid_align-end slds-m-top_medium">
+						<div class="slds-col slds-m-right_medium">
+							<lightning-button label="Föregående" onclick={goBack4}>
+							</lightning-button>
+						</div>
+						<div class="slds-col">
+							<lightning-button label="Skapa Orderunderlaget" onclick={OpenConfirmationModal}
+								disabled={bNextStepDisable}>
+							</lightning-button>
+						</div>
+					</div>
+				</lightning-tab>
+			</template>
+		</template>
+
+
+
+		<template if:true={version}>
+			<lightning-tab class="myTabCss" label="Serviceavtal & Näthyra" onactive={handleActive} value="Serviceavtal">
+				<lightning-tabset variant="vertical" active-tab-value={activeServiceTab}>
+					<lightning-tab label="Serviceavtal" value="service">
+						<c-service-avtal parentvalue={data} onchildevent2={getDataFromChild2}></c-service-avtal>
+					</lightning-tab>
+					<lightning-tab label="Näthyra" value="nathyara">
+						<c-nathyara parentvalue={data} onchildeventnathyara={getDataFromNathyara}></c-nathyara>
+					</lightning-tab>
+				</lightning-tabset>
+				<div class="slds-grid slds-grid_align-end slds-m-top_medium">
+					<div class="slds-col slds-m-right_medium">
+						<lightning-button label="Föregående" onclick={goBack3}>
+						</lightning-button>
+					</div>
+					<div class="slds-col">
+						<lightning-button label="Nästa" onclick={goNext3} disabled={bDisableNext3Button}>
+						</lightning-button>
+					</div>
+				</div>
+
+				<div class="slds-grid slds-grid_align-end slds-m-top_medium" if:false={toggleOptionalTab3}>
+					<div class="slds-col">
+						<lightning-button label="Skapa Orderunderlaget" onclick={OpenConfirmationModal}
+							disabled={bNextStepDisable}>
+						</lightning-button>
+					</div>
+				</div>
+			</lightning-tab>
+		</template>
+
+	</lightning-tabset>
+
+
+	<div if:true={confirmationModal}>
+		<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+			class="slds-modal slds-fade-in-open">
+			<div class="slds-modal__container">
+				<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+					<svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+						<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+					</svg>
+					<span class="slds-assistive-text">Cancel and close</span>
+				</button>
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<p> Vill du skapa orderunderlaget? </p>
+				</div>
+				<div class="slds-modal__footer">
+					<button class="slds-button slds-button_neutral" onclick={Cancel}>Nej</button>
+					<button class="slds-button slds-button_brand" onclick={Confirm}>Ja</button>
+				</div>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+	</div>
+
+</template>

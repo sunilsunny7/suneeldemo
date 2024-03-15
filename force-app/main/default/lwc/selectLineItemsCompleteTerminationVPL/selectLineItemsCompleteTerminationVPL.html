@@ -1,0 +1,33 @@
+<template>
+    <div style="overflow-x: auto;">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col">
+                        <div class="slds-truncate">Produktfamilj</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate"> Startdatum</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate">Slutdatum </div>
+                    </th>
+                </tr>
+            </thead>
+
+            <template for:each={data} for:item="item" for:index="index">
+                <tr key={k1} class="slds-hint-parent">
+                    <td>
+                        {item.ProdName}
+                    </td>
+                    <td>
+                        {item.StartDate}
+                    </td>
+                    <td>
+                        {item.EndDate}
+                    </td>
+                </tr>
+            </template>
+        </table>
+    </div>
+</template>

@@ -1,0 +1,20 @@
+<!--
+ - Created by kwn687 on 2022-11-29.
+ -->
+
+<!-- Approval Fields -->
+<template>
+    <div class="slds-card slds-theme_default">
+        <h3 class="slds-page-header slds-page-header_joined slds-page-header_bleed slds-shrink-none slds-is-relative" style="font-weight: bold;font-size: 16px;">
+            {ItemsForApproval}
+        </h3>
+        <div class = "slds-var-p-horizontal_medium slds-var-p-vertical_xx-small">
+            <lightning-record-view-form object-api-name={objectApiName} record-id={recordId}>
+                <lightning-output-field field-name={typeField}></lightning-output-field>
+                <lightning-output-field field-name={amountField}></lightning-output-field>
+                <lightning-output-field field-name={marginField}></lightning-output-field>
+                <lightning-output-field field-name={statusField}></lightning-output-field>
+            </lightning-record-view-form>
+        </div>
+    </div>
+</template>

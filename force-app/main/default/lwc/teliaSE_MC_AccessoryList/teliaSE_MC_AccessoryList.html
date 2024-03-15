@@ -1,0 +1,27 @@
+<template>
+    <div class="slds-m-top_medium">
+        <lightning-radio-group name="radioGroup" label="Select a category" onchange={handleChange}
+            options={radioOptions} value={value} type="button">
+        </lightning-radio-group>
+    </div>
+
+    <div class="slds-m-top_medium" style="height: 300px; overflow-x: auto;">
+        <template for:each={filteredArray} for:item="item" for:index="index">
+            <div key={k} if:true={item.Name}>
+                <lightning-input type="checkbox" label={item.Name} name={item.ProductId} onchange={handleCheckBox}
+                    checked={item.checked}></lightning-input>
+            </div>
+        </template>
+    </div>
+
+    <div class="slds-grid slds-m-top_large">
+        <div class="slds-col slds-size_9-of-12"></div>
+        <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_outline-brand slds-button_stretch"
+                onclick={previousStep}>Tillbaka</button>
+        </div>
+        <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_brand slds-button_stretch" onclick={nextStep}>Fortsätt</button>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>37.0</apiVersion>
+    <availableInTouch>true</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>Using this for conversion of prospect to Cygate Opp because custom on-click java script button is not supported in lightning.</description>
+    <label>ConvertToCygateAffarsmojlighet</label>
+</ApexPage>

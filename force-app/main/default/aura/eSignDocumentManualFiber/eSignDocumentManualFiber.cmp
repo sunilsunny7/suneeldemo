@@ -1,0 +1,11 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId" controller="manualeSignDocument" access="global">
+
+<aura:attribute name="newContract" type="Contract" default="{'sobjectType': 'Contract'}"></aura:attribute>
+  
+<lightning:input aura:id="rcvddate" type="date" name="TeliaSE_Agreement_Received_Date__c" label="Mottaget Datum" value="{!v.newContract.TeliaSE_Agreement_Received_Date__c}" required="true" />
+<lightning:input aura:id="signdate" type="date" name="CustomerSignedDate" label="Kundsignaturdatum" value="{!v.newContract.CustomerSignedDate}" required="true" />
+ 
+<lightning:button label="Nästa" onclick="{!c.UpdateContractRec}" variant="brand" />        
+
+
+</aura:component>

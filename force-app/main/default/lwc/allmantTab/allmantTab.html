@@ -1,0 +1,54 @@
+<template>
+
+	<div class="slds-grid slds-gutters">
+		<template if:true={version}>
+			<div class="slds-col slds-size_4-of-12">
+				<lightning-combobox name="Brand" class="required_field" label="Varumärke" placeholder="" options={options}
+					value={parentvalue.Brand} onchange={handleChange} required></lightning-combobox>
+			</div>
+		</template>
+		<template if:false={version}>
+			<div class="slds-col slds-size_6-of-12">
+				<lightning-combobox name="Brand" class="required_field" label="Varumärke" placeholder="" options={options}
+					value={parentvalue.Brand} onchange={handleChange} required></lightning-combobox>
+			</div>
+		</template>
+		<template if:false={version}>
+			<div class="slds-col slds-size_6-of-12 slds-m-bottom_medium">
+				<lightning-combobox name="typeAffar" class="required_field" label="Typ av affär" placeholder=""
+					options={valueslight} value="" onchange={handleChange} required></lightning-combobox>
+			</div>
+		</template>
+		<template if:true={version}>
+			<div class="slds-col slds-size_4-of-12">
+				<c-multi-Select-Picklist-Required class="required_field" picklistlabel="Typ av affär" values={values}
+					onselectevent={getValuesFromMultiSelect}>
+				</c-multi-Select-Picklist-Required>
+			</div>
+		</template>
+		<template if:true={version}>
+			<div class="slds-col slds-size_4-of-12">
+				<lightning-combobox name="offertype" label="Offerttyp" value="" options={options2}
+					onchange={handleChange}>
+				</lightning-combobox>
+			</div>
+		</template>
+	</div>
+	<div class="slds-grid slds-gutters">
+		<div class="slds-col">
+			<lightning-input type="text" label="WBS-nummer" name="WBS" onchange={handleChange}> </lightning-input>
+		</div>
+
+		<div class="slds-col">
+			<lightning-input type="text" class="required_field" label="Avtalsnummer Salesforce" name="Avtalsnummer"
+				value={parentvalue.ContractNumber} disabled>
+			</lightning-input>
+		</div>
+		<template if:true={version}>
+			<div class="slds-col">
+				<lightning-input type="text" label="Tidigare avtalsnummer Salesforce" name="Tidigare avtalsnummer"
+					value={parentvalue.ContractLink} onchange={handleChange}> </lightning-input>
+			</div>
+		</template>
+	</div>
+</template>

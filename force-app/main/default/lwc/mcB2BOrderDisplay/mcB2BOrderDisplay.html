@@ -1,0 +1,78 @@
+<template>
+    <div class="slds-page-header slds-page-header__row slds-page-header__col-title slds-media">
+        <div class="slds-media__figure">
+            <span class="slds-icon_container slds-icon-standard-opportunity" title="opportunity">
+                <lightning-icon icon-name="standard:account" alternative-text="Order" size="small">
+                </lightning-icon>
+                <span class="slds-assistive-text">Account</span>
+            </span>
+        </div>
+        <div class="slds-media__body">
+            <div class="slds-page-header__name-title slds-page-header__name">
+                <h1>
+                    <span class="slds-page-header__title slds-truncate" title="UOROrders">Ordrar
+                        ({numberOfRecords})</span>
+                </h1>
+            </div>
+        </div>
+        <div class="slds-grid slds-gutters slds-align_absolute-center" lwc:if={displayRecords}>
+            <div class="slds-col" style="text-align: left;">
+                <lightning-button icon-name="utility:download" label="Ladda ner som Excel" wrap="false"
+                    icon-position="right" onclick={downloadCSVFile}>
+                </lightning-button>
+            </div>
+        </div>
+        <template lwc:if={processing}>
+
+            <lightning-spinner alternative-text="Loading">
+
+            </lightning-spinner>
+
+        </template>
+    </div>
+    <div class="slds-grid slds-grid_vertical-align-center slds-gutters slds-m-bottom_medium slds-m-top_medium" lwc:if={displayRecords}>
+        <div class="slds-col slds-size_1-of-5">
+            <lightning-combobox name="Status" label="Status" value={value1} placeholder="Select Status" options={options}
+                onchange={handleStatusChange}>
+            </lightning-combobox>
+        </div>
+        <div class="slds-col slds-size_1-of-5">
+            <lightning-combobox name="Ordertyp" label="Ordertyp" value={value2} placeholder="Select Ordertyp"
+                options={optionsOrderType} onchange={handleTypeChange}>
+            </lightning-combobox>
+        </div>
+        <div class="slds-col slds-size_1-of-5">
+            <lightning-input name="Ordernummer" label="Ordernummer" value={value3} placeholder="Enter Ordernummer"
+                onchange={handleOrderNumberChange}>
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-5">
+            <lightning-input name="Produkt" label="Produkt" value={value4} placeholder="Enter Produkt"
+                onchange={handleProduktChange}>
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-5" style="padding-top: 24px;">
+            <lightning-button variant="brand" label="Rensa Filter" title="Begins the task" onclick={clearFilters}>
+
+            </lightning-button>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-gutters slds-m-bottom_medium" lwc:if={displayRecords}>
+        <div class="slds-col">
+            <ul lwc:if={getStatus}><b>Status:</b> <lightning-formatted-rich-text value={status}></lightning-formatted-rich-text></ul>
+            <ul lwc:if={getOrderType}><b>Ordertyp: </b><lightning-formatted-rich-text value={orderType}></lightning-formatted-rich-text></ul>
+
+        </div>
+    </div>
+
+    <!-- The records start -->
+    <div lwc:if={displayRecords} style="overflow: auto; max-height:300px;">
+        <div style="direction: ltr ; width:fit-content ">
+        <lightning-datatable key-field="id" id="htmlTableValues" name="htmlTableValues" data={uorOrderDisplay}
+            columns={columns} hide-checkbox-column default-sort-direction={defaultSortDirection} onrowaction={handleRowAction}
+            sorted-direction={sortDirection} sorted-by={sortedBy} onsort={onHandleSort}>
+        </lightning-datatable>
+        </div>
+    </div>
+</template>

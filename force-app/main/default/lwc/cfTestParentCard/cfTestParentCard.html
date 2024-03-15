@@ -1,0 +1,61 @@
+<template>
+            <div class="slds-grid slds-wrap slds-is-relative ">
+            <div style="position: fixed;z-index: 999999;top: 0;right: 0;">
+  <vlocity_cmt-toast class="flexcard-toast-element" theme="slds" title="" message="" styletype=""> </vlocity_cmt-toast>
+</div>
+            <div if:true={showLoader} class="slds-is-absolute vloc-loader_override" style="height: 100%; width: 100%; min-height:50px; background: transparent; z-index: 99;">
+  <div>
+   <vlocity_cmt-spinner
+      variant="brand"
+      alternative-text="Loading content..."
+      size="medium"
+      theme="slds"
+      ></vlocity_cmt-spinner>
+  </div>
+</div>
+            <template if:false={hasPermission}>
+              You don't have required permissions to view this card.
+            </template>
+            <template if:true={hasPermission}>
+              <template if:true={hasRecords}>
+                      <vlocity_cmt-flex-card-state   data-statue="true"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div data-style-id="state0element0" class="slds-col   slds-size_4-of-12  " data-rindex={rindex} style="" ><vlocity_cmt-flex-action data-style-id="state0element0_child"  tracking-obj={_childCardTrackingObj}  class= "state0element0_child flexActionElement" 
+        data-action-element-class="state0element0_child" data-action-key="state0element0" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="action0"   state-obj={record}  card={card}  record={record}  label="Direct Parent Card Reload"  icon-name="standard-default"  action-list='\[{"stateAction":{"id":"flex-action-1708331607664","type":"cardAction","targetType":"Web Page","openUrlIn":"Current Window","Web Page":{"targetName":"/apex"},"eventName":"reload"},"key":"1708331605655-rgpf59iae","label":"Action","draggable":false,"isOpen":true,"actionIndex":0}]'  flyout-details='\{}'  theme="slds"  ></vlocity_cmt-flex-action>
+      </div><div data-style-id="state0element1" class="slds-col   slds-size_4-of-12  " data-rindex={rindex} style="" ><vlocity_cmt-flex-action data-style-id="state0element1_child"  tracking-obj={_childCardTrackingObj}  class= "state0element1_child flexActionElement" 
+        data-action-element-class="state0element1_child" data-action-key="state0element1" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="action1clone0"   state-obj={record}  card={card}  record={record}  label="PubSub Child Card Reload"  icon-name="standard-default"  action-list='\[{"stateAction":{"id":"flex-action-1708333324612","type":"Event","openUrlIn":"Current Window","subType":"PubSub","eventName":"testFire","message":"testReload","hasExtraParams":false},"key":"1708331618870-rwztm1pw3","label":"Action","draggable":true,"isOpen":true,"actionIndex":0}]'  flyout-details='\{}'  theme="slds"  ></vlocity_cmt-flex-action>
+      </div><div data-style-id="state0element2" class="slds-col   slds-size_12-of-12 " data-rindex={rindex} style="" ><c-cf-test-child-card data-style-id="state0element2_child"  tracking-obj={_childCardTrackingObj}  is-inside-parent={insideParent} parent-uniquekey={uniqueKey}  card-node="\{records}"  parent-record={record}  records={_records}  parent-mergefields={card}  record-id={recordId}  is-child-card-tracking-enabled="false"  object-api-name={objectApiName}  theme="slds"   onupdateparent={updateParentData}></c-cf-test-child-card>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                </template>
+                <template if:false={hasRecords}>
+                      <vlocity_cmt-flex-card-state   data-statue="false"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div data-style-id="state0element0" class="slds-col   slds-size_4-of-12  " data-rindex={rindex} style="" ><vlocity_cmt-flex-action data-style-id="state0element0_child"  tracking-obj={_childCardTrackingObj}  class= "state0element0_child flexActionElement" 
+        data-action-element-class="state0element0_child" data-action-key="state0element0" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="action0"   state-obj={record}  card={card}  record={record}  label="Direct Parent Card Reload"  icon-name="standard-default"  action-list='\[{"stateAction":{"id":"flex-action-1708331607664","type":"cardAction","targetType":"Web Page","openUrlIn":"Current Window","Web Page":{"targetName":"/apex"},"eventName":"reload"},"key":"1708331605655-rgpf59iae","label":"Action","draggable":false,"isOpen":true,"actionIndex":0}]'  flyout-details='\{}'  theme="slds"  ></vlocity_cmt-flex-action>
+      </div><div data-style-id="state0element1" class="slds-col   slds-size_4-of-12  " data-rindex={rindex} style="" ><vlocity_cmt-flex-action data-style-id="state0element1_child"  tracking-obj={_childCardTrackingObj}  class= "state0element1_child flexActionElement" 
+        data-action-element-class="state0element1_child" data-action-key="state0element1" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="action1clone0"   state-obj={record}  card={card}  record={record}  label="PubSub Child Card Reload"  icon-name="standard-default"  action-list='\[{"stateAction":{"id":"flex-action-1708333324612","type":"Event","openUrlIn":"Current Window","subType":"PubSub","eventName":"testFire","message":"testReload","hasExtraParams":false},"key":"1708331618870-rwztm1pw3","label":"Action","draggable":true,"isOpen":true,"actionIndex":0}]'  flyout-details='\{}'  theme="slds"  ></vlocity_cmt-flex-action>
+      </div><div data-style-id="state0element2" class="slds-col   slds-size_12-of-12 " data-rindex={rindex} style="" ><c-cf-test-child-card data-style-id="state0element2_child"  tracking-obj={_childCardTrackingObj}  is-inside-parent={insideParent} parent-uniquekey={uniqueKey}  card-node="\{records}"  parent-record={record}  records={_records}  parent-mergefields={card}  record-id={recordId}  is-child-card-tracking-enabled="false"  object-api-name={objectApiName}  theme="slds"   onupdateparent={updateParentData}></c-cf-test-child-card>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                </template>
+            </template>
+            <template if:true={hasError}>
+            {error}
+            </template>
+            
+      <vlocity_cmt-action action-wrapperclass="slds-hide" re-render-flyout class="action-trigger slds-col" onupdateos={updateOmniscript} onselectcards={updateSelectedCards} onsetvalue={updateAction} onfireactionevent={actionEvtHandler}>
+      
+      </vlocity_cmt-action>
+  
+            <vlocity_cmt-action class="execute-action" re-render-flyout action-wrapperclass="slds-hide" onupdateos={updateOmniscript} onselectcards={updateSelectedCards} onsetvalue={updateAction} onfireactionevent={actionEvtHandler}>
+            
+            </vlocity_cmt-action>
+            </div>
+          </template>

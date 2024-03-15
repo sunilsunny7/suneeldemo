@@ -1,0 +1,114 @@
+<!-- Author: Varma Alluri on 24.03.2017
+Description: JIRA Ticket SAEN-2201; Created a extension MassEditControllerNew controller
+for this VF page to override the standard save action, which will redirect the page. -->
+
+<apex:page standardController="Requirement__c" extensions="MassEditControllerNew" recordSetVar="unused" sidebar="false">
+<script>
+    function navigate()
+    {
+    if(typeof sforce != 'undefined' && sforce != null) {   
+         sforce.one.back(true);  
+}
+        else
+            {
+                var retURL = "{!ListViewURL}";
+                window.open(retURL, target = "_self");
+                }
+        }
+    </script>
+<!-- for this page to work with a specific custom object, change standController="entityname" to custom object api name  
+    For example, if custom object name is Warehouse__c, change first part of the first line to standardController="warehouse__c" -->
+    
+<apex:includeScript value="{!$Resource.UtilJS}" />
+<apex:form >
+<apex:pageBlock >
+<apex:pageMessages />
+<apex:pageBlock >
+Note: All modifications made on the page will be lost if Return button is clicked without clicking the Save button first. 
+</apex:pageBlock>
+<apex:pageBlockButtons >
+     
+<apex:commandButton value="Save" action="{!saveCustom}" onComplete="navigate();"/>
+   
+<apex:commandButton value="Return" action="{!cancel}" onClick="navigate();"/>
+</apex:pageBlockButtons>
+<apex:pageBlockTable value="{!selected}" var="a" id="table">
+<apex:column headerValue="Namn">
+<apex:outputText value="{!a.Name}"/>
+</apex:column>
+<apex:column headerValue="Externt ID">
+<apex:inputText value="{!a.External_ID__c}"/>
+</apex:column>
+<apex:column headerValue="Område">
+<apex:inputField value="{!a.Area__c}"/>
+</apex:column>
+<apex:column headerValue="Kategori">
+<apex:inputField value="{!a.Category__c}"/>
+</apex:column>
+<apex:column headerValue="Ägare">
+<apex:outputText value="{!a.Owner.Name}" />
+</apex:column>
+<apex:column headerValue="Delansvarig">
+<apex:inputField value="{!a.Partially_Responsible__c}"/>
+</apex:column>
+<apex:column headerValue="Områdesansvarig">
+<apex:inputField value="{!a.Area_Responsible__c}"/>  
+</apex:column>
+<apex:column headerValue="Anbudsägare">
+<apex:inputField value="{!a.Bid_Owner__c}"/>  
+</apex:column> 
+<apex:column headerValue="Beskrivning">
+<apex:inputField value="{!a.Description__c}"/>
+</apex:column>
+<apex:column headerValue="Kommentar">
+<apex:inputField value="{!a.Comment__c}"/>
+</apex:column>  
+<apex:column headerValue="Arbetslogg">
+<apex:inputField value="{!a.Work_Log__c}"/>
+</apex:column>  
+<apex:column headerValue="Kravtyp">
+<apex:inputField value="{!a.Type_of_Requirement__c}"/>
+</apex:column>
+<apex:column headerValue="Status">
+ <apex:inputField value="{!a.Status__c}"/>
+ </apex:column>
+<apex:column headerValue="Kravuppfyllnad">
+<apex:inputField value="{!a.Requirement_fullfiled__c}"/>  
+</apex:column>
+<apex:column headerValue="Kravet utvärderas">
+<apex:inputField value="{!a.Requirement_Evaluation__c}"/>  
+</apex:column>
+<apex:column headerValue="Riskkategori">
+<apex:inputField value="{!a.Risk_Categorisation__c}"/>  
+</apex:column>
+<apex:column headerValue="Riskkommentar">
+<apex:inputField value="{!a.Risk_Comment__c}"/>  
+</apex:column>
+<apex:column headerValue="Enligt tjänstebeskrivning">
+<apex:inputField value="{!a.According_to_product_description__c}"/>  
+</apex:column>
+<apex:column headerValue="Ansvarig organisation">
+<apex:inputField value="{!a.Responsible_Organisation__c}"/>  
+</apex:column>
+<apex:column headerValue="Svar till kund">
+<apex:inputField value="{!a.Customer_Response__c}"/>  
+</apex:column>
+<apex:column headerValue="Status svar till kund">
+<apex:inputField value="{!a.Customer_Response_Status__c}"/>  
+</apex:column>
+<apex:column headerValue="Värde på krav">
+<apex:inputField value="{!a.Value_of_Requirement__c}"/>  
+</apex:column>
+<apex:column headerValue="Kostnad på krav">
+<apex:inputField value="{!a.Cost_for_requirements__c}"/>  
+</apex:column>
+<apex:column headerValue="Maximal poäng">
+<apex:inputField value="{!a.Maximum_Points__c}"/>  
+</apex:column>
+<apex:column headerValue="Estimerad poäng/krav">
+<apex:inputField value="{!a.Estimated_Points_Req__c}"/>  
+</apex:column>
+</apex:pageBlockTable>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

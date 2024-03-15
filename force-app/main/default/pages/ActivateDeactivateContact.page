@@ -1,0 +1,19 @@
+<apex:page standardController="contact" extensions="ActivateDeactivateContact" action="{!processRecord}">
+
+ <script>
+  function redirect(){
+                if({!$User.UIThemeDisplayed == 'Theme4d'}){
+                    parent.location.href="{!sfdcURL}"+"{!$Label.Salesforce_lightning_URL}"+"{!contactID}"+"{!$Label.Contact_specific_lightning_end_URL}"; 
+                    console.log(parent.location.href);           
+                     }
+                else
+              parent.location.href= "{!sfdcURL}"+"{!contactID}";
+                
+            }
+           
+ 
+            window.onload = window.setTimeout(redirect(),5000);
+ 
+        </script>
+
+</apex:page>

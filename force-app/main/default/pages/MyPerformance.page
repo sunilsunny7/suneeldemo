@@ -1,0 +1,143 @@
+<apex:page controller="MyPerformanceVFController" standardStylesheets="false" >
+    <apex:stylesheet value="{!URLFOR($Resource.sldsnew, '/styles/salesforce-lightning-design-system.min.css')}" />   
+    <apex:includeScript value="{!$Resource.raphael}"/>
+    <apex:includeScript value="{!$Resource.chartbundle}"/>   
+    <apex:includeScript value="{!$Resource.jgage}"/>
+    <div class="slds-page-header" role="banner">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <img src="{!currentUser.SmallPhotoUrl}" alt="{!currentUser.Name}" />
+                    </div>
+                    <div class="slds-media__body">
+                        <p class="slds-page-header__title slds-truncate slds-align-middle" title="{!currentUser.Name}">{!currentUser.Name}</p>
+                        <p class="slds-text-body--small slds-page-header__info">{!currentUser.Email}</p>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>  
+    
+    <apex:form id="tabRegion">
+        
+        <div class="slds-tabs--scoped">       
+            <ul class="slds-tabs--scoped__nav" role="tablist">
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'year'),'slds-active','')}" title="Yearly Performance" role="presentation">
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.ypsYearly}" id="yearlyTab">
+                        <apex:param name="yearTab" value="year" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li>
+                
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'month'),'slds-active','')}" title="Monthly Performance" role="presentation">                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.ypsMonthly}" id="monthlyTab">
+                        <apex:param name="monthTab" value="month" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li>
+            </ul>
+            
+            <div id="tab-scoped-1" class="slds-tabs--scoped__content  {!IF((selectedTab == 'year'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-1__item">
+                <apex:outputPanel rendered="{!selectedTab == 'year'}" id="yearPanel" layout="block">
+                    <table class="slds-table slds-table--bordered slds-max-medium-table--stacked-horizontal">
+                        <thead>
+                            <tr class="slds-text-heading--label">
+                                <th  scope="col">
+                                    <div class="slds-truncate">{!$Label.ypsPerformanceType}
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate">{!$Label.ypsScore}
+                                        
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate">{!$Label.ypsTarget}
+                                        
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate">{!$Label.ypsRegistered}
+                                        
+                                    </div>
+                                </th>                   
+                                <th ></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="slds-hint-parent slds-text-heading--label">
+                                <th class="slds-truncate"  style="padding: .75em;" scope="row" data-label="Performance Type">{!$Label.ypsResult}</th>
+                                <td class="slds-truncate" data-label="Score"></td>
+                                <td class="slds-truncate" data-label="Target"></td>
+                                <td class="slds-truncate" data-label="Registered"></td>
+                                <td  width="15%">
+                            <div style="max-width:250px; margin:auto;">
+                                        <c:GaugeComponent value="{!yps.Result__c}" gaugeId="gauge1" label=""></c:GaugeComponent>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent slds-text-heading--label">
+                                <th class="slds-truncate"  style="padding: .75em;" scope="row" data-label="Performance Type">{!$Label.ypsContribution}</th>
+                                <td class="slds-truncate" data-label="Score"><p class="slds-text-heading--medium">{!yps.Total_Contribution_Score__c}</p></td>
+                                <td class="slds-truncate" data-label="Target"><p class="slds-text-heading--small">{!yps.Client_Meetings_Target__c}</p></td>
+                                <td class="slds-truncate" data-label="Registered"><p class="slds-text-heading--small">{!yps.Total_Client_Meetings_Registered__c}</p></td>
+                                <td width="15%">
+                                    <div style="max-width:250px; margin:auto;">
+                                        <c:GaugeComponent value="{!yps.Contribution_Milestone__c}" gaugeId="gauge2" label=""></c:GaugeComponent>
+                                    </div>
+                                </td>
+                                
+                            </tr>
+                          <!-- Updated Nov 2018 by S.S : SALEF 1227 : Commented updateYearlyCompetenceScore method as competencescore is not needed anymore but can be used in future
+                            <tr class="slds-hint-parent slds-text-heading--label">
+                                <th class="slds-truncate"  style="padding: .75em;" scope="row" data-label="Performance Type">{!$Label.ypsCompetence}</th>
+                                <td class="slds-truncate" data-label="Score"><p class="slds-text-heading--medium">{!yps.Competence_Score__c}</p></td>
+                                <td class="slds-truncate" data-label="Target"><p class="slds-text-heading--small">{!yps.Competence_Events_Target__c}</p></td>
+                                <td class="slds-truncate" data-label="Registered"><p class="slds-text-heading--small">{!yps.Competence_Events_Attended__c}</p></td>
+                                <td  width="15%">
+                                    <div style="max-width:250px; margin:auto;">
+                                        <c:GaugeComponent value="{!yps.Competence_Milestone__c}" gaugeId="gauge3" label=""></c:GaugeComponent>
+                                    </div>
+                                    
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table> 
+                </apex:outputPanel>
+            </div>
+            <div id="tab-scoped-2" class="slds-tabs--scoped__content {!IF((selectedTab == 'month'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-2__item">
+                <apex:outputPanel rendered="{!selectedTab == 'month'}" id="monthPanel" layout="block">
+                    <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                        <div class="slds-col--padded slds-size--1-of-1 slds-large-size--1-of-2">
+                            <div class="slds-grid slds-wrap chart-container">
+                                <div class="slds-col--padded slds-size--1-of-1 slds-large-size--1-of-3">
+                                    <div class="slds-text-heading--label slds-m-top--x-large">
+                                        {!$Label.ypsMonthlyContributionPerformance}
+                                    </div>
+                                </div>
+                                <div class="slds-col--padded slds-size--1-of-1 slds-large-size--2-of-3">
+                                    <div class="slds-m-medium slds-m-top--x-large">                            
+                                        <c:ChartComponent data="{!monthlyContributionScore}" elementId="chart1" label=""></c:ChartComponent> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="slds-col--padded slds-size--1-of-1 slds-large-size--1-of-2">
+                            <div class="slds-grid slds-wrap chart-container">
+                                <div class="slds-col--padded slds-size--1-of-1 slds-large-size--1-of-3">
+                                    <div class="slds-text-heading--label slds-m-top--x-large">
+                                        {!$Label.ypsMonthlyCompetencePerformance}                       
+                                    </div>
+                                </div>
+                                <div class="slds-col--padded slds-size--1-of-1 slds-large-size--2-of-3 ">
+                                    <div class="slds-m-left--medium slds-m-top--x-large">                           
+                                        <c:ChartComponent data="{!monthlyCompetenceScore}" elementId="chart2" label=""></c:ChartComponent> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>   
+                </apex:outputPanel>
+            </div>        
+        </div>       
+    </apex:form>   
+</apex:page>

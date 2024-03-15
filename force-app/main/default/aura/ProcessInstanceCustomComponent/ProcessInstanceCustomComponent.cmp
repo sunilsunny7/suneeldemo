@@ -1,0 +1,25 @@
+<aura:component controller="ProcessInstanceCustomCommentsController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="Quote" type="Object"/>
+	<aura:attribute name="QuoteLineitem" type="String"/>
+    <aura:attribute name="wrapper" type="Object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <b> <span>Bilagor </span> </b>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner"><span ><a href="{!v.Quote.TeliaSE_MC_ApprovalFileLink__c}">{!v.Quote.TeliaSE_MC_ApprovalFileLink__c}</a></span> 
+        </div>
+    </article> 
+
+
+
+</aura:component>

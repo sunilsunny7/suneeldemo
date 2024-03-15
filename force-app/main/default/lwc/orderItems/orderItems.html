@@ -1,0 +1,35 @@
+<template> 
+  <div class="slds-card slds-card_boundary">  
+  <div class="slds-page-header slds-page-header_joined slds-page-header_bleed slds-shrink-none test-headerRegion slds-is-relative ">  
+        <lightning-layout class="slds-m-top_x-small">
+            <article class="slds-card lightning-card">
+                <div class="slds-card__header slds-grid slds-theme_shade">
+                  <header class="slds-media slds-media_center slds-has-flexi-truncate ">
+                    <div class="slds-media__figure">
+                        <lightning-icon icon-name="standard:orders" size="small"></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                      <h2 class="slds-card__header-title">
+                        <a class="slds-card__header-link">Order Products ({numberOfRecords})</a>
+                      </h2>
+                    </div> 
+                  </header>
+                </div>
+                <template lwc:if={itemsExists}>
+                    <div>
+                        <lightning-datatable class="related-list"
+                                            columns={columns}
+                                            data={orderProducts}
+                                            key-field="Id"
+                                            hide-checkbox-column="true"
+                                            resize-column-disabled="false">
+                        </lightning-datatable>   
+                    </div>                     
+                </template>        
+              </article>                       
+        </lightning-layout>
+      </div>
+      </div>
+    </template>
+   
+                                    

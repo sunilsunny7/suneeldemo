@@ -1,0 +1,49 @@
+<aura:component controller="SATController" implements="flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId"  >
+    <ltng:require styles="/resource/sldsnew/styles/salesforce-lightning-design-system.css" />
+    <ltng:require styles="{!$Resource.datatablecss}"  />
+    <ltng:require scripts="{!$Resource.datatables}" afterScriptsLoaded="{!c.doInit}" />
+    
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    
+    <aura:attribute name="campaignName" type="String" default=""/>
+    <aura:attribute name="taSize" type="String" default=""/>
+    
+    <aura:attribute name="HasError" type="Boolean" default="False" />
+    <aura:attribute name="IsSuccess" type="Boolean" default="False" />
+    <aura:attribute name="IsLoaded" type="Boolean" default="False" />
+    <aura:attribute name="ErrorMsg" type="String" default="" />
+    
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert" style="z-index:9999">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+    
+    <aura:If isTrue="{!v.IsLoaded}">  
+        <aura:If isTrue="{!v.HasError}">  
+            <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
+                <h2 class="slds-text-heading--medium" id="prompt-heading-id">{!$Label.c.SAT_Campaign_Error_Header}</h2>
+            </div>
+            <div class="slds-modal__content">
+                <p class="slds-m-top--x-small">{!v.ErrorMsg}</p>   
+            </div>
+            <aura:set attribute="else">
+                <div class="slds-modal__header">
+                    <h2 id="id-of-modalheader-h2" class="slds-text-heading--medium">{!$Label.c.SAT_Campaign}</h2>
+                    <p class="slds-m-top--x-small">{!$Label.c.SAT_Campaign_Description}</p>       
+                </div>
+                <div class="slds-modal__content">
+                    <ui:inputText label="Campaign Name" class="field slds-m-bottom--medium slds-m-top--medium" value="{!v.campaignName}" />
+                    <span>Number of Call Activites: <b>{!v.taSize}</b></span>
+                </div>
+            </aura:set>
+        </aura:If> 
+        
+        <div class="slds-modal__footer slds-m-top--medium">
+            <button class="slds-button slds-button--neutral" onclick="{!c.onCancelClick }">{!$Label.c.SAT_Cancel}</button>
+            <button class="slds-button slds-button--brand" disabled="{!v.HasError || v.campaignName == ''}" onclick="{!c.onCreateCampaignClick }">{!$Label.c.SAT_Create_Campaign}</button>
+        </div>
+    </aura:If> 
+</aura:component>

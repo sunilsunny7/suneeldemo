@@ -1,0 +1,15 @@
+.size_adjustment{
+    word-wrap: break-word !important;
+    white-space: normal;
+    vertical-align: top;
+}
+
+.textarea_size{
+    --sds-c-textarea-sizing-min-height : 100px;
+}
+
+th{
+    background-color: #8d14cf;
+    color: white;
+    text-align: center;
+}

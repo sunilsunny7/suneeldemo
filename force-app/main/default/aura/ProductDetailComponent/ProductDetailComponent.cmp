@@ -1,0 +1,37 @@
+<aura:component controller="ProductDetailController" implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="product" type="List" />
+    <aura:attribute name="dynamicheight" type="Integer" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:attribute name="displayBlock" type="Boolean"/>
+    
+    <div class = "slds-clearfix slds-card slds-scrollable_y" style="{!'height:' + v.dynamicheight+'px'}">
+        <div class="slds-page-header">
+            <h2 class="slds-page-header__title slds-truncate slds-align-middle">Product Details</h2>
+        </div>
+        <aura:if isTrue="{!v.displayBlock}">
+            <table class="slds slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer">
+                <thead>
+                    <tr class="slds-text-heading--label">
+                        <th scope="col" style="width:200px;font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Name">Name</div></th>
+                        <th scope="col" style="width:200px;font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Type">Sales Type</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Use the Apex model and controller to fetch server side data -->
+                    <aura:iteration items="{!v.product}" var="product">
+                        <tr>
+                            <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!product.Name}">{!product.Name}</div></td>
+                            <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!product.Sales_purpose__c}">{!product.Sales_purpose__c}</div></td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            <aura:set attribute="else">
+                <br/><div style="padding-left:10px">No Product Associated with this Opportunity.</div>
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

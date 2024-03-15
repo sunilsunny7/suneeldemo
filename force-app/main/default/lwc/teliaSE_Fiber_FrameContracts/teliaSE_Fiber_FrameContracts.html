@@ -1,0 +1,56 @@
+<!-- sldsValidatorIgnore -->
+<template>
+<template if:true={data}>
+    <div style="overflow-x: auto;" class = "slds-m-bottom_medium">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col" class = "slds-border_bottom slds-border_left">
+                        <div class="slds-truncate"></div></th>
+                    <th scope="col" class = "slds-border_bottom">
+                        <div class="slds-truncate">Avtalsnamn</div>
+                    </th>
+                    <th scope="col" class = "slds-border_bottom">
+                        <div class="slds-truncate">Nummer</div>
+                    </th>
+                    <th scope="col" class = "slds-border_bottom slds-border_right">
+                        <div class="slds-truncate">Startdatum</div>
+                    </th>
+                </tr>
+            </thead>
+            
+            <template for:each={data} for:item="item" for:index="index">
+                <tr key={k1} class="slds-hint-parent">
+                    <td class = "slds-border_bottom slds-border_left">
+                        <div class="slds-truncate">
+                            <lightning-input type="checkbox" onchange={handleChange} label="" name={item.Email} data-index={index}></lightning-input>
+                        </div>
+                    </td>
+                    <td class = "slds-border_bottom">
+                        <div if:true={item.Name} class="slds-truncate"> {item.Name}</div>
+                        <div if:false={item.Name} class="slds-truncate"></div>
+                    </td>
+                    <td class = "slds-border_bottom">
+                        <div if:true={item.Number} class="slds-truncate"> {item.Number}</div>
+                        <div if:false={item.Number} class="slds-truncate"></div>
+                    </td>
+                    <td class = "slds-border_bottom slds-border_right">
+                        <div if:true={item.Startdate} class="slds-truncate"> {item.Startdate}</div>
+                        <div if:false={item.Startdate} class="slds-truncate"></div>
+                    </td>
+                </tr>
+                
+            </template>
+        </table>
+    </div>
+    
+<div class="slds-grid slds-m-top_large">
+    <div class="slds-col slds-size_10-of-12"></div>
+    <div class="slds-col slds-m-right_small">
+        <button class="slds-button slds-button_brand slds-button_stretch"
+            onclick={nextStep}>Nästa</button>
+    </div>
+    
+</div>
+</template>
+</template>

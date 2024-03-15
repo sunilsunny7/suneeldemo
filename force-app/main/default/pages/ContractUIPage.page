@@ -1,0 +1,25 @@
+<apex:page standardController="Account" cache="false">
+    <script type="text/javascript" src="/canvas/sdk/js/publisher.js" />      	
+    <style>
+        .sfdcBody {
+            padding:0 !important;
+        },
+        .hasMotif{
+            padding:0px !important;
+            margin:0px !important;
+            overflow:visible !important;
+        }
+    </style>
+    <apex:includeLightning />
+    <div id="lightning" style="height:400px" />
+            <script>
+           		$Lightning.use("c:ContractUIApp", function() {
+                $Lightning.createComponent("c:ContractUIComponent",
+                       { AccountId: "{!Id}" },
+                         "lightning",
+                               function(cmp) {
+                                        Sfdc.canvas.publisher.resize( { height : "400px" } );
+                                    });
+            });
+    </script>
+</apex:page>

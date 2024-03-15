@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>40.0</apiVersion>
+    <availableInTouch>true</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>SAEN-2361 users needs information about how to re-run the Business Complexity Flow. That is described here.</description>
+    <label>OpportunityBusinessComplexityInformation</label>
+</ApexPage>

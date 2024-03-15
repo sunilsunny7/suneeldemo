@@ -1,0 +1,7 @@
+<!--
+ - Created by kwn687 on 2021-09-27.
+ -->
+
+<apex:page id="AccountRedirect" lightningStylesheets="true" standardController="Account"
+           extensions="AccountRedirectController" action="{!redirect}" docType="html-5.0">
+</apex:page>

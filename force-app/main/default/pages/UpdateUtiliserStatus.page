@@ -1,0 +1,25 @@
+<apex:page standardController="Utilizer_Contract_Relationship__c" recordSetVar="SelectedRecords"  extensions="UpdateUtiliserStatusCustomController" action="{!updateSelectedRecords}">
+    <title>Utilizer Contract</title>
+    <script>
+    
+    var numberOfSelectedRows  = {!numberOfSelectedRows };
+    var validUtilizers = {!validUtilizers };
+    var draftAgreement = {!draftAgreement };
+    if(numberOfSelectedRows == 0 ){
+        // alert('Please select some utilizer to perform this action...');
+        alert('Du måste markera nyttjare innan du går vidare i detta steget');
+        window.history.back();
+    }
+    else if(!validUtilizers){
+        // alert('Please select some utilizer to perform this action...');
+        alert('Dessa nyttjare håller på att bearbetas i TUPP, du kan därför inte redigera dessa nyttjare.');
+        window.history.back();
+    }
+        else if(draftAgreement)
+        {
+            alert('Du har ett avtal i utkast och kan därför inte redigera nyttjare på detta avtal.');
+            window.history.back();
+        }
+    
+    </script>
+</apex:page>

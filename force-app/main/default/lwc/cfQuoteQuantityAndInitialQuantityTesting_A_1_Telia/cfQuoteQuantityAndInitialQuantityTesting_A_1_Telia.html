@@ -1,0 +1,97 @@
+<template>
+            <div class="slds-grid slds-wrap slds-is-relative ">
+            <div style="position: fixed;z-index: 999999;top: 0;right: 0;">
+  <vlocity_cmt-toast class="flexcard-toast-element" theme="slds" title="" message="" styletype=""> </vlocity_cmt-toast>
+</div>
+            <div if:true={showLoader} class="slds-is-absolute vloc-loader_override" style="height: 100%; width: 100%; min-height:50px; background: transparent; z-index: 99;">
+  <div>
+   <vlocity_cmt-spinner
+      variant="brand"
+      alternative-text="Loading content..."
+      size="medium"
+      theme="slds"
+      ></vlocity_cmt-spinner>
+  </div>
+</div>
+            <template if:false={hasPermission}>
+              You don't have required permissions to view this card.
+            </template>
+            <template if:true={hasPermission}>
+              <template if:true={hasRecords}>
+                      <vlocity_cmt-flex-card-state   data-statue="true"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div data-style-id="state0element0" class="slds-col   slds-size_12-of-12 " data-rindex={rindex} style="" ><vlocity_cmt-flex-datatable data-style-id="state0element0_child"   card={card}  record={record}  issearchavailable="false"  issortavailable="true"  records={records}  columns='\[]'  theme="slds"  ></vlocity_cmt-flex-datatable>
+      </div><div data-style-id="state0element1" class="slds-col   slds-p-around_x-small  slds-size_12-of-12  " data-rindex={rindex} style="      
+      min-height:6em;   " >
+    <vlocity_cmt-block data-style-id="state0element1_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          <div data-style-id="state0element1block_element0" class="slds-col   slds-p-around_x-small  slds-large-size_7-of-12  slds-medium-size_3-of-12  slds-small-size_3-of-12  slds-size_3-of-12  " data-rindex={rindex} style="      
+         " >
+    <vlocity_cmt-block data-style-id="state0element1block_element0_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element1block_element1" class="slds-col  slds-text-align_center  slds-large-size_2-of-12 slds-medium-size_4-of-12 slds-small-size_4-of-12 slds-size_4-of-12  " data-rindex={rindex} style="background-color:#ffffff;   background-size:rgba(198, 106, 249, 1);   
+         " ><vlocity_cmt-flex-action data-style-id="state0element1block_element1_child"  tracking-obj={_childCardTrackingObj}  class= "state0element1block_element1_child flexActionElement" 
+        data-action-element-class="state0element1block_element1_child" data-action-key="state0element1block_element1" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="block2action1"   state-obj={record}  card={card}  record={record}  label="Rensa befintlig kvantitet"  icon-name="standard-default"  action-list='\[{"key":"1706194708792-1zn08pzms","label":"Action","draggable":true,"isOpen":true,"card":"{card}","stateAction":{"id":"flex-action-1707229469439","type":"cardAction","displayName":"Action","vlocityIcon":"standard-default","openUrlIn":"Current Window","eventName":"reload","subType":"Custom","bubbles":true,"hasExtraParams":true,"extraParams":{"true":"abcd"}},"sObjectType":"","actionIndex":0,"isTrackingDisabled":true}]'  styles='\{"label":{"textAlign":"center","color":"#ffffff"}}'  icon-color="#ffffff"  display-as-button="true"  hide-action-icon="true"  flyout-details='\{}'  button-variant="brand"  disabled=""  theme="slds"  ></vlocity_cmt-flex-action>
+      </div><div data-style-id="state0element1block_element2" class="slds-col   slds-p-around_x-small  slds-large-size_1-of-12 slds-medium-size_1-of-12 slds-small-size_1-of-12 slds-size_1-of-12  " data-rindex={rindex} style="      
+         " >
+    <vlocity_cmt-block data-style-id="state0element1block_element2_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element1block_element3" class="slds-col  slds-text-align_center  slds-large-size_2-of-12 slds-medium-size_4-of-12 slds-small-size_4-of-12 slds-size_4-of-12  " data-rindex={rindex} style="      
+         " ><vlocity_cmt-flex-action data-style-id="state0element1block_element3_child"  tracking-obj={_childCardTrackingObj}  class= "state0element1block_element3_child flexActionElement" 
+        data-action-element-class="state0element1block_element3_child" data-action-key="state0element1block_element3" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="block2action3"   state-obj={record}  card={card}  record={record}  label="Rensa offert kvantitet"  icon-name="standard-default"  action-list='\[{"stateAction":{"id":"test-action","type":"Custom","targetType":"Web Page","openUrlIn":"Current Window","Web Page":{"targetName":"/apex"}}}]'  styles='\{"label":{"textAlign":"center","color":"#ffffff"}}'  icon-color="#"  hide-action-icon="true"  display-as-button="true"  button-variant="brand"  theme="slds"  ></vlocity_cmt-flex-action>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element2" class="slds-col   slds-size_12-of-12 " data-rindex={rindex} style="" ><c-cf-product-quantity-card data-style-id="state0element2_child"  tracking-obj={_childCardTrackingObj}  is-inside-parent={insideParent} parent-uniquekey={uniqueKey}  card-node="\{records}"  parent-record={record}  records={_records}  parent-mergefields={card}  record-id={recordId}  is-child-card-tracking-enabled="false"  object-api-name={objectApiName}  theme="slds"  omni-json-def={omniJsonDef} omni-script-header-def={omniScriptHeaderDef} omni-custom-state={omniCustomState} omni-json-data={omniJsonData}    onupdateparent={updateParentData}></c-cf-product-quantity-card>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                </template>
+                <template if:false={hasRecords}>
+                      <vlocity_cmt-flex-card-state   data-statue="false"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div data-style-id="state0element0" class="slds-col   slds-size_12-of-12 " data-rindex={rindex} style="" ><vlocity_cmt-flex-datatable data-style-id="state0element0_child"   card={card}  record={record}  issearchavailable="false"  issortavailable="true"  records={records}  columns='\[]'  theme="slds"  ></vlocity_cmt-flex-datatable>
+      </div><div data-style-id="state0element1" class="slds-col   slds-p-around_x-small  slds-size_12-of-12  " data-rindex={rindex} style="      
+      min-height:6em;   " >
+    <vlocity_cmt-block data-style-id="state0element1_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          <div data-style-id="state0element1block_element0" class="slds-col   slds-p-around_x-small  slds-large-size_7-of-12  slds-medium-size_3-of-12  slds-small-size_3-of-12  slds-size_3-of-12  " data-rindex={rindex} style="      
+         " >
+    <vlocity_cmt-block data-style-id="state0element1block_element0_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element1block_element1" class="slds-col  slds-text-align_center  slds-large-size_2-of-12 slds-medium-size_4-of-12 slds-small-size_4-of-12 slds-size_4-of-12  " data-rindex={rindex} style="background-color:#ffffff;   background-size:rgba(198, 106, 249, 1);   
+         " ><vlocity_cmt-flex-action data-style-id="state0element1block_element1_child"  tracking-obj={_childCardTrackingObj}  class= "state0element1block_element1_child flexActionElement" 
+        data-action-element-class="state0element1block_element1_child" data-action-key="state0element1block_element1" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="block2action1"   state-obj={record}  card={card}  record={record}  label="Rensa befintlig kvantitet"  icon-name="standard-default"  action-list='\[{"key":"1706194708792-1zn08pzms","label":"Action","draggable":true,"isOpen":true,"card":"{card}","stateAction":{"id":"flex-action-1707229469439","type":"cardAction","displayName":"Action","vlocityIcon":"standard-default","openUrlIn":"Current Window","eventName":"reload","subType":"Custom","bubbles":true,"hasExtraParams":true,"extraParams":{"true":"abcd"}},"sObjectType":"","actionIndex":0,"isTrackingDisabled":true}]'  styles='\{"label":{"textAlign":"center","color":"#ffffff"}}'  icon-color="#ffffff"  display-as-button="true"  hide-action-icon="true"  flyout-details='\{}'  button-variant="brand"  disabled=""  theme="slds"  ></vlocity_cmt-flex-action>
+      </div><div data-style-id="state0element1block_element2" class="slds-col   slds-p-around_x-small  slds-large-size_1-of-12 slds-medium-size_1-of-12 slds-small-size_1-of-12 slds-size_1-of-12  " data-rindex={rindex} style="      
+         " >
+    <vlocity_cmt-block data-style-id="state0element1block_element2_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element1block_element3" class="slds-col  slds-text-align_center  slds-large-size_2-of-12 slds-medium-size_4-of-12 slds-small-size_4-of-12 slds-size_4-of-12  " data-rindex={rindex} style="      
+         " ><vlocity_cmt-flex-action data-style-id="state0element1block_element3_child"  tracking-obj={_childCardTrackingObj}  class= "state0element1block_element3_child flexActionElement" 
+        data-action-element-class="state0element1block_element3_child" data-action-key="state0element1block_element3" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="block2action3"   state-obj={record}  card={card}  record={record}  label="Rensa offert kvantitet"  icon-name="standard-default"  action-list='\[{"stateAction":{"id":"test-action","type":"Custom","targetType":"Web Page","openUrlIn":"Current Window","Web Page":{"targetName":"/apex"}}}]'  styles='\{"label":{"textAlign":"center","color":"#ffffff"}}'  icon-color="#"  hide-action-icon="true"  display-as-button="true"  button-variant="brand"  theme="slds"  ></vlocity_cmt-flex-action>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element2" class="slds-col   slds-size_12-of-12 " data-rindex={rindex} style="" ><c-cf-product-quantity-card data-style-id="state0element2_child"  tracking-obj={_childCardTrackingObj}  is-inside-parent={insideParent} parent-uniquekey={uniqueKey}  card-node="\{records}"  parent-record={record}  records={_records}  parent-mergefields={card}  record-id={recordId}  is-child-card-tracking-enabled="false"  object-api-name={objectApiName}  theme="slds"   onupdateparent={updateParentData}></c-cf-product-quantity-card>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                </template>
+            </template>
+            <template if:true={hasError}>
+            {error}
+            </template>
+            
+      <vlocity_cmt-action action-wrapperclass="slds-hide" re-render-flyout class="action-trigger slds-col" onupdateos={updateOmniscript} onselectcards={updateSelectedCards} onsetvalue={updateAction} onfireactionevent={actionEvtHandler}>
+      
+      </vlocity_cmt-action>
+  
+            <vlocity_cmt-action class="execute-action" re-render-flyout action-wrapperclass="slds-hide" onupdateos={updateOmniscript} onselectcards={updateSelectedCards} onsetvalue={updateAction} onfireactionevent={actionEvtHandler}>
+            
+            </vlocity_cmt-action>
+            </div>
+          </template>

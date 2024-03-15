@@ -1,0 +1,134 @@
+<template>
+	<div>
+		<p>Börja med att välja startdatum (arbetsdagar) för de valda produkterna. Därefter kommer slutdatum att
+			förpopuleras om bindningsperioder (commitment period) konfigurerats för respektive produkt.</p> <br>
+		<p> Tidigaste startdatum från dagens datum: </p>
+		<p> Jobbmobil, Touchpoint, Nätverkstjänster - 15 arbetsdagar </p>
+		<p> Touchpoint Plus - 20 arbetsdagar </p>
+		<p> IT-avdelning - 30 dagar </p>
+		<p> IT-Support (Standard/Plus) - 14 dagar</p>
+		<p> Slutanvändarsupport - 90 dagar </p>
+		<p> Övriga produkter - 5 arbetsdagar </p> <br>
+
+		<p> -Tänk på att ta hänsyn till t.ex. inportering och välj ett realistiskt startdatum.</p>
+		<p> -Tänk på att leverans av kundens växellösning är ett separat datum som kan bli senare än tidigaste
+			startdatum för avtalet.</p>
+		<p> -Startdatum för Jobbmobil bör alltid vara innan eller samtidigt som startdatum för Smart Connect, Operator
+			Connect, Touchpoint
+			och Touchpoint Plus.</p> <br> <br>
+	</div>
+
+	<div lwc:if={displayMadamMessage} class="slds-m-bottom_medium">
+		<p> <b> Det mobila avtalet utanför Salesforce har slutdatum: &nbsp;</b> {madamAgreementEndDate} </p>
+	</div>
+
+	<div class="demo-only" style="padding:0.5rem;background:#16325c">
+		<div class="slds-text-color_inverse-weak">
+			If dates are disabled and user wants to change it please click on checkbox in the respective row for
+			enabling the date
+			selection
+		</div>
+	</div>
+
+	<div class="slds-m-bottom_x-large">
+		<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+			<thead>
+				<tr>
+					<th class="slds-border_right slds-border_left slds-border_bottom" colspan="4"
+						style="text-align:center;">ERBJUDANDEN</th>
+				</tr>
+			</thead>
+			<thead>
+				<tr>
+					<th class="slds-border_right slds-border_left columnSize">Ändra datum</th>
+					<th class="slds-border_right slds-border_left">Produktfamilj</th>
+					<th class="slds-border_right slds-border_left"> Startdatum </th>
+					<th class="slds-border_right slds-border_left"> Slutdatum</th>
+				</tr>
+			</thead>
+			<tbody>
+				<template for:each={products} for:item="item" for:index="index">
+					<tr key={item.Product2Id}>
+						<td class="slds-border_right slds-border_left" style="text-align:center;" lwc:if={item.hideOrShowCheckbox}>
+							<lightning-input type="checkbox" data-checkboxid={index}
+								label="" onchange={handleCheckbox} name="input1"></lightning-input>
+						</td>
+
+						<td class="slds-border_right slds-border_left" lwc:else></td>
+						
+						<td class="slds-border_right slds-border_left">{item.ProductName}</td>
+
+						<td class="slds-border_right slds-border_left" lwc:if={item.disableDate}>
+							<c-date-picker-child class="datepickerColorWhite" data-opp={index} data-productcode={item.ProductCode} name="DemoName1"
+								disable-days={disableDays} disable-prev-month-days="true" disable-dates={disableDates1}
+								disable-next-month-days="true" min={item.minStartTime} max={item.maxStartTime} onchange={handleChange}
+								value={item.startDate} disabled={item.disableDate}>
+							</c-date-picker-child>
+						</td>
+						
+						<td class="slds-border_right slds-border_left" lwc:else>
+							<c-date-picker-child class="datepickerColorWhite" data-opp={index}
+								data-productcode={item.ProductCode} name="DemoName1" disable-days={disableDays}
+								disable-prev-month-days="true" disable-dates={disableDates1}
+								disable-next-month-days="true" min={item.minStartTime} max={item.maxStartTime}
+								onchange={handleChange} value={item.startDate} disabled={item.InitialValue}>
+							</c-date-picker-child>
+						</td>
+
+						<td class="slds-border_right slds-border_left" lwc:if={item.disableDate}>
+							<c-date-picker-child class="datepickerColorWhite" data-opp={index} data-productcode={item.ProductCode} name="DemoName2"
+								disable-days={disableDays} value={item.endDate} disable-prev-month-days="true" disable-dates={disableDates1}
+								disable-next-month-days="true" min={item.minEndTime} max={item.maxEndTime} onchange={handleChangeEndDate}
+								disabled={item.disableDate}>
+							</c-date-picker-child>
+						</td>
+
+						<td class="slds-border_right slds-border_left" lwc:else>
+							<c-date-picker-child class="datepickerColorWhite" data-opp={index}
+								data-productcode={item.ProductCode} name="DemoName2" disable-days={disableDays}
+								value={item.endDate} disable-prev-month-days="true" disable-dates={disableDates1}
+								disable-next-month-days="true" min={item.minEndTime} max={item.maxEndTime}
+								onchange={handleChangeEndDate} disabled={item.InitialValue}>
+							</c-date-picker-child>
+						</td>
+					</tr>
+				</template>
+			</tbody>
+		</table>
+
+	</div>
+	<div class="slds-grid slds-m-top_large slds-grid_vertical">
+		<div class="warning_message slds-col" lwc:if={isCommitmentPeriodSame}>
+			OBS! Du har valt olika avtalstid för Mobilt och Touchpoint. Glöm inte att förklara konsekvenserna av detta
+			för din kund.
+		</div>
+		<div class="warning_message slds-col" lwc:if={istppMobileCommitmentSame}>
+			OBS! Du har valt olika avtalstid för Mobilt och Touchpoint Plus. Glöm inte att förklara konsekvenserna av
+			detta för kund.
+		</div>
+		<div class="warning_message slds-col" lwc:if={isScMobileCommitmentSame}>
+			OBS! Du har valt olika avtalstid för Mobilt och Smart Connect. Glöm inte att förklara konsekvenserna av
+			detta för kund.
+		</div>
+
+		<div class="warning_message slds-col" lwc:if={isOcMobileCommitmentSame}>
+			OBS! Du har valt olika avtalstid för Mobilt och Operator Connect. Glöm inte att förklara konsekvenserna av
+			detta för
+			kund.
+		</div>
+		<div class="slds-col" lwc:if={isTppProductPresent}>
+			*Vid omförhandling av befintlig Touchpoint Plus måste filen ”Pris- och beställningsunderlag Touchpoint Plus”
+			vara
+			Order-teamet tillhanda minst 14 arbetsdagar före angivet Startdatum för att priserna ska kunna uppdateras
+			till
+			avtalsstart.
+		</div>
+	</div>
+	<div class="slds-grid slds-m-top_large">
+		<div class="slds-col slds-size_2-of-3"></div>
+		<div class="slds-col slds-m-right_small">
+			<button class="slds-button slds-button_brand slds-button_stretch" onclick={nextStep}>Nästa</button>
+
+		</div>
+	</div>
+</template>

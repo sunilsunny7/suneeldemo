@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>40.0</apiVersion>
+    <description>Used on the CallActivity page.
+
+SAEN-2278
+
+CrossAndUpsell: Flexible loading and presentation of campaign-specific CallActivity data
+
+Created by Vahraz Mostajir</description>
+</AuraDefinitionBundle>

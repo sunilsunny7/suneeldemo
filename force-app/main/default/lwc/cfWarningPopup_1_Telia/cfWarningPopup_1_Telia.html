@@ -1,0 +1,93 @@
+<template>
+            <div class="slds-grid slds-wrap slds-is-relative ">
+            <div style="position: fixed;z-index: 999999;top: 0;right: 0;">
+  <vlocity_cmt-toast class="flexcard-toast-element" theme="slds" title="" message="" styletype=""> </vlocity_cmt-toast>
+</div>
+            <div if:true={showLoader} class="slds-is-absolute vloc-loader_override" style="height: 100%; width: 100%; min-height:50px; background: transparent; z-index: 99;">
+  <div>
+   <vlocity_cmt-spinner
+      variant="brand"
+      alternative-text="Loading content..."
+      size="medium"
+      theme="slds"
+      ></vlocity_cmt-spinner>
+  </div>
+</div>
+            <template if:false={hasPermission}>
+              You don't have required permissions to view this card.
+            </template>
+            <template if:true={hasPermission}>
+              <template if:true={hasRecords}>
+                        <template for:each={_records} for:item="record" for:index="rindex">
+                            <vlocity_cmt-flex-card-state if:true={record}  key={record._flex.uniqueKey} data-recordid={record.Id} record={record} data-statue="true"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-small-size_12-of-12 slds-size_12-of-12 "  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-around_none " style="      
+         ">
+          <div data-style-id="state0element0" class="slds-col   slds-p-around_x-small slds-size_12-of-12 " data-rindex={rindex} style="" >
+    <vlocity_cmt-block data-style-id="state0element0_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          <div data-style-id="state0element0block_element0" class="slds-col   slds-size_12-of-12 " data-rindex={rindex} style="" ><vlocity_cmt-output-field data-style-id="state0element0block_element0_child"   card={card}  record={record}  merge-field="%3Cdiv%20class=%22slds-text-heading_medium%20slds-text-align_center%22%3E%3Cstrong%3EAre%20you%20sure?%20You%20want%20to%20clear%20quantity!%3Cbr%20/%3E%3Cbr%20/%3E%3C/strong%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element1" class="slds-col   slds-p-around_x-small slds-size_4-of-12  " data-rindex={rindex} style="" >
+    <vlocity_cmt-block data-style-id="state0element1_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element2" class="slds-col   slds-size_2-of-12  " data-rindex={rindex} style="background-color:#1093F7;      
+         " ><vlocity_cmt-flex-action data-style-id="state0element2_child"  tracking-obj={_childCardTrackingObj}  class= "state0element2_child flexActionElement" 
+        data-action-element-class="state0element2_child" data-action-key="state0element2" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="action4clone0"   state-obj={record}  card={card}  record={record}  label="Yes"  icon-name="standard-default"  action-list='\[{"stateAction":{"id":"flex-action-1706773890371","type":"cardAction","targetType":"Web Page","openUrlIn":"Current Window","Web Page":{"targetName":"/apex"},"eventName":"setValues","fieldValues":[{"fieldName":"ClearQty","fieldValue":"\"True\""}]},"key":"1706693032618-6sd6h3lpz","label":"Action","draggable":true,"isOpen":false,"actionIndex":0},{"key":"1706774166013-18dhy34sh","label":"Action","draggable":true,"isOpen":true,"card":"{card}","stateAction":{"id":"flex-action-1706781293273","type":"Event","displayName":"Action","vlocityIcon":"standard-default","openUrlIn":"Current Window","subType":"Custom","eventName":"closemodal","hasExtraParams":true,"extraParams":{"ClearQty":"True"},"composed":true,"bubbles":true},"actionIndex":1}]'  styles='\{"label":{"color":"#FAF9F9","textAlign":"center"}}'  display-as-button="true"  hide-action-icon="true"  flyout-details='\{}'  theme="slds"  ></vlocity_cmt-flex-action>
+      </div><div data-style-id="state0element3" class="slds-col   slds-p-around_x-small slds-size_1-of-12  " data-rindex={rindex} style="" >
+    <vlocity_cmt-block data-style-id="state0element3_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element4" class="slds-col   slds-size_2-of-12  " data-rindex={rindex} style="background-color:#1093F7;      
+         " ><vlocity_cmt-flex-action data-style-id="state0element4_child"  tracking-obj={_childCardTrackingObj}  class= "state0element4_child flexActionElement" 
+        data-action-element-class="state0element4_child" data-action-key="state0element4" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="action5"   state-obj={record}  card={card}  record={record}  label="No"  icon-name="standard-default"  action-list='\[{"stateAction":{"id":"flex-action-1706693296596","type":"cardAction","targetType":"Component","openUrlIn":"Current Window","Component":{"targetName":"c"},"eventName":"setValues","fieldValues":[{"fieldName":"ClearQty","fieldValue":"False"}]},"key":"1706693154079-dwgd2268d","label":"Action","draggable":true,"isOpen":true,"actionIndex":0}]'  styles='\{"label":{"color":"#FAF9F9","textAlign":"center"}}'  display-as-button="true"  hide-action-icon="true"  flyout-details='\{}'  theme="slds"  ></vlocity_cmt-flex-action>
+      </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                        </template>
+                      </template>
+                      <template if:false={hasRecords}>
+                            <vlocity_cmt-flex-card-state  record={record} data-statue="false"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-small-size_12-of-12 slds-size_12-of-12 "  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-around_none " style="      
+         ">
+          <div data-style-id="state0element0" class="slds-col   slds-p-around_x-small slds-size_12-of-12 " data-rindex={rindex} style="" >
+    <vlocity_cmt-block data-style-id="state0element0_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          <div data-style-id="state0element0block_element0" class="slds-col   slds-size_12-of-12 " data-rindex={rindex} style="" ><vlocity_cmt-output-field data-style-id="state0element0block_element0_child"   card={card}  record={record}  merge-field="%3Cdiv%20class=%22slds-text-heading_medium%20slds-text-align_center%22%3E%3Cstrong%3EAre%20you%20sure?%20You%20want%20to%20clear%20quantity!%3Cbr%20/%3E%3Cbr%20/%3E%3C/strong%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element1" class="slds-col   slds-p-around_x-small slds-size_4-of-12  " data-rindex={rindex} style="" >
+    <vlocity_cmt-block data-style-id="state0element1_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element2" class="slds-col   slds-size_2-of-12  " data-rindex={rindex} style="background-color:#1093F7;      
+         " ><vlocity_cmt-flex-action data-style-id="state0element2_child"  tracking-obj={_childCardTrackingObj}  class= "state0element2_child flexActionElement" 
+        data-action-element-class="state0element2_child" data-action-key="state0element2" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="action4clone0"   state-obj={record}  card={card}  record={record}  label="Yes"  icon-name="standard-default"  action-list='\[{"stateAction":{"id":"flex-action-1706773890371","type":"cardAction","targetType":"Web Page","openUrlIn":"Current Window","Web Page":{"targetName":"/apex"},"eventName":"setValues","fieldValues":[{"fieldName":"ClearQty","fieldValue":"\"True\""}]},"key":"1706693032618-6sd6h3lpz","label":"Action","draggable":true,"isOpen":false,"actionIndex":0},{"key":"1706774166013-18dhy34sh","label":"Action","draggable":true,"isOpen":true,"card":"{card}","stateAction":{"id":"flex-action-1706781293273","type":"Event","displayName":"Action","vlocityIcon":"standard-default","openUrlIn":"Current Window","subType":"Custom","eventName":"closemodal","hasExtraParams":true,"extraParams":{"ClearQty":"True"},"composed":true,"bubbles":true},"actionIndex":1}]'  styles='\{"label":{"color":"#FAF9F9","textAlign":"center"}}'  display-as-button="true"  hide-action-icon="true"  flyout-details='\{}'  theme="slds"  ></vlocity_cmt-flex-action>
+      </div><div data-style-id="state0element3" class="slds-col   slds-p-around_x-small slds-size_1-of-12  " data-rindex={rindex} style="" >
+    <vlocity_cmt-block data-style-id="state0element3_child"  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds"  ><div class="slds-grid slds-wrap">
+          
+        </div></vlocity_cmt-block>
+    </div><div data-style-id="state0element4" class="slds-col   slds-size_2-of-12  " data-rindex={rindex} style="background-color:#1093F7;      
+         " ><vlocity_cmt-flex-action data-style-id="state0element4_child"  tracking-obj={_childCardTrackingObj}  class= "state0element4_child flexActionElement" 
+        data-action-element-class="state0element4_child" data-action-key="state0element4" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="action5"   state-obj={record}  card={card}  record={record}  label="No"  icon-name="standard-default"  action-list='\[{"stateAction":{"id":"flex-action-1706693296596","type":"cardAction","targetType":"Component","openUrlIn":"Current Window","Component":{"targetName":"c"},"eventName":"setValues","fieldValues":[{"fieldName":"ClearQty","fieldValue":"False"}]},"key":"1706693154079-dwgd2268d","label":"Action","draggable":true,"isOpen":true,"actionIndex":0}]'  styles='\{"label":{"color":"#FAF9F9","textAlign":"center"}}'  display-as-button="true"  hide-action-icon="true"  flyout-details='\{}'  theme="slds"  ></vlocity_cmt-flex-action>
+      </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                      </template>
+            </template>
+            <template if:true={hasError}>
+            {error}
+            </template>
+            
+      <vlocity_cmt-action action-wrapperclass="slds-hide" re-render-flyout class="action-trigger slds-col" onupdateos={updateOmniscript} onselectcards={updateSelectedCards} onsetvalue={updateAction} onfireactionevent={actionEvtHandler}>
+      
+      </vlocity_cmt-action>
+  
+            <vlocity_cmt-action class="execute-action" re-render-flyout action-wrapperclass="slds-hide" onupdateos={updateOmniscript} onselectcards={updateSelectedCards} onsetvalue={updateAction} onfireactionevent={actionEvtHandler}>
+            
+            </vlocity_cmt-action>
+            </div>
+          </template>

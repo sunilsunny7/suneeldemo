@@ -1,0 +1,26 @@
+<template>
+   <template if:true={version}>
+		<div class="slds-grid slds-gutters">
+			<div class="slds-col slds-size_4-of-12">
+				<lightning-combobox name="Kundagtnat" label="Kundägt nät?" value="" placeholder="" options={bool}
+					onchange={handleChange}></lightning-combobox>
+			</div>
+			<div class="slds-col slds-size_4-of-12">
+				<lightning-combobox name="Produktkod" label="Tjänsteutbud" value="" placeholder="" options={Productcode}
+					onchange={handleChange}></lightning-combobox>
+			</div>
+			<div class="slds-col slds-size_4-of-12">
+				<lightning-input type="text" name="Stationsnamn" label="Stationsnamn" onchange={handleChange}>
+				</lightning-input>
+			</div>
+		</div>
+   </template>
+   
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Ovriginformation" label="Övrig information" onchange={handleChange}>
+            </lightning-input>
+        </div>
+    </div>
+   
+</template>

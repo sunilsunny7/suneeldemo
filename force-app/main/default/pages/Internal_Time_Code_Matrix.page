@@ -1,0 +1,8 @@
+<apex:page standardcontroller="Internal_Time_Codes__c" id="ResourceHeroPage">
+        <ResourceHeroApp:Matrix ActualOrForecast="Forecast"
+            ForceReadOnly="False"
+            PageURL="/apex/c__Internal_Time_Code_Matrix"
+            DefaultViewBy="Week"
+            DefaultTimeRange=""
+         />
+</apex:page>

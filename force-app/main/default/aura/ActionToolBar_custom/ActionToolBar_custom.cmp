@@ -1,0 +1,106 @@
+<aura:component extensible="true" access="GLOBAL" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" extends="vlocity_cmt:vlocityIframeComponent"  controller="vlocity_cmt.ActionDisplayController">
+    <ltng:require styles="{!$Resource.vlocity_cmt__ActionComponentCss}" />
+    <ltng:require styles="{! $Resource.vlocity_cmt__vlocity_assets + '/css/vlocity.css'}"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:attribute name="itemObj" type="Object"/>
+    <aura:attribute name="recordId" type="String" access='global'/>
+    <aura:attribute name="tabId" type="String" />
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="style" type="String" access='global'/>
+    <aura:attribute name="objType" type="String" access='global'/>
+    <aura:attribute name="displayOn" type="String" access='global'/>
+    <aura:attribute name="linkType" type="String" access='global'/>
+    <aura:attribute name="baseURL" type="String"/>
+    <aura:attribute name="customCommunityPage" type="String" access='global'/>
+    <aura:attribute name="nsPrefix" type="String"/>
+    <aura:attribute name="styleHtml" type="String" default="action-container action-horizontal"/>
+    <aura:attribute name="vlocActions" type="Object" access='global'/>
+    <aura:attribute name="vlocButtons" type="Object" access='global'/>
+    <aura:attribute name="vlocDropDown" type="Object" access='global'/>
+    <aura:attribute name="scriptsLoaded" type="boolean" access='global' default='false'/>
+    <aura:attribute name="loadActionToolBar" type="boolean" default='true'/>
+    <aura:attribute name="validationErrorHandler" type="Object" access='global'/>
+    <aura:attribute name="isPopUp" type="boolean" access='global'/>
+    <aura:attribute name="selectedAction" type="Object" access='global'/>
+
+
+    <aura:if isTrue="{!v.isPopUp}">
+        <!--###### MODAL BOX Start######-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- ###### MODAL BOX HEADER Start ######-->
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-button--icon-inverse slds-modal__close uiButton--modal-closeBtn uiButton"
+                            aria-live="off" type="button" title="Close this window" onclick="{!c.closeModel}">
+                        <lightning:icon iconName="utility:close" size="x-small" class="closeIcon slds-button__icon slds-button__icon--large slds-icon-utility-close slds-icon_container forceIcon" alternativeText="Close"/>
+                    </button>                    
+                    <h4 class="slds-text-heading_medium slds-m-bottom_none" style="float: left"> {!(v.validationErrorHandler.type == 'warning' ? $Label.vlocity_cmt.ActionValidationWarning : $Label.vlocity_cmt.Errors)} </h4>
+                </div>
+                <!--###### MODAL BOX BODY Part Start######- -->
+                <div class="{!(v.validationErrorHandler.type == 'warning' ? 'slds-theme_warning' : 'slds-theme_error') + ' slds-modal__content slds-p-around_medium slds-notify_alert slds-theme_alert-texture'}" id="modal-content-id-1">
+                    <div>
+                        <p> {!v.validationErrorHandler.message}</p>
+                    </div>         
+                </div>
+                <!--###### MODAL BOX FOOTER Part Start ######-   NEED TO USE LABELS HERE -->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label= "{!$Label.vlocity_cmt.Cancel}"
+                                      title= "{!$Label.vlocity_cmt.Cancel}" 
+                                      onclick="{! c.closeModel }"/>
+                    <lightning:button variant="brand"
+                                      class="{!v.validationErrorHandler.type == 'warning' ? '' : 'slds-hide'}"
+                                      label= "{!$Label.vlocity_cmt.ActionValidationContinue}"
+                                      title="{!$Label.vlocity_cmt.ActionValidationContinue}"
+                                      onclick="{!c.continueValidation }"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        <!--###### MODAL BOX Part END Here ######-->
+
+    </aura:if>
+    
+    <article class="slds-card slds-card_boundary forceBaseCard flexipageCard">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="header-title-container">
+                        <span class="slds-card__header-title slds-truncate" title="{!$Label.vlocity_cmt.Actions}">{!$Label.vlocity_cmt.Actions}</span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body--inner">
+            <div class="action vlocity">
+                <div id="action" class="vlocity-actions">
+                    <div class="{!v.styleHtml}">
+                        <aura:iteration items="{!v.vlocButtons}" var="action"> 
+                            <div class="action-item">    
+                                <c:ActionInnerComponent_custom itemObj="{!action}" actionClick="{!c.handleAction}"/>
+                            </div>
+                        </aura:iteration>
+                        <aura:if isTrue="{!v.vlocDropDown.length > 0}">
+                            <lightning:buttonMenu aura:id="menu" alternativeText="Show menu" >
+                                <aura:iteration items="{!v.vlocDropDown}" var="action">
+                                    <li class="slds-dropdown__item action-item " value="{!action.id}" role="presentation">
+                                        <a role="menuitem" id="{!action.id}" onclick="{! c.handleAction }">
+                                            <div class="image-wrapper" ng-show="{!action.imageRef}">
+                                                <i class="{!icon + action.vlocityIcon}"></i><span class="helper"></span> 
+                                            </div> 
+                                            <span class="slds-truncate action-label">{!action.displayName}</span>
+                                        </a>
+                                    </li>
+                                    <!-- <lightning:menuItem value="{!action.id}" label="{!action.displayName}" prefixIconName="utility:table"/> -->
+                                </aura:iteration>                     
+                             </lightning:buttonMenu>
+                         </aura:if>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__footer"></div>
+    </article>
+</aura:component>

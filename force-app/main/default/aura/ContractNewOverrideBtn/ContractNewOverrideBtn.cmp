@@ -1,0 +1,4 @@
+<aura:component implements="lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader"  access="global">
+    <ltng:require scripts="{!$Resource.jnew}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+</aura:component>

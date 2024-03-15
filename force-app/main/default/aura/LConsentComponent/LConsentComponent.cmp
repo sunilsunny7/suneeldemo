@@ -1,0 +1,169 @@
+<aura:component controller="ConsentController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global"  >
+    <ltng:require scripts="{!$Resource.jnew}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:attribute name="edit" type="Boolean" default="false"/>
+    <aura:attribute name="save" type="Boolean" default="false"/>
+    <aura:attribute name="cancel" type="Boolean" default="false"/>
+    <aura:attribute name="ContactRole" type="String" default=""/>
+    <aura:attribute name="Olddatacontainer" type="ApexDataContainer" default=""/>
+    <aura:attribute name="datacontainer" type="ApexDataContainer" />
+    <aura:attribute name="Account" type="Account" default="{ 'sobjectType': 'Account' }"/>
+    <aura:attribute name="recordId" type="String" default=""/>
+    <aura:attribute name="consentGiven" type="String"  default="" />
+    <aura:attribute name="HasError" type="Boolean" default="false" />
+    <aura:attribute name="ErrorMsg" type="String" default="Error" />
+    <aura:attribute name="Getlang" type="String" default="" />
+    <aura:attribute name="isSuccess" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!-- Language Version Consent Start -->
+    <div class="slds-grid slds-grid_align-spread">
+        <div class="slds-col">
+        </div>
+        <div class="slds-col">
+        </div>
+        <div class="slds-col">
+        </div>
+        <div class="slds-col">
+        </div>
+        <div class="slds-col">
+            <ui:inputSelect value ="{!v.Getlang}">
+                <ui:inputSelectOption text="Svenska" label="Svenska" value="true"/>
+                <ui:inputSelectOption text="English" label="English" />
+            </ui:inputSelect>
+        </div>
+    </div>
+    <!-- Language Version Consent End-->
+    <h1 style="font-size:25px;">{!$Label.c.CM_Header} </h1>
+    <!-- Start -->
+    <aura:If isTrue="{!v.isSuccess}"> 
+        <ui:message title="{!$Label.c.CM_SuccessHeader}" severity="confirm" closable="false">
+            {!$Label.c.CM_SUCCESSMSG}
+        </ui:message>
+    </aura:If>
+    <aura:If isTrue="{!v.HasError}">  
+        <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+            <span class="slds-assistive-text">Error</span>
+            <strong><h2>{!v.ErrorMsg}</h2></strong>
+        </div>
+        <br/><br/>
+    </aura:If>
+    <!--End -->
+    <center>
+        <div>
+            <aura:if isTrue="{!v.edit}">
+                <lightning:button variant="neutral" label="Redigera" onclick="{!c.handleEdit}"/>
+                <!-- <lightning:button variant="neutral" label="Update Consent Timestamp" onclick="{!c.handleUnchangedConsent}"/> -->
+            </aura:if>
+            <aura:if isTrue="{!v.save}">
+                <lightning:button variant="neutral" label="Spara" onclick="{!c.handleSave}"/>
+            </aura:if>
+            <aura:if isTrue="{!v.cancel}">
+                <lightning:button variant="neutral" label="Avbryt"  onclick="{!c.handleCancel}"/>
+            </aura:if>
+        </div>
+    </center>
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert" style="z-index:9999">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div> 
+    </div>
+    <!-- Start -->
+    <div class="slds-p-around--large slds-scrollable_x"> 
+        <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+            <thead>
+                <tr class="slds-text-heading--label">
+                    <th scope="col" style="width:500px;font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Consent Terms">Uppdatera Samtycke</div></th>
+                    <th scope="col" style="width:500px;font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Response">Kundens svar</div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.datacontainer.purposes}" var="obj">
+                    <tr>
+                        <aura:iteration items="{!obj.description}" var="desc">
+                            <aura:if isTrue="{!and(v.Getlang =='Svenska',desc.language == 'sv-SE')}">
+                                <td>
+                                    <div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;width:555px">{!desc.text}</div>
+                                </td>
+                            </aura:if>
+                            <aura:if isTrue="{!and(v.Getlang =='English',desc.language == 'en-GB')}">
+                                <td>
+                                    <div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;width:555px">{!desc.text}</div>
+                                </td>
+                            </aura:if>
+                        </aura:iteration>
+                        <td>
+                            <lightning:select value="{!obj.status}" disabled="{!!v.save}" >
+                                <option value="denied">Denied</option>
+                                <aura:if isTrue="{!obj.status == 'not_answered'}">
+                                    <option value="not_answered">Not Answered</option>
+                                </aura:if>
+                                <option value="approved">Approved</option>
+                                <aura:if isTrue="{!obj.status == 'Approved_Implicit'}">
+                                    <option value="Approved_Implicit">Approved Implicit</option>
+                                </aura:if>
+                            </lightning:select>
+                        </td>
+                    </tr>
+                </aura:iteration>
+                
+                <!-- Consent Collection Block-->
+                <aura:if isTrue="{!v.save}">
+                    <tr>
+                        <td>
+                            <div class="slds-truncate" >Ändring begärd av : </div>
+                        </td>
+                        <td>
+                            <!--    <aura:renderIf isTrue="{!v.save}">
+                            <force:inputField value="{!v.Account.Consent_Contact__c}" class="foo" change="{!c.changeEvent}" aura:id="contactLookup">{!v.Account.Consent_Contact__c}</force:inputField>
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!!v.save}">
+                            <div class="slds-form-element__control">
+                                <force:outputField aura:id="accountLookupOutput1" value="{!v.Account.Consent_Contact__c}">{!v.Account.Consent_Contact__c}</force:outputField>
+                            </div>
+                        </aura:renderIf> -->
+                            <ui:inputText label="" value="{!v.consentGiven}" disabled="{!!v.save}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="slds-truncate">Kontaktpersonens roll :</div>
+                        </td>
+                        <td>
+                            <ui:inputText label="" value="{!v.ContactRole}" disabled="{!!v.save}"/>
+                        </td>
+                    </tr>
+                </aura:if>
+            </tbody>
+        </table>
+    </div>    
+    <!--End -->
+    <!-- Aura If condition :- {!and(!v.save,v.Account.Consent_Updated__c !=null)} -->
+    <aura:if isTrue="false">
+        <div class="slds-section slds-is-open slds-section__title slds-truncate" style="font-size:15px;font-weight: bold;">
+            {!$Label.c.CM_History}
+        </div>
+        <table class="slds slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer">
+            <thead>
+                <tr class="slds-text-heading--label">
+                    <th scope="col" style="width:200px;font-weight: bold;"><div style="word-wrap:break-word;overflow-wrap: break-word;" title="Date">{!$Label.c.CM_LastModified}</div></th>
+                    <th scope="col" style="width:200px;font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="User">{!$Label.c.CM_LastModifiedBy}</div></th>
+                    <th scope="col" style="width:200px;font-weight: bold;"><div style="word-wrap:break-word;overflow-wrap: break-word;" title="User">{!$Label.c.CM_ConsentGivenBy}</div></th>
+                    <th scope="col" style="width:200px;font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Action">{!$Label.c.CM_Description}</div></th>                        
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="DateTime">
+                        {!v.Account.Consent_Updated__c}</div></td> 
+                    <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="User">
+                        {!v.Account.Consent_Updated_By__c}</div></td>
+                    <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="User">
+                        {!v.Account.Consent_Provided_by_Customer__c}</div></td>
+                    <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Description">{!$Label.c.CM_DescriptionContent}</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </aura:if>
+</aura:component>

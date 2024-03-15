@@ -1,0 +1,48 @@
+<aura:component controller="C2BComponentController">
+    <aura:attribute name="OrgNumber" type="String"/>
+    <aura:attribute name="HasData" type="Boolean" default="false"/>
+    <aura:attribute name="IsLoaded" type="Boolean"  default="false"/>
+    <aura:attribute name="DataList" type="C2BComponentController.C2BGenericWrapper[]"/>   
+    <aura:handler event="c:C2BLoadEvent" action="{!c.doInit}"/>
+    
+    <div class="slds-tree_container fill-width" role="application">
+        
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <c:svgIcon svgPath="/resource/slds213/assets/icons/utility-sprite/svg/symbols.svg#wifi" class="slds-icon-text-default" size="small"  />  
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-text-heading--medium" >{!$Label.c.C2BBroadbandServices}</div>
+            </div>
+        </div>
+        
+        <ul class="slds-tree" role="tree" aria-labelledby="treeheading" aria-activedescendant="tree0-node1">
+            <aura:renderIf isTrue="{!v.HasData}">
+                <li role="treeitem" aria-level="1" aria-expanded="true">
+                    <div class="slds-tree__item slds-text-heading--label remove-hover">
+                        <table class="category-header">
+                            <thead>
+                                <tr>
+                                    <th class="category-column" width="80%">{!$Label.c.C2BCategory}</th> 
+                                    <th class="category-column slds-text-align--center" width="20%">{!$Label.c.C2BAmount}</th> 
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </li>
+                <aura:iteration items="{!v.DataList}" var="gw">
+                    <c:C2BComponentRow OrgNumber="{!v.OrgNumber}" MethodType="broadband" Category="{!gw.Name}" CategoryCount="{!gw.Amount}" ></c:C2BComponentRow>
+                </aura:iteration>  
+            </aura:renderIf>
+            <aura:renderIf isTrue="{!and(!v.HasData, v.IsLoaded)}">
+                <li role="treeitem" aria-level="1" aria-expanded="true">
+                    <span class="slds-icon_container slds-align--absolute-center">
+                        <c:svgIcon svgPath="/resource/slds213/assets/icons/utility-sprite/svg/symbols.svg#warning" class="slds-icon-text-default" size="small"  />  
+                        <span class="slds-assistive-text">{!$Label.c.C2BMissingData}</span>
+                        <div class="slds-text-heading--small slds-p-left--medium" >{!$Label.c.C2BMissingData}</div>
+                    </span>
+                </li>
+            </aura:renderIf>
+        </ul>    
+    </div>
+</aura:component>

@@ -1,0 +1,16 @@
+<apex:page standardController="Lead">
+    <apex:includeLightning />
+
+    <div id="lightning" />
+
+    <script>
+        $Lightning.use("c:LeadConvertActionApp", function() {
+          $Lightning.createComponent("c:LeadConvertAction",
+          { recordId : "{!lead.Id}" },
+          "lightning",
+          function(cmp) {
+            // do some stuff
+          });
+        });
+    </script>
+</apex:page>

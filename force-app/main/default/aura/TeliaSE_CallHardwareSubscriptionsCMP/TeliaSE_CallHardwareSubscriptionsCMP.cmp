@@ -1,0 +1,17 @@
+<aura:component implements="force:lightningQuickAction,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	<aura:attribute name="recordId" type="String" />
+        <aura:html tag="style">
+        .slds-modal__container {
+             max-width:90% !important;
+         	width: 90% !important;
+        }
+        a.slds-is-sorted_asc, a.slds-is-sorted_desc{
+        	font-size: 10px;
+        }
+        lightning-formatted-text{
+        	font-size: 10px;
+        }
+    </aura:html> 
+	<c:hardwareC2BSubscriptions recordId="{!v.recordId}"/>
+</aura:component>

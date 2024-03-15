@@ -1,0 +1,13 @@
+<apex:page applyBodyTag="false" docType="html-5.0">
+  <apex:stylesheet value="https://dynamo.documill.com/visualforce/dynamo-vf.css" />
+  <apex:includeScript value="https://dynamo.documill.com/visualforce/dynamo-vf.js" />
+  <head></head>
+  <body>
+      <div class="dynamo-container">
+          <div class="dynamo-loading"></div>
+          <apex:outputLink value="/{!$CurrentPage.parameters.id}">Go Back</apex:outputLink>  
+          <apex:iframe width="100%" height="100%" src="https://dynamoflow.documill.com/service/sfdco?useFlow=true&oauthLoginURL=https%3A%2F%2Ftelia.my.salesforce.com&serverURL={!$Api.Partner_Server_URL_330}&id={!$CurrentPage.parameters.id}&templateID={!$CurrentPage.parameters.templateID}"></apex:iframe>
+      </div>
+      <script>initDynamoVisualforce("/{!$CurrentPage.parameters.id}");</script>
+  </body>
+</apex:page>

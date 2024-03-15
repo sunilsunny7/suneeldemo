@@ -1,0 +1,83 @@
+<aura:component controller="QnAController" implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="container" type="List" />
+    <aura:attribute name="totalrec" type="Integer" />
+    <aura:attribute name="userrank" type="String" />
+    <aura:attribute name="TotalQusCount" type="Integer" />
+    <aura:attribute name="BestAnsCount" type="Integer" />
+    <aura:attribute name="dynamicheight" type="Integer" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:attribute name="displayBlock" type="Boolean"/>
+    <ltng:require scripts="{!$Resource.jnew}" />    
+    <div class = "slds-clearfix slds-card  slds-scrollable_y" style="{!'height:' + v.dynamicheight+'px'}">
+        <table class="slds-truncate slds-float--left">
+            <tr>
+                <br/>
+                <td class="slds-page-header__title" style="height: 64px;padding-left:25px">Frågor &amp; Svar <img src="{!$Resource.Icon}" width="60" height="50"/></td>
+                <td  style="height:64px;text-align:right;padding-right:20px"><lightning:button variant="brand" label="Gå till Frågor &amp; Svar" onclick="{!c.gotoURL }" /></td>
+                <td><br/></td>
+            </tr>
+        </table>
+        
+        <table class ="slds slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer" border="0">
+            <tr>
+                <th><b>Min Profil</b></th>
+                <th style="padding-left:80px"><b>View</b></th>
+            </tr>
+            <tr>
+                <td>Min Badge : <strong><span aura:id="colorId" >{!v.userrank}</span></strong></td>
+                
+                <td rowspan="3"> <aura:if isTrue="{!v.totalrec != undefined}">
+                    <c:ForumGuageComponent graphcount="{!v.totalrec}" />     
+                    </aura:if>
+                </td>
+            </tr>
+            <tr>
+                <td class="slds-card__body slds-card__body_inner">Mina Bästa Svar : {!v.BestAnsCount}</td>
+            </tr>
+            <tr>
+                <td class="slds-card__body slds-card__body_inner">Mina frågor : {!v.TotalQusCount}</td>
+            </tr>
+        </table> 
+        
+        <div class="slds-section slds-is-open slds-section__title slds-truncate" style="padding-left:25px;font-size:15px;font-weight: bold;">
+            Obesvarade Frågor  ({!v.totalrec})
+        </div>
+        <aura:if isTrue="{!v.displayBlock}">
+            <table class="slds slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer" style="table-layout: fixed;">
+                <thead>
+                    <tr class="slds-text-heading--label">
+                        <th scope="col" style="width:200px;font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Frågetitel">Frågetitel</div></th>
+                        <!--  <th scope="col" style="width:200px;font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Kategori">Kategori</div></th> -->
+                        <th scope="col" style="width:200px;font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Frågeställare">Frågeställare</div></th>
+                        <!-- <th scope="col" style="width:200px;font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Datum/tid">Datum/tid</div></th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Use the Apex model and controller to fetch server side data -->
+                    <aura:iteration items="{!v.container}" var="dataset">
+                        <tr>
+                            <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!dataset.Parent.Title}">
+                                <ui:outputURL value="{!'/'+ dataset.ParentId}" label="{!dataset.Parent.Title}" target="_blank"/></div></td> 
+                            <!--  <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!dataset.CreatedBy}"><aura:if isTrue="{!dataset.DataCategoryName == 'Aff_rsm_jlighet'}"> Affärsmöjlighet
+                                <aura:set attribute="else">
+                                    {!dataset.DataCategoryName}
+                                </aura:set>
+                                </aura:if></div></td>  -->
+                            <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!dataset.Parent.createdBy.Name}">{!dataset.Parent.CreatedBy.Name}</div></td>
+                            <!-- <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!dataset.Parent.CreatedDate}" Id="DateId">
+                                <lightning:formattedDateTime value="{!dataset.CreatedDate}" year="numeric" month="numeric" day="numeric"  hour="2-digit" minute="2-digit" title="{!dataset.Parent.createddate}"/></div></td>
+-->
+                            
+                        </tr> 
+                    </aura:iteration>
+                </tbody>
+            </table>
+            <aura:set attribute="else">
+                <br/><div style="padding-left:10px">No unanswered questions.</div>
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

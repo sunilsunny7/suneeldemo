@@ -1,0 +1,80 @@
+<aura:component controller="CAContactListController"  implements="flexipage:availableForAllPageTypes,force:appHostable,force:hasRecordId" access="global">
+    <ltng:require styles="/resource/sldsnew/styles/salesforce-lightning-design-system.css" />  
+    <aura:attribute name="ContactStatus" type="CAContactListController.ContactStatus[]"/>
+    <aura:attribute name="CallActivity" type="Call_Activity__c"/>
+    
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+    <aura:if isTrue="{!!empty(v.recordId)}">
+        <div class="slds-page-header" role="banner">
+            <div class="slds-grid slds-wrap ">
+                <div class="slds-size--1-of-1">
+                    <div class="slds-media slds-media--center slds-no-space slds-grow">
+                        <div class="slds-media__figure">
+                            <c:svgIcon svgPath="/resource/sldsnew/icons/standard-sprite/svg/symbols.svg#account" class="slds-icon-text-default" size="Large" name="Action" />   
+                        </div>
+                        <div class="slds-media__body">
+                            <p class="slds-text-heading--label">{!$Label.c.caAccount}</p>
+                            <h1 class="slds-page-header__title slds-m-right--small slds-truncate slds-align-middle" title="Record Title">{!v.CallActivity.Account__r.Name}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-size--1-of-1" style="margin-top:15px">
+                    <div class="slds-media slds-media--center slds-no-space slds-grow">
+                        <div class="slds-media__figure">
+                            <c:svgIcon svgPath="/resource/sldsnew/icons/standard-sprite/svg/symbols.svg#campaign" class="slds-icon-text-default" size="Large" name="Action" />   
+                        </div>
+                        <div class="slds-media__body">
+                            <p class="slds-text-heading--label">{!$Label.c.caCampaign}</p>
+                            <h1 class="slds-page-header__title slds-m-right--small slds-truncate slds-align-middle" title="Record Title">{!v.CallActivity.Campaign__r.Name}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="slds-table slds-table--bordered">
+            <thead>
+                <tr class="slds-text-heading--label">            
+                    <th class="" scope="col">
+                        <div class="slds-truncate">{!$Label.c.caName}
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate">{!$Label.c.caPhone}       
+                        </div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate">{!$Label.c.caEmail} 
+                        </div>
+                    </th>
+                    <th class="slds-cell-shrink"><div class="slds-truncate">{!$Label.c.caAction}    
+                        </div></th>
+                </tr>
+            </thead>
+            <tbody aura:id="tableBody">    
+                <aura:iteration items="{!v.ContactStatus}" var="cs">
+                    <c:CAContactRow IsCampaignMember="{!cs.IsCampaignMember}" Contact="{!cs.Contact}" Campaign="{!v.CallActivity.Campaign__c}" ></c:CAContactRow>            
+                </aura:iteration>                      
+            </tbody>
+        </table>
+        <aura:set attribute="else">
+            <div class="slds-notify_container">
+                <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
+                    <span class="slds-assistive-text">Error</span>
+                    <h2>
+                        <c:svgIcon svgPath="/resource/sldsnew/icons/utility-sprite/svg/symbols.svg#ban" class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small" size="small" name="Action" /> 
+                        Call Activity RecordId is missing. This component needs to be on Call Activity record page.</h2>
+                </div>
+            </div>
+        </aura:set>
+    </aura:if>
+</aura:component>

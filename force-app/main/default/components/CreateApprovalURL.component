@@ -1,0 +1,4 @@
+<apex:component controller="CreateApprovalURL" access="global">
+    <apex:attribute name="objId" description="Obj Id" type="Id" assignTo="{!recID}"/>
+    <a href="{!urlStr}"> här</a> 
+</apex:component>

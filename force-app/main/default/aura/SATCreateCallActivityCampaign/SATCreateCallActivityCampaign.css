@@ -1,0 +1,17 @@
+.THIS{
+    font-family: "Salesforce Sans",Arial,sans-serif;
+}
+
+.THIS.slds-modal__footer {
+    border-top: none;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    padding: .75rem 1rem;
+    background-color: #fff;
+    text-align: right;
+    box-shadow: none;
+}
+
+.THIS.slds-modal__content{
+   height:120px;
+}

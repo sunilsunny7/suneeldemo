@@ -1,0 +1,110 @@
+<template>
+	<div class="slds-scrollable_y" >
+		<template if:true={version}>
+			<div class="slds-grid slds-gutters">
+
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-input type="text" name="Avtalstid" label="Avtalstid år" value={parentvalue.ContractYears}
+						onchange={handleChange} class={checkFieldValue1} disabled="true">
+					</lightning-input>
+				</div>
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-input type="text" name="Heranummer" label="Hera-nummer eller FMO"
+						value={parentvalue.HERANumber} onchange={handleChange}></lightning-input>
+				</div>
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-input type="text" name="Leveranstid" label="Leveranstid i avtalet (månader)"
+						value={parentvalue.Leveransperiod} onchange={handleChange} class={checkFieldValue}>
+					</lightning-input>
+				</div>
+
+			</div>
+		</template>
+		<template if:true={version}>
+			<div class="slds-grid slds-gutters slds-m-top_small">
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-combobox name="Nyproduktion" label="Nyproduktion" value={parentvalue.NewProduction}
+						placeholder="" options={YesNonewproduction} onchange={handleChange}>
+					</lightning-combobox>
+				</div>
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-combobox name="stage" label="Ska lev. ske i etapper?" value={stage} placeholder=""
+						options={YesNo} onchange={handleChange}>
+					</lightning-combobox>
+				</div>
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-combobox name="debit" label="Debiteringsstart efter aktivering" value={debitdefault}
+						placeholder="" options={debit} onchange={handleChange}>
+					</lightning-combobox>
+				</div>
+			</div>
+		</template>
+		<div class="slds-grid slds-gutters slds-m-top_small">
+			<div class="slds-col slds-size_4-of-12" >
+				<lightning-input type="date" name="Onskatleveransdatum"
+					value={parentvalue.wisheddeliverydate} label="Önskat leveransdatum" dropdown-alignment="auto" onchange={handleChange}>
+				</lightning-input>
+			</div>
+			<template if:true={version}>
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-input type="date" name="OnskatleveransdatumKabelTv"
+						label="Önskat leveransdatum Kabel-Tv " onchange={handleChange}>
+					</lightning-input>
+				</div>
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-input type="date" name="Inflyttningsdatum" label="Inflyttningsdatum"
+						onchange={handleChange}>
+					</lightning-input>
+				</div>
+			</template>
+		</div>
+		<template if:true={version}>
+			<div class="slds-grid slds-gutters slds-m-top_small">
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-input type="date" dropdown-alignment="auto" name="Nedtagsdatum" label="Nedtagsdatum"
+						 value={parentvalue.ContractTerminationDate} onchange={handleChange}>
+					</lightning-input>
+				</div>
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-combobox dropdown-alignment="auto" name="Extern fiber" label="Extern fiber"
+						value={parentvalue.ExternFiber} placeholder="" options={YesNo1} onchange={handleChange}>
+					</lightning-combobox>
+				</div>
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-input type="text" name="Extern fiber (Namn)" label="Extern fiber (Namn)"
+						value={parentvalue.ExternalNetworkOwner} onchange={handleChange}>
+					</lightning-input>
+				</div>
+			</div>
+		</template>
+		<template if:true={version}>
+			<div class="slds-grid slds-gutters slds-m-top_small">
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-combobox dropdown-alignment="auto" name="Installationship" label="Installationshjälp"
+						value={parentvalue.isInstallationHelp} placeholder="" options={YesNoInstall}
+						onchange={handleChange}></lightning-combobox>
+				</div>
+
+                <div class="slds-col slds-size_4-of-12">
+					<lightning-combobox dropdown-alignment="auto" name="Strom" label="Ström"
+						value={parentvalue.Strom} placeholder="" options={Strom}
+						onchange={handleChange} disabled="true"></lightning-combobox>
+				</div>
+
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-combobox dropdown-alignment="auto" name="Byte" label="Byte av Ström?" value=""
+						placeholder="" options={Byte} onchange={handleChange}></lightning-combobox>
+				</div>
+				</div>
+		</template>
+		<template if:true={version}>
+			<div class="slds-grid slds-gutters slds-m-top_small">
+				<div class="slds-col slds-size_4-of-12">
+					<lightning-combobox dropdown-alignment="auto" name="skickas" label="Ska informationsbrev skickas?"
+						value={skickasdefault} placeholder="" options={option} onchange={handleChange} class={checkFieldValue3} >
+					</lightning-combobox>
+				</div>
+			</div>
+		</template>
+	</div>
+</template>

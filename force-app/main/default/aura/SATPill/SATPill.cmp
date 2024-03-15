@@ -1,0 +1,13 @@
+<aura:component controller="CAContactListController">
+    
+    <aura:attribute name="AccountRow" type="Account"/>
+    <aura:registerEvent name="removeAccountEvent" type="c:SATEvent"/>
+    
+    <span class="slds-pill">
+        <span class="slds-pill__label" title="{!v.AccountRow.Name}">{!v.AccountRow.Name}</span>
+        <button class="slds-button slds-button--icon slds-pill__remove" title="Remove" onclick="{!c.removeAccountClick}" >
+            <c:svgIcon svgPath="/resource/slds213/assets/icons/utility-sprite/svg/symbols.svg#close" class="slds-button__icon slds-icon-text-default" size="x-small"  /> 
+            <span class="slds-assistive-text">Remove</span>
+        </button>
+    </span>
+</aura:component>

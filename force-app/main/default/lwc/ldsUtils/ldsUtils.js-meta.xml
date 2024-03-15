@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <isExposed>false</isExposed>
+    <description>
+    Utility component for error message processing. Retrieved from lwc-recipes.
+    Modifications: 26.10.2022 [Tomass Brazovskis] SALEF-7482 - Retrieved.
+    </description>
+</LightningComponentBundle>

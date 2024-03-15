@@ -1,0 +1,29 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,flexipage:availableForAllPageTypes" controller="DisplayRichContext" access="global" >
+    <aura:attribute name ="recordId" type ="String"/>
+    <aura:attribute name="IsShowTextArea" type="Boolean" default="False" />
+    <aura:attribute name="LanguageLocalKey" type="String"/>   
+    <aura:attribute name="isLoading" type="Boolean" default="false"/>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />  
+    <lightning:empApi aura:id="empApi" />
+     <aura:if isTrue="{!v.isLoading}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand slds-spinner slds-spinner--large" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    <div>  
+        <aura:if isTrue="{!v.IsShowTextArea}">
+            <lightning:card title="">
+                <aura:if isTrue="{!v.LanguageLocalKey=='sv'}">
+                    <p class ="richContext">{!$Label.c.Customer_UniqueApprovalMessage}</p>
+                </aura:if>
+                <aura:if isTrue="{!v.LanguageLocalKey=='en_US'}">
+                    <p class ="richContext">{!$Label.c.Customer_UniqueApprovalMessage}</p>
+                </aura:if>               
+            </lightning:card>                      
+        </aura:if>                
+    </div>
+</aura:component>

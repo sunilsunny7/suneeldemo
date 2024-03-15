@@ -1,0 +1,56 @@
+<aura:component controller="LatestClosedOpportunities" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="isOpen" type="boolean" default="true" />
+    <aura:attribute name="OppId1" type="String" access="public" />
+    <aura:attribute name="dynamicheight" type="Integer" />
+    <aura:attribute name="Userlist" type="List" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:if isTrue="{!v.isOpen}">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{!c.cancelops}">
+                        <b>X</b>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <!--<lightning:buttonIcon iconName="utility:close" onclick = "{!c.cancelops}" alternativeText="close"  variant="bare-inverse"  class="slds-modal__close"/>-->
+
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Users</h2>
+                </header>
+
+
+                <div class="slds-scrollable_y slds-clearfix slds-card" style="{!'height:' + v.dynamicheight+'px'}">
+
+                    <table class="slds slds-table slds-table--bordered slds-table--cell-buffer">
+                        <thead>
+                            <tr class="slds-text-heading--label">
+                                <th scope="col" style="font-weight: bold;">
+                                    <div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Name">Name</div>
+                                </th>
+                               <!-- <th scope="col" style="font-weight: bold;">
+                                    <div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Profile Owner">Role</div>
+                                </th>-->
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Use the Apex model and controller to fetch server side data -->
+                            <aura:iteration items="{!v.Userlist}" var="listofusers">
+                                <tr>
+                                    <td>
+                                        <div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofusers.Name}"><img src="{!listofusers.SmallPhotoUrl}" heigth="35" width="25" />&nbsp; {!listofusers.Name}</div>
+                                    </td>
+                                   <!-- <td>
+                                        <div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofusers.UserRole.Name}">{!listofusers.UserRole.Name}</div>
+                                    </td>-->
+
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>

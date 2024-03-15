@@ -1,0 +1,70 @@
+<apex:component >
+    <script id="commit-table-template" type="text/x-handlebars-template">
+    <table class="table table-hover" id="forecasting-table">
+        <thead>
+            <tr>
+                <th class="col-md-1"></th>
+                <th class="col-md-1">{!$Label.Commit}</th>
+                <th class="col-md-1">{!$Label.Upside}</th>
+                <th class="col-md-1 tableBorderRight">{!$Label.Risk}</th>
+               
+               <th class="col-md-1"></th>
+               
+                <th class="col-md-1">{!$Label.Commit}</th>
+                <th class="col-md-1">{!$Label.Upside}</th>                
+                <th class="col-md-1">{!$Label.Risk}</th>
+            
+                
+              
+                
+            </tr>
+        </thead>
+        <tbody>
+        {{#each weeks}}
+        {{#if item.Active_Week__c}}
+         <tr class="parentRow" data-week="{{item.Name}}" data-owner="{{ownerName}}" data-seller="{{item.Seller__c}}">
+            {{#ifEquals item.Seller__r.Type__c 'Seller'}}
+            <td style="font-weight:bold" class="clickable">{!$Label.Week}{{item.Name}}</td>
+            {{else}}
+                 <td style="font-weight:bold" class="clickable">{!$Label.Week}{{item.Name}}</td>
+            {{/ifEquals}}            
+            <td class="clickable" data-type="NS" data-column="Commit">{{formatCurrency item.New_Sales_Amount_Open_Opps__c}} kr</td>
+            <td class="clickable" data-type="NS" data-column="Upside">{{formatCurrency item.Upside_New_Sales__c}} kr</td>            
+            <td class="clickable tableBorderRight" data-type="NS" data-column="Risk">{{formatCurrency item.Risk_New_Sales__c}} kr</td>
+            
+            <td class="clickable" data-type="NS" data-column="ActualOutcome"></td>
+      
+            <td class="clickable" data-type="CS" data-column="Commit">{{formatCurrency item.Continuation_Sales_Amount_Open_Opps__c}} kr</td>
+            <td class="clickable" data-type="CS" data-column="Upside">{{formatCurrency item.Upside_Continuation_Sales__c}} kr</td>            
+            <td class="clickable" data-type="CS" data-column="Risk">{{formatCurrency item.Risk_Continuation_Sales__c}} kr</td>
+
+          
+            
+            
+         </tr>
+            {{#each subWeeks}}
+            <tr style="display: table-row;" data-week="{{item.Name}}" data-owner="{{ownerName}}" data-seller="{{item.Seller__c}}">
+            <td class="clickable">{{title}}</td>
+            <td class="clickable" data-type="NS" data-column="Commit">{{formatCurrency item.New_Sales_Amount_Open_Opps__c}} kr</td>
+            <td class="clickable" data-type="NS" data-column="Upside">{{formatCurrency item.Upside_New_Sales__c}} kr</td>            
+            <td class="clickable tableBorderRight" data-type="NS" data-column="Risk">{{formatCurrency item.Risk_New_Sales__c}} kr</td>
+            
+           <td class="clickable" data-type="NS" data-column="ActualOutcome"></td>
+            
+            <td class="clickable" data-type="CS" data-column="Commit">{{formatCurrency item.Continuation_Sales_Amount_Open_Opps__c}} kr</td>
+            <td class="clickable" data-type="CS" data-column="Upside">{{formatCurrency item.Upside_Continuation_Sales__c}} kr</td>            
+            <td class="clickable" data-type="CS" data-column="Risk">{{formatCurrency item.Risk_Continuation_Sales__c}} kr</td>
+ 
+            
+            
+            
+            </tr>
+            {{/each}}
+         {{/if}}
+        {{/each}}
+        </tbody>
+    </table>
+    </script>
+    
+    
+</apex:component>

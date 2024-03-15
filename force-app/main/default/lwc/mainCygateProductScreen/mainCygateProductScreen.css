@@ -1,0 +1,18 @@
+/**
+ * Created by kwn687 on 2022-07-13.
+ */
+.slds-spinner_container{
+    top: 16.5%;
+    bottom: 20%;
+}
+.slds-modal__container {
+  min-width: 70rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: auto;
+}
+.slds-modal__content {
+    overflow: auto;
+}

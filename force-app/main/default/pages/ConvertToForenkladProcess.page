@@ -1,0 +1,25 @@
+<apex:page standardController="Opportunity" extensions="ConvertToForenkladProcess" action="{!processRecord}">
+
+ <script>
+  function redirect(){  
+
+      if({!$User.UIThemeDisplayed == 'Theme4d'}){                
+      parent.location.href="{!sfdcURL}"+"{!$Label.Salesforce_lightning_URL}"+"{!OpportunityID}"+"{!$Label.Opportunity_specific_lightning_end_URL}"; 
+       console.log(parent.location.href); 
+        } 
+       else
+              parent.location.href= "{!sfdcURL}"+"{!OpportunityID}";                             
+                              
+  }         
+             if("{!firstError}" == "true" ){
+                  alert("Intäkt (12 mån) får inte överstiga 10 000 kr för den förenklade processen.");
+                  window.onload = window.setTimeout(redirect(),5000);
+             }           
+             
+              else 
+                  window.onload = window.setTimeout(redirect(),5000);
+             
+ 
+        </script>
+
+</apex:page>

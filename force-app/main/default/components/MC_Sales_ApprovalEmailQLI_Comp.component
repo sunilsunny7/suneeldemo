@@ -1,0 +1,232 @@
+<apex:component controller="MC_Sales_ApprovalEmailQLI_Controller" access="global">
+    <apex:attribute name="QuoteId" description="quoteId"
+                    type="String" assignTo="{!cartId}"/>
+    <table>
+        <thead>
+            <tr class='slds-line-height_reset'>
+                <th> </th>
+                <th rowspan="2">Godkännare</th>
+                <th colspan="5">Månadsavgift (golvpris)</th>
+                <th colspan="5">Minidebitering</th>
+                <th colspan="6">Engångsavgift (golvpris)</th>                                               
+                <th colspan="2">Övrigt</th>
+            </tr>
+            <tr>
+                <th>Produkt</th>
+                <th>Önskat pris (kr)/<br/>rabatt (%)</th>
+                <th>AM</th>
+                <th>SM</th>
+                <th>SD</th>
+                <th>CM</th>
+                <th>Förmån%</th>    
+                <th>Nivå</th>
+                <th>Tid att uppfylla</th>
+                <th>Avtalstid</th>
+                <th>Bindningstid</th> 
+                <th>Antal användare</th>
+                <th>Listpris</th>
+                <th>Önskat pris (kr)</th>
+                <th>AM</th>
+                <th>SM</th>
+                <th>SD</th>
+                <th>CM</th>                        
+                <th>Erbjudande</th>
+                <th>Sub</th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:repeat rendered="{!NOT(productInfo['emptyResponse'])}" var="cxx" value="{!productInfo['QLI']}">                
+                <tr>
+                    <th>{!cxx['Name']}</th>
+                    <td>                            
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'Approver')}"> {!cxx['Approver']}</apex:outputText>
+                    </td>
+                    <td>  
+                        <apex:outputText rendered="{!AND(CONTAINS(cxx['keys'],'isPercentProduct'),CONTAINS(cxx['keys'],'RequestedPercentage'))}"> {!cxx['RequestedPercentage']} %</apex:outputText>
+                        <apex:outputText rendered="{!AND(NOT(CONTAINS(cxx['keys'],'isPercentProduct')),CONTAINS(cxx['keys'],'RequestedPrice'),CONTAINS(cxx['keys'],'OfferingType'))}"> {!cxx['RequestedPrice']} kr</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'isPercentProduct')}"> {!cxx['RCSalesRepMandatePercent']} %</apex:outputText>
+                        <apex:outputText rendered="{!AND(NOT(CONTAINS(cxx['keys'],'isPercentProduct')),CONTAINS(cxx['keys'],'RCSalesRepMandate'),CONTAINS(cxx['keys'],'OfferingType'))}"> {!cxx['RCSalesRepMandate']} kr</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'isPercentProduct')}"> {!cxx['RCSalesManagerMandatePercent']} %</apex:outputText>
+                        <apex:outputText rendered="{!AND(NOT(CONTAINS(cxx['keys'],'isPercentProduct')),CONTAINS(cxx['keys'],'RCSalesManagerMandate'),CONTAINS(cxx['keys'],'OfferingType'))}"> {!cxx['RCSalesManagerMandate']} kr</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'isPercentProduct')}"> {!cxx['RCSalesDirectorMandatePercent']} %</apex:outputText>
+                        <apex:outputText rendered="{!AND(NOT(CONTAINS(cxx['keys'],'isPercentProduct')),CONTAINS(cxx['keys'],'RCSalesDirectorMandate'),CONTAINS(cxx['keys'],'OfferingType'))}"> {!cxx['RCSalesDirectorMandate']} kr</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'isPercentProduct')}"> {!cxx['RCCommercialManagerMandatePercent']} %</apex:outputText>
+                        <apex:outputText rendered="{!AND(NOT(CONTAINS(cxx['keys'],'isPercentProduct')),CONTAINS(cxx['keys'],'RCCommercialManagerMandate'),CONTAINS(cxx['keys'],'OfferingType'))}"> {!cxx['RCCommercialManagerMandate']} kr</apex:outputText>
+                    </td>
+                        <td>
+                            <apex:outputText rendered="{!CONTAINS(cxx['keys'],'BenefitAdjustment')}"> {!cxx['BenefitAdjustment']} %</apex:outputText>
+                        </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'miniCom')}"> {!cxx['miniCom']} %</apex:outputText>
+                    </td>                        
+                    <td> 
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'Qtime')}"> {!cxx['Qtime']} månader</apex:outputText> 
+                    </td>   
+                    <td>
+                       <!--{!AND(CONTAINS(cxx['keys'],'CommitmentPeriod'),NOT(ISNULL('CommitmentPeriod')))}-->
+                        <apex:outputText rendered="{!AND(CONTAINS(cxx['keys'],'CommitmentPeriod'),NOT(ISNULL('CommitmentPeriod')))}">{!cxx['CommitmentPeriod']}</apex:outputText> 
+                    </td> 
+                    <td>
+                      <apex:outputText rendered="{!CONTAINS(cxx['keys'],'BindingTime')}">{!cxx['BindingTime']}</apex:outputText>   
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!AND(NOT(CONTAINS(cxx['keys'],'wifi')),CONTAINS(cxx['keys'],'BaseQuantity'))}">{!cxx['BaseQuantity']}</apex:outputText>
+                        <apex:outputText rendered="{!AND(CONTAINS(cxx['keys'],'wifi'),cxx['wifi']==false,CONTAINS(cxx['keys'],'BaseQuantity'))}"> {!cxx['BaseQuantity']} </apex:outputText>
+                        <apex:outputText rendered="{!AND(CONTAINS(cxx['keys'],'wifi'),cxx['wifi']==true,CONTAINS(cxx['keys'],'BaseQuantity'),CONTAINS(cxx['keys'],'BaseQ'))}">{!cxx['BaseQuantity']}, {!cxx['BaseQ']}</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'OfferingType')}"> {!ROUND(cxx['OTDefault'],0)} kr</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'OfferingType')}"> {!ROUND(cxx['OTC'],0)} kr</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'OfferingType')}"> {!ROUND(cxx['OTSalesRepMandate'],0)} kr</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'OfferingType')}"> {!ROUND(cxx['OTSalesManagerMandate'],0)} kr</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'OfferingType')}"> {!ROUND(cxx['OTSalesDirectorMandate'],0)} kr</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'OfferingType')}"> {!ROUND(cxx['OTCommercialManagerMandate'],0)} kr</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'Campaign')}"> {!cxx['Campaign']}</apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText rendered="{!CONTAINS(cxx['keys'],'SubsidisedVoice')}">{!cxx['SubsidisedVoice']}</apex:outputText>
+                    </td>
+                </tr>
+                <apex:repeat rendered="{!CONTAINS(cxx['keys'],'Child')}" value="{!cxx['Child']}" var="child">
+                    <tr>                        
+                        <td>
+                            <apex:outputText rendered="{!CONTAINS(child['keysChild'],'ClusterItems')}"><b>{!child['Name']}</b></apex:outputText>
+                            <apex:outputText rendered="{!NOT(CONTAINS(child['keysChild'],'ClusterItems'))}">{!child['Name']}</apex:outputText>
+                        </td>
+                        <td>                            
+                            <apex:outputText rendered="{!CONTAINS(child['keysChild'],'Approver')}"> {!child['Approver']}</apex:outputText>
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!AND(CONTAINS(child['keysChild'],'isPercentProduct'), CONTAINS(child['keysChild'],'RequestedPercentage'))}"> {!child['RequestedPercentage']} %</apex:outputText>
+                            <apex:outputText rendered="{!AND(NOT(CONTAINS(child['keysChild'],'isPercentProduct')),CONTAINS(child['keysChild'],'RequestedPrice'))}"> {!ROUND(child['RequestedPrice'],0)} kr</apex:outputText>
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!CONTAINS(child['keysChild'],'isPercentProduct')}"> {!child['RCSalesRepMandatePercent']} %</apex:outputText>
+                            <apex:outputText rendered="{!AND(NOT(CONTAINS(child['keysChild'],'isPercentProduct')),CONTAINS(child['keysChild'],'RCSalesRepMandate'))}"> {!ROUND(child['RCSalesRepMandate'],0)} kr</apex:outputText>                            
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!CONTAINS(child['keysChild'],'isPercentProduct')}"> {!child['RCSalesManagerMandatePercent']} %</apex:outputText>
+                            <apex:outputText rendered="{!AND(NOT(CONTAINS(child['keysChild'],'isPercentProduct')),CONTAINS(child['keysChild'],'RCSalesManagerMandate'))}"> {!ROUND(child['RCSalesManagerMandate'],0)} kr</apex:outputText>
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!CONTAINS(child['keysChild'],'isPercentProduct')}"> {!child['RCSalesDirectorMandatePercent']} %</apex:outputText>
+                            <apex:outputText rendered="{!AND(NOT(CONTAINS(child['keysChild'],'isPercentProduct')),CONTAINS(child['keysChild'],'RCSalesDirectorMandate'))}"> {!ROUND(child['RCSalesDirectorMandate'],0)} kr</apex:outputText>
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!CONTAINS(child['keysChild'],'isPercentProduct')}"> {!child['RCCommercialManagerMandatePercent']} %</apex:outputText>
+                            <apex:outputText rendered="{!AND(NOT(CONTAINS(child['keysChild'],'isPercentProduct')),CONTAINS(child['keysChild'],'RCCommercialManagerMandate'))}"> {!ROUND(child['RCCommercialManagerMandate'],0)} kr</apex:outputText>
+                        </td>
+                            <td>
+                                <apex:outputText rendered="{!CONTAINS(child['keysChild'],'BenefitAdjustment')}"> {!child['BenefitAdjustment']} %</apex:outputText>
+                            </td>   
+                        <td></td>                        
+                        <td></td>
+                        <td></td>   
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <apex:outputText rendered="{!AND(CONTAINS(child['keysChild'],'OTDefault'),child['FrameworkPricingEnabled']==false)}"> {!ROUND(child['OTDefault'],0)} kr</apex:outputText>
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!AND(CONTAINS(child['keysChild'],'OTC'),child['FrameworkPricingEnabled']==false)}"> {!ROUND(child['OTC'],0)} kr</apex:outputText>
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!AND(CONTAINS(child['keysChild'],'OTSalesRepMandate'),child['FrameworkPricingEnabled']==false)}"> {!ROUND(child['OTSalesRepMandate'],0)} kr</apex:outputText>
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!AND(CONTAINS(child['keysChild'],'OTSalesManagerMandate'),child['FrameworkPricingEnabled']==false)}"> {!ROUND(child['OTSalesManagerMandate'],0)} kr</apex:outputText>
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!AND(CONTAINS(child['keysChild'],'OTSalesDirectorMandate'),child['FrameworkPricingEnabled']==false)}"> {!ROUND(child['OTSalesDirectorMandate'],0)} kr</apex:outputText>
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!AND(CONTAINS(child['keysChild'],'OTCommercialManagerMandate'),child['FrameworkPricingEnabled']==false)}"> {!ROUND(child['OTCommercialManagerMandate'],0)} kr</apex:outputText>
+                        </td>
+                        <td>
+                            <apex:outputText rendered="{!CONTAINS(child['keysChild'],'Campaign')}">{!child['Campaign']}</apex:outputText>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <apex:repeat rendered="{!CONTAINS(child['keysChild'],'ClusterItems')}" value="{!child['ClusterItems']}" var="childClusterItems">
+                        <tr>
+                            <td>{!childClusterItems['Name']}</td>
+                            <td>                            
+                                <apex:outputText rendered="{!CONTAINS(childClusterItems['keysCluster'],'Approver')}"> {!childClusterItems['Approver']}</apex:outputText>
+                            </td>
+                            <td>
+                                <apex:outputText rendered="{!CONTAINS(childClusterItems['keysCluster'],'isPercentProduct')}"> {!childClusterItems['RequestedPercentage']} %</apex:outputText>
+                                <apex:outputText rendered="{!AND(NOT(CONTAINS(childClusterItems['keysCluster'],'isPercentProduct')),CONTAINS(childClusterItems['keysCluster'],'RequestedPrice'))}"> {!ROUND(childClusterItems['RequestedPrice'],0)} kr</apex:outputText>
+                            </td>
+                            <td>
+                                <apex:outputText rendered="{!CONTAINS(childClusterItems['keysCluster'],'isPercentProduct')}"> {!childClusterItems['RCSalesRepMandatePercent']} %</apex:outputText>
+                                <apex:outputText rendered="{!AND(NOT(CONTAINS(childClusterItems['keysCluster'],'isPercentProduct')),CONTAINS(childClusterItems['keysCluster'],'RCSalesRepMandate'))}"> {!ROUND(childClusterItems['RCSalesRepMandate'],0)} kr</apex:outputText>
+                            </td>
+                            <td>
+                                <apex:outputText rendered="{!CONTAINS(childClusterItems['keysCluster'],'isPercentProduct')}"> {!childClusterItems['RCSalesManagerMandatePercent']} %</apex:outputText>
+                                <apex:outputText rendered="{!AND(NOT(CONTAINS(childClusterItems['keysCluster'],'isPercentProduct')),CONTAINS(childClusterItems['keysCluster'],'RCSalesManagerMandate'))}"> {!ROUND(childClusterItems['RCSalesManagerMandate'],0)} kr</apex:outputText>
+                            </td>
+                            <td>
+                                <apex:outputText rendered="{!CONTAINS(childClusterItems['keysCluster'],'isPercentProduct')}"> {!childClusterItems['RCSalesDirectorMandatePercent']} %</apex:outputText>
+                                <apex:outputText rendered="{!AND(NOT(CONTAINS(childClusterItems['keysCluster'],'isPercentProduct')),CONTAINS(childClusterItems['keysCluster'],'RCSalesDirectorMandate'))}"> {!ROUND(childClusterItems['RCSalesDirectorMandate'],0)} kr</apex:outputText>
+                            </td>
+                            <td>
+                                <apex:outputText rendered="{!CONTAINS(childClusterItems['keysCluster'],'isPercentProduct')}"> {!childClusterItems['RCCommercialManagerMandatePercent']} %</apex:outputText>
+                                <apex:outputText rendered="{!AND(NOT(CONTAINS(childClusterItems['keysCluster'],'isPercentProduct')),CONTAINS(childClusterItems['keysCluster'],'RCCommercialManagerMandate'))}"> {!ROUND(childClusterItems['RCCommercialManagerMandate'],0)} kr</apex:outputText>
+                            </td>
+                                <td>
+                                    <apex:outputText rendered="{!CONTAINS(childClusterItems['keysCluster'],'BenefitAdjustment')}"> {!childClusterItems['BenefitAdjustment']} %</apex:outputText>
+                                </td>  
+                            <td></td>                        
+                            <td></td>
+                            <td></td>    
+                            <td></td>
+                            <td></td> 
+                            <td>
+                                <apex:outputText > {!ROUND(childClusterItems['OTDefault'],0)} kr</apex:outputText>
+                            </td>
+                            <td>
+                                <apex:outputText > {!ROUND(childClusterItems['OTC'],0)} kr</apex:outputText>
+                            </td>
+                            <td>
+                                <apex:outputText > {!ROUND(childClusterItems['OTSalesRepMandate'],0)} kr</apex:outputText>
+                            </td>
+                            <td>
+                                <apex:outputText > {!ROUND(childClusterItems['OTSalesManagerMandate'],0)} kr</apex:outputText>
+                            </td>
+                            <td>
+                                <apex:outputText > {!ROUND(childClusterItems['OTSalesDirectorMandate'],0)} kr</apex:outputText>
+                            </td>
+                            <td>
+                                <apex:outputText > {!ROUND(childClusterItems['OTCommercialManagerMandate'],0)} kr</apex:outputText>
+                            </td>
+                            <td>
+                                <apex:outputText rendered="{!CONTAINS(childClusterItems['keysCluster'],'Campaign')}">{!childClusterItems['Campaign']}</apex:outputText>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </apex:repeat>
+                </apex:repeat>
+            </apex:repeat> 
+        </tbody>
+    </table>
+</apex:component>

@@ -1,0 +1,59 @@
+<template>
+	<template if:true={version}>
+		<div class="slds-grid slds-gutters">
+			<div class="slds-col slds-size_4-of-12">
+				<c-mutli-select-picklist picklistlabel="Fastighetsnät" name="Fastighetsnat" values={values}
+					onchange={handleChange} onselectevent={getValuesFromMultiSelect1}>
+				</c-mutli-select-picklist>
+			</div>
+			<div class="slds-col slds-size_4-of-12">
+				<c-mutli-select-picklist picklistlabel="Områdesnät" name="omradesnat"  onselectevent={getValuesFromMultiSelect2} values={omradesnat}
+					onchange={handleChange}>
+				</c-mutli-select-picklist>
+			</div>
+			<div class="slds-col slds-size_4-of-12">
+                <lightning-combobox name="lagenhetsnat" label="Lägenhetsnät (extrauttag)" value={parentvalue.isMDULES1729} options={bool} onchange={handleChange}>
+	</lightning-combobox>
+			</div>
+		</div>
+	</template>
+	<div class="slds-grid slds-gutters">
+		<template if:true={version}>
+			<div class="slds-col slds-size_4-of-12">
+				<lightning-input type="text" label="Antal lgh med 1 enkeluttag" name="antallghmed" onchange={handleChange}
+					value={parentvalue.MDULES1729Quantity}></lightning-input>
+			</div>
+		</template>
+	</div>
+
+	<div class="slds-grid slds-gutters  slds-m-top_x-large">
+		<template if:false={version}>
+			<div class="slds-col slds-size_4-of-12">
+				<lightning-input type="text" label="Totalt antal portar" name="totalantal" onchange={handleChange} value={parentvalue.NumberOfPorts}>
+				</lightning-input>
+			</div>
+		</template>
+		<template if:true={version}>
+			<div style="height: 100px;">
+				<lightning-datatable key-field="id" class="koppar" data={data} 
+                oncellchange={getDraftValues} hide-checkbox-column
+					suppress-bottom-bar columns={columns}>
+				</lightning-datatable>
+			</div>
+		</template>
+	</div>
+	
+
+	<div class="slds-grid slds-gutters slds-m-top_x-large">
+		<template if:true={version}>
+			
+			<div style="height: 100px;">
+				<lightning-datatable key-field="id" class="fiber" data={data1}
+					oncellchange={getDraftValues1} hide-checkbox-column
+					suppress-bottom-bar columns={columns1} >
+				</lightning-datatable>
+			</div>
+		</template>
+		
+	</div>
+</template>

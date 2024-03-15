@@ -1,0 +1,102 @@
+<template>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_4-of-12">
+			<lightning-input type="text" name="KundSalavtalet" label="Handläggare" value={parentvalue.loggedinUserName} onchange={handleChange}> </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+			<lightning-input type="text" name="KundSalTelefonnummer" label="Handläggare - Telefonnummer" value={parentvalue.loggedinPhoneNumber} onchange={handleChange}>
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+			<lightning-input type="text" name="KundSalEpost" label="Handläggare - Epost" value={parentvalue.loggedinEmail} onchange={handleChange}>
+            </lightning-input>
+            
+        </div>
+    </div>
+    
+    <div class="slds-grid slds-gutters slds-m-bottom_large">
+        <div class="slds-col slds-size_4-of-12">
+         <lightning-input type="text" name ="OwnerName" label="Säljare i avtalet" value={parentvalue.OwnerName} disabled="true">
+            </lightning-input>   
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+         <lightning-input type="text" name="OwnerPhoneNumber" label="Säljare i avtalet - Telefonnummer" value={parentvalue.OwnerPhoneNumber} disabled="true">
+            </lightning-input>  
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+          <lightning-input type="text" name ="OwnerEmail" label="Säljare i avtalet - Epost" value={parentvalue.OwnerEmail} disabled="true">
+            </lightning-input>  
+        </div>
+    </div>
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Avtalspart" label="Avtalspart" value={parentvalue.Business1} >
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Organisationsnummer" label="Organisationsnummer" value={parentvalue.OrgNumber} disabled="true">
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Namnutmotkund" label="Namn ut mot kund" value={parentvalue.Business1} onchange={handleChange}> </lightning-input>
+        </div>
+    </div>
+    
+    
+    
+    <div class="slds-grid slds-gutters">
+    
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="kundFavtalspart" label="Frånträdande avtalspart" onchange={handleChange}> </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="kundForgnummer" label="Frånträdande org.nummer" onchange={handleChange}> </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="kundFKOnummer" label="Frånträdande KO-nummer/A-nr" onchange={handleChange}> </lightning-input>
+        </div>
+    </div>
+    
+    
+    <div class="slds-grid slds-gutters slds-m-bottom_large">
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="KOnummer" label="KO-nummer/A-nr" value={parentvalue.KOnumber} onchange={handleChange}> </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-combobox name="Fakturametod" label="Fakturametod" value={value} options={Fakturametod}
+					onchange={handleChange}>
+				</lightning-combobox>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="FakturaadressEpostfaktura" label="Fakturaadress - E-postfaktura" value="" onchange={handleChange}> </lightning-input>
+        </div>
+    </div>
+    
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name ="KundAttentioninformation" label="Fakturaadress - Attention information" onchange={handleChange}>
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name ="KundFakturaadressCO" label="Fakturaadress - C/O" onchange={handleChange}> </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="KundFakturaadressReferenceinfo" label="Fakturaadress - Reference info" onchange={handleChange}> </lightning-input>
+        </div>
+    
+    </div>
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="KundGatuadress" label="Fakturaadress - Gatuadress" onchange={handleChange} class="required_field" required></lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name ="KundPostnummer" label="Fakturaadress - Postnummer" onchange={handleChange} class="required_field" required></lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name ="KundPostort" label="Fakturaadress - Postort" onchange={handleChange} class="required_field" required></lightning-input>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,643 @@
+<!--
+ - Created by kwn687 on 2021-09-20.
+ -->
+
+<apex:page id="ContractAftermarketTab" standardController="Contract" lightningStylesheets="true"
+           extensions="ContractAftermarketTabController" showHeader="false">
+    <head>
+        <apex:slds />
+    </head>
+    <apex:form >
+        <apex:actionFunction name="callClass" action="{!commentary}"/>
+    </apex:form>
+    <div class="slds-text-align_center" style="display:{!commentaryVarInput}; background-color:white;"></div>
+    <div class="slds-form {!IF(saveCancelButton,'slds-p-top_xx-large', '' )}" role="list"
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden;">
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem" style="display:{!commentaryVarOutput}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label"> <apex:outputLabel value="{!$ObjectType.Contract.fields.Commentary_FAI__c.label}"/></span>
+                            <apex:outputField value="{!Contract.Commentary_FAI__c}"/>
+                        </div>
+                        <button class="slds-button slds-button_icon" title="Edit" onclick="callClass()">
+                            <svg class="slds-button__icon slds-button__icon_hint" aria-hidden="true">
+                                <use xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#edit')}"
+                                     onclick="callClass()"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Edit</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-form__item" role="listitem" style="display:{!commentaryVarInput}">
+                <div class="slds-form-element slds-form-element_stacked slds-is-editing">
+                    <label class="slds-form-element__label"
+                           for="stacked-form-element-id-02">{!$ObjectType.Contract.fields.Commentary_FAI__c.label}</label>
+
+                    <div class="slds-form-element__control">
+                        <apex:form >
+                            <header class="slds-global-header_container slds-text-align_center">
+                                <div class="slds-global-header">
+                                    <apex:commandButton action="{!cancel}" value="Cancel"
+                                                        rendered="{!saveCancelButton}"/>
+                                    <apex:commandButton action="{!Save}" value="Save" rendered="{!saveCancelButton}"
+                                                        styleclass="slds-button slds-button_brand"/>
+                                </div>
+                            </header>
+
+                            <apex:inputField value="{!Contract.Commentary_FAI__c}" style="width: 3500px;"/>
+                            <div class="slds-docked-form-footer slds-text-align_center"
+                                 style="display:{!commentaryVarInput}; background-color:white; z-index: 999;">
+                                <apex:commandButton action="{!cancel}" value="Cancel" rendered="{!saveCancelButton}"/>
+                                <apex:commandButton action="{!Save}" value="Save" rendered="{!saveCancelButton}"
+                                                    styleclass="slds-button slds-button_brand"/>
+                            </div>
+                        </apex:form>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Contract_Term_Years__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Contract_Term_Years__c.label}</span>
+                            <apex:outputField value="{!Contract.Contract_Term_Years__c}"
+                                              rendered="{!IF(Contract.Contract_Term_Years__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Qliksense__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Qliksense__c.label}</span>
+                            <apex:outputField value="{!Contract.Qliksense__c}"
+                                              rendered="{!IF(Contract.Qliksense__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Deviating_Prices__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Deviating_Prices__c.label}</span>
+                            <apex:outputField value="{!Contract.Deviating_Prices__c}"
+                                              rendered="{!IF(Contract.Deviating_Prices__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.TeliaSE_Fiber_Installation_Date__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.TeliaSE_Fiber_Installation_Date__c.label}</span>
+                            <apex:outputField value="{!Contract.TeliaSE_Fiber_Installation_Date__c}"
+                                              rendered="{!IF(Contract.TeliaSE_Fiber_Installation_Date__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem" style="display:{!IF(Contract.Name != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Name.label}</span>
+                            <apex:outputField value="{!Contract.Name}"
+                                              rendered="{!IF(Contract.Name != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Wished_delivery_date_not_guaranteed__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Wished_delivery_date_not_guaranteed__c.label}</span>
+                            <apex:outputField value="{!Contract.Wished_delivery_date_not_guaranteed__c}"
+                                              rendered="{!IF(Contract.Wished_delivery_date_not_guaranteed__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem" style="display:{!IF(Contract.AccountId != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.AccountId.label}</span>
+                            <apex:outputField value="{!Contract.AccountId}"
+                                              rendered="{!IF(Contract.AccountId != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Wished_delivery_date_for_coax__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Wished_delivery_date_for_coax__c.label}</span>
+                            <apex:outputField value="{!Contract.Wished_delivery_date_for_coax__c}"
+                                              rendered="{!IF(Contract.Wished_delivery_date_for_coax__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem" style="display:{!IF(Contract.Org_Nr__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Org_Nr__c.label}</span>
+                            <apex:outputField value="{!Contract.Org_Nr__c}"
+                                              rendered="{!IF(Contract.Org_Nr__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Frame_Agreement_ID__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Frame_Agreement_ID__c.label}</span>
+                            <apex:outputField value="{!Contract.Frame_Agreement_ID__c}"
+                                              rendered="{!IF(Contract.Frame_Agreement_ID__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem" style="display:{!IF(Contract.OwnerId != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.OwnerId.label}</span>
+                            <apex:outputField value="{!Contract.OwnerId}"
+                                              rendered="{!IF(Contract.OwnerId != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Frame_Agreement_ID__r.contract_comment_fiber__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$Label.FA_Contract_Comment_Fiber}</span>
+                            <apex:outputField value="{!Contract.Frame_Agreement_ID__r.contract_comment_fiber__c}"
+                                              rendered="{!IF(Contract.Frame_Agreement_ID__r.contract_comment_fiber__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Fiber_Contract_Type__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Fiber_Contract_Type__c.label}</span>
+                            <apex:outputField value="{!Contract.Fiber_Contract_Type__c}"
+                                              rendered="{!IF(Contract.Fiber_Contract_Type__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Frame_Agreement_ID__r.Deviating_Prices__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$Label.FA_Deviating_Prices}</span>
+                            <apex:outputField value="{!Contract.Frame_Agreement_ID__r.Deviating_Prices__c}"
+                                              rendered="{!IF(Contract.Frame_Agreement_ID__r.Deviating_Prices__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem" style="display:{!IF(Contract.Status != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Status.label}</span>
+                            <apex:outputField value="{!Contract.Status}"
+                                              rendered="{!IF(Contract.Status != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Property__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Property__c.label}</span>
+                            <apex:outputField value="{!Contract.Property__c}"
+                                              rendered="{!IF(Contract.Property__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Agreement_KO_nr__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Agreement_KO_nr__c.label}</span>
+                            <apex:outputField value="{!Contract.Agreement_KO_nr__c}"
+                                              rendered="{!IF(Contract.Agreement_KO_nr__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Reason_for_Cancellation__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Reason_for_Cancellation__c.label}</span>
+                            <apex:outputField value="{!Contract.Reason_for_Cancellation__c}"
+                                              rendered="{!IF(Contract.Reason_for_Cancellation__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Type_of_Address__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Type_of_Address__c.label}</span>
+                            <apex:outputField value="{!Contract.Type_of_Address__c}"
+                                              rendered="{!IF(Contract.Type_of_Address__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Contract_Termination_Date__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Contract_Termination_Date__c.label}</span>
+                            <apex:outputField value="{!Contract.Contract_Termination_Date__c}"
+                                              rendered="{!IF(Contract.Contract_Termination_Date__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Agreement_Type__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Agreement_Type__c.label}</span>
+                            <apex:outputField value="{!Contract.Agreement_Type__c}"
+                                              rendered="{!IF(Contract.Agreement_Type__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.TeliaSE_Fiber_Previous_Contract_Link__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.TeliaSE_Fiber_Previous_Contract_Link__c.label}</span>
+                            <apex:outputField value="{!Contract.TeliaSE_Fiber_Previous_Contract_Link__c}"
+                                              rendered="{!IF(Contract.TeliaSE_Fiber_Previous_Contract_Link__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Municipality__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Municipality__c.label}</span>
+                            <apex:outputField value="{!Contract.Municipality__c}"
+                                              rendered="{!IF(Contract.Municipality__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.TeliaSE_Fiber_Base_Contract_Link__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.TeliaSE_Fiber_Base_Contract_Link__c.label}</span>
+                            <apex:outputField value="{!Contract.TeliaSE_Fiber_Base_Contract_Link__c}"
+                                              rendered="{!IF(Contract.TeliaSE_Fiber_Base_Contract_Link__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem" style="display:{!IF(Contract.Region__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Region__c.label}</span>
+                            <apex:outputField value="{!Contract.Region__c}"
+                                              rendered="{!IF(Contract.Region__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Build_Property_Network__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Build_Property_Network__c.label}</span>
+                            <apex:outputField value="{!Contract.Build_Property_Network__c}"
+                                              rendered="{!IF(Contract.Build_Property_Network__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.contract_comment_fiber__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.contract_comment_fiber__c.label}</span>
+                            <apex:outputField value="{!Contract.contract_comment_fiber__c}"
+                                              rendered="{!IF(Contract.contract_comment_fiber__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Build_Area_Network__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static"
+                             style="display:{!IF(Contract.TeliaSE_Fiber_Previous_Contract_Link__c != null, '', 'none')}">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Build_Area_Network__c.label}</span>
+                            <apex:outputField value="{!Contract.Build_Area_Network__c}"
+                                              rendered="{!IF(Contract.Build_Area_Network__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem" style="display:{!IF(Contract.Brand__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Brand__c.label}</span>
+                            <apex:outputField value="{!Contract.Brand__c}"
+                                              rendered="{!IF(Contract.Brand__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.HERA_Number__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.HERA_Number__c.label}</span>
+                            <apex:outputField value="{!Contract.HERA_Number__c}"
+                                              rendered="{!IF(Contract.HERA_Number__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Number_of_Facilities__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Number_of_Facilities__c.label}</span>
+                            <apex:outputField value="{!Contract.Number_of_Facilities__c}"
+                                              rendered="{!IF(Contract.Number_of_Facilities__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.New_productions_of_building_Y_N__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.New_productions_of_building_Y_N__c.label}</span>
+                            <apex:outputField value="{!Contract.New_productions_of_building_Y_N__c}"
+                                              rendered="{!IF(Contract.New_productions_of_building_Y_N__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Number_of_Ports__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Number_of_Ports__c.label}</span>
+                            <apex:outputField value="{!Contract.Number_of_Ports__c}"
+                                              rendered="{!IF(Contract.Number_of_Ports__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Type_of_Installation_help__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Type_of_Installation_help__c.label}</span>
+                            <apex:outputField value="{!Contract.Type_of_Installation_help__c}"
+                                              rendered="{!IF(Contract.Type_of_Installation_help__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Number_of_Households__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Number_of_Households__c.label}</span>
+                            <apex:outputField value="{!Contract.Number_of_Households__c}"
+                                              rendered="{!IF(Contract.Number_of_Households__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Reason_for_churn__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Reason_for_churn__c.label}</span>
+                            <apex:outputField value="{!Contract.Reason_for_churn__c}"
+                                              rendered="{!IF(Contract.Reason_for_churn__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Number_of_Premises__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Number_of_Premises__c.label}</span>
+                            <apex:outputField value="{!Contract.Number_of_Premises__c}"
+                                              rendered="{!IF(Contract.Number_of_Premises__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Reason_of_churn_comments__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Reason_of_churn_comments__c.label}</span>
+                            <apex:outputField value="{!Contract.Reason_of_churn_comments__c}"
+                                              rendered="{!IF(Contract.Reason_of_churn_comments__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Number_of_other_Ports__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Number_of_other_Ports__c.label}</span>
+                            <apex:outputField value="{!Contract.Number_of_other_Ports__c}"
+                                              rendered="{!IF(Contract.Number_of_other_Ports__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.New_Supplier__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.New_Supplier__c.label}</span>
+                            <apex:outputField value="{!Contract.New_Supplier__c}"
+                                              rendered="{!IF(Contract.New_Supplier__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Amount_of_ports_Smart_Home__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Amount_of_ports_Smart_Home__c.label}</span>
+                            <apex:outputField value="{!Contract.Amount_of_ports_Smart_Home__c}"
+                                              rendered="{!IF(Contract.Amount_of_ports_Smart_Home__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Service_Agreement__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Service_Agreement__c.label}</span>
+                            <apex:outputField value="{!Contract.Service_Agreement__c}"
+                                              rendered="{!IF(Contract.Service_Agreement__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Fastighetsn_t_FTTB_FTTH__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Fastighetsn_t_FTTB_FTTH__c.label}</span>
+                            <apex:outputField value="{!Contract.Fastighetsn_t_FTTB_FTTH1__c}"
+                                              rendered="{!IF(Contract.Fastighetsn_t_FTTB_FTTH1__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-form__item" role="listitem"
+                 style="display:{!IF(Contract.Cable_TV__c != null, '', 'none')}">
+                <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__static">
+                            <span class="slds-form-element__label">{!$ObjectType.Contract.fields.Cable_TV__c.label}</span>
+                            <apex:outputField value="{!Contract.Cable_TV__c}"
+                                              rendered="{!IF(Contract.Cable_TV__c != null, true, false)}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 100px;"></div>
+</apex:page>

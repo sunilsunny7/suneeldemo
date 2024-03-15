@@ -1,0 +1,81 @@
+<aura:component controller="SATController" implements="flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId"  >
+    <force:outputField aura:id="accountLookupOutput" value="{!v.account.Account__c}" class="slds-hide"></force:outputField>
+    <ltng:require styles="/resource/sldsnew/styles/salesforce-lightning-design-system.css" />
+    <ltng:require styles="{!$Resource.datatablecss}"  />
+    <ltng:require scripts="{!$Resource.datatables}" afterScriptsLoaded="{!c.doInit}" />
+    
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    
+    <aura:handler name="change" value="{!v.account.Account__c}" action="{!c.onAccountChange}"/>   
+    <aura:attribute name="account" type="Upsell_Target_Account__c" default="{ 'sobjectType': 'Upsell_Target_Account__c' }"/>
+    
+    <aura:attribute name="HasError" type="Boolean" default="False" />
+    <aura:attribute name="IsSuccess" type="Boolean" default="False" />
+    <aura:attribute name="ErrorMsg" type="String" default="" />
+    <aura:attribute name="SelectedAccounts" type="SATController.SelectedAccountWrapper[]" />
+    
+    <aura:handler event="c:SATEvent" action="{!c.handleRemoveAccount}"/>
+    <div class="slds-container--fluid">
+        <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert" style="z-index:9999">
+            <div class="slds-spinner_container">
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+        <aura:If isTrue="{!v.HasError}">  
+            <div class="slds-notify_container">
+                <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
+                    <button onclick="{!c.hideError}" class="slds-button slds-button--icon-inverse slds-notify__close slds-icon--small slds-m-right--x-small" aria-haspopup="true">                            
+                    </button>
+                    <span class="slds-assistive-text">Info</span>
+                    <h2>{!v.ErrorMsg}</h2>
+                </div>
+            </div>
+        </aura:If> 
+        
+
+        
+        <div class="slds-modal__header">
+            <h2 id="id-of-modalheader-h2" class="slds-text-heading--medium">{!$Label.c.SAT_Target_Header}</h2>
+            <p class="slds-m-top--x-small">{!$Label.c.SAT_Target_Description}</p>       
+        </div>
+        <div class="slds-modal__content">
+            <div class="slds-form--stacked slds-m-top--medium">
+                <force:inputField aura:id="accLookup" value="{!v.account.Account__c}"/>
+                
+                <div class="slds-pill_container slds-pill_container--bare">
+                    <aura:iteration items="{!v.SelectedAccounts}" var="sa">
+                        <c:SATPill AccountRow="{!sa.KeyAccount}"></c:SATPill>
+                    </aura:iteration>
+                </div>                  
+                
+                <table role="grid" class="slds-table slds-m-top--medium  slds-table--bordered slds-no-row-hover slds-scrollable--none" id="account-table"  cellspacing="0" >
+                    <thead  class="slds-line-height--reset">
+                        <tr>
+                            <th aria-label="" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                                <span class="slds-truncate" title=""></span>
+                            </th>
+                            <th aria-label="{!$Label.c.SAT_Belong}" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                                <span class="slds-truncate" title="{!$Label.c.SAT_Belong}">{!$Label.c.SAT_Belong}</span>
+                            </th>
+                            <th aria-label="{!$Label.c.SAT_Name}" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                                <span class="slds-truncate" title="{!$Label.c.SAT_Name}">{!$Label.c.SAT_Name}</span>
+                            </th>
+                            <th aria-label="{!$Label.c.SAT_Org_Number}" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                                <span class="slds-truncate" title="{!$Label.c.SAT_Org_Number}">{!$Label.c.SAT_Org_Number}</span>
+                            </th>
+                            <th aria-label="{!$Label.c.SAT_Region}" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                                <span class="slds-truncate" title="{!$Label.c.SAT_Region}">{!$Label.c.SAT_Region}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>            
+            </div>
+        </div>
+        <div class="slds-modal__footer slds-m-top--medium">
+            <button class="slds-button slds-button--neutral" onclick="{!c.onCancelClick }">{!$Label.c.SAT_Cancel}</button>
+            <button class="slds-button slds-button--brand" disabled="{!v.SelectedAccounts.length == 0}" onclick="{!c.onCreateTargetsClick }">{!$Label.c.SAT_Create_Target}</button>
+        </div>
+    </div>
+</aura:component>

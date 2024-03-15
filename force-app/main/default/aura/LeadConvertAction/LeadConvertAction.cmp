@@ -1,0 +1,207 @@
+<aura:component controller="LeadConvertController"
+                implements="force:lightningQuickActionWithoutHeader,force:hasRecordId">
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:attribute name="buyInterests" type="Buy_Interest__c[]"/>
+    <aura:attribute name="duplicateContacts" type="Contact[]"/>
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+
+    <aura:attribute name="HasError" type="Boolean" default="False"/>
+    <aura:attribute name="IsSuccess" type="Boolean" default="False"/>
+
+    <aura:attribute name="ErrorMsg" type="String" default=""/>
+    <aura:attribute name="EnableSubmit" type="Boolean" default="False"/>
+
+    <aura:attribute name="lead" type="Lead" default="{ 'sobjectType': 'Lead' }"/>
+    <aura:attribute name="oppName" type="String" default=""/>
+    <aura:attribute name="recordTypes" type="String[]" default=""/>
+    <aura:attribute name="selectedRecordType" type="String" default=""/>
+    <aura:attribute name="selectedBiId" type="String" default=""/>
+    <aura:attribute name="selectedDupeId" type="String" default=""/>
+    <aura:attribute name="overwriteContact" type="Boolean" default="False"/>
+    <aura:attribute name="isFiberUser" type="Boolean"/>
+
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"
+         role="alert" style="z-index:9999">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+    <aura:If isTrue="{!v.HasError}">
+        <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
+            <button onclick="{!c.hideError}"
+                    class="slds-button slds-button--icon-inverse slds-notify__close slds-icon--small slds-m-right--x-small"
+                    aria-haspopup="true">
+
+            </button>
+            <span class="slds-assistive-text">Info</span>
+            <h2>{!v.ErrorMsg}</h2>
+        </div>
+    </aura:If>
+
+    <div class="slds-modal__header">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <c:svgIcon svgPath="/resource/slds213/assets/icons/utility-sprite/svg/symbols.svg#change_record_type"
+                           class="slds-icon-text-default" size="small"/>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-text-heading--large">{!$Label.c.CA_Convert_Lead}</div>
+            </div>
+        </div>
+    </div>
+    <div class="slds-modal__content">
+        <div class="slds-form--stacked slds-m-top--medium">
+            <lightning:input name="oppName" value="{!v.oppName}" label="{!$Label.c.CA_Opportunity_Name}"/>
+
+            <!--    <lightning:select name="recordTypePicklist" aura:id="recordTypePicklist" label="Opportunity RecordType" onchange="{!c.recordTypeSelected}">
+                     <aura:iteration items="{!v.recordTypes}" var="rt">
+                        <option text="{!rt}"></option>
+                    </aura:iteration>
+            </lightning:select> -->
+        </div>
+    </div>
+
+    <aura:If isTrue="{!v.duplicateContacts.length > 0}">
+
+        <div class="slds-modal__header">
+            <h2 class="slds-text-heading--medium">{!$Label.c.CA_Duplicate_Contacts_Header}</h2>
+            <p class="slds-m-top--x-small">{!$Label.c.CA_Duplicate_Contacts_Description}</p>
+        </div>
+        <div class="slds-m-vertical_medium">
+            <lightning:input type="checkbox" aura:id="overwriteCheckbox" label="{!$Label.c.CA_Overwrite_Contact}"
+                             name="overwriteCheckbox" onchange="{!c.onChange}"/>
+        </div>
+
+
+        <table role="grid"
+               class="slds-table slds-table--fixed-layout slds-table--bordered slds-no-row-hover slds-scrollable--none">
+            <thead>
+            <tr class="slds-line-height--reset">
+                <th scope="col" style="width:3.75rem;"></th>
+                <th aria-label="Name" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                    <span class="slds-truncate" title="{!$Label.c.CA_Name}">{!$Label.c.CA_Name}</span>
+                </th>
+                <th aria-label="Lead Source" class="slds-is-sortable slds-is-resizable slds-text-title--caps"
+                    scope="col">
+                    <span class="slds-truncate" title="{!$Label.c.CA_Email}">{!$Label.c.CA_Email}</span>
+                </th>
+                <th aria-label="Lead Source" class="slds-is-sortable slds-is-resizable slds-text-title--caps"
+                    scope="col">
+                    <span class="slds-truncate" title="{!$Label.c.CA_Account}">{!$Label.c.CA_Account}</span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <aura:iteration items="{!v.duplicateContacts}" var="dc">
+                <tr class="slds-hint-parent">
+                    <td role="gridcell" tabindex="0" class="slds-text-align--right" style="width:3.75rem;">
+
+                        <div class="slds-form-element__control">
+                                <span class="slds-radio">
+                                    <input type="radio" data-id="{!dc.Id}" id="{!dc.Id}" onclick="{!c.dupeSelected}"
+                                           name="duplicates" checked="{!dc.Id == v.selectedDupeId ? 'true' : ''}"/>
+                                    <label class="slds-radio__label" for="{!dc.Id}">
+                                        <span class="slds-radio--faux"></span>
+                                        <span class="slds-form-element__label"></span>
+                                    </label>
+                                </span>
+                        </div>
+                    </td>
+                    <th scope="row">
+                        <div class="slds-truncate" title="{!dc.Name}">{!dc.Name}</div>
+                    </th>
+                    <td role="gridcell">
+                        <div class="slds-truncate" title="{!dc.Email}">{!dc.Email}</div>
+                    </td>
+                    <td role="gridcell">
+                        <div class="slds-truncate" title="{!dc.Account.Name}">{!dc.Account.Name}</div>
+                    </td>
+                </tr>
+            </aura:iteration>
+            </tbody>
+        </table>
+
+    </aura:If>
+
+    <aura:If isTrue="{!v.buyInterests.length > 0}">
+        <div class="slds-modal__header">
+            <h2 class="slds-text-heading--medium">{!$Label.c.CA_Buy_Interests}</h2>
+            <p class="slds-m-top--x-small">{!$Label.c.CA_BI_Description}</p>
+        </div>
+
+        <table role="grid"
+               class="slds-table slds-table--fixed-layout slds-table--bordered slds-no-row-hover slds-scrollable--none">
+            <thead>
+            <tr class="slds-line-height--reset">
+                <th scope="col" style="width:3.75rem;"></th>
+                <th aria-label="Name" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                    <span class="slds-truncate" title="{!$Label.c.CA_Name}">{!$Label.c.CA_Name}</span>
+                </th>
+                <th aria-label="Lead Source" class="slds-is-sortable slds-is-resizable slds-text-title--caps"
+                    scope="col">
+                    <span class="slds-truncate" title="{!$Label.c.CA_Lead_Source}">{!$Label.c.CA_Lead_Source}</span>
+                </th>
+                <th aria-label="Create Date" class="slds-is-sortable slds-is-resizable slds-text-title--caps"
+                    scope="col">
+                    <span class="slds-truncate" title="{!$Label.c.CA_Create_Date}">{!$Label.c.CA_Create_Date}</span>
+
+                </th>
+                <th aria-label="Reseller Name" class="slds-is-sortable slds-is-resizable slds-text-title--caps"
+                    scope="col">
+                    <span class="slds-truncate" title="{!$Label.c.CA_Reseller_Name}">{!$Label.c.CA_Reseller_Name}</span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <aura:iteration items="{!v.buyInterests}" var="bi">
+                <tr class="slds-hint-parent">
+                    <td role="gridcell" tabindex="0" class="slds-text-align--right" style="width:3.75rem;">
+
+                        <div class="slds-form-element__control">
+                                <span class="slds-radio">
+                                    <input type="radio" data-id="{!bi.Id}" id="{!bi.Id}" onclick="{!c.biSelected}"
+                                           name="options" checked="{!bi.Id == v.selectedBiId ? 'true' : ''}"/>
+                                    <label class="slds-radio__label" for="{!bi.Id}">
+                                        <span class="slds-radio--faux"></span>
+                                        <span class="slds-form-element__label"></span>
+                                    </label>
+                                </span>
+                        </div>
+                    </td>
+                    <th scope="row">
+                        <div class="slds-truncate" title="{!bi.Name}">{!bi.Name}</div>
+                    </th>
+                    <td role="gridcell">
+                        <div class="slds-truncate" title="{!bi.Lead_Source__c}">{!bi.Lead_Source__c}</div>
+                    </td>
+                    <td role="gridcell">
+                        <div class="slds-truncate" title="{!bi.CreatedDate}">
+                            <ui:outputDate value="{!bi.CreatedDate}"/>
+                        </div>
+                    </td>
+                    <td role="gridcell">
+                        <div class="slds-truncate"
+                             title="{!bi.Buy_Interest_Submitter_Name__c}">{!bi.Buy_Interest_Submitter_Name__c}</div>
+                    </td>
+                </tr>
+            </aura:iteration>
+            </tbody>
+        </table>
+    </aura:If>
+    <div class="slds-grid slds-grid--vertical-align-end slds-grid--align-center slds-m-top--medium">
+        <lightning:button variant="neutral" label="{!$Label.c.RLC_Cancel}" onclick="{!c.cancelClick }"/>
+        <!--  <lightning:button variant="brand" label="{!$Label.c.CA_Convert}" disabled="{!v.HasError ? 'true' : ''}" onclick="{!c.submitClick }" /> -->
+        <aura:if isTrue="{!v.isFiberUser}">
+            <lightning:button variant="brand" label="{!$Label.c.CA_Convert}" disabled="{!v.HasError ? 'true' : ''}"
+                              onclick="{!c.submitFiberLead }"/>
+            <aura:set attribute="else">
+                <lightning:button variant="brand" label="{!$Label.c.CA_Convert}" disabled="{!v.HasError ? 'true' : ''}"
+                                  onclick="{!c.submitClick }"/>
+            </aura:set>
+        </aura:if>
+    </div>
+
+</aura:component>

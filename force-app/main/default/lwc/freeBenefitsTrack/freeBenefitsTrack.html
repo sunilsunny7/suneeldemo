@@ -1,0 +1,227 @@
+<template>
+   <template if:true={recordsFound}>
+       <div class="tableDiv">
+          <div class={tableStyle}>
+             <table aria-describedby="conatact-list" class="slds-table  slds-table_bordered ">
+                <!--Header of the table-->
+                <thead>
+                   <tr class="slds-line-height_reset">
+                      <th class="slds-size_1-of-12" scope="col">
+                         <div class="slds-truncate " title="Radio">Nyttja förmån</div>
+                      </th>
+                      <th class="slds-size_2-of-8" scope="col">
+                         <div class="slds-truncate " title="Förmån" style="text-align:center">Förmån</div>
+                      </th>
+                      <th class="slds-size_1-of-10" scope="col">
+                         <div class="slds-truncate " title="Antal">Antal</div>
+                      </th>
+                      <th class="slds-size_1-of-9" scope="col">
+                         <div class="slds-truncate " title="Giltighetstid Förmån">Giltighetstid Förmån</div>
+                      </th>
+                      <th class="slds-size_1-of-9 " scope="col">
+                         <div class="slds-truncate " title="EDatum Nyttjad">Datum Nyttjad</div>
+                      </th>
+                      <th class="slds-size_2-of-8" scope="col">
+                         <div class="slds-truncate " title="Uppnådd nivå med tjänstegrupper">Uppnådd nivå med tjänstegrupper
+                         </div>
+                      </th>
+                      <th class="slds-size_2-of-8" scope="col">
+                         <div class="slds-truncate " title="Kommentarer">
+                            Kommentarer 
+                            <template if:false={systemAdminProfile}><span style="color: red;">*</span></template>
+                         </div>
+                      </th>
+                   </tr>
+                </thead>
+                <tbody>
+                   <template for:each={addOnBenefitsArray} for:item='addOnBenefit' for:index='Index'>
+                      <template if:false={addOnBenefit.isUsed}>
+                         <tr  key={addOnBenefit}>
+                            <td>
+                               <input type="radio" name="Radiobutton1"  style="margin-right: 5px;" value={addOnBenefit.Id}  onchange={handleChange} />
+                            </td>
+                            <td class='slds-truncate' style="white-space: pre-wrap;">
+                               {addOnBenefit.Name}
+                            </td>
+                            <td class='slds-truncate' style="text-align: center;">
+                               {addOnBenefit.Quantity}
+                            </td>
+                            <td class='slds-truncate' style="text-align: center;">
+                               {addOnBenefit.EndDate}
+                            </td>
+                            <td>
+                               <template if:true={addOnBenefit.FreeServicesUsedDate}>
+                                  <div>{addOnBenefit.FreeServicesUsedDate}</div>
+                               </template>
+                            </td>
+                            <td class='slds-truncate'>
+                               {addOnBenefit.ConvergenceLevelAndArea}
+                            </td>
+                            <td>
+                               <div>
+                                  <lightning-textarea   value={addOnBenefit.Comments}  id={addOnBenefit.Id} onchange={changeComments}  disabled={addOnBenefit.disableEnable} ></lightning-textarea>
+                               </div>
+                            </td>
+                         </tr>
+                      </template>
+                   </template>
+                </tbody>
+             </table>
+          </div>
+       </div>
+       <!---->
+       <!--Footer Table Starts-->
+       <footer class="slds-modal__footer" style=" height:auto; margin-top: 100px; margin-right: -24px; margin-bottom: 0px; margin-left: -24px;">
+          <div class="tableDiv">
+             <div class={tableStyle}>
+                <table aria-describedby="conatact-list" class="slds-table  slds-table_bordered ">
+                   <!--Header of the table-->
+                   <thead>
+                      <tr class="slds-line-height_reset">
+                         <template if:true={systemAdminProfile}>
+                            <th class="slds-size_1-of-12" scope="col">
+                               <div class="slds-truncate " title="Radio">Nyttja förmån</div>
+                            </th>
+                         </template>
+                         <th class="slds-size_2-of-8" scope="col">
+                            <div class="slds-truncate " title="Förmån" style=" text-align:center;">Förmån</div>
+                         </th>
+                         <th class="slds-size_1-of-10" scope="col">
+                            <div class="slds-truncate " title="Antal">Antal</div>
+                         </th>
+                         <th class="slds-size_1-of-9" scope="col">
+                            <div class="slds-truncate " title="Giltighetstid Förmån">Giltighetstid Förmån</div>
+                         </th>
+                         <th class="slds-size_1-of-9" scope="col">
+                            <div class="slds-truncate " title="Datum Nyttjad">Datum Nyttjad</div>
+                         </th>
+                         <th class="slds-size_2-of-8" scope="col">
+                            <div class="slds-truncate " title="Uppnådd nivå med tjänstegrupper">Uppnådd nivå med tjänstegrupper
+                            </div>
+                         </th>
+                         <th class="slds-size_2-of-8" scope="col">
+                            <div class="slds-truncate " title="Kommentarer">Kommentarer
+                            </div>
+                         </th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <template for:each={addOnBenefitsArray} for:item='addOnBenefit' for:index='Index'>
+                         <template if:true={addOnBenefit.isUsed}>
+                            <tr  key={addOnBenefit.Id} >
+                               <template if:true={systemAdminProfile}>
+                                  <td>
+                                     <input type="radio" name="Radiobutton1"  style="margin-right: 5px;" value={addOnBenefit.Id}  onchange={handleChangeForFootTable}/>
+                                  </td>
+                               </template>
+                               <td class='slds-truncate'  style="white-space: pre-wrap;">
+                                  {addOnBenefit.Name}
+                               </td>
+                               <td class='slds-truncate' style="text-align: center;">
+                                  {addOnBenefit.Quantity}
+                               </td>
+                               <td class='slds-truncate' style="text-align: center;">
+                                  {addOnBenefit.EndDate}
+                               </td>
+                               <td>
+                                  <template if:true={addOnBenefit.FreeServicesUsedDate} style="text-align: center;">
+                                     <div>{addOnBenefit.FreeServicesUsedDate}</div>
+                                  </template>
+                               </td>
+                               <td class='slds-truncate'>
+                                  {addOnBenefit.ConvergenceLevelAndArea}
+                               </td>
+                               <td>
+                                  <template if:true={addOnBenefit.Comments}>
+                                     <div>
+                                        <lightning-textarea  value={addOnBenefit.Comments}   disabled="true"></lightning-textarea>
+                                     </div>
+                                  </template>
+                               </td>
+                            </tr>
+                         </template>
+                      </template>
+                   </tbody>
+                </table>
+             </div>
+          </div>
+       </footer>
+       <!--<div class="slds-grid slds-grid_align-spread slds-m-top_medium">
+          <div class="slds-col">
+             <lightning-button  variant="neutral" label="AVBRYT" title="Cancel" onclick={backToContractPage}> </lightning-button>
+          </div>
+          <div class="slds-col">
+             <lightning-button variant="brand"   type="submit" label="Nästa" onclick={saveValues}></lightning-button>
+          </div>
+       </div>-->
+       <!--Footer table ends-->
+       <template if:true={isModalOpen}>
+          <!-- Modal/Popup Box LWC starts here -->
+          <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+             <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                   <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                      <lightning-icon icon-name="utility:close"
+                         alternative-text="close"
+                         variant="inverse"
+                         size="small" ></lightning-icon>
+                      <span class="slds-assistive-text">Close</span>
+                   </button>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                   <p><b>Om du fortsätter kommer förmånen markeras som nyttjad. Vill du fortsätta? 
+                      </b>
+                   </p>
+                </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <footer class="slds-modal__footer">
+                   <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">AVBRYT</button>
+                   <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">JA</button>
+                </footer>
+             </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+       </template>
+       <!--Modal for System Admins-->
+       <template if:true={isModalOpen2}>
+          <!-- Modal/Popup Box LWC starts here -->
+          <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+             <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                   <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                      <lightning-icon icon-name="utility:close"
+                         alternative-text="close"
+                         variant="inverse"
+                         size="small" ></lightning-icon>
+                      <span class="slds-assistive-text">Close</span>
+                   </button>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                   <p><b>Om du fortsätter kommer förmånen vara tillgänglig för säljaren att nyttja igen. Vill du fortsätta?
+                      </b>
+                   </p>
+                </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <footer class="slds-modal__footer">
+                   <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">AVBRYT</button>
+                   <button class="slds-button slds-button_brand" onclick={submitDetailsForSystemAdmin} title="OK">JA</button>
+                </footer>
+             </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+       </template>
+       <!--Modal for System Admins Ends-->
+    </template>
+    <div class="slds-grid slds-grid_align-spread slds-m-top_medium">
+      <div class="slds-col">
+         <lightning-button  variant="neutral" label="AVBRYT" title="Cancel" onclick={backToContractPage}> </lightning-button>
+      </div>
+      <div class="slds-col" if:true={recordsFound}>
+         <lightning-button variant="brand"   type="submit" label="Nästa" onclick={saveValues}></lightning-button>
+      </div>
+   </div>
+   </template>

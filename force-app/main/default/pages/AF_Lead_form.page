@@ -1,0 +1,224 @@
+<apex:page sidebar="false" lightningStylesheets="true"  id="page1" controller="LeadAgentFormHandlerController">
+    <apex:form id="theform"><br/><br/>
+        <apex:pageMessages />
+            <apex:pageBlock title="ÅF Leadsformulär" id="thepageblock">
+                <apex:pageBlockButtons location="top">
+                    <apex:commandButton value="Spara"  action="{!Submitlead}"  />
+                    <apex:commandButton value="Avbryt" action="{!cancel}" />
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection id="section" columns="1">   
+                                                            
+                    <apex:inputText label="Kundens Förnamn" id="first_name" value="{!firstname}" onblur="validatefirstname();"><div id="fnameerr" text ="fname"></div> <font color="Red">* </font></apex:inputText>  
+                   <apex:inputText label="Kundens Efternamn" id="last_name" value="{!lastname}" onblur="validatelastname();"><div id="lnameerr" text ="lname"></div><font color="Red">* </font></apex:inputText>                   
+                    <apex:inputText label="Kundens E-post" id="email" value="{!email}" onblur="validateemail();"><div id="emailerr" text ="emailerror"></div><font color="Red">* </font></apex:inputText>
+                    <apex:inputText label="Kundens Telefonnummer +467XXXXX" id="phone" value="{!phone}" onblur="validatephone();"> <div id="phoneerr" text ="phoneerror"></div><div style="color:blue">Format +46 följt av numret utan första nollan +467XXXXX</div><font color="Red">*</font></apex:inputText>                   
+                    <apex:inputText label="Kundens Företagsnamn" id="company" value="{!company}" onblur="validatelacompany();"><div id="companyerr" text ="companyerror"></div><font color="Red">* </font></apex:inputText>                    
+                    <apex:inputText label="Kundens Orgnr" id="orgnr" value="{!orgnr}" onblur="validateorgnr();"><div id="orgnrerr" text ="orgnrerror"></div><font color="Red">* </font></apex:inputText>                                       
+                    <apex:selectList label="Produktområde" id="Produktområde" value="{!selectedproductarea}" multiselect="false" size="1" onblur="validateproductarea();">
+                        <apex:selectOptions value="{!productAreaOptions}"></apex:selectOptions> <div id="Produktområdeerr" text ="Produktområdeerror"></div><font color="Red">* </font>
+                    </apex:selectList>                   
+                    <apex:inputTextarea label="Beskrivning" id="description" value="{!description}" style="width:190px" onblur="validatedescription();"> <div id="descriptionerr" text="descriptionerror"></div><font color="Red">* </font>&nbsp;&nbsp;</apex:inputTextarea>                   
+                    <apex:inputText label="ÅF-nummer" id="AFnum" value="{!AFnum}" onblur="validateAFnum();"> <div id="AFnumerr" text ="AFnumerror"></div><font color="Red">* </font></apex:inputText>                  
+                    <apex:inputText label="Tholbox Id" id="tholboxid" value="{!tholboxid}" onblur="validatetholboxid();"> <div id="tholboxiderr" text ="tholboxiderror"></div><font color="Red">* </font></apex:inputText>                   
+                    <apex:inputText label="Ditt Förnamn" id="senderfname" value="{!senderfname}" onblur="validatesenderfirsttname();">  <div id="senderfnameerr" text ="senderfnameerror"></div><font color="Red">* </font></apex:inputText>                  
+                    <apex:inputText label="Ditt Efternamn" id="senderlname" value="{!senderlname}" onblur="validatesenderlastname();"><div id="senderlnameerr" text ="senderlnameerror"></div><font color="Red">* </font></apex:inputText>                    
+                    <apex:inputText label="Ditt Telefonnummer +467XXXXX" id="senderphone" value="{!senderphone}" onblur="validatesenderphone();"><div id="senderphoneerr" text ="senderphoneerror"></div>  <div style="color:blue">  Format +46 följt av numret utan första nollan +467XXXXX</div>   <font color="Red">* </font></apex:inputText>                
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+    </apex:form>
+        <script>
+            function validatefirstname()
+            {
+                var firstnameinput = document.getElementById('page1:theform:thepageblock:section:first_name').value; 
+                if(firstnameinput == '' )
+                {
+                    document.getElementById('fnameerr').innerHTML= "Vänligen fyll i Kundens Förnamn";
+                    document.getElementById('fnameerr').style.color= "red";
+                }
+                else{
+                    document.getElementById('fnameerr').textContent = " ";    
+                }
+            }
+            function validatelastname()
+            {
+                var lastnameinput = document.getElementById('page1:theform:thepageblock:section:last_name').value; 
+                if(lastnameinput == '' )
+                {
+                    document.getElementById('lnameerr').textContent = "Vänligen fyll i Kundens Efternamn";
+                    document.getElementById('lnameerr').style.color= "red";      
+                }
+                else{
+                    document.getElementById('lnameerr').textContent = " ";                    
+                }
+            }
+            function validateemail()
+            {
+                var emailinput = document.getElementById('page1:theform:thepageblock:section:email').value;                 
+                if(emailinput.includes('teliacompany') || emailinput.includes('teliasonera') || emailinput.includes('Teliasonera') || emailinput.includes('Teliacompany'))
+                {
+                   document.getElementById('emailerr').textContent = '{!$Label.Lead_Sales_Rep_Form_Email_Error_Message1}';
+                   document.getElementById('emailerr').style.color= "red";
+                }
+                else if(!emailinput.includes('@'))
+                {
+                    document.getElementById('emailerr').textContent = '{!$Label.Lead_Sales_Rep_Form_Email_Error_Message2}';
+                    document.getElementById('emailerr').style.color= "red";
+                }
+                else if(emailinput == '')
+                {
+                    document.getElementById('emailerr').textContent = "Vänligen fyll i Kundens E-post";
+                    document.getElementById('emailerr').style.color= "red";
+                }
+                else{
+                    document.getElementById('emailerr').textContent = " ";   
+                }
+            }
+            function validatephone()
+            {
+                var phoneinput = document.getElementById('page1:theform:thepageblock:section:phone').value; 
+                if(phoneinput == '' )
+                {
+                    document.getElementById('phoneerr').textContent = "Vänligen fyll i Kundens Telefonnummer";
+                    document.getElementById('phoneerr').style.color= "red";      
+                }
+                else if(phoneinput != '' )
+                {                
+                    var regExp = /^\+[ ]?[4]{1}[6]{1}?[ ]?([1-9]{1})([0-9]{4,20})$|^\+[ ]?[1-9]{2}?[ ]?([1-9]{1})([0-9]{4,20})$/; 
+                    if(!phoneinput.match(regExp))
+                    {
+                        document.getElementById('phoneerr').textContent = "Ogiltig Kundens Telefonnummer";
+                        document.getElementById('phoneerr').style.color= "red"; 
+                    }
+                    else
+                    {
+                        document.getElementById('phoneerr').textContent = " ";                    
+                    }                   
+                }
+                else{
+                    document.getElementById('phoneerr').textContent = " ";                    
+                }
+            }
+            function validatelacompany()
+            {
+                var companyinput = document.getElementById('page1:theform:thepageblock:section:company').value; 
+                if(companyinput == '' )
+                {
+                    document.getElementById('companyerr').textContent = "Vänligen fyll i Kundens Företagsnamn";
+                    document.getElementById('companyerr').style.color= "red";      
+                }
+                else{
+                    document.getElementById('companyerr').textContent = " ";                    
+                }
+            }
+            function validateorgnr()
+            {
+                var orgnrinput = document.getElementById('page1:theform:thepageblock:section:orgnr').value; 
+                if(orgnrinput == '' )
+                {
+                    document.getElementById('orgnrerr').textContent = "Vänligen fyll i Kundens Organisationsnummer";
+                    document.getElementById('orgnrerr').style.color= "red";      
+                }
+                else{
+                    document.getElementById('orgnrerr').textContent = " ";                    
+                }
+            }
+            function validateproductarea()
+            {
+                var Produktområdeinput = document.getElementById('page1:theform:thepageblock:section:Produktområde').value; 
+                if(Produktområdeinput == '' )
+                {
+                    document.getElementById('Produktområdeerr').textContent = "Vänligen fyll i Produktområdet kunden är intresserad av";
+                    document.getElementById('Produktområdeerr').style.color= "red";      
+                }
+                else{
+                    document.getElementById('Produktområdeerr').textContent = " ";                    
+                } 
+            }
+            function validatedescription()
+            {
+                var senderfnameinput = document.getElementById('page1:theform:thepageblock:section:description').value; 
+                if(senderfnameinput == '' )
+                {
+                    document.getElementById('descriptionerr').textContent = "Vänligen fyll i Beskrivning";
+                    document.getElementById('descriptionerr').style.color= "red";      
+                }
+                else{
+                    document.getElementById('descriptionerr').textContent = " ";                    
+                }  
+            }
+            function validateAFnum()
+            {
+                var AFnuminput = document.getElementById('page1:theform:thepageblock:section:AFnum').value; 
+                if(AFnuminput == '' )
+                {
+                    document.getElementById('AFnumerr').textContent = "Vänligen fyll i ÅF-nummer";
+                    document.getElementById('AFnumerr').style.color= "red";      
+                }
+                else{
+                    document.getElementById('AFnumerr').textContent = " ";                    
+                }  
+            }
+            function validatetholboxid()
+            {
+                var tholboxidinput = document.getElementById('page1:theform:thepageblock:section:tholboxid').value; 
+                if(tholboxidinput == '' )
+                {
+                    document.getElementById('tholboxiderr').textContent = "Vänligen fyll i Tholbox Id";
+                    document.getElementById('tholboxiderr').style.color= "red";      
+                }
+                else{
+                    document.getElementById('tholboxiderr').textContent = " ";                    
+                }            }
+            function validatesenderfirsttname()
+            {
+                var senderfnameinput = document.getElementById('page1:theform:thepageblock:section:senderfname').value; 
+                if(senderfnameinput == '' )
+                {
+                    document.getElementById('senderfnameerr').textContent = "Vänligen fyll i Ditt Förnamn";
+                    document.getElementById('senderfnameerr').style.color= "red";      
+                }
+                else{
+                    document.getElementById('senderfnameerr').textContent = " ";                    
+                }  
+            }
+            function validatesenderlastname()
+            {
+                var senderlnameinput = document.getElementById('page1:theform:thepageblock:section:senderlname').value; 
+                if(senderlnameinput == '' ) 
+                {
+                    document.getElementById('senderlnameerr').textContent = "Vänligen fyll i Ditt Efternamn";
+                    document.getElementById('senderlnameerr').style.color= "red";      
+                }
+                else{
+                    document.getElementById('senderlnameerr').textContent = " ";                    
+                } 
+            }
+            function validatesenderphone()
+            {
+                var senderphoneinput = document.getElementById('page1:theform:thepageblock:section:senderphone').value; 
+                if(senderphoneinput == '' )
+                {
+                    document.getElementById('senderphoneerr').textContent = "Vänligen fyll i Ditt Telefonnummer";
+                    document.getElementById('senderphoneerr').style.color= "red";      
+                }
+                else if(senderphoneinput != '' )
+                {               
+                    var regExp = /^\+[ ]?[4]{1}[6]{1}?[ ]?([1-9]{1})([0-9]{4,20})$|^\+[ ]?[1-9]{2}?[ ]?([1-9]{1})([0-9]{4,20})$/; 
+                    if(!senderphoneinput.match(regExp))
+                    {
+                        document.getElementById('senderphoneerr').textContent = "Ogiltig Kundens Telefonnummer";
+                        document.getElementById('senderphoneerr').style.color= "red"; 
+                    }
+                    else
+                    {
+                        document.getElementById('senderphoneerr').textContent = " ";                    
+                    }                   
+                }
+                else
+                {
+                    document.getElementById('senderphoneerr').textContent = " ";                    
+                }     
+            }
+        
+        </script>  
+</apex:page>

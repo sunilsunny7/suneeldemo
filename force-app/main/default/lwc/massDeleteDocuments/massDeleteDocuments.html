@@ -1,0 +1,34 @@
+<!--
+ - Created by KWN687 on 2022-03-04.
+ -->
+
+<!-- Mass Delete Documents -->
+<template >
+  <lightning-quick-action-panel title="Quick Action Title" header={headerLabel}>
+    <div class="slds-modal__content modalBody" >
+      <div if:true={isLoaded} class="backgroundInverse,slds-is-relative">
+        <lightning-spinner alternative-text="Loading..." variant="brand" class="spinnerClass">
+        </lightning-spinner>
+      </div>
+        <lightning-tabset >
+          <lightning-tab label="Delete" onactive={tabChanges}>
+            <lightning-datatable key-field="id" data={records} columns={columns}
+                                 selected-rows={setSelectedRows} data-my-id = "deleteTable">
+            </lightning-datatable>
+          </lightning-tab>
+          <lightning-tab label="Undelete" onactive={tabChanges}>
+            <lightning-datatable key-field="id" data={deletedRecords} columns={columns}
+                                 selected-rows={setSelectedRows} data-my-id = "undeleteTable">
+            </lightning-datatable>
+          </lightning-tab>
+        </lightning-tabset>
+      </div>
+
+    <div slot="footer">
+      <lightning-button variant="neutral" label="Cancel" onclick={closeAction} style="padding-right:10px">
+      </lightning-button>
+      <lightning-button variant="brand" label={buttonLabel} onclick={deleteUndeleteRecords}></lightning-button>
+    </div>
+  </lightning-quick-action-panel>
+
+</template>

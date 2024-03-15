@@ -1,0 +1,50 @@
+<apex:page id="agreementPage" standardcontroller="Account" extensions="AgreementSituationController">
+    <apex:form >
+        <apex:pageblock id="agreementPage" rendered="{!isDisplayMode}">
+            <apex:pageblockbuttons location="top" >
+                <apex:commandbutton action="{!EditAgreementSituations}" value="Editera Avtalssituationen" rendered="{!activeAgreements.size != 0}"/>
+            </apex:pageblockbuttons>
+            <apex:pageblocktable value="{!activeAgreements}" var="aas" rendered="{!activeAgreements.size != 0}" width="100%">
+                <apex:column style="background-color:#f9f9f9" value="{!aas.Agreement_Category__c}" width="8"/>
+                <apex:column style="background-color:#f9f9f9" value="{!aas.Supplier__c}" width="8%"/>
+                <apex:column style="background-color:#f9f9f9" value="{!aas.Start_Date__c}" width="8%"/> 
+                <apex:column style="background-color:#f9f9f9" value="{!aas.End_Date__c}" width="8%"/>
+                <apex:column style="background-color:#f9f9f9" value="{!aas.Reminder_days_before__c}" width="10%"/> 
+                <apex:column style="background-color:#f9f9f9" value="{!aas.Reminder_2_days_before__c}" width="8%"/> 
+                <apex:column style="background-color:#f9f9f9" value="{!aas.Comment__c}" width="42%"/> 
+                <apex:column style="background-color:#f9f9f9" value="{!aas.Avtalssituationspost_aktiv__c}" width="8%"/> 
+            </apex:pageblocktable> 
+        </apex:pageblock>
+        <apex:pageblock rendered="{!isEditMode}" mode="Edit">
+            <apex:pageblockbuttons location="top" >
+                <apex:commandbutton value="Save" action="{!save}" oncomplete=" window.top.location='/{!Account.id}';"/>
+                <apex:commandbutton value="Cancel" action="{!cancelAgreementSituation}"  id="cancelButton" />
+            </apex:pageblockbuttons>
+             <apex:outputPanel layout="block" style="overflow:auto;width:100%;" rendered="{!activeAgreements.size != 0}">
+            <apex:pageBlockTable value="{!activeAgreements}" var="aas" width="100%"> 
+                <apex:column headervalue="{!$Label.Agreement_Category}" width="8%">  
+                    <apex:outputField value="{!aas.Agreement_Category__c}"/>
+                </apex:column>    
+                <apex:column headerValue="{!$ObjectType['Agreement_Situation__c'].fields.Supplier__c.label}" width="8%">              
+                    <apex:inputField value="{!aas.Supplier__c}" />   
+                </apex:column>                            
+               <apex:column headervalue="{!$ObjectType['Agreement_Situation__c'].fields.Start_Date__c.label}" width="8%">                   
+                    <apex:inputField id="startdate" value="{!aas.Start_Date__c}" />
+                </apex:column>                 
+                <apex:column headervalue="{!$ObjectType['Agreement_Situation__c'].fields.End_Date__c.label}" width="8%">
+                    <apex:inputField id="TDOC" value="{!aas.End_Date__c}" /> 
+                </apex:column> 
+                <apex:column headervalue="{!$ObjectType['Agreement_Situation__c'].fields.Reminder_days_before__c.label}" width="10%">                 
+                    <apex:inputField value="{!aas.Reminder_days_before__c}" />   
+                </apex:column>
+               <apex:column headervalue="{!$ObjectType['Agreement_Situation__c'].fields.Reminder_2_days_before__c.label}" width="8%">
+                 <apex:inputField value="{!aas.Reminder_2_days_before__c}" />   
+                </apex:column> 
+                <apex:column headervalue="{!$ObjectType['Agreement_Situation__c'].fields.Comment__c.label}">                   
+                    <apex:inputField value="{!aas.Comment__c}" style="width:380px"/>
+                </apex:column>
+                </apex:pageBlockTable>
+                </apex:outputPanel>  
+                </apex:pageblock>
+    </apex:form>
+</apex:page>

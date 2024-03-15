@@ -1,0 +1,74 @@
+<template>
+    <div class='widthcontrol'>
+    <table class="slds-table_bordered slds-table_col-bordered">
+        <thead>
+            <tr>
+                <th rowspan=2>Produkt</th>
+                <th rowspan=2>Basnivå</th>
+                <th rowspan=2>Avtalstid</th>
+                <th rowspan=2>Bindningstid</th>
+                <th colspan=4>New Sales</th>
+                <th colspan=3>Cont. Sales</th>
+            </tr>
+            <tr>
+                <th>Engångs-avgift *</th>
+                <th>Snitt månadspris *</th>
+                <th>Antal</th>
+                <th>Typ *</th>
+                <th>Snitt månadspris *</th>
+                <th>Antal</th>
+                <th>Typ *</th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={_familyOfferList} for:item='q' for:index='index'>
+                <tr key={q.Name}>
+                    <td>{q.Name}</td>
+                    <td>{q.Basniva}</td>
+                    <td>{q.Avtalstid}</td>
+                    <td>{q.BindingTime}</td>
+                    <td>
+                        <input type="number" data-opp={index} data-name="NewSalesEngangsavgift" class="slds-input" value={q.NewSalesEngangsavgift} onchange={methodUpdate}/>
+                    </td>
+                    <td>
+                        <input type="number" data-opp={index} data-name="NewSalesAngesnittmanadsavgift" class="slds-input" value={q.NewSalesAngesnittmanadsavgift} onchange={methodUpdate}/>
+                    </td>
+                    <td>
+                        <input type="number" data-opp={index} data-name="NewSalesAntal" class="slds-input" value={q.NewSalesAntal} onchange={methodUpdate}/>
+                    </td>
+                    <td>
+                        <select name="New Sales Type" data-opp={index} data-name="NewSalesType" class="slds-input" onchange={methodUpdate}>                            
+                            <option value={q.NewSalesType} selected disabled hidden>{q.NewSalesType}</option>
+                            <option value="Inga">--Inga--</option>
+                            <option value="New Sales - Nya tjänster">New Sales - Nya tjänster</option>
+                            <option value="New Sales - Migrering av avvecklingstjänst">New Sales - Migrering av avvecklingstjänst</option>
+                            <option value="New Sales - Utökade tjänster">New Sales - Utökade tjänster</option>
+                            <option value="New Sales - Win-back med portering">New Sales - Win-back med portering</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="number" data-opp={index} data-name="ContinuousSalesAngesnittmanadsavgift" class="slds-input" value={q.ContinuousSalesAngesnittmanadsavgift} onchange={methodUpdate}/>
+                    </td>
+                    <td>
+                        <input type="number" data-opp={index} data-name="ContinuousSalesAntal" class="slds-input" value={q.ContinuousSalesAntal} onchange={methodUpdate}/>
+                    </td>
+                    <td>
+                        <select name="Continuous Sales Type" data-opp={index} data-name="ContinuousSalesType" class="slds-input" onchange={methodUpdate}>
+                            <option value={q.ContinuousSalesType} selected disabled hidden>{q.ContinuousSalesType}</option>
+                            <option value="Inga">--Inga--</option>
+                            <option value="Continuation Sales - Migrering av tjänst">Continuation Sales - Migrering av tjänst</option>
+                            <option value="Continuation Sales - Förlängning av tjänst">Continuation Sales - Förlängning av tjänst</option>                           
+                        </select>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</div>
+<div>
+    <button onclick={redirectToCart} class="slds-button slds-button_brand">
+        Tillbaka till konfiguration
+    </button>
+        Om du fortsätter utan att fylla i tabellen så kommer inga produkter att synkroniseras till affärsmöjligheten
+    </div>
+</template>

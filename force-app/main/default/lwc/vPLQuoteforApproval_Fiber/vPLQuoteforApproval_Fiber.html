@@ -1,0 +1,62 @@
+<!-- sldsValidatorIgnore -->
+<template>
+
+    <div style="overflow-x: auto;" class = "slds-m-bottom_medium slds-m-top_medium">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    
+                    <th scope="col" class = "slds-border_bottom slds-border_left">
+                        <div class="slds-truncate"> </div>EBIT %
+                    </th>
+                    <th scope="col" class = "slds-border_bottom ">
+                        <div class="slds-truncate"> Intäkter</div>
+                    </th>
+                    <th scope="col" class = "slds-border_bottom">
+                        <div class="slds-truncate"> Opex</div>
+                    </th>
+                    <th scope="col" class = "slds-border_bottom">
+                        <div class="slds-truncate"> </div>Capex
+                    </th>
+                    <th scope="col" class = "slds-border_bottom">
+                        <div class="slds-truncate"> Avtalstid</div>
+                    </th>
+                    <th scope="col" class = "slds-border_bottom slds-border_right">
+                        <div class="slds-truncate"> Payback år</div>
+                    </th>
+                </tr>
+            </thead>
+
+            <!-- <template for:each={data} for:item="item" for:index="index"> -->
+                <tr class="slds-hint-parent">               
+                   <td class = "slds-border_bottom slds-border_left">
+                        <div if:true={data.EBIT} class="slds-truncate"> {data.EBIT}</div>
+                        <div if:false={data.EBIT} class="slds-truncate"></div>
+                    </td>
+                    <td class = "slds-border_bottom">
+                        <div if:true={data.Revenues} class="slds-truncate"> {data.Revenues}</div>
+                        <div if:false={data.Revenues} class="slds-truncate"></div>
+                    </td>
+                    <td class = "slds-border_bottom">
+                        <div if:true={data.Opex} class="slds-truncate"> {data.Opex}</div>
+                        <div if:false={data.Opex} class="slds-truncate"></div>
+                    </td>
+                    <td class = "slds-border_bottom">
+                        <div if:true={data.Capex} class="slds-truncate"> {data.Capex}</div>
+                        <div if:false={data.Capex} class="slds-truncate"></div>
+                    </td>
+                    <td class = "slds-border_bottom">
+                        <div if:true={data.ContractTerm} class="slds-truncate"> {data.ContractTerm}</div>
+                        <div if:false={data.ContractTerm} class="slds-truncate"></div>
+                    </td>
+                
+                    <td class = "slds-border_bottom slds-border_right">
+                        <div if:true={data.Payback} class="slds-truncate"> {data.Payback}</div>
+                        <div if:false={data.Payback} class="slds-truncate"></div>
+                    </td>
+                </tr>
+                
+            <!-- </template> -->
+        </table>
+    </div>
+</template>

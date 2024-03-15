@@ -1,0 +1,34 @@
+<apex:component >
+    <script id="opportunity-table-template" type="text/x-handlebars-template">
+    <table class="table table-hover table-condensed" id="opportunity-table">
+        <thead>
+   <!--    <th class="col-xs-1"><span class="header">{!$Label.Action} </span></th> -->
+         <th class="col-xs-1"><span class="header sortable">{!$Label.Opportunity}  <img src="{!URLFOR($Resource.tableSortIcon)}"/></span><div></div></th>
+         <th class="col-xs-1"><span class="header sortable">{!$Label.Account}  <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>
+         <th class="col-xs-1"><span class="header sortable">{!$Label.Opportunity_Owner}  <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th> 
+         <th class="col-xs-1"><span class="header sortable">{!$Label.Probability}  <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>
+         <th class="col-xs-1"><span class="header sortable">{!$Label.Commit_NS_kr} <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>
+         <th class="col-xs-1"><span class="header sortable">{!$Label.Commit_CS_kr} <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>                       
+         <th class="col-xs-1"><span class="header sortable">{!$Label.Revenue_This_Year_kr}  <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>
+         <th class="col-xs-1"><span class="header sortable">{!$Label.Stage} <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>
+         <th class="col-xs-1"><span class="header sortable">{!$Label.Close_Date}  <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>
+      </thead>
+      <tbody>
+       {{#each opps}}
+        <tr>
+      <!--    <td><a href="/{{Opportunity__c}}/e?retURL=/apex/CommitViewLarge" target="_blank">{!$Label.Edit}</a></td> -->
+          <td><a href="/{{Opportunity__c}}" target="_blank">{{Opportunity__r.Name}}</a></td>
+          <td><a href="/{{Opportunity__r.AccountId}}" target="_blank">{{Opportunity__r.Account.Name}}</a></td>
+          <td>{{Opportunity__r.Owner.Name}}</td>
+          <td>{{Probability__c}}</td>
+          <td>{{roundNumber New_Sales_Amount__c}}</td>          
+          <td>{{roundNumber Continuation_Sales_Amount__c}}</td>
+          <td>{{roundNumber Revenue_Impact_This_Year__c}}</td>
+          <td>{{Opportunity__r.StageName}}</td>
+          <td>{{Opportunity__r.CloseDate}}</td>
+        </tr>
+       {{/each}}
+      </tbody>
+    </table>
+    </script>
+</apex:component>

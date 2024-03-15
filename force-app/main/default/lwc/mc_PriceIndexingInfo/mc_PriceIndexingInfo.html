@@ -1,0 +1,35 @@
+<template>
+    <lightning-card>
+        <div class="lgc-bg slds-p-around_medium">
+            <lightning-tile>
+                <h3>Prisindexinformation</h3>
+            </lightning-tile>
+            </div>
+
+            <div class="slds-p-around_medium">
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item size="6" class="slds-p-right_large">
+                    <lightning-input class="underline" label="Prisindex" value={priceIndex} read-only>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="6" class="slds-p-right_large">
+                    <lightning-input class="underline" label="Senaste indexeringsdatum" value={indexedDate} read-only>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="6" class="slds-p-right_large">
+                    <lightning-input class="underline" label="Indexeringsinformation" value={indexingInfo} read-only>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="6" class="slds-p-right_large">
+                    <lightning-input class="underline" label="Indexeringsstatus" value={indexStatus} read-only>
+                    </lightning-input>
+                </lightning-layout-item>
+
+            </lightning-layout>
+            </div>
+
+    </lightning-card>
+</template>

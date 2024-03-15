@@ -1,0 +1,7 @@
+<apex:page standardController="Lead" extensions="CreateLeadController" action="{!redirect}">
+    <apex:outputPanel id="thePanel" layout="block" rendered="{!LoadScript}">
+        <script language="javascript">
+        	sforce.one.createRecord("Lead", "{!TypeId}");
+        </script>
+    </apex:outputPanel>
+</apex:page>

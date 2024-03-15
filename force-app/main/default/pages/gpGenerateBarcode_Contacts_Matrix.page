@@ -1,0 +1,50 @@
+<apex:page standardController="Contact" extensions="gcGenerateBarcode_Contacts_Matrix"
+           recordSetVar="contacts" cache="false"
+           standardStylesheets="false" contentType="text/HTML" docType="html-5.0"
+           applyHtmlTag="false" renderAs="advanced_pdf" showHeader="false" sidebar="false">
+    <head>
+        <style type="text/css">
+            @page {
+                margin-top:0.1in;
+                margin-right:0.1in;
+                margin-bottom:0.1in;
+                margin-left:0.1in;
+                margin-top:0.1in;
+
+                size: 'A4';
+            }
+
+            .container {
+                width: 100%;
+            }
+
+            .rpt {
+                page-break-inside: avoid;
+                border: 1px black solid;
+            }
+            div.barcode div table{
+                margin:0 auto;
+            }
+            td.centered table{
+                margin:0 auto;
+            }
+        </style>
+    </head>
+
+    <body>
+    <apex:outputPanel rendered="{!selected[0] == null}">
+        <div style="text-align:center">Please select at least one contact, prior to clicking the button.</div>
+    </apex:outputPanel>
+
+    <div>
+        <table class="container">
+            <apex:repeat value="{!groupedContacts}" var="row">
+                <tr>
+                    
+                </tr>
+            </apex:repeat>
+        </table>
+
+    </div>
+    </body>
+</apex:page>

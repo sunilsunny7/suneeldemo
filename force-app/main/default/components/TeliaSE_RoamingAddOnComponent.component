@@ -1,0 +1,8 @@
+<apex:component controller="TeliaSE_RoamingAddOnComponent" access="global">
+    <apex:attribute name="resAddOnVF" description="Obj Id" type="String" assignTo="{!resAddOn}"/>
+    <apex:attribute name="tillAddOnVF" description="Obj Id" type="String" assignTo="{!tillAddOn}"/>
+    <apex:attribute name="productNameVF" description="Obj Id" type="String" assignTo="{!productName}"/>
+    <apex:attribute name="productCodeVF" description="Obj Id" type="String" assignTo="{!productCode}"/>
+	{!approverNameStr}
+    {!getTillEuopaSMPrice}
+</apex:component>

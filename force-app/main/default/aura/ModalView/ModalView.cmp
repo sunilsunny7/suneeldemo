@@ -1,0 +1,44 @@
+<aura:component controller="MC_OpportunityCustomButtonPopup" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+
+
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="AccId" type="String" default=""/>
+    <aura:attribute name="recordId" type="String" default=""/>
+    <div class = "slds-clearfix slds-card slds-p-around_medium">
+         <table class="slds-truncate slds-float--left">
+             <thead>
+             <th colspan="3" class="slds-text-align_center" style="border-bottom:1px solid black;">Nätverktjänster</th>
+             </thead>
+            <tr>
+               <td class="slds-p-around_small"> <button class="slds-button slds-button--brand" onclick="{!c.precheck}">Leveranskontroll</button></td>
+            
+                <td class="slds-p-around_small"><button class="slds-button slds-button--brand" onclick="{!c.precheckView}">Sammanställning</button></td>
+                
+                <td class="slds-p-around_small">
+                 <button class="slds-button slds-button--brand" onclick="{!c.guidedSelling}">Guided Selling</button></td>
+            </tr>
+
+        </table>       
+        
+    </div>
+    <aura:if isTrue="{!v.isOpen}">
+        <div role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-modal_medium slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.closeModel}">
+                        X
+                        <span class="slds-assistive-text">Avbryt</span>
+                    </button>
+                </div>
+                <div class="slds-modal__content" id="modal-content-id-1ed3" style="padding-left: 20px;padding-right: 20px;">
+                    <c:LConsentComponent recordId="{!v.AccId}"/>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" onclick="{!c.closeModel}" >Avbryt</button>
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>

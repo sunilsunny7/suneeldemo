@@ -1,0 +1,86 @@
+<aura:component controller="PendingApprovalRequestsController" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="pageheader" type="String" access="public" />
+    <aura:attribute name="isOpen" type="boolean" default="true" access="public" />
+    <aura:attribute name="frstbtn" type="String" access="public" />
+    <aura:attribute name="secBtn" type="String" access="public" />
+    <aura:attribute name="workItemId" type="String" access="public" />
+    <aura:attribute name="modalView" type="boolean" default = "false" access="public" />
+    <aura:attribute name="dataView" type="boolean" default = "true" access="public" />
+    <aura:attribute name="warningView" type="boolean" default = "false" access="public" />
+    <aura:attribute name="columns" type="list" description="Stores column names of the data table"/>
+    <aura:attribute name="data" type="object" description="Stores records displayed in the data table"/>
+    <aura:attribute name="sortedBy" type="string" description="Stores name of column used for sorting" default = "SubmittedDate"/>
+    <aura:attribute name="sortedDirection" type="string" description="Stores direction of sorting(ascending or descending)"/>
+    <aura:attribute name="dynamicheight" type="Integer" />
+    <aura:attribute name="recordcount" type="Integer" />
+    <aura:attribute name="pageNumber" type="Integer" default="1"/>
+    <aura:attribute name="pageSize" type="Integer" default="10"/>
+    <aura:attribute name="isLastPage" type="Boolean" default="false"/>
+    <aura:attribute name="dataSize" type="Integer" default="0"/>
+    
+    <lightning:spinner aura:id="spinnerId" variant="brand" size="medium"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+        <div class="slds-page-header" role="banner">
+     <div class="slds-grid slds-grid_align-spread">
+       <div class="slds-col">
+        <b><span class="slds-card__header-title.slds-truncate" >Väntar på Godkännanden
+             <img src="{!$Resource.ApprovalIcon}" width="45" height="35"/>
+            </span></b>
+           <div class="slds-col slds-align-bottom" >
+               <p class= "slds-text-body--small">
+                <span class="countSortedByFilteredBy">
+                       {!v.recordcount} items • Sorted by {!v.sortedBy}
+                   </span>
+               </p>
+           </div>
+          
+         </div>
+             <div class="slds-col">
+            <ui:inputSelect class="single" aura:id="InputSelectSingle" change="{!c.doInit}">
+                <ui:inputSelectOption text="myapp" label="My Pending Approvals" value="true"/>
+                <ui:inputSelectOption text="allapp" label="All Pending Approvals" />
+            </ui:inputSelect>
+        
+         </div>   
+            
+       </div>
+             <aura:if isTrue="{!v.warningView}">
+                                  <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+         <center>You have one or more requests to approve pending from last two days!</center>
+                 </div>
+                 </aura:if>
+    </div>    
+   <!--<div class="slds-scrollable_y slds-clearfix slds-card" style="{!'height:' + v.dynamicheight+'px'}"> -->
+      <aura:if isTrue="{!v.dataView}"> 
+          <div class="slds-scrollable_y slds-clearfix slds-card" style="{!'height:' + v.dynamicheight+'px'}">
+        <lightning:datatable aura:id="approvalTableId"
+                             keyField="workItemId"
+                             columns="{!v.columns}"
+                             data="{!v.data}"
+                             sortedBy="{!v.sortedBy}"
+                             sortedDirection="{!v.sortedDirection}"
+                             hideCheckboxColumn = "true"
+                             onsort="{!c.handleSort}"
+                             showRowNumberColumn="false"
+                             onrowaction= "{!c.handleRowAction}"/></div>
+          <div class="slds-clearfix">
+            <div class="slds-page-header" role="banner">
+                <div class="slds-float_right">            
+                    <lightning:button label="Prev" iconName="utility:chevronleft" iconPosition="left"
+                                      onclick="{!c.handlePrev}" disabled="{! v.pageNumber == 1}"/>
+                    <lightning:button label="Next" iconName="utility:chevronright" iconPosition="right"
+                                      disabled="{! v.isLastPage}" onclick="{!c.handleNext}"/>
+                </div>
+                <p class= "slds-text-body--small">Page {!v.pageNumber} | Showing records from {! ((v.pageNumber-1)*(v.pageSize)+1)+' to '+((v.pageNumber-1)*v.pageSize+v.dataSize)}</p>
+            </div>
+        </div>
+       <aura:set attribute="else">
+      <center>För närvarande finns inga godkännandebegäranden som behöver granskas av dig.</center>
+    </aura:set>
+  </aura:if> 
+      <!--</div>-->
+         
+        <aura:if isTrue="{!v.modalView}">
+    <c:ModelComponentBody workId="{!v.workItemId}" globalheader="{!v.pageheader}" firstbtn ="{!v.frstbtn}" secondbtn = "{!v.secBtn}" isOpen = "{!v.isOpen}"/> 
+    </aura:if>
+</aura:component>

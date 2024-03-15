@@ -1,0 +1,345 @@
+<template>
+    <template if:true={quote}>
+        <table class='slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-table_striped'>
+            <thead>
+                <tr class='slds-line-height_reset'>
+                    <th>Avtalsvillkor</th>
+                    <th>Default villkor</th>
+                    <th>Önskat villkor</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>Betalningsvillkor</td>
+                    <td>30 dagar</td>
+                    <td>{quote.PaymentTerm} dagar</td>
+                </tr>
+                
+                
+                <tr>
+                    <td>Fakturaavgift</td>
+                    <td>Ja</td>
+                    <td>{quote.Invoice}</td>
+                </tr>
+                
+                
+                <tr>
+                    <td>Benchmarking</td>
+                    <td>Nej</td>
+                    <td>{quote.Benchmark}</td>
+                </tr>
+                
+
+                <tr>
+                    <td>Indexklausul</td>
+                    <td>Ja</td>
+                    <td>{quote.IndexationClause}</td>
+                </tr>
+                
+                <template if:true={quote.COExist}>
+                    <tr>
+                        <td>Total antal siter för nätverktjänster</td>
+                        <td></td>
+                        <td>{quote.COUser}</td>
+                    </tr>
+                    <template if:true={quote.StartExist}>
+                        
+                        <template if:true={quote.ShowOCN}>
+                            <tr>
+                                <td>Rabatt på externa stadsnät</td>
+                                <td>0</td>
+                                <td>{quote.OCNDiscount}</td>
+                            </tr>
+                        </template>
+                        
+                    </template>
+                </template>
+            </tbody>
+        </table>
+        <br />
+    </template>
+    <div class='widthcontrol'>
+        <template if:true={qli}>
+            <table
+                   class='slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-table_striped'>
+                <thead>
+                    <tr class='slds-line-height_reset'>
+                        <th> </th>
+                        <th colspan=3>Engångsavgift</th>
+                        <th colspan=2>Månadsavgift</th>
+                        <th colspan=5>Minidebitering</th>
+                        <th colspan=2>Övrigt</th>
+                    </tr>
+                    <tr>
+                        <th>Produkt</th>
+                        <th>Listpris</th>
+                        <th>Önskat pris</th>
+                        <th>Golvpris</th>
+                        <th>Önskat pris (kr)/<br />rabatt (%)</th>
+                        <th>Golvpris</th>
+                        <th>Förmån %</th>
+                        <th>Minideb</th>
+                        <th>Tid att uppfylla</th>
+                        <th>Avtalstid</th>
+						<th>Bindningstid</th>
+                        <th>Antal användare</th>
+                        <th>Erbjudande</th>
+                        <th>Sub</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={qli} for:item='q' for:index='Index'>
+                        <tr key={q.Name}>
+                            <td class='slds-truncate'><b>{q.Name}</b></td>
+                            <td>	
+                                <template if:true={q.OfferingType}>	
+                                    <div>{q.OTDefault} kr</div>	
+                                </template>	
+                            </td>	
+                            <td>	
+                                <template if:true={q.OfferingType}>	
+                                    <div>{q.OTC} kr</div>	
+                                </template>	
+                            </td>	
+                            <td>	
+                                <template if:true={q.OfferingType}>	
+                                    <div>{q.OTFloorPrice} kr</div>	
+                                </template>	
+                            </td>	
+                            <td>	
+                                <template if:true={q.OfferingType}>	
+                                    <template if:true={q.isPercentProduct}>	
+                                        <p>{q.RequestedPercentage}
+                                            <template if:true={q.RequestedPercentage}>&nbsp;%</template>
+                                        </p>
+                                    </template>
+                                    <template if:false={q.isPercentProduct}>    
+                                        <p>{q.RequestedPrice} 
+                                            <template if:true={q.RequestedPrice}>&nbsp;kr</template>
+                                        </p>    
+                                    </template>	
+                                </template>	
+                            </td>	
+                            <td>	
+                                <template if:true={q.OfferingType}>	
+                                    <template if:true={q.isPercentProduct}>	
+                                        <p>{q.RCFloorPercentage}<!--&nbsp;%-->	
+                                            <template if:true={q.RCFloorPercentage}>&nbsp;%</template>
+                                        </p>	
+                                    </template>	
+                                    <template if:false={q.isPercentProduct}>	
+                                        <p>{q.RCFloorPrice}<!--&nbsp;kr-->
+                                            <template if:true={q.RCFloorPrice}>&nbsp;kr</template>
+                                        </p>	
+                                    </template>	
+                                </template>	
+                            </td>                           
+                                <td>
+                                    <template if:true={q.OfferingType}>	
+                                        <p>                                            
+                                            {q.BenefitAdjustment}
+                                                <template if:true={q.BenefitAdjustment}>&nbsp;%</template>                                            
+                                        </p>
+                                    </template>
+                                </td>                            
+                            <td>
+                                <p>
+                                    {q.miniCom}
+                                    
+                                    <template if:true={q.miniCom}>&nbsp;%
+                                    </template>
+                                    
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    
+                                    {q.Qtime}
+                                    
+                                    <template if:true={q.Qtime}>&nbsp;månader<!--months-->
+                                    </template>
+                                    
+                                </p>
+                            </td>
+                            <td>{q.CommitmentPeriod}</td>
+                            <td>{q.BindingTime}</td>
+                            <template if:true={q.wifi}>
+                                <td>{q.BaseQuantity}, {q.BaseQ}</td>
+                            </template>
+                            <template if:false={q.wifi}>
+                                <td>{q.BaseQuantity}</td>
+                            </template>
+                            
+                            <td>{q.Campaign}</td>
+                            <td>{q.SubsidisedVoice}</td>
+                        </tr>
+                        <template for:each={q.Child} for:item='b' for:index='Index'>
+                            
+                            <template if:true={b.ClusterItems}>
+                                <tr key={b.Name}>
+                                    <td class='slds-truncate'><b>{b.Name}</b></td>
+                                    
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <template for:each={b.ClusterItems} for:item='clusterItem' for:index='Index1'>
+                                    <tr key={clusterItem.Name}>
+                                        <td class='slds-p-left_medium slds-truncate'>{clusterItem.Name}</td>
+                                        <td>
+                                            <template if:false={clusterItem.isRoamingBasAddons}>
+                                                <p>
+                                                    {clusterItem.OTDefault}&nbsp;kr
+                                                </p>
+                                            </template>
+                                        </td>
+                                        <td>
+                                            <template if:false={clusterItem.isRoamingBasAddons}>
+                                                <p>{clusterItem.OTC}&nbsp;kr
+                                                </p>
+                                            </template>
+                                        </td>
+                                        <td>
+                                            <template if:false={clusterItem.isRoamingBasAddons}>
+                                                <p>
+                                                    {clusterItem.OTFloorPrice}
+                                                    <template if:false={clusterItem.OTFloorPrice}>&nbsp;kr
+                                                    </template>
+                                                </p>
+                                            </template>
+                                        </td>
+                                        <td>
+
+                                            <p>
+                                                <template if:false={clusterItem.isPercentProduct}>
+                                                    {clusterItem.RequestedPrice}
+                                                    <template if:true={clusterItem.RequestedPrice}>&nbsp;kr
+                                                    </template>
+                                                </template>
+                                                <template if:true={clusterItem.isPercentProduct}>
+                                                    {clusterItem.RequestedPercentage}
+                                                    <template if:true={clusterItem.RequestedPercentage}>&nbsp;%
+                                                    </template>
+                                                </template>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <template if:true={clusterItem.isPercentProduct}>
+                                                <p>
+                                                    {clusterItem.RCFloorPercentage}
+                                                    <template if:true={clusterItem.RCFloorPercentage}>&nbsp;%
+                                                    </template>
+                                                </p>
+                                            </template>
+                                            <template if:false={clusterItem.isPercentProduct}>
+                                                <p>
+                                                    {clusterItem.RCFloorPrice}
+                                                    <template if:true={clusterItem.RCFloorPrice}>&nbsp;kr
+                                                    </template>
+                                                </p>
+                                            </template>
+                                        </td>
+                                            <td>
+                                                <p>
+                                                    {clusterItem.BenefitAdjustment}
+                                                <template if:true={clusterItem.BenefitAdjustment}>&nbsp;%</template>
+                                                    
+                                                    
+                                                </p>
+                                            </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td>{clusterItem.Campaign}</td>
+                                        <td> </td>
+                                        
+                                        
+                                    </tr>
+                                </template> 
+                                
+                            </template>
+                            <template if:false={b.ClusterItems}>
+                                <tr key={b.Name}>
+                                    <td class='slds-p-left_medium slds-truncate'>{b.Name}</td>
+                                    <td>
+                                        <template if:false={b.isRoamingBasAddons}>
+                                            <p>
+                                                {b.OTDefault}&nbsp;kr
+                                            </p>
+                                        </template>
+                                    </td>
+                                    <td>
+                                        <template if:false={b.isRoamingBasAddons}>
+                                            <p>{b.OTC}&nbsp;kr
+                                            </p>
+                                        </template>
+                                    </td>
+                                    <td>
+                                        <template if:false={b.isRoamingBasAddons}>
+                                            <p>
+                                                {b.OTFloorPrice}&nbsp;kr
+                                            </p>
+                                        </template>
+                                    </td>
+                                    <td>
+                                        <p> 
+                                            <template if:true={b.isPercentProduct}>
+                                                <div>
+                                                {b.RequestedPercentage}<!--&nbsp;%-->
+                                                <template if:true={b.RequestedPercentage}>&nbsp;%</template>
+                                                </div>
+                                            </template>
+                                            <template if:false={b.isPercentProduct}>
+                                                <div>
+                                                {b.RequestedPrice}<!--&nbsp;kr-->
+                                                <template if:true={b.RequestedPrice}>&nbsp;kr</template>
+                                                </div>
+                                            </template>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <template if:true={b.isPercentProduct}>
+                                            <p>{b.RCFloorPercentage}&nbsp;%
+                                            </p>
+                                        </template>
+                                        <template if:false={b.isPercentProduct}>
+                                            <p>{b.RCFloorPrice}&nbsp;kr
+                                            </p>
+                                        </template>
+                                    </td>
+                                        <td>
+                                            <p>
+                                                {b.BenefitAdjustment}
+                                                <template if:true={b.BenefitAdjustment}>&nbsp;%</template>
+                                             </p>   
+                                        </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td>{b.Campaign}</td>
+                                    <td> </td>
+                                    
+                                </tr>
+                            </template>
+                        </template>
+                        
+                    </template>
+                </tbody>
+            </table>
+        </template>
+    </div>
+</template>

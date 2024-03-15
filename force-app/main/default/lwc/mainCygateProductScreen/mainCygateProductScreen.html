@@ -1,0 +1,101 @@
+<!--
+ - Created by kwn687 on 2022-06-15.
+ -->
+
+<!-- Main Cygate Product Screen -->
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container" >
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{chooseProducts}</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <template if:false={isLoaded} class="slds-modal__content">
+                <lightning-spinner variant="brand" size="large"> </lightning-spinner>
+            </template>
+            <template if:false={editTable}>
+                <c-cygate-product-select
+                        selected-products={productMap}
+                        main-products={mainProducts}
+                        all-cygate-products={allCygateProducts}
+                        all-cygate-products-edit={allCygateProducts}
+                        onmainproductchange={handleProductChange}
+                        oncygateproductchange={handleCygateChange}
+                        main-products-values={mainProductsValue}
+                        cygate-products-values={cygateProductsValue}
+                        main-products-label={mainProductsLabel}
+                        cygate-products-label={cygateProductsLabel}
+                >
+                </c-cygate-product-select>
+                <template if:true={dataIsLoaded}>
+                    <div style="padding-top: 20px !important;">
+                        <c-selected-cygate-products
+                                selected-products={productMap}
+                                onmainproductremove={handleProductRemove}
+                                main-products-label={mainProductsLabel}
+                                cygate-products-label={cygateProductsLabel}
+                        ></c-selected-cygate-products>
+                    </div>
+                </template>
+            </template>
+
+            <template if:true={editTable}>
+                <div>
+                    <c-product-create-table
+                            selected-products={productMap}
+                            product-count={allValueCount}
+                            onpassproducts={handleProductFieldsFill}
+                            onpasssave={handleSaveButton}
+                            main-products-label={mainProductsLabel}
+                            cygate-products-label={cygateProductsLabel}
+                    ></c-product-create-table>
+                </div>
+            </template>
+        </div>
+
+
+            <div class="slds-modal__footer">
+            <lightning-button
+                    variant="neutral"
+                    label={cancel}
+                    onclick={handleCancel}
+            ></lightning-button>
+            <template if:false={editTable}>
+                <lightning-button
+                        variant="brand"
+                        class="slds-m-left_x-small"
+                        label={add}
+                        type="submit"
+                        onclick={handleAddMore}
+                        disabled={disabledAddMore}
+                ></lightning-button>
+                <lightning-button
+                        variant="brand"
+                        class="slds-m-left_x-small"
+                        label={next}
+                        type="submit"
+                        onclick={handleSubmit}
+                        disabled={disabledNext}
+                ></lightning-button>
+            </template>
+            <template if:true={editTable}>
+                <lightning-button
+                        variant="brand"
+                        class="slds-m-left_x-small"
+                        label={back}
+                        type="submit"
+                        onclick={handleBack}
+                ></lightning-button>
+                <lightning-button
+                        variant="brand"
+                        class="slds-m-left_x-small"
+                        label={save}
+                        type="submit"
+                        onclick={handleSave}
+                        disabled={disabledNext}
+                ></lightning-button>
+            </template>
+            </div>
+        </div>
+    </section>
+</template>

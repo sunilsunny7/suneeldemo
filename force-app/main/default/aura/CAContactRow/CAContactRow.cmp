@@ -1,0 +1,25 @@
+<aura:component controller="CAContactListController">
+    <aura:attribute name="IsCampaignMember" type="Boolean"/>
+    <aura:attribute name="IsLocked" type="Boolean" default="false"/>
+    <aura:attribute name="Campaign" type="Campaign"/>
+    <aura:attribute name="Contact" type="Contact"/>
+    <tr class="{!v.IsCampaignMember ? 'slds-hint-parent is-member' : 'slds-hint-parent is-not-member'}" > 
+        <td class="slds-truncate" data-label="Name"><a onclick="{!c.goToContact}"> {!v.Contact.Name} </a></td>
+        <td class="slds-truncate" data-label="Phone"> {!v.Contact.Phone} </td>
+        <td class="slds-truncate" data-label="Phone"> <a href="{!'mailto:' + v.Contact.Email}">{!v.Contact.Email}</a> </td>
+        <td>    
+            <div class="slds-align--absolute-center">
+                <aura:if isTrue="{!v.IsCampaignMember}">
+                    <button class="slds-button button-effect" onclick="{!c.removeFromCampaignClick}" aria-haspopup="true">                            
+                        <c:svgIcon svgPath="/resource/sldsnew/icons/utility-sprite/svg/symbols.svg#clear" class="slds-icon-text-error"  size="small" name="Action" />      
+                    </button>
+                    <aura:set attribute="else">
+                        <button class="slds-button button-effect" onclick="{!c.addToCampaignClick}"  aria-haspopup="true">                            
+                            <c:svgIcon svgPath="/resource/sldsnew/icons/utility-sprite/svg/symbols.svg#new" class="slds-icon-text-default" size="small" name="Action" />   
+                        </button>
+                    </aura:set>
+                </aura:if>
+            </div>
+        </td>
+    </tr> 
+</aura:component>

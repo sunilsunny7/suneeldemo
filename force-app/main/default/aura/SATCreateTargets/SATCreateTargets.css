@@ -1,0 +1,123 @@
+.THIS{
+    font-family: "Salesforce Sans",Arial,sans-serif;
+}
+
+.THIS table.dataTable.no-footer {
+    border-bottom:1px solid #d8dde6;
+}
+
+.THIS table.dataTable thead th{
+    border-bottom:none;
+    padding: 8px 10px;
+}
+
+.THIS .slds-checkbox--add-button .slds-checkbox--faux{
+    border-color: transparent;
+    background: #4bca81;
+    background-color: rgb(75, 202, 129);
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto auto;
+}
+
+
+.THIS .slds-checkbox--add-button .slds-checkbox--faux::before{
+    top: -.125rem;
+    left: .4375rem;
+    width: .1875rem;
+    height: 1.0625rem;
+    transform: rotate(40deg);
+    background: #fff;
+    
+}
+.THIS .slds-checkbox--add-button .slds-checkbox--faux::after{
+    top: .3125rem;
+    left: -.625rem;
+    width: .625rem;
+    height: .1875rem;
+    transform: rotate(36deg);
+    background: #fff;
+    
+}
+
+.THIS  .slds-checkbox--add-button .slds-checkbox--faux:focus:not([disabled]),.THIS .slds-checkbox--add-button .slds-checkbox--faux:hover:not([disabled]){
+    background: #4bca81;
+}
+
+.THIS table.dataTable tbody > tr{
+    background-color:#F5F5F5;
+}
+
+.THIS table.dataTable tbody > tr.selected{
+    background-color:#FFF;
+}
+
+.THIS td{
+    vertical-align: middle;
+}
+
+
+.THIS .selected .slds-checkbox--add-button .slds-checkbox--faux::after {
+    width: .875rem;
+    height: .125rem;
+    transform: none;
+}
+
+.THIS .selected .slds-checkbox--add-button .slds-checkbox--faux::before {
+    height: 0.875rem;
+    width: 0.125rem;
+    transform: none;
+}
+
+.THIS .selected .slds-checkbox--add-button .slds-checkbox--faux::after, .THIS .selected .slds-checkbox--add-button .slds-checkbox--faux::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: #0070d2;
+    transform: none;
+}
+
+.THIS .selected .slds-checkbox--add-button .slds-checkbox--faux {
+    width: 2rem;
+    height: 2rem;
+    position: relative;
+    display: inline-block;
+    border: 1px solid #d8dde6;
+    border-radius: .25rem;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.THIS .slds-modal__footer {
+    border-top: none;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    padding: .75rem 1rem;
+    background-color: #fff;
+    text-align: right;
+    box-shadow: none;
+}
+
+.THIS .dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.THIS #account-table_filter input{
+    height:30px;
+    margin:10px 0px 10px 10px;
+}
+
+.THIS #account-table_length select{
+    height: 30px;
+    margin: 10px;
+    
+}

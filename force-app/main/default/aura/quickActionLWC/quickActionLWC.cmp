@@ -1,0 +1,14 @@
+<!--
+ - Created by kwn687 on 2023-01-02.
+ -->
+
+<aura:component description="quickActionLWC"  implements="force:lightningQuickActionWithoutHeader,force:hasRecordId">
+    <aura:html tag="style">
+        .cuf-content { padding: 0 0rem !important; } .slds-p-around--medium {
+        padding: 0rem !important; } .slds-modal__content{ height:auto !important;
+        max-height:100% !important; min-height:500px !important; overflow:auto !important} .slds-modal__container{ min-width:70rem
+        !important; max-width:100% !important;}
+    </aura:html>
+    <aura:attribute name="recordId" type="String"></aura:attribute>
+        <c:mainCygateProductScreen recordId ="{!v.recordId}" onmodalclose="{!c.handleClose}"/>
+</aura:component>

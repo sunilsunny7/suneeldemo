@@ -1,0 +1,15 @@
+<apex:page controller="LoginHistoryDashboardController">
+    <apex:pageBlock title="Applikationstopplista" >
+        <apex:pageBlockTable value="{!appList}" var="c">    
+            <apex:column value="{!c.applicationName}" headerValue="Applikationsnamn" />
+            <apex:column value="{!c.nrOfUsers}" headerValue="Antal Användare"/>
+            <apex:column headerValue="% av aktiva användare" >
+                {!ROUND(c.applicationPercentage,1)} %
+            </apex:column>
+        </apex:pageBlockTable>
+        <apex:outputLabel for="ActiveUsers"> Antal aktiva användare: </apex:outputLabel>
+         <apex:outputText id="ActiveUsers">
+            {!nrOfActiveUsers}
+        </apex:outputText>
+    </apex:pageBlock>
+</apex:page>

@@ -1,0 +1,36 @@
+<aura:component controller="C2BComponentController" implements="flexipage:availableForAllPageTypes,force:appHostable,force:hasRecordId" access="global">
+ <ltng:require styles="/resource/sldsnew/styles/salesforce-lightning-design-system.css" />
+    <aura:attribute name="OrgNumber" type="String" default="" />
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+    <aura:if isTrue="{!!empty(v.recordId)}">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-small-size--1-of-2 slds-size--1-of-1 slds-box slds-box--small">
+                <c:C2BMobileSubComponent />
+            </div>
+            <div class="slds-small-size--1-of-2 slds-size--1-of-1 slds-box slds-box--small">
+                <c:C2BBroadbandComponent />
+            </div>
+            <div class="slds-small-size--1-of-2 slds-size--1-of-1 slds-box slds-box--small">
+                <c:C2BFunctionComponent />
+            </div>
+        </div>
+    </aura:if>
+    <aura:set attribute="else">
+        <div class="slds-notify_container">
+            <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert">
+                <span class="slds-assistive-text">Error</span>
+                <h2>
+                    <c:svgIcon svgPath="/resource/slds213/assets/icons/utility-sprite/svg/symbols.svg#ban" class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small" size="small" name="Action" /> 
+                    Call Activity RecordId is missing. This component needs to be on Account record page.</h2>
+            </div>
+        </div>
+    </aura:set>
+</aura:component>

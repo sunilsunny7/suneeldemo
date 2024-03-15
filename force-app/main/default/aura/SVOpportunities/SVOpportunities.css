@@ -1,0 +1,28 @@
+.THIS{
+    font-family: "Salesforce Sans",Arial,sans-serif;
+}
+
+.THIS table.dataTable.no-footer {
+    border-bottom:1px solid #d8dde6;
+}
+
+.THIS table.dataTable thead th{
+    border-bottom:none;
+    padding: 8px 10px;
+}
+
+.THIS .selected .slds-checkbox--add-button .slds-checkbox--faux:focus:not([disabled]),.THIS .selected .slds-checkbox--add-button .slds-checkbox--faux:hover:not([disabled]){
+    background: #4bca81;
+}
+
+.THIS table.dataTable tbody > tr.selected{
+    background-color:#F5F5F5;
+}
+
+.THIS td{
+    vertical-align: middle;
+}
+
+.THIS #opp-table_info{
+    padding-left:10px;
+}

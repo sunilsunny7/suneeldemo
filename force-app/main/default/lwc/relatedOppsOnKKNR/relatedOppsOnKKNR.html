@@ -1,0 +1,34 @@
+<!--
+ - Created by wgm6247 on 2023-04-07.
+ -->
+
+<!-- Related Opps On Kknr -->
+<template>
+    <!-- Error Panel -->
+    <template if:true={error}>
+        <c-error-panel-component errors={error} type="inlineMessage"></c-error-panel-component>
+    </template>
+    <!-- Error Panel ENDS-->
+    <template if:false={error}>
+        <lightning-card>
+            <h3 slot="title">
+                <lightning-icon icon-name="standard:opportunity" size="medium"
+                                style='margin-right:10px'></lightning-icon>
+                <strong>Affärsmöjligheter</strong>
+            </h3>
+            <div style="margin-left:30px">
+                <p>
+                    <lightning-formatted-url value={relatedOppReportLink} label="Affärer på underliggande konton"
+                                             target="_blank" style="font-weight:bold"></lightning-formatted-url>
+                </p>
+                <template if:true={visible}>
+                    <p>
+                        <lightning-formatted-url value={relatedOppBusinessReportLink}
+                                                 label="Öppna Affärer på underliggande Org" target="_blank"
+                                                 style="font-weight:bold"></lightning-formatted-url>
+                    </p>
+                </template>
+            </div>
+        </lightning-card>
+    </template>
+</template>

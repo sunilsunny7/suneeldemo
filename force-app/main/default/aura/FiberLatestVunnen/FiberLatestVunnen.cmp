@@ -1,0 +1,65 @@
+<aura:component controller="LatestClosedOpportunities" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="opportunity" type="List" />
+    <aura:attribute name="dynamicheight" type="Integer" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+        <div class="slds-scrollable_y slds-clearfix slds-card" style="{!'height:' + v.dynamicheight+'px'}">
+		 <table class="slds slds-table">
+			 <tr>
+
+				<td class="slds-page-header__title" style="height: 40px;padding-left:25px">{!$Label.c.Connected_Smart_Building_Latest_Won_Opportunities}<img src="{!$Resource.WonCupIcon}" class=".slds-avatar_medium" style="height:40px;width:100px"/>
+
+				 </td>
+			 </tr>
+		</table>
+		<table class="slds slds-table slds-table--bordered slds-table--cell-buffer">
+			<thead>
+				<tr class="slds-text-heading--label">
+					<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Opportunity Owner">Affärsmöjlighetsägare</div></th>
+                    <th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Account Name">Kontonamn</div></th>
+					<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Number of Ports">Antal portar</div></th>
+					<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="NS INTÄKTER">NS INTÄKTER</div></th>
+					<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="CS INTÄKTER">CS INTÄKTER</div></th>
+					<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Vunnen Time Stamp">Datum</div></th>
+					<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="FIRA">FIRA</div></th>
+
+
+                    
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Use the Apex model and controller to fetch server side data -->
+				<aura:iteration items="{!v.opportunity}" var="listofclosedopptys">
+					<tr>
+						
+                        <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Owner.Name}"><img src="{!listofclosedopptys.Owner.SmallPhotoUrl}" height="35" width="25"/>&nbsp; {!listofclosedopptys.Owner.Name}</div></td>
+                  		<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Account.Name}">{!listofclosedopptys.Account.Name}</div></td>
+						<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Number_of_Ports__c}"><ui:outputCurrency aura:id="curr" value="{!listofclosedopptys.Number_of_Ports__c}" format="###,###,###,##0"/></div></td>
+						<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Revenue_NS__c}" > <ui:outputCurrency aura:id="curr" value="{!listofclosedopptys.Revenue_NS__c}" format="###,###,###,##0 kr"/></div></td>
+						<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Revenue_CS__c }"><ui:outputCurrency aura:id="curr" value="{!listofclosedopptys.Revenue_CS__c}" format="###,###,###,##0 kr"/></div></td>
+						<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Vunnen_Time_Stamp__c }" ><ui:outputDateTime value="{!listofclosedopptys.Vunnen_Time_Stamp__c }" format="YYYY-MM-DD"/></div></td>
+						<td><div>
+
+
+								<lightning:buttonStateful
+										state="{!listofclosedopptys.Like_Status__c}"
+										variant="text"
+										labelWhenOff="Like"
+										labelWhenOn="Liked"
+										tabindex="{!listofclosedopptys.Id}"
+										iconNameWhenOff="utility:like"
+										iconNameWhenOn="utility:like"
+										onclick="{! c.handleClick }"
+										class="ColorBlue"
+								/><br/><lightning:button variant="base" label="{!listofclosedopptys.Number_of_Likes__c}" title="{!listofclosedopptys.Id}" onclick="{!c.handleLikeView}"/>
+								<!-- {!listofclosedopptys.Number_of_Likes__c}-->
+							</div></td>
+					</tr>
+				</aura:iteration>
+			</tbody>
+		</table>
+    </div>
+
+	<aura:if isTrue="{!v.modalView}">
+		<c:ModalLikeView OppId1="{!v.OppId}"/>
+	</aura:if>
+</aura:component>

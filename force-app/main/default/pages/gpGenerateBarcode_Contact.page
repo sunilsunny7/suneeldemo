@@ -1,0 +1,38 @@
+<apex:page standardController="Contact" cache="false"
+           standardStylesheets="false" contentType="text/HTML" docType="html-5.0"
+           applyHtmlTag="false" renderAs="pdf" showHeader="false" sidebar="false">
+    <head>
+        <style type="text/css">
+            @page {
+                margin-top:0.1in;
+                margin-right:0.1in;
+                margin-bottom:0.1in;
+                margin-left:0.1in;
+                margin-top:0.1in;
+                size:{!NULLVALUE($CurrentPage.parameters.pageSize, '4in 2.5in')};
+                border: 1px black solid;
+            }
+            .rpt{
+                margin: 0 auto;
+                margin-top: 10%;
+                width: 100%;
+                page-break-inside: avoid;
+            }
+
+            div.barcode div table{
+                margin:0 auto;
+            }
+            td.centered table{
+                margin:0 auto;
+            }
+            body {
+                height: 100%;
+            }
+
+        </style>
+    </head>
+
+    <body>
+    
+    </body>
+</apex:page>

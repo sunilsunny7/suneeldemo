@@ -1,0 +1,90 @@
+<template>
+    <div style="display: inline-block">
+        <table style="border-left:1px solid rgb(221, 219, 218); border-right:1px solid rgb(221, 219, 218); table-layout:fixed;"
+            class="slds-table slds-table_cell-buffer slds-m-horizontal_small slds-table_bordered">
+            <thead>
+                <tr>
+                    <th scope="col" style="width:20%; padding-left:5px; padding-right:5px; font-size:75%" class="slds-text-align_center">
+                        Produkter
+                    </th>
+                    <th scope="col" style="width:10%; padding-left:5px; padding-right:5px; font-size:75%" class="slds-text-align_center">
+                        Offertkvatitet
+                    </th>
+                    <template if:true={processedGroupInfo}>
+                        <template for:each={processedGroupInfo} for:item="grp">
+                            <th scope="col" key={grp.GroupId} style="width:auto; padding-left:5px; padding-right:5px; font-size:75%"
+                                class="slds-text-align_center slds-cell-wrap">{grp.GroupName}</th>
+                        </template>
+                    </template>
+                </tr>
+            </thead>
+            <tbody>
+                <template if:true={OtherPdt} for:each={OtherPdt} for:item="item" for:index='index'>
+                    <tr key={item}>
+                        <td style="width:20%" class="slds-border_bottom slds-m-left_medium slds-cell-wrap">
+                            <div if:true={item.IsRoot} class="slds-m-left_xx-small ">
+                                {item.Product2Name}
+                            </div>
+                            <div if:true={item.IsStand} class="slds-m-left_medium" style="color: #0176d3">
+                                {item.Product2Name}
+                            </div>
+                            <div if:true={item.IsSub} class="slds-m-left_medium">
+                                {item.Product2Name}
+                            </div>
+                            <div if:true={item.IsLeaf} class="slds-m-left_x-large" style="color: #0176d3">
+                                {item.Product2Name}
+                            </div>
+                        </td>
+                        <td if:true={item.IsStand} class="slds-border_bottom slds-text-align_center"
+                            style="color:#0176d3; width:10%">
+                            {item.FACallOffQuantity}
+                        </td>
+                        <td if:true={item.IsLeaf} class="slds-border_bottom slds-text-align_center"
+                            style="color:#0176d3; width:10%">
+                            {item.FACallOffQuantity}
+                        </td>
+                        <td if:true={item.IsRoot} class="slds-border_bottom ">
+                        </td>
+                        <td if:true={item.IsSub} class="slds-border_bottom ">
+                        </td>
+
+                        <template if:true={processedGroupInfo}>
+                            <template for:each={processedGroupInfo} if:true={item.IsStand} for:item="grp">
+                                <td style="width:auto; padding-left:5px; padding-right:5px;" class="slds-border_bottom " key={grp.GroupId}>
+                                    <lightning-input variant="label-hidden" type="number" data-groupid={grp.GroupId}
+                                        data-quote={index} data-name={grp.GroupName} value="" onchange={methodUpdate}>
+                                    </lightning-input>
+                                </td>
+                            </template>
+                            <template for:each={processedGroupInfo} if:true={item.IsRoot} for:item="grp">
+                                <td style="width:auto; padding-left:5px; padding-right:5px;" class="slds-border_bottom " key={grp.GroupId}>
+                                </td>
+                            </template>
+                            <template for:each={processedGroupInfo} if:true={item.IsSub} for:item="grp">
+                                <td style="width:auto; padding-left:5px; padding-right:5px;" class="slds-border_bottom " key={grp.GroupId}></td>
+                            </template>
+                            <template for:each={processedGroupInfo} if:true={item.IsLeaf} for:item="grp">
+                                <td style="width:auto; padding-left:5px; padding-right:5px;" class="slds-border_bottom" key={grp.GroupId}>
+                                    <lightning-input class="customInput" style="padding-left:5px; padding-right:5px;" variant="label-hidden" type="number"
+                                        data-groupid={grp.GroupId} data-quote={index}
+                                        data-name={grp.GroupName} value="" onchange={methodUpdate}></lightning-input>
+                                </td>
+                            </template>
+                        </template>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+    <div class="slds-grid slds-m-top_large">
+        <div class="slds-col slds-size_2-of-3"></div>
+        <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_outline-brand slds-button_stretch"
+                onclick={previousStep}>Tillbaka</button>
+        </div>
+        <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_brand slds-button_stretch" onclick={nextStep}>Nästa</button>
+
+        </div>
+    </div>
+</template>

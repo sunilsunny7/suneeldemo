@@ -1,0 +1,491 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="EditMode" type="Boolean" default="false"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="saved" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="showSpinner" type="Boolean" default="false"/>
+    <div class="slds-size_1-of-1 slds-form-element_readonly"/>
+    <div class="slds-box slds-align_absolute-center" style="height: 5rem;">
+        <lightning:buttonGroup class="slds-m-around_medium">
+            <lightning:button label="Save" onclick="{!c.SaveAccount}" aura:id="SavebtnId" class="slds-hide"/>
+            <lightning:button label="Edit" onclick="{!c.editbtn}" aura:id="editbtnId"/>
+            <lightning:button label="Cancel" onclick="{!c.btncancel}" aura:id="cancelbtnId" class="slds-hide"/>
+        </lightning:buttonGroup>
+    </div>
+
+    <div aura:id="spinner" class="slds-align_absolute-center slds-is-relative">
+        <aura:if isTrue="{!v.showSpinner}">
+            <lightning:spinner size="medium" variant="brand"/>
+        </aura:if>
+    </div>
+    <div class="slds-card slds-box">
+        <div class="slds-section" aura:id="div-id1">
+            <h3 class="slds-section__title">
+                <button aria-controls="expando-unique-id1" aria-expanded="true"
+                        class="slds-button slds-section__title-action" onclick="{!c.sectionOne}">
+                    <lightning:icon iconName="utility:chevrondown" size="xx-small" alternativeText="edit"
+                                    class="slds-section__title-action-icon slds-button__icon slds-button__icon_left test-id__section-header-icon section-icon slds-m-right_x-small slds-button__icon slds-icon-utility-chevrondown slds-icon_container forceIcon"/>
+                    <span class="slds-truncate" title="Section Title">Kammarkollegiet</span>
+                </button>
+            </h3>
+            <div aria-hidden="false" class="slds-section__content" id="expando-unique-id1">
+                <aura:if isTrue="{!v.EditMode == true}">
+                    <lightning:recordEditForm aura:id="editForm1" recordId="{!v.recordId}" objectApiName="Case"
+                                              onsuccess="{!c.handleOnSuccess}" onerror="{!c.handleOnError}">
+                        <fieldset class="slds-form-element slds-form-element_compound">
+                            <div class="slds-form-element__control">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:inputField fieldName="Customer_reference_number__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:inputField fieldName="Status"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:inputField fieldName="Sales_Rep__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:inputField fieldName="Framework_agreements__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:inputField fieldName="Bid__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:inputField fieldName="Motivation__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-form-element__label">Files with explanation attached
+                                                    <lightning:helptext
+                                                            content="Om nej - Bifoga ev. filer med motivering"
+                                                            class="customIcon"/>
+                                                </div>
+                                                <lightning:inputField fieldName="Files_with_explanation_attached__c"
+                                                                      variant="label-hidden"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:inputField fieldName="Bid_date__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:inputField fieldName="Won_or_lost_bid__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:inputField fieldName="Who_won__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:inputField fieldName="FFU_customer_date__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </lightning:recordEditForm>
+                    <aura:set attribute="else">
+                        <lightning:recordViewForm aura:id="viewForm" recordId="{!v.recordId}" objectApiName="Case">
+                            <div class="slds-form-element slds-form-element_compound">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Customer_reference_number__c"/>
+                                                <div class="slds-size_3-of-4 slds-form-element_readonly"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2 slds-form-element_readonly">
+                                        <div class="slds-form-element ">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Status"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-size_3-of-4 slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Sales_Rep__c"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Framework_agreements__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Bid__c"/>
+                                                <div class="slds-size_3-of-4 slds-form-element_readonly"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element ">
+                                            <div class="slds-form-element__control slds-form-element_readonly">
+                                                <lightning:outputField fieldName="Motivation__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Files_with_explanation_attached__c"/>
+                                                <div class="slds-size_3-of-4 slds-form-element_readonly"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2 slds-form-element_readonly">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Bid_date__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-size_3-of-4 slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Won_or_lost_bid__c"
+                                                                       class="slds-form-element"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField aura:id="AddressState" fieldName="Who_won__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-size_3-of-4 slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="FFU_customer_date__c"
+                                                                       class="slds-form-element"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning:recordViewForm>
+                    </aura:set>
+                </aura:if>
+            </div>
+        </div>
+        <!-- For Other Section -->
+        <div class="slds-section" aura:id="div-id2">
+            <h3 class="slds-section__title">
+                <button aria-controls="expando-unique-id2" aria-expanded="true"
+                        class="slds-button slds-section__title-action" onclick="{!c.sectionTwo}">
+                    <lightning:icon iconName="utility:chevrondown" size="xx-small" alternativeText="edit"
+                                    class="slds-section__title-action-icon slds-button__icon slds-button__icon_left test-id__section-header-icon section-icon slds-m-right_x-small slds-button__icon slds-icon-utility-chevrondown slds-icon_container forceIcon"/>
+                    <span class="slds-truncate" title="Section Title">Vilka företag deltog i anbudet</span>
+                </button>
+            </h3>
+            <div aria-hidden="false" class="slds-section__content" id="expando-unique-id2">
+                <aura:if isTrue="{!v.EditMode == true}">
+                    <lightning:recordEditForm aura:id="editForm2" recordId="{!v.recordId}" objectApiName="Case">
+                        <fieldset class="slds-form-element slds-form-element_compound">
+                            <div class="slds-form-element__control">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-form-element__label">A3
+                                                    <lightning:helptext
+                                                            content="Om nej - Bifoga ev. filer med motivering"
+                                                            class="customIcon"/>
+                                                </div>
+                                                <lightning:inputField fieldName="A3__c" variant="label-hidden"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-form-element__label">IP-Only
+                                                    <lightning:helptext
+                                                            content="Om nej - Bifoga ev. filer med motivering"
+                                                            class="customIcon"/>
+                                                </div>
+                                                <lightning:inputField fieldName="IP_Only__c" variant="label-hidden"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label">Atea
+                                                <lightning:helptext content="Om nej - Bifoga ev. filer med motivering"
+                                                                    class="customIcon"/>
+                                            </div>
+                                            <lightning:inputField fieldName="Atea__c" variant="label-hidden"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label">NetNordic
+                                                <lightning:helptext content="Om nej - Bifoga ev. filer med motivering"
+                                                                    class="customIcon"/>
+                                            </div>
+                                            <lightning:inputField fieldName="NetNordic__c" variant="label-hidden"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label">Borderlight
+                                                <lightning:helptext content="Om nej - Bifoga ev. filer med motivering"
+                                                                    class="customIcon"/>
+                                            </div>
+                                            <lightning:inputField fieldName="Borderlight__c" variant="label-hidden"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label">Techstep
+                                                <lightning:helptext content="Om nej - Bifoga ev. filer med motivering"
+                                                                    class="customIcon"/>
+                                            </div>
+                                            <lightning:inputField fieldName="Techstep__c" variant="label-hidden"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label">Connectel
+                                                <lightning:helptext content="Om nej - Bifoga ev. filer med motivering"
+                                                                    class="customIcon"/>
+                                            </div>
+                                            <lightning:inputField fieldName="Connectel__c" variant="label-hidden"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label">Tele2
+                                                <lightning:helptext content="Om nej - Bifoga ev. filer med motivering"
+                                                                    class="customIcon"/>
+                                            </div>
+                                            <lightning:inputField fieldName="Tele2__c" variant="label-hidden"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label">Evry
+                                                <lightning:helptext content="Om nej - Bifoga ev. filer med motivering"
+                                                                    class="customIcon"/>
+                                            </div>
+                                            <lightning:inputField fieldName="Evry__c" variant="label-hidden"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label">Telenor
+                                                <lightning:helptext content="Om nej - Bifoga ev. filer med motivering"
+                                                                    class="customIcon"/>
+                                            </div>
+                                            <lightning:inputField fieldName="Telenor__c" variant="label-hidden"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__label">Aranya
+                                                <lightning:helptext content="Om nej - Bifoga ev. filer med motivering"
+                                                                    class="customIcon"/>
+                                            </div>
+                                            <lightning:inputField fieldName="Aranya__c" variant="label-hidden"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </lightning:recordEditForm>
+                    <aura:set attribute="else">
+                        <lightning:recordViewForm aura:id="viewForm" recordId="{!v.recordId}" objectApiName="Case">
+                            <div class="slds-form-element_compound">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-size_3-of-4 slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="A3__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="IP_Only__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-size_3-of-4 slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Atea__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="NetNordic__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-size_3-of-4 slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Borderlight__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Techstep__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-size_3-of-4 slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Connectel__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Tele2__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-size_3-of-4 slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Evry__c" class="slds-form-element"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Telenor__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element slds-form-element_readonly">
+                                            <div class="slds-form-element__control">
+                                                <lightning:outputField fieldName="Aranya__c"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning:recordViewForm>
+                    </aura:set>
+                </aura:if>
+            </div>
+        </div>
+    </div>
+</aura:component>

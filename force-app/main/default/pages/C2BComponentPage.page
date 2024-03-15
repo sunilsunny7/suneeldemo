@@ -1,0 +1,34 @@
+<apex:page controller="C2BComponentController">
+    <apex:stylesheet value="/resource/slds213/assets/styles/salesforce-lightning-design-system.min.css"/>
+    
+    <apex:includeLightning />
+    
+    <div class="slds-page-header" role="banner">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media slds-no-space slds-grow">
+                    <div class="slds-media__figure">
+                        
+                    </div>
+                    <div class="slds-media__body">
+                        <p class="slds-text-title--caps slds-line-height--reset">{!Record.RecordType.Name}</p>
+                        <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="Record Title">{!Record.Name}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="lightning" /> 
+    <script>
+    console.log("hit");
+    $Lightning.use("c:C2BComponentApp", function() {
+        $Lightning.createComponent("c:C2BComponent",
+                                   { recordId : "{!Record.Id}" },
+                                   "lightning",
+                                   function(cmp) {
+                                       console.log("{!Record.Id}");
+                                   });
+    });
+    </script>
+</apex:page>

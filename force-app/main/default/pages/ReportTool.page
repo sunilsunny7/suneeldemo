@@ -1,0 +1,164 @@
+<apex:page controller="ReportToolController" cache="true" docType="html-5.0" >
+    <style type="text/css">
+        .empty-column-content {
+        display: none;
+        }
+        
+        .dataRow{
+        background-color: #f8f8ff;
+        }
+        
+        .dataRow:hover{
+        background-color: #dfdfff !important;
+        }
+        
+        .dataRow.odd{
+        background-color: #FFF;
+        }
+        
+    </style>
+    
+    <apex:form >    
+        <apex:pageBlock title="Filter Options">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!LoadReport}" value="Load Report" />
+                <apex:commandButton action="{!ExportReport}" value="Export Report" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="1"  >
+                <apex:inputField value="{!rts.EventRecordType_Id__c}" id="EventRecordType_Id__c" />
+                <apex:inputField value="{!rts.TaskRecordType_Id__c}" id="TaskRecordType_Id__c" />
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection columns="2" collapsible="true">
+                <apex:inputField value="{!rts.Campaign__c}" type="text" id="Campaign__c" />
+                <apex:inputField value="{!rts.Presented_Cloud_Datacenter__c}" id="Presented_Cloud_Datacenter__c" />
+                
+                <apex:inputField value="{!rts.Opportunity_Campaign__c}" type="text" id="Opportunity_Campaign__c" />
+                <apex:inputField value="{!rts.Presented_Cloudananalys__c}"  id="Presented_Cloudananalys__c" />
+                
+                <apex:inputField value="{!rts.Start_Date_Time__c}" type="datetime-local" id="Start_Date_Time__c" />
+                <apex:inputField value="{!rts.Sambesok__c}"  id="Sambesok__c" />
+                
+                <apex:inputField value="{!rts.End_Date_Time__c}" type="datetime-local" id="End_Date_Time__c" />
+                <apex:outputText value="" />
+                
+                <apex:inputField value="{!rts.Event_Type__c}" type="text" id="Event_Type__c" />
+                <apex:inputField value="{!rts.Task_Type__c}" type="text" id="Task_Type__c" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:pageBlock title="Preview - 20 Rows">
+        <div style="overflow:auto; width:100%; height:800px; position:relative;">
+            <div style="position:absolute; height:700px;">
+                <apex:outputPanel rendered="{!IsLoaded}" > 
+                    <apex:dataTable value="{!getActivityList}"  var="aw" style="width:4000px" id="dataTable" rowClasses="dataRow odd,dataRow even" styleClass="list" rules="all">          
+                        <apex:column width="200px">
+                            <apex:facet name="header">EventId</apex:facet>
+                            <apex:outputText value="{!aw.event.Id}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Event Type</apex:facet>
+                            <apex:outputText value="{!aw.event.Type}"/>
+                        </apex:column>
+                        
+                                   <apex:column width="200px">
+                            <apex:facet name="header">TaskId</apex:facet>
+                            <apex:outputText value="{!aw.task.Id}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Task Type</apex:facet>
+                            <apex:outputText value="{!aw.task.Type}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">AssignedTo</apex:facet>
+                            <apex:outputText value="{!aw.event.Owner.Name} {!aw.task.Owner.Name}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Subject</apex:facet>
+                            <apex:outputText value="{!aw.event.Subject} {!aw.task.Subject}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Contact Visited</apex:facet>
+                            <apex:outputText value="{!aw.event.Who.Name} {!aw.task.Who.Name}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Account of Visited</apex:facet>
+                            <apex:outputText value="{!aw.Account.Name}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Customer Status</apex:facet>
+                            <apex:outputText value="{!aw.event.Customer_status__c} {!aw.task.Customer_status__c}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Points</apex:facet>
+                            <apex:outputText value="{!aw.event.Points__c} {!aw.task.Points__c}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Date Time</apex:facet>
+                            <apex:outputText value="{!aw.event.StartDateTime} {!aw.task.ActivityDate}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Campaign</apex:facet>
+                            <apex:outputText value="{!aw.Campaign.Name}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Opportunity</apex:facet>
+                            <apex:outputText value="{!aw.opportunity.Name}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Opportunity Campaign</apex:facet>
+                            <apex:outputText value="{!aw.opportunity.Campaign.Name}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Molnanalys</apex:facet>
+                            <apex:outputText value="{!IF(aw.event != null, aw.event.Presented_Cloudanalysis__c, aw.task.Presented_Cloudanalysis__c)}"/>
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Cloud/Datacenter</apex:facet>
+                            <apex:outputText value="{!IF(aw.event != null, aw.event.Cloud_Datacentre__c, aw.task.Cloud_Datacentre__c)}"/>
+                            
+                        </apex:column>
+                        
+                        <apex:column width="200px">
+                            <apex:facet name="header">Sambesok</apex:facet>
+                            <apex:outputText value="{!IF(aw.event != null, aw.event.Sambes_k__c, aw.task.Sambes_k__c)}"/>             
+                        </apex:column>      
+                        
+                        <apex:repeat var="ch" value="{!columnHeaders}">
+                            <apex:column headerValue="{!ch}" styleClass="empty-column-content" />
+                        </apex:repeat>                
+                        
+                        <apex:repeat value="{!aw.contacts}" var="c">
+                            <apex:column width="200px">
+                                <apex:outputText value="{!c.Name}"/>
+                            </apex:column>
+                            
+                            <apex:column width="200px">               
+                                <apex:outputText value="{!c.Telia_User__r.UserRole.Name}  {!c.Cygate_User__r.UserRole.Name}"/>
+                            </apex:column>
+                            
+                            <apex:column width="200px">
+                                <apex:outputText value="{!c.Account.Name}"/>
+                            </apex:column>
+                        </apex:repeat>
+                    </apex:dataTable>
+                </apex:outputPanel>
+            </div>
+        </div>
+    </apex:pageBlock>
+    
+</apex:page>

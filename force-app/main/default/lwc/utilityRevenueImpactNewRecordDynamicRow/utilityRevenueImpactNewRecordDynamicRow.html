@@ -1,0 +1,133 @@
+<template>
+    <tr aria-selected="false" class="slds-hint-parent">
+        <template if:true={revenueEffectToInsert}>
+                <td class="slds-col" role="gridcell">
+                    <div class="slds-text-align_right" title="Row No"> {rowNumber} </div>
+                </td>
+                <td class="slds-col" role="gridcell">
+                    <div title="Category">
+                        <template if:true={showPicklist}>
+                            <lightning-combobox label="Category"
+                                                variant="label-hidden"
+                                                name="controllerFld"
+                                                options={lstControllingPicklistOptions} 
+                                                value={revenueEffectToInsert.Category__c}
+                                                onchange={handleControllerFieldChange}
+                                                dropdown-alignment="auto"
+                                                required
+                            >
+                            </lightning-combobox>
+                        </template>
+                    </div>
+                </td>
+                <!-- SALEF-7482_Mod: SubCategory NOT required -->
+                <!-- <td class="slds-col" role="gridcell">
+                    <div title="Sub-Category">
+                        <template if:true={showDependent}>
+                            <lightning-combobox label="Sub-Category"
+                                                variant="label-hidden"
+                                                name="dependentFld"
+                                                options={lstSelectableDepOptions} 
+                                                value={revenueEffectToInsert.Sub_Category__c}
+                                                disabled={dependentDisabled}
+                                                onchange={handleDependentPicklistChange}
+                                                dropdown-alignment="auto"                               
+                            >
+                            </lightning-combobox>
+                        </template>
+                    </div>
+                </td>-->
+                <td class="slds-col" role="gridcell">
+                    <lightning-input    type="number"
+                                        step="1"
+                                        variant="label-hidden" 
+                                        data-id="OldAntal" 
+                                        value={revenueEffectToInsert.Old_Antal__c}
+                                        oncommit={handleOldAntalChange}
+                                        required
+                    >
+                    </lightning-input>
+                </td>
+                <td class="slds-col" role="gridcell">
+                    <lightning-input    type="number"
+                                        step=".01"
+                                        formatter="currency"
+                                        variant="label-hidden"
+                                        data-id="OldMonthlyCost" 
+                                        value={revenueEffectToInsert.Old_Monthly_Cost__c}
+                                        oncommit={handleOldMonthlyCostChange}
+                                        required
+                    >
+                    </lightning-input>
+                </td>
+                <td class="slds-col" role="gridcell">
+                    <template if:true={isTotalOld}>
+                        <span class="slds-align_absolute-center slds-var-p-vertical_xx-small">
+                            <lightning-formatted-number data-id="OldTotalCal"
+                                                        minimum-fraction-digits="2"
+                                                        format-style="currency" 
+                                                        value={oldTotalAmount}
+                            >
+                            </lightning-formatted-number>
+                        </span>
+                    </template>
+                </td>
+                <td class="slds-col" role="gridcell">
+                    <lightning-input    type="number"
+                                        step="1"
+                                        variant="label-hidden" 
+                                        data-id="NewAntal" 
+                                        value={revenueEffectToInsert.New_Antal__c}
+                                        oncommit={handleNewAntalChange}
+                                        required
+                    >
+                    </lightning-input>
+                </td>
+                <td class="slds-col" role="gridcell">
+                    <lightning-input    type="number"
+                                        step=".01"
+                                        formatter="currency"
+                                        variant="label-hidden" 
+                                        data-id="NewMonthlyCost" 
+                                        value={revenueEffectToInsert.New_Monthly_Cost__c}
+                                        oncommit={handleNewMonthlyCostChange}
+                                        required
+                    >
+                    </lightning-input>
+                </td>
+                <td class="slds-col" role="gridcell">
+                    <template if:true={isTotalNew}>
+                        <span class="slds-align_absolute-center slds-var-p-vertical_xx-small">
+                            <lightning-formatted-number data-id="NewTotalCal"
+                                                        minimum-fraction-digits="2"
+                                                        format-style="currency"
+                                                        value={newTotalAmount}
+                            >
+                            </lightning-formatted-number>
+                        </span>
+                    </template>
+                </td>
+                <td class="slds-col" role="gridcell">
+                    <lightning-input    type="text"
+                                        variant="label-hidden" 
+                                        data-id="Comments" 
+                                        value={revenueEffectToInsert.Comments__c}
+                                        onchange={handleCommentsChange}
+                    >
+                    </lightning-input>
+                </td>
+                <td class="slds-col" role="gridcell">
+                    <a onclick={removeRow}>
+                        <lightning-icon variant="error" 
+                                        icon-name="utility:delete" 
+                                        class="slds-icon slds-icon_small" 
+                                        size="small" 
+                                        alternative-text="icon"
+                        >
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Delete Icon</span>
+                    </a>
+                </td>
+        </template>
+    </tr>
+</template>

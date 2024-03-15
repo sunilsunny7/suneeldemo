@@ -1,0 +1,7 @@
+:host{
+    display: contents;
+}
+.calc-output{
+    text-align: center;
+    position: relative;
+}

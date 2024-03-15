@@ -1,0 +1,97 @@
+<apex:page standardStylesheets="false" showHeader="false" controller="homepagecontroller">
+    <head>
+        <title>Salesforce User Unsubscribe</title>
+        <apex:includeScript value="{!$Resource.jQuery}" />
+    </head>
+    <style>
+        .spinnerBg{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: #000;
+        opacity: 0.2;
+        z-index: 999999;
+        }
+        .spinner{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-image: url("/img/loading32.gif");
+        background-size: 16px;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        z-index: 9999999;
+        opacity: 1;
+        }
+    </style>
+    <apex:actionStatus id="spinnerStatus">
+        <apex:facet name="start">
+            <div class="spinnerBg" />
+            <div class="spinner" />
+        </apex:facet>
+    </apex:actionStatus>
+    <body bgcolor="#FAFAFA" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; height: 100% !important; width: 100% !important; background-color: #FAFAFA; margin: 0; padding: 0;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" id="bodyTable" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background-color: #FAFAFA; border-collapse: collapse !important; height: 100% !important; margin: 0; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0; width: 100% !important" width="100%">
+            <tbody>
+                <tr>
+                    <td align="center" id="bodyCell" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; height: 100% !important; width: 100% !important; border-top-width: 4px; border-top-color: #dddddd; border-top-style: solid; margin: 0; padding: 20px;" valign="top">
+                        <table border="0" cellpadding="0" cellspacing="0" id="templateContainer" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !important; width: 600px; border: 1px solid #dddddd;">
+                            <tbody>
+                                <apex:form >
+                                    <tr id="mainblockpannel">
+                                        <td align="center" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" valign="top">
+                                            <table border="0" cellpadding="0" cellspacing="0" id="templateBody" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background-color: #FFFFFF; border-bottom-color: #CCCCCC; border-bottom-style: solid; border-bottom-width: 1px; border-collapse: collapse !important; border-top-color: #FFFFFF; border-top-style: solid; border-top-width: 1px; mso-table-lspace: 0pt; mso-table-rspace: 0pt" width="100%">
+                                                <tbody>
+                                                    <tr id ="tablerowblock">
+                                                        <td align="left" class="bodyContent" pardot-data="" style="color: rgb(80, 80, 80); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; text-align: left; padding: 20px; background: rgb(255, 255, 255);font-weight: bold;" valign="top">
+                                                            Bekräfta att du inte längre behöver din Salesforce-licens.
+                                                            <br /> 
+                                                            <p class="form-field  pd-email required"> 
+                                                                <label style="padding-left: 18px;" for="piEmailPrefEmail">Din e-post adress: &nbsp;</label>
+                                                                <input type="text" name="piEmailPrefEmail" id="piEmailPrefEmail" value="{!UniqueReqId}" class="text" readonly="true"/> 
+                                                            </p>
+                                                            <p style = "padding-left: 200px;"><button type="button" onclick="updateuser();">Spara</button></p> <br/>
+                                                            <apex:actionFunction name="updateuser" action="{!updaterecordreq}" reRender="javapanelId" status="spinnerStatus" />
+                                                        </td>
+                                                    </tr> <br/>
+                                                    <div class ="tdclass" id="reqId">
+                                                        <b> Tack för din begäran. Din Salesforce-licens kommer nu att inaktiveras. </b> <br/><br/>
+                                                    </div>
+                                                    <div class ="divclass" id="divid">
+                                                        <b> Tack. Vi har redan tagit emot din begäran om att inaktivera din Salesforce-licens. </b> <br/><br/>
+                                                    </div>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>  
+                                </apex:form>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+    </body>
+    <apex:outputPanel id="javapanelId">
+        <script type = "text/javascript"> 
+        var a1 = '{!isSuccess}';
+        var b1 = '{!isValidUser}';
+        if(a1 == 'true'){
+            $("[id=tablerowblock]").hide();
+            $(".tdclass").show();
+             $(".divclass").hide();
+        }else{
+            $(".tdclass").hide();
+        }
+        if(b1 == 'true'){
+            $(".divclass").hide();
+        }else{
+            $(".divclass").show();
+             $(".tdclass").hide();
+            $("[id=tablerowblock]").hide();
+        }
+        </script>
+    </apex:outputPanel>
+</apex:page>

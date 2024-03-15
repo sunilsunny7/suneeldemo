@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Used for C2B Components" >
+    <aura:attribute type="String" name="OrgNumber" default="" />
+</aura:event>

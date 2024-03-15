@@ -1,0 +1,14 @@
+<apex:page applyBodyTag="false">
+    <apex:stylesheet value="https://dynamo.documill.com/visualforce/dynamo-vf.css" />
+    <apex:includeScript value="https://dynamo.documill.com/visualforce/dynamo-vf.js" />
+
+    <head></head>
+
+    <body>
+    <div class="dynamo-container">
+        <div class="dynamo-loading"></div>
+        <apex:iframe width="100%" height="100%" src="https://dynamo-eu1.documill.com/service/sfdco?useFlow=true&customListenerURL=*&serverURL={!$Api.Partner_Server_URL_330}&id={!$CurrentPage.parameters.id}&oauthLoginURL={!LEFT($Api.Partner_Server_URL_330, FIND( '/services', $Api.Partner_Server_URL_330))}&staticFilters=Title:Offert stor v2.52$Offert liten Engelsk v2.62$Offert liten v2.61$Offert stor Engelsk v2.63$Leveransvillkor Engelsk v2.61$Leveransvillkor v2.61$Mailoffer Leveransvillkor Engelsk v2.61$Offert stor Bilaga Leveransvillkor v2.61$Offert stor Engelsk Terms and Condition v2.63$Telia Cygate_Mailoffert_engelska v2.61$Telia Cygate_Mailoffert_svenska v2.61$Kalkyl PL KONSULT Excel content template$Kalkyl produkt - Excel content template&autoOpenSingle=false"></apex:iframe>
+    </div>
+    <script>initDynamoVisualforce("/{!$CurrentPage.parameters.id}");</script>
+    </body>
+</apex:page>

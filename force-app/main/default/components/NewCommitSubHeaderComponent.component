@@ -1,0 +1,18 @@
+<apex:component >
+    <script id="subheader-template" type="text/x-handlebars-template">
+    {{#each subheader}}
+    <div class="subheader">
+    <h4>{{salesType}}</h4>
+    {{#ifEquals ../typeOfUser 'Seller'}}
+    <p></p>
+    {{else}}
+    <p>
+      <!--  <span>{!$Label.Weekly_Target}: {{formatCurrency weeklyTarget}} kr</span>
+        <span>{!$Label.Quarterly_Goal_Fulfillment}: {{quarterlyGF}} %</span>
+        <span>{!$Label.Yearly_Goal_Fulfillment}: {{yearlyGF}} %</span>  -->
+    </p>
+    {{/ifEquals}}
+    </div>
+    {{/each}}
+    </script>
+</apex:component>

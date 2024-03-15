@@ -1,0 +1,84 @@
+<aura:component controller="ReturLCActionController" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId" access="global">
+    <ltng:require styles="/resource/slds213/assets/styles/salesforce-lightning-design-system.min.css" />  	
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    
+    <aura:attribute name="leadRecord" type="Lead" default="{ 'sobjectType': 'Lead' }"/>
+    <aura:attribute name="picklist" type="ReturLCActionController.pSelectOption[]" />
+    <aura:attribute name="ShowSubField" type="Boolean" default="False" />
+    <aura:attribute name="HasError" type="Boolean" default="False" />
+    <aura:attribute name="IsSuccess" type="Boolean" default="False" />
+    <aura:attribute name="ErrorMsg" type="String" default="" />
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert" style="z-index:9999">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+    
+    <div class="slds-modal__header">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <c:svgIcon svgPath="/resource/slds213/assets/icons/utility-sprite/svg/symbols.svg#redo" class="slds-icon-text-default" size="small"  /> 
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-text-heading--large" >{!$Label.c.RLC_Header}</div>
+            </div>
+        </div>
+    </div>
+    <div class="slds-modal__content">
+        <div class="slds-form--stacked slds-m-top--medium">
+            <aura:renderIf isTrue="{!v.HasError}">  
+                <div class="slds-notify_container">
+                    <div class="slds-notify slds-notify--toast" role="alert">
+                        <button onclick="{!c.hideError}" class="slds-button slds-button--icon-inverse slds-notify__close slds-icon--small slds-m-right--x-small" aria-haspopup="true">                            
+                            <c:svgIcon svgPath="/resource/slds/icons/utility-sprite/svg/symbols.svg#close" class=""  category="standard" size="small" name="Close" />                            
+                        </button>
+                        <span class="slds-assistive-text">Info</span>
+                        <h2>{!v.ErrorMsg}</h2>
+                    </div>
+                </div>
+            </aura:renderIf>
+            <aura:renderIf isTrue="{!v.IsSuccess}">  
+                <div class="slds-notify_container">
+                    <div class="slds-notify slds-notify--toast slds-notify--alert slds-theme--success slds-theme--alert-texture" role="alert">
+                        <button onclick="{!c.hideError}" class="slds-button slds-button--icon-inverse slds-notify__close slds-icon--small slds-m-right--x-small" aria-haspopup="true">                            
+                            <c:svgIcon svgPath="/resource/sldsnew/icons/utility-sprite/svg/symbols.svg#close" class=""  category="standard" size="small" name="Close" />                            
+                        </button>
+                        <span class="slds-assistive-text">Info</span>
+                        <h2>{!$Label.c.RLC_Success}</h2>
+                    </div>
+                </div>
+            </aura:renderIf>
+            
+            <div class="slds-form-element content">
+                <label class="slds-form-element__label" for="text-input-01">{!$Label.c.RLC_Close_Reason}</label>
+                <div class="slds-form-element__control">
+                    <div class="slds-select_container">
+                        <ui:inputSelect aura:id="closeReason" change="{!c.onSelectChange}" class="slds-select">
+                            <aura:iteration items="{!v.picklist}" var="pl">
+                                <ui:inputSelectOption text="{!pl.Value}" label="{!pl.Label}"/>
+                            </aura:iteration>
+                        </ui:inputSelect>
+                    </div>
+                </div>
+            </div>
+            <aura:renderIf isTrue="{!v.ShowSubField}">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="text-input-01">{!$Label.c.RLC_Other_reason}</label>
+                    <div class="slds-form-element__control">
+                        <ui:inputTextArea aura:id="otherReason" value="{!v.leadRecord.Other_reason__c}" class="slds-textarea"/>
+                    </div>
+                </div>
+            </aura:renderIf> 
+        </div>
+    </div>
+    <div class="slds-grid slds-grid--vertical-align-end slds-grid--align-center slds-m-top--medium">
+        <lightning:button variant="neutral" label="{!$Label.c.RLC_Cancel}" onclick="{!c.cancelClick }" />
+        <lightning:button variant="brand" label="{!$Label.c.RLC_Send}" onclick="{!c.submitClick }" />
+    </div>
+ 
+    
+</aura:component>

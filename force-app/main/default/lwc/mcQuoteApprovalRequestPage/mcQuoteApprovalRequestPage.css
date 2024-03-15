@@ -1,0 +1,12 @@
+td {
+    padding-left: 0.75rem;
+}
+th{
+    
+    text-align: center;
+    padding: 5px;
+}
+.widthcontrol{
+    width: 100%;
+    overflow : auto;
+}

@@ -1,0 +1,16 @@
+.THIS .slds-notify_toast {
+    min-width: auto;
+    max-width: calc(100% - 1rem);
+}
+
+.THIS .slds-notify_toast .slds-notify__content {
+    max-width: 100%;
+}
+
+.THIS .slds-list_horizontal .slds-item_label {
+    width: 50%;
+}
+
+.THIS .slds-list_horizontal .slds-item_detail {
+    width: 50%;
+}

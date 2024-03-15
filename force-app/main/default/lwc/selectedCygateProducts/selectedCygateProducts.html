@@ -1,0 +1,46 @@
+<!--
+ - Created by kwn687 on 2022-06-29.
+ -->
+
+<!-- Selected Cygate Products -->
+<template>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+        <tr class="slds-line-height_reset">
+            <th class="" scope="col"></th>
+            <th class="" scope="col">
+                <div class="slds-truncate" title="">{mainProductsLabel}</div>
+            </th>
+            <th class="" scope="col">
+                <div class="slds-truncate" title="">{cygateProductsLabel}</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <template if:true={selectedProducts}>
+            <template for:each={selectedProducts} for:item="products">
+                <tr key={products.key} class="slds-hint-parent">
+                    <td rowspan={products.rowspan}>
+                        <lightning-button-icon
+                                value={products.key}
+                                icon-name="utility:delete"
+                                alternative-text="Delete"
+                                title="Delete"
+                                size="slds-m-left_xx-small"
+                                onclick={handleClick}
+                        ></lightning-button-icon>
+                    </td>
+                    <td data-label="products" rowspan={products.rowspan}>
+                        {products.key}
+                    </td>
+                </tr>
+                <template for:each={products.name} for:item="cygateProduct">
+                    <tr key={cygateProduct}>
+                        <td key={cygateProduct} data-label="products">{cygateProduct}</td>
+                    </tr>
+                </template>
+            </template>
+        </template>
+        </tbody>
+    </table>
+</template>

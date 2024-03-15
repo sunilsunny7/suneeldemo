@@ -1,0 +1,38 @@
+<apex:page standardController="Account" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.sldsnew, '/styles/salesforce-lightning-design-system.css')}"/>
+    <style>
+        html {
+        line-height: 2.5;
+        }
+        body {
+        padding-right: 0px !IMPORTANT;
+        padding-top: 0px !IMPORTANT;
+        }
+    </style>
+    <apex:includeLightning />
+    <div class="slds-scope"> 
+        <apex:outputPanel >
+            <apex:outputLabel value="{!$Label.CM_Marketing}" style="margin-right:0px" for="cm1">
+                <apex:outputText id="cm1" value="{!Account.CMFinalMarketing__c}" escape="false"/></apex:outputLabel><br/>
+            <!--<apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme4d'}">
+&nbsp;
+</apex:outputPanel> -->
+            <apex:outputLabel value="{!$Label.CM_service_network}" style="margin-right:0px" for="cm2">
+                <apex:outputText id="cm2" value="{!Account.CMFinalServiceNetwork__c}" escape="false"/></apex:outputLabel><br/>
+            <!--   <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme4d'}">
+&nbsp;
+</apex:outputPanel> -->
+            <apex:outputLabel value="{!$Label.CM_ConsentDate}" style="margin-right:0px" for="cm5" />
+            <strong><apex:outputText id="cm6" value="{!Account.Consent_Updated__c}" escape="false"/></strong>
+        </apex:outputPanel>
+    </div>
+    
+    
+    <script>
+    var timestamp = '{!Account.Consent_Updated__c}';
+    if(timestamp != undefined)
+        var displayTime = timestamp.substring(0,19); //As per ISO 8601 / UTC format the substring is calculated
+    var timeformated = displayTime.replace("T", "&nbsp;T");
+    document.getElementById('{!$Component.cm6}').innerHTML = timeformated;
+    </script>
+</apex:page>

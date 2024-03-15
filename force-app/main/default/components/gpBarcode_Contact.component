@@ -1,0 +1,27 @@
+<apex:component id="gpBarcode_Contact">
+    <apex:attribute name="contact" type="Contact" required="true" description="Contact field"/>
+
+    <div class="rpt" style="text-align:center;">
+        <table width="100%">
+            <tr>
+                <td style="text-align:center;">
+                    <br/>
+                    <!--Name: <apex:outputText style="font-weight:bold;" value="{!Contact.Name}"/><br/>
+                    Email:<apex:outputText style="font-weight:bold;" value="{!Contact.Email}" /><br/>-->
+                    <apex:outputText style="font-weight:bold;" value="{!Contact.Name}"/><br/>
+                    <apex:outputText style="font-weight:bold;" value="{!Contact.Email}"/><br/><br/>
+                    <apex:outputText style="font-weight:11px;" value="{!Contact.Account.Name}"/><br/>
+                    <br/>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="centered">
+                    <GMBLBC:barcode value="{!Contact.Barcode_ID__c}" height="50" displayText="true"/>
+                   
+                </td>
+            </tr>
+        </table>
+        <br/>
+    </div>
+</apex:component>

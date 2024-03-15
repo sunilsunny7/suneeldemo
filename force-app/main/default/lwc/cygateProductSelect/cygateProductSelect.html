@@ -1,0 +1,32 @@
+<!--
+ - Created by kwn687 on 2022-06-15.
+ -->
+
+<!-- Cygate Product Select -->
+<template>
+    <template if:true={mainProducts.data}>
+            <lightning-combobox
+                    name="Main Product Area"
+                    label= {mainProductsLabel}
+                    placeholder="-Select-"
+                    options={mainProducts.data.values}
+                    onchange={handleMainProduct}
+                    value={mainProductsValue}
+                    required
+            >
+            </lightning-combobox>
+        </template>
+        <template if:true={allCygateProductsEdit}>
+            <lightning-dual-listbox
+                    name="languages"
+                    label= {cygateProductsLabel}
+                    source-label="Available"
+                    selected-label="Selected"
+                    value={cygateProductsValues}
+                    options={allCygateProductsEdit}
+                    onchange={handleCygateProduct}
+                    required
+            >
+            </lightning-dual-listbox>
+        </template>
+</template>

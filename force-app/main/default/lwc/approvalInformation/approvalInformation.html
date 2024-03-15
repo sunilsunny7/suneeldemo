@@ -1,0 +1,92 @@
+<template>
+    <!-- Error Panel -->
+    <template if:true={error}>
+        <c-error-panel-component errors={error} type="inlineMessage"></c-error-panel-component>
+    </template>
+    <!-- Error Panel ENDS-->
+    <template if:true={oppFieldLabels}>
+        <template if:true={oppFieldValues}>
+            <div class="slds-card slds-theme_default">
+                <h3 class="slds-section__title slds-theme--shade  test-id__section-header-container"
+                    data-aura-rendered-by="120:709;a"><span
+                        class="test-id__section-header-title section-header-title slds-p-horizontal--small slds-truncate"
+                        data-aura-rendered-by="122:709;a">{customLabel.APPROVAL_DETAILS_LABEL}</span></h3>
+                <div class="slds-form" role="list">
+                    <div class="slds-form__row">
+                        <div class="slds-form__item" role="listitem">
+                            <div
+                                class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                                <span class="slds-form-element__label">
+                                    {customLabel.OPPORTUNITY_NAME_LABEL}</span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static">
+                                        <a href={oppFieldValues.opportunityLink}>{oppFieldValues.opportunityName}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form__item" role="listitem">
+                            <div
+                                class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                                <span class="slds-form-element__label">{customLabel.OPPORTUNITY_OWNER_LABEL}</span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static">
+                                        <a
+                                            href={oppFieldValues.opportunityOwnerLink}>{oppFieldValues.opportunityOwnerName}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-form__row">
+                        <div class="slds-form__item" role="listitem">
+                            <div
+                                class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                                <span class="slds-form-element__label">
+                                    {customLabel.ACCOUNT_NAME_LABEL}
+                                </span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static">
+                                        <a href={oppFieldValues.opportunityLink}>{oppFieldValues.accountName}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form__item" role="listitem">
+                            <div
+                                class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                                <span class="slds-form-element__label">
+                                    {oppFieldLabels.fields.Cygate_Amount_for_Approval__c.label}</span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static">
+                                        <lightning-formatted-number value={oppFieldValues.cygateAmountForApproval}
+                                            format-style="currency" currency-code="SEK">
+                                        </lightning-formatted-number>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-form__row">
+                        <div class="slds-form__item" role="listitem">
+                            <div
+                                class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                                <span class="slds-form-element__label">
+                                    {oppFieldLabels.fields.Cygate_Margin_for_Approval__c.label}
+                                </span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__static">
+                                        <lightning-formatted-number value={oppFieldValues.cygateMarginForApproval}
+                                            format-style="decimal" minimum-fraction-digits="2">
+                                        </lightning-formatted-number> %
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </template>
+    </template>
+</template>

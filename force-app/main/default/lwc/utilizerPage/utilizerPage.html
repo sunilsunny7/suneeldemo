@@ -1,0 +1,66 @@
+<template>
+	<table style="border-left:1px solid rgb(221, 219, 218); border-right:1px solid rgb(221, 219, 218)"
+		class="slds-table slds-table_cell-buffer slds-m-horizontal_small slds-table_bordered">
+		<thead>
+			<tr>
+				<th scope="col">
+					Företag
+				</th>
+				<th scope="col">
+					Organisationsnummer
+				</th>
+				<th scope="col" class="slds-text-align_center">
+                Ingår i lösningen
+            </th>
+            <th scope="col" class="slds-text-align_center">
+                Ingår i lösningen som Dotterbolag
+            </th>
+			</tr>
+			<!-- Added new table row to have a checkbox to select all checkboxes in respective column MCSTO-9489-->
+			<tr>
+				<td></td>
+				<td></td>
+				<td style="text-align:center">
+					<lightning-input type="checkbox" data-id="solutionAll" value="allSolution" onchange={changeAll}>
+					</lightning-input>
+				</td>
+				<td style="text-align:center">
+					<lightning-input type="checkbox" data-id="daughterAll" value="allDaughter" onchange={changeAll}>
+					</lightning-input>
+				</td>
+			</tr>
+		</thead>
+		<!-- Added data-id for checkboxes for the improvements in MCSTO-9489  -->
+		<template if:true={Utilizerdata} for:each={Utilizerdata} for:item="item" for:index='index'>
+			<tr key={item} >
+				<td>
+					{item.OrganizationName}
+				</td>
+				<td>
+					{item.OrganizationNumber}
+				</td>
+				<td style="text-align:center">
+					<lightning-input type="checkbox" data-id="childSolution" id={item.OrganizationNumber}
+						value="isSolution" onchange={changeSolution} checked={item.isSolution}> </lightning-input>
+				</td>
+				<td style="text-align:center">
+					<lightning-input type="checkbox" data-id="childDaughter" id={item.OrganizationNumber}
+						value="isDaughter" onchange={changeDaughter} checked={item.isDaughter}> </lightning-input>
+				</td>
+
+			</tr>
+		</template>
+	</table>
+<div class="slds-grid slds-m-top_large">
+        <div class="slds-col slds-size_2-of-3"></div>
+        <div class="slds-col slds-m-left_small">
+            <button class="slds-button slds-button_outline-brand slds-button_stretch"
+                onclick={previousStep}>Tillbaka</button>
+        </div>
+        <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_brand slds-button_stretch" onclick={nextStep}>Nästa</button>
+
+        </div>
+    </div>
+
+</template>

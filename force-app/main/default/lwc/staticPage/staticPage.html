@@ -1,0 +1,1668 @@
+<template>
+    <lightning-tabset>
+        <lightning-tab label="Information">
+            <c-guided-selling-info></c-guided-selling-info>
+        </lightning-tab>
+        <lightning-tab label="Huvudsida">
+            <lightning-tabset variant="vertical">
+                <lightning-tab label="1. Information om kunden">
+                    <table style="table-layout: fixed;">
+                        <thead>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                EXEMPELFRÅGOR</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                INFORMATION</th>
+                            <!-- <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ERBJUDANDEN</th> -->
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ANTECKNINGAR </th>
+                        </thead>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Vilken typ av verksamhet bedriver kunden?</b></li>
+                                    <li><b>Vilken bransch tillhör kunden?</b></li>
+                                    <li><b>Hur stor är kunden?</b></li>
+                                    <li>Hur stor omsättning har kundens verksamhet?</li>
+                                    <li>Hur många slutkunder har kunden?</li>
+                                    <li>Hur många anställda arbeter i kundens verksamhet?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Vilken typ av verksamhet kunden bedriver, vilken bransch kunden verkar i samt
+                                    storleken på företaget kan indikera vilka
+                                    behov kunden har.</p>
+
+                                <p>Exempel på verksamheter är IT-företag, produktionsföretag, restaurang, café,
+                                    butikskedjor, lager, etc.</p>
+
+                                <p>Kundens storlek kan jämföras med andra företag i samma bransch eller andra
+                                    Teliakunder. Storleken kan bl.a. mätas i
+                                    antal anställda, omsättning och antal slutkunder och undersöks för att kartlägga
+                                    kundens nuvarande behov.</p>
+
+                                <p>Andra företag med liknande verksamhet och/eller i samma bransch kan identifieras för
+                                    att analysera hur deras behov ser
+                                    ut och jämföra det med aktuell kund.</p>
+
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec1_q1" class="textarea_size" value={dataObject.sec1_q1}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Hur har Covid-19 pandemin påverkat kundens verksamhet?</b></li>
+                                    <li><b>Hur har kunden löst distansarbetet under Covid-19 pandemin?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Hur kundens verksamhet har hanterat Covid-19 pandemin och vilka utmaningar kunden har
+                                    behövt hantera är en bra
+                                    indikation på vilka behov som är kritiska för kunden.</p>
+
+                                <p>T.ex. om kundens anställda har kunnat arbeta hemifrån under pandemin har kunden
+                                    kanske inte behov av proaktiv
+                                    övervakning och/eller utökad SLA. Om kundens anställda däremot har varit tvungna att
+                                    arbeta på plats för att hålla
+                                    verksamheten igång kan behovet av garanterad bredbandshastighet, proaktiv
+                                    övervakning och/eller utökad SLA vara större.</p>
+
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec1_q2" class="textarea_size" value={dataObject.sec1_q2}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Är det en ny eller befintlig kund för Telia?</b></li>
+                                    <li>Har kunden avtal hos Telia idag?</li>
+                                    <li>Vilka avtal har kunden hos Telia idag?</li>
+                                    <li>Har kunden ett ramavtal?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Om kunden har befintliga avtal hos Telia kan det ge en möjlighet till omförhandling
+                                    av avtal och ett tillfälle för
+                                    merförsäljning.</p>
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec1_q3" class="textarea_size" value={dataObject.sec1_q3}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </lightning-tab>
+                <lightning-tab label="2. Kundens initiala behov">
+                    <table style="table-layout: fixed;">
+                        <thead>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                EXEMPELFRÅGOR</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                INFORMATION</th>
+                            <!-- <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ERBJUDANDEN</th> -->
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ANTECKNINGAR </th>
+                        </thead>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Vad är kundens initiala behov?</b></li>
+                                    <li><b>Varför har kunden kontaktat Telia? / Varför kontaktar Telia kunden?</b></li>
+                                    <li><b>Hur ser kundens lösning ut idag?</b></li>
+                                    <li><b>Vilken/vilka internet/MPLS-leverantörer har kunden och vem levererar
+                                            nätverksutrustning till kunden?</b></li>
+                                    <li>Har kunden business internet och datakommunikationstjänster från Telia eller
+                                        annan aktör?</li>
+                                    <li>Har kunden behov av ny lösning på en/flera siter?</li>
+                                    <li>Vill kunden komplettera med erbjudanden inom Nätverkstjänster till befintlig
+                                        lösning?</li>
+                                    <li>Vill kunden uppgradera befintlig Telia lösning?</li>
+                                    <li>Vill kunden byta tjänster/produkter från annan aktör till Telia?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec2_q1" class="textarea_size" value={dataObject.sec2_q1}
+                                    onchange={handleChange}></lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Ska kunden genomföra några verksamhetsförändringar?</b></li>
+                                    <li>Ska kunden byta kontor/lokal?</li>
+                                    <li>Ska kunden addera siter?</li>
+                                    <li>Ska kunden starta en e-handel?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec2_q2" class="textarea_size" value={dataObject.sec2_q2}
+                                    onchange={handleChange}></lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Hur tror kunden att deras verksamhet och behov kommer se ut i framtiden?</b>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Kundens bedömda framtida behov och förväntan kring hur verksamheten kommer se ut i
+                                    framtiden kan indikera vilka
+                                    Nätverkstjänster som kunden kan ha behov av i framtiden, som bör planeras för.</p>
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec2_q3" class="textarea_size" value={dataObject.sec2_q3}
+                                    onchange={handleChange}></lightning-textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </lightning-tab>
+                <lightning-tab label="3. Plats och sitebehov">
+                    <table style="table-layout: fixed;">
+                        <thead>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                EXEMPELFRÅGOR</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                INFORMATION</th>
+                            <!-- <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ERBJUDANDEN</th> -->
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ANTECKNINGAR </th>
+                        </thead>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Hur många siter har kunden?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Kar kunden flera siter som ska kunna kommunicera med varandra kan kunden ha behov av
+                                    ett Datanet.
+                                </p>
+                                <p>Har kunden 1-3 siter har kunden inte behov av ett Datanet.</p>
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec3_q1" class="textarea_size" value={dataObject.sec3_q1}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Var är siterna placerade?</b></li>
+                                    <li><b>Är siterna geografiskt spridda?</b></li>
+                                    <li>I vilka länder återfinns kunden?</li>
+                                    <li>På vilka adresser återfinns siterna?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Adresser till siterna är bl.a. nödvändigt för att kunna genomföra en
+                                    förutsättningskontroll.</p>
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec3_q2" class="textarea_size" value={dataObject.sec3_q2}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Hur ser kundens verksamheten ut på siterna?</b></li>
+                                    <li><b>Hur ser behovet ut på siterna?</b></li>
+                                    <li><b>Sker det någon kommunikation mellan siterna?</b></li>
+                                    <li><b>Vilka applikationer används och var är dessa placerade?</b></li>
+                                    <li>Är alla siter bemannade?</li>
+                                    <li>Vilka siter är speciellt viktiga?</li>
+                                    <li>Har siterna liknande behov eller skiljer sig behoven åt mellan siterna?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Om kundens behov skiljer sig åt på de olika siterna indikerar det att kunden kan ha
+                                    behov av olika erbjudanden på de
+                                    olika siterna.</p>
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec3_q3" class="textarea_size" value={dataObject.sec3_q3}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </lightning-tab>
+                <lightning-tab label="4. Betalningsförmåga">
+                    <table style="table-layout: fixed;">
+                        <thead>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                EXEMPELFRÅGOR</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                INFORMATION</th>
+                            <!-- <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ERBJUDANDEN</th> -->
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ANTECKNINGAR </th>
+                        </thead>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Är kunden betalningsstark eller betalningssvag?</b></li>
+                                    <li><b>Är priset en viktig faktor för kunden vid val av lösning?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Kundens betalningsförmåga och priskänslighet kan indikera vilka faktorer som är
+                                    viktiga för kunden vid val av erbjudande
+                                    samt utesluta vissa erbjudanden.
+                                </p>
+                                <p>
+                                    Generellt är Telia Bredband Start ett billigare alternativ, medan Telia Bredband Pro
+                                    är ett dyrare alternativ. Kostnaden
+                                    påverkas dock av leveransmöjligheter och val av tjänster och tillval.</p>
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec4_q1" class="textarea_size" value={dataObject.sec4_q1}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </lightning-tab>
+                <lightning-tab label="5. Kritisk verksamhet">
+                    <table style="table-layout: fixed;">
+                        <thead>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                EXEMPELFRÅGOR</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                INFORMATION</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ERBJUDANDEN</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ANTECKNINGAR </th>
+                        </thead>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden en kritisk verksamhet?</b></li>
+                                    <li><b>Vad kostar ett avbrott/produktionsstopp för kunden?</b></li>
+                                    <li><b>Vad skulle hända om kundens verksamhet är nere?</b></li>
+                                    <li><b>Vilka konsekvenser skulle ett avbrott få?</b></li>
+                                    <li><b>Har kunden varit med om att internetuppkopplingen har varit nere någon gång?
+                                        </b></li>
+                                    <li><b>Vad hände när internetuppkopplingen var nere?</b></li>
+                                    <li>Har kunden behov av proaktiv övervakning?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                                <p>Om kundens verksamhet inte påverkas av ett avbrott i någon större utsträckning har
+                                    kunden troligtvis inte en kritisk
+                                    verksamhet. Detta kan exempelvis gälla för kunder där de anställda kan arbeta
+                                    hemifrån vid ett avbrott, t.ex. ett
+                                    säljkontor. I dessa fall har kunden troligtvis inte behov av proaktiv övervakning
+                                    eller utökad SLA.</p>
+                                <p>
+                                    Om kostnaden för ett avbrott är mycket hög eller om konsekvenserna av att kundens
+                                    verksamhet är nere är stora bör
+                                    proaktiv övervakning och utökad SLA erbjudas. Proaktiv övervakning ingår i Telia
+                                    Bredband Pro och kunden kan välja att
+                                    utöka erbjudandet med SLA C8 eller D15. Även inom Datanet kan kunden välja att utöka
+                                    erbjudandet med SLA C8 eller D15.
+                                </p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Bredband Pro</p>
+                                <p>Tillval:</p>
+                                <p>- Bredband Pro SLA C8</p>
+                                <p>- Bredband Pro SLA D15</p>
+                                <br>
+                                <p>Telia Datanet</p>
+                                <p>Tillval:</p>
+                                <p>- Datanet SLA C8</p>
+                                <p>- Datanet SLA D15</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec5_q1" class="textarea_size" value={dataObject.sec5_q1}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Är internet kritiskt för att kunden ska kunna leverera till sina slutkunder?
+                                        </b></li>
+                                    <li><b>Hur beroende är kunden av att nå internet?</b></li>
+                                    <li><b>Är det några system/applikationer som kunden alltid måste komma åt via
+                                            internet?
+                                        </b></li>
+                                    <li><b>Vilken del av verksamheten har behov av att internetuppkopplingen inte ligger
+                                            nere?</b></li>
+                                    <li>Hur får slutkunderna information om kundens produkter/tjänster?</li>
+                                    <li>Har kunden en hemsida som måste fungera?</li>
+                                    <li>Har kunden behov av garanterad bredbandshastighet?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                                <p>Om internet är kritiskt för att kunden ska kunna bedriva sin verksamhet eller
+                                    leverera till sina slutkunder, alternativt
+                                    att kunden har system/applikationer som måste kunna nås via internet har kunden
+                                    troligtvis behov av garanterad
+                                    bredbandshastighet.</p>
+                                <br>
+                                <p>
+                                    Garanterad bredbandshastighet inkluderas i Telia Bredband Plus och Telia Bredband
+                                    Pro.</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Bredband Plus
+                                </p>
+                                <p>Telia Bredband Pro</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec5_q2" class="textarea_size" value={dataObject.sec5_q2}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Hur hanterar kunden en felanmälan idag om något inte fungerar?</b></li>
+                                    <li><b>Har kunden tillgång till teknisk personal på deras siter?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec5_q3" class="textarea_size" value={dataObject.sec5_q3}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Under vilka perioder är kundens verksamhet igång?</b></li>
+                                    <li><b>Har kunden verksamhet under nätter och helger?</b></li>
+                                    <li><b>Under vilka perioder/tid på dygnet måste internet/applikationer/utrustning
+                                            fungera?</b></li>
+                                    <li>Hur länge och under vilka perioder kan kundens verksamhet vara nere?</li>
+                                    <li>Har kunden behov av utökad SLA?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Om kunden har behov av en åtgärdstid vid kritiska fel på max 8 timmar dygnet runt bör
+                                    kunden erbjudas Telia Bredband Pro
+                                    utökad SLA C8.</p>
+                                <br>
+
+                                <p> Om kundens verksamhet inte alls kan vara nere bör Telia Bredband Pro utökad SLA D15
+                                    (åtgärdstid 15 min) erbjudas.
+                                </p>
+                                <br>
+                                <p> Utökad SLA kan jämföras med att köpa en försäkring; förhoppningen är att du inte ska
+                                    behöva nyttja din utökade SLA men
+                                    vid oförutsedda händelser har du en åtgärdsplan. Om kunden indikerar att
+                                    verksamheten inte behöver vara "försäkrad"
+                                    behövs troligtvis inte utökad SLA, i dessa fall kan Telia Bredband Start eller Telia
+                                    Bredband Plus med SLA A12 räcka. Om
+                                    kunden indikerar att en "försäkring" är viktigt bör Telia Bredband Pro med utökad
+                                    SLA erbjudas.</p>
+                                <br>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>SLA A12 ingår i Telia Bredband Start och Telia Bredand Plus</p>
+                                <br>
+                                <p>SLA A8 ingår i Telia Bredband Pro</p>
+                                <p>SLA C8 eller SLA D15 kan läggas till i Telia Bredband Pro</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec5_q4" class="textarea_size" value={dataObject.sec5_q4}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden utökad SLA för sin internetuppkoppling?</b></li>
+                                    <li><b>Har kunden garanterade åtgärdstider idag?</b></li>
+                                    <li>Har kunden behov av utökad SLA för accesspunkter och switchar?</li>
+                                    <li>Har kunden behov av utökad SLA för sin kommunikation mellan siter?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>
+                                    Om kunden har utökad SLA för sin internetuppkoppling rekommenderas att kunden även
+                                    har det för sitt trådlösa nätverk
+                                    (det är möjligt att ha olika SLA men rekommenderat är att ha samma SLA-nivå).
+                                </p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Cloud VPN Wifi/Lan tillval:</p>
+                                <p>- Wireless Access Point SLA A8</p>
+                                <p>- Wireless Access Point SLA C8</p>
+                                <p>- Wired Switch SLA A8</p>
+                                <p>- Wired Switch SLA C8</p>
+                                <br>
+                                <p>Telia Cloud VPN SD-Wan/Firewall tillval:</p>
+                                <p>- Wired SLA A8</p>
+                                <p>- Wired SLA C8</p>
+                                <p>- Wired Large SLA A8</p>
+                                <p>- Wired Large SLA C8</p>
+                                <p>- Wired Large Plus SLA A8</p>
+                                <p>- Wired Large Plus SLA C8</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec5_q5" class="textarea_size" value={dataObject.sec5_q5}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden proaktiv övervakning för sin internetuppkoppling?</b></li>
+                                    <li>Har kunden behov av proaktiv övervakning för accesspunkter och switchar?</li>
+                                    <li>Har kunden behov av proaktiv övervakning för SD-Wan enheter?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Om kunden har proaktiv övervakning för sin internetuppkoppling (inkluderat i Telia
+                                    Bredband Pro) rekommenderas att
+                                    kunden även har det för sitt trådlösa nätverk (det är möjligt att ha olika
+                                    proaktivitet för internetuppkopplingen och
+                                    för accesspunkterna och switcharna men rekommenderat är att det ska vara samma).</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Cloud VPN Wifi/Lan tillval:</p>
+                                <p>- Proaktiv start av larmhantering Wireless Site</p>
+                                <p>- Proaktiv start av larmhantering Wireless Enhet</p>
+                                <p>- Proaktiv start av larmhantering Wired Switch Site</p>
+                                <p>- Proaktiv start av larmhantering Wired Switch Enhet</p>
+                                <br>
+                                <p>Telia Cloud VPN SD-Wan/Firewall tillval:</p>
+                                <p>- Proaktiv start av larmhantering Wired Site</p>
+                                <p>- Proaktiv start av larmhantering Wired Enhet</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec5_q6" class="textarea_size" value={dataObject.sec5_q6}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden behov av en tillfällig internetuppkoppling vid avbrott för att
+                                            förhindra att verksamheten ligger nere?</b></li>
+                                    <li>Behövs garanterad kapacitet för den tillfälliga internetuppkopplingen eller
+                                        räcker det med en "best effort" lösning?</li>
+                                    <li>Vad är kunden villig att betala för en backup-lösning?</li>
+                                    <li>Har kunden behov av 4G backup eller diversitet (sekundär access)?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Omkring 50 % av Telias kunder har en 4G backup.</p>
+                                <br>
+
+                                <p>4G backup kan väljas som tillval med Telia Bredband Plus, Telia Bredband Pro och
+                                    Telia Datanet.</p>
+                                <br>
+
+                                <p>Om kunden har över 200 användare som nyttjar internetuppkopplingen räcker inte en 4G
+                                    backup, kunden har då behov av
+                                    diversitet.</p>
+                                <br>
+
+                                <p>Diversitet kan väljas som tillval med Telia Bredband Pro och Telia Datanet.</p>
+                                <br>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>4G backup:</p>
+                                <p>- Bredband Plus 4G Backup</p>
+                                <p>- Bredband Plus 4G Backup Combo CPE</p>
+                                <p>- Bredband Pro 4G Backup</p>
+                                <p>- Bredband Pro 4G Backup Combo CPE</p>
+                                <p>- Access Basic Wireless 4G Backup</p>
+                                <p>- Access Basic Wireless 4G Backup Combo CPE</p>
+                                <br>
+                                <p>Diverstitet (sekundär access):</p>
+                                <p>- Bredband Pro 100 Mbit/s – Sekundär Access</p>
+                                <p>- Bredband Pro 200 Mbit/s – Sekundär Access</p>
+                                <p>- Bredband Pro 500 Mbit/s – Sekundär Access</p>
+                                <p>- Bredband Pro 1 Gbit/s – Sekundär Access</p>
+                                <p>- Bredband Pro 2 Gbit/s – Sekundär Access</p>
+                                <p>- Bredband Pro 5 Gbit/s – Sekundär Access</p>
+                                <p>- Bredband Pro 10 Gbit/s – Sekundär Access</p>
+                                <p>- Access Multi 10 Mbit/s – Sekundär Access</p>
+                                <p>- Access Multi 100 Mbit/s – Sekundär Access</p>
+                                <p>- Access Multi 200 Mbit/s – Sekundär Access</p>
+                                <p>- Access Multi 300 Mbit/s – Sekundär Access</p>
+                                <p>- Access Multi 500 Mbit/s – Sekundär Access</p>
+                                <p>- Access Multi 1 Gbit/s – Sekundär Access</p>
+                                <p>- Access Multi 2 Gbit/s – Sekundär Access</p>
+                                <p>- Access Multi 5 Gbit/s – Sekundär Access</p>
+                                <p>- Access Multi 10 Gbit/s – Sekundär Access</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec5_q7" class="textarea_size" value={dataObject.sec5_q7}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden behov av en tillfällig kommunikationskanal för att förhindra att
+                                            kommunikationen inom verksamheten ligger
+                                            nere vid avbrott?</b></li>
+                                    <li>Har kunden behov av en backup för sin kommunikation mellan siter?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Cloud VPN SD-Wan/Firewall tillval:</p>
+                                <p>- Wired Backup</p>
+                                <p>- Wired Large Backup</p>
+                                <p>- Wired Large Plus Backup</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec5_q8" class="textarea_size" value={dataObject.sec5_q8}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden behov av att snabbt få upp sin internetuppkoppling? / Har kunden
+                                            inte tid att vänta på att den primära
+                                            internetuppkopplingen ska installeras?</b></li>
+                                    <li>Vill kunden göra om Quick Launch till en backup när den primära uppkopplingen är
+                                        redo?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Quick Launch erbjuds för att kunden ska kunna nyttja internet i väntan på att den
+                                    fasta, primära accessen installeras.
+                                </p>
+                                <br>
+                                <p>När den primära accessen har installerats kan kunden välja att göra om Quick Launch
+                                    till en backup eller avsluta
+                                    tjänsten.</p> <br>
+                                <p>Quick Launch kan väljas som tillval med Telia Bredband Plus, Telia Bredband Pro och
+                                    Telia Datanet.</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Bredband Plus tillval:</p>
+                                <p>- Bredband Plus Quick Launch Termination</p>
+                                <p>- Bredband Plus Quick Launch Backup</p>
+                                <p>- Bredband Plus Quick Launch Combo Backup</p>
+                                <br>
+                                <p>Telia Bredband Pro tillval:</p>
+                                <p>- Bredband Pro Quick Launch Termination</p>
+                                <p>- Bredband Pro Quick Launch Backup</p>
+                                <p>- Bredband Pro Quick Launch Combo Backup</p>
+                                <br>
+                                <p>Telia Datanet tillval:</p>
+                                <p>- Quick Launch Termination</p>
+                                <p>- Quick Launch Backup</p>
+                                <p>- Quick Launch Combo Backup</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec5_q9" class="textarea_size" value={dataObject.sec5_q9}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden trafik som är affärskritisk som alltid måste komma fram utan
+                                            störningar?</b></li>
+                                    <li><b>Vilken typ av trafik har kunden behov av att den alltid kommer fram? (kan
+                                            även
+                                            innefatta molntjänster som inte har QoS)</b></li>
+                                    <li>Har kunden behov av att prioritera en viss typ av trafik?</li>
+                                    <li>Vilken typ av trafik ska vara prioriterad?</li>
+                                    <li>Hur stor del av trafiken ska vara prioriterad?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Om kunden inte vet hur stor del av trafiken som behöver vara prioriterad kan 10 % av
+                                    bredbandsaccessen föreslås.</p>
+                                <br>
+                                <p>För att QoS Real Time ska vara möjligt är det en förutsättning att
+                                    mottagande/sändande punkt också är Telia Bredband
+                                    Plus eller Telia Bredband Pro med trafikklass Real Time.</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Bredband Plus tillval:</p>
+                                <p>- Bredband Plus QoS Real Time 1 Mbit/s</p>
+                                <p>- Bredband Plus QoS Real Time 3 Mbit/s</p>
+                                <br>
+                                <p>Telia Bredband Pro tillval:</p>
+                                <p>- Bredband Pro QoS Real Time 10 Mbit/s</p>
+                                <p>- Bredband Pro QoS Real Time 20 Mbit/s</p>
+                                <p>- Bredband Pro QoS Real Time 50 Mbit/s</p>
+                                <p>- Bredband Pro QoS Real Time 100 Mbit/s</p>
+                                <p>- Bredband Pro QoS Real Time 200 Mbit/s</p>
+                                <p>- Bredband Pro QoS Basic</p>
+                                <br>
+                                <p>Telia Datanet tillval:</p>
+                                <p>- QoS Real Time 1 Mbit/s</p>
+                                <p>- QoS Real Time 10 Mbit/s</p>
+                                <p>- QoS Real Time 20 Mbit/s</p>
+                                <p>- QoS Real Time 50 Mbit/s</p>
+                                <p>- QoS Real Time 100 Mbit/s</p>
+                                <p>- QoS Real Time 200 Mbit/s</p>
+                                <p>- QoS Basic</p>
+                                <p>- QoS Premium</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec5_q10" class="textarea_size" value={dataObject.sec5_q10}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Vart lagrar kunden sin data idag?</b></li>
+                                    <li><b>Hur ser kunden på framtiden kring deras molntjänster?</b></li>
+                                    <li><b>Hur ser kundens digitala resa ut?</b></li>
+                                    <li>Har kunden en IT-driftpartner, t.ex. Cygate, eller en molntjänstleverantör?</li>
+                                    <li>Har kunden system/applikationer som är lokalt lagrade?</li>
+                                    <li>Har kunden tjänster/applikationer i molnet?</li>
+                                    <li>Använder kunden molnbaserade tjänster? Vilka molntjänster har kunden?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Kundens "resa mot molnet" är en viktig diskussionspunkt. Om en stor del av kundens
+                                    system/applikationer går över
+                                    internet är det viktigt att internetuppkopplingen fungerar. Ju mer data kunden
+                                    lagrar i molnet, desto säkrare behöver
+                                    kunden vara att datan alltid kan nås. Har kunden system lokalt lagrade är det inte
+                                    lika kritiskt att
+                                    internetuppkopplingen fungerar.
+                                </p><br>
+                                <p>Om kunden har en molnstrategi och kundens data lagras hos t.ex. Microsoft Azure,
+                                    Amazon Web Services eller motsvarande
+                                    så baseras kundens lösning troligtvis på en internetlösning (om de inte har
+                                    Datanet). I detta fall är Datanet inte
+                                    relevant för kunden utan fokus bör ligga på att hitta bästa möjliga väg till molnet.
+                                </p><br>
+                                <p>Exempel på molnbaserad tjänster som kunden kan nyttja är Office 365, Salesforce,
+                                    Google Cloud, Dropbox, YouTube, Amazon
+                                    Web Services, etc.
+                                </p><br>
+                                <p>Det är få kunder som har alla tjänster/system/applikationer i molnet. Ofta har kunden någon lokal server eller liknande och utvalda system/applikationer i molnet.</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec5_q11" class="textarea_size" value={dataObject.sec5_q11}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </lightning-tab>
+                <lightning-tab label="6. Molntjänster">
+                    <table style="table-layout: fixed;">
+                        <thead>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                EXEMPELFRÅGOR</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                INFORMATION</th>
+                            <!-- <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ERBJUDANDEN</th> -->
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ANTECKNINGAR </th>
+                        </thead>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden valt att lagra tidskritiska applikationer i molnet?</b></li>
+                                    <li><b>Har kunden behov av tillgång till applikationer och tjänster i molnet när som
+                                            helst
+                                            och var som helst på ett säkert och
+                                            överblickbart sätt?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Om kunden har tidskritiska applikationer i molnet kan en lämplig lösning för kunden
+                                    vara Datanet (ExpressRoute).</p>
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec6_q1" class="textarea_size" value={dataObject.sec6_q1}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li>
+                                        <b>Vill kunden koppla molntjänster till WAN:et?</b>
+                                    </li>
+                                    <li>Har kunden Datanet (ExpressRoute) och vill lagra data i en molntjänst, t.ex.
+                                        Microsoft Azure, och nå datan utan att gå
+                                        över publika internet?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <!-- <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td> -->
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec6_q2" class="textarea_size" value={dataObject.sec6_q2}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </lightning-tab>
+                <lightning-tab label="7. Säkerhet">
+                    <table style="table-layout: fixed;">
+                        <thead>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                EXEMPELFRÅGOR</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                INFORMATION</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ERBJUDANDEN
+                            </th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ANTECKNINGAR </th>
+                        </thead>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden en brandvägg?</b></li>
+
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>När diskussioner förs med kund kring säkerhet är det viktigt att man känner till
+                                    Business internet och Datacom
+                                    portföljen med dess erbjudandena för att kunna föra en bra dialog med kunden och
+                                    kunna svara på kundens frågor (en
+                                    tydlig paketering av produkter kring säkerhet finns inte).</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec7_q1" class="textarea_size" value={dataObject.sec7_q1}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Hur säkrar kunden trafiken till molnet idag?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec7_q2" class="textarea_size" value={dataObject.sec7_q2}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Hur ser säkerheten ut kring kundens kommunikation mellan siter idag?
+                                        </b></li>
+                                    <li><b>Är det viktigt för kunden att kommunikationen mellan siterna är säker?</b>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Cloud VPN SD-Wan/Firewall tillval:</p>
+                                <p>- Wired Advanced Site Protection</p>
+                                <p>- Wired Large Advanced Site Protection</p>
+                                <p>- Wired Large Plus Advanced Site Protection</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec7_q3" class="textarea_size" value={dataObject.sec7_q3}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Vill kunden på ett enkelt sätt kunna införa gemensamma säkerhetsregler på
+                                            applikationsnivå?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec7_q4" class="textarea_size" value={dataObject.sec7_q4}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </lightning-tab>
+                <lightning-tab label="8. Internetuppkoppling">
+                    <table style="table-layout: fixed;">
+                        <thead>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                EXEMPELFRÅGOR</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                INFORMATION</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ERBJUDANDEN</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ANTECKNINGAR </th>
+                        </thead>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden behov av internetuppkoppling?</b></li>
+                                    <li><b>Hur många siter har behov av internetuppkoppling?</b></li>
+                                    <li><b>Vilken internetuppkoppling har kunden idag?</b></li>
+                                    <li>Hur nyttjar kunden sin internetuppkoppling?</li>
+                                    <li>Hur fungerar kundens internetuppkoppling idag?</li>
+                                    <li>Har kunden flera internetleverantörer idag?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Frågor kring hur kundens internetuppkoppling ser ut/fungerar idag kan ställas t.ex.
+                                    för att få en förståelse för om
+                                    internetuppkopplingen som kunden har idag inte är tillräckligt bra, om kunden har
+                                    behov av att byta internetleverantör
+                                    till Telia eller om kunden har behov av internetuppkoppling till ytterligare siter.
+                                </p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec8_q1" class="textarea_size" value={dataObject.sec8_q1}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden enheter som dess slutkunder, partners eller liknande behöver nå
+                                            över
+                                            internet? (t.ex. en hemsida)</b></li>
+                                    <li>Har kunden behov av permanenta unika IP-adresser för sina enheter på internet?
+                                    </li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Bredband Start inkluderar dynamiska IP-adresser</p>
+                                <p>Telia Bredband Plus och Telia Bredband Pro inkluderar fasta IP-adresser</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec8_q2" class="textarea_size" value={dataObject.sec8_q2}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Vilken bredbandshastighet har kunden idag?</b></li>
+                                    <li><b>Räcker den bredbandshastighet som kunden har idag?</b></li>
+                                    <li><b>Vet kunden vilken bredbandshastighet verksamheten har behov av?</b></li>
+                                    <li>Hur många enheter (datorer, TV-apparater, kameror, etc.) behöver
+                                        internetuppkoppling per site?</li>
+                                    <li>Vad använder enheterna internet till (mail, ladda upp/ner stora filer,
+                                        videosamtal, databashantering, etc.)?</li>
+                                    <li>Hur många av kundens medarbetare arbetar dagligen med tjänster som nås över
+                                        internet? </li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Tumregel: En internetanvändare använder ungefär 10 Mbit/s.</p>
+                                <br>
+                                <p>Ungefär 70 % av Telias kunder har 100 Mbit/s per site.</p>
+                                <br>
+                                <p>Om kunden är osäker på vilken bredbandshastighet som är lämplig, föreslå att kunden
+                                    väljer en bredbandshastighet som
+                                    tros vara lämplig baserat på kundens behov och/eller vad som är vanligt förekommande
+                                    hastigheter för liknande
+                                    verksamheter och meddela kunden att uppföljning av bredbandshastigheten och om den
+                                    uppfyller kundens behov kommer göras
+                                    efter några månader. Följ sedan upp om kunden är nöjd med vald hastighet eller om
+                                    justering behöver göras.</p>
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Bredband Start 10 Mbit/s, 30 Mbit/s, 60 Mbit/s, 100 Mbit/s, 250 Mbit/s, 500
+                                    Mbit/s, 1 Gbit/s</p>
+                                <br>
+                                <p>Telia Bredband Plus 10 Mbit/s, 100 Mbit/s, 300/100 Mbit/s, 1000/100 Mbit/s</p>
+                                <br>
+                                <p>Telia Bredband Pro 100 Mbit/s, 200 Mbit/s, 500 Mbit/s, 1 Gbit/s, 2 Gbit/s, 5 Gbit/s,
+                                    10 Gbit/s</p>
+                                <br>
+                                <p>Access Multi 10 Mbit/s, 100 Mbit/s, 200 Mbit/s, 300 Mbit/s, 500 Mbit/s, 1 Gbit/s, 2
+                                    Gbit/s, 5 Gbit/s, 10 Gbit/s</p>
+                                <br>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec8_q3" class="textarea_size" value={dataObject.sec8_q3}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden behov av mobil access?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Bredband Pro:</p>
+                                <p>- Bredband Pro Wireless 4G</p>
+                                <br>
+                                <p>Telia Datanet:</p>
+                                <p>- Access Basic Wireless</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec8_q4" class="textarea_size" value={dataObject.sec8_q4}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden Bredband Start och är i behov av att veta Lokal-ID för att kunna
+                                            koppla upp enheter?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Vid val av Telia Bredband Start bör Lokal-ID sök rekommenderas som tillval</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Bredband Start tillval:</p>
+                                <p>- Lokal-ID sök</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec8_q5" class="textarea_size" value={dataObject.sec8_q5}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </lightning-tab>
+                <lightning-tab label="9. Trådlöst nätverk">
+                    <table style="table-layout: fixed;">
+                        <thead>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                EXEMPELFRÅGOR</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                INFORMATION</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ERBJUDANDEN</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ANTECKNINGAR </th>
+                        </thead>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden ett lokalt nätverk idag?</b></li>
+                                    <li><b>Vad har kunden för lokalt nätverk idag?</b></li>
+                                    <li>Hur fungerar kundens lösning idag?</li>
+                                    <li>Har kunden sin egen utrustning eller köper kunden av extern aktör?</li>
+                                    <li>Köper kunden utrustningen som tjänst eller hårdvara?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec9_q1" class="textarea_size" value={dataObject.sec9_q1}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden ett trådlöst nätverk idag?</b></li>
+                                    <li><b>Har kunden behov av ett trådlöst nätverk (Wifi)?</b></li>
+                                    <li><b>Har kundens medarbetare fasta arbetsplatser eller ska de anställda kunna röra
+                                            sig fritt på kontoret samtidigt som de är uppkopplade?</b></li>
+                                    <li><b>Hur ser kundens framtida behov av trådlöst nätverk ut?</b></li>
+                                    <li> Har kunden/vill kunden ha Wifi-calling, location-tjänster, gästnätverk eller
+                                        statistik på besökare och användare?</li>
+                                    <li> Hur många/vilka rum har behov av trådlöst nätverk?</li>
+                                    <li>Hur ser planlösningen ut för siterna som ska ha trådlöst nätverk?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Internetuppkoppling är en förutsättning för att ha ett trådlöst nätverk.</p>
+                                <br>
+                                <p>Rekommendera en Site Survey för att kunna garantera täckning för det trådlösa
+                                    nätverket. Vid fler än fyra accesspunkter
+                                    rekommenderas en Site Survey.</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Cloud VPN Wifi/Lan tillval:</p>
+                                <p>- Site survey Wifi</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec9_q2" class="textarea_size" value={dataObject.sec9_q2}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Vilka verktyg/applikationer använder kunden?</b></li>
+                                    <li><b>Vilken typ av enheter ska vara uppkopplade?</b></li>
+                                    <li><b>Vad nyttjar kunden internet till?</b></li>
+                                    <li><b>Har kunden behov av internet utomhus?</b></li>
+                                    <li>Hur många enheter ska vara uppkopplade mot det trådlösa nätverket respektive det
+                                        fasta nätverket?</li>
+                                    <li>Vilken typ av accesspunkter har kunden behov av?</li>
+                                    <li>Hur många accesspunkter har kunden behov av?</li>
+                                    <li>Hur många portar har kunden behov av?</li>
+                                    <li>Vilka switchar har kunden behov av?</li>
+                                    <li>Hur många switchar har kunden behov av?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Tumregel: En accesspunkt täcker ca 200 kvm.</p>
+                                <br>
+                                <p>Exempel på verktyg/applikationer: Skype, Office 365, tillgång till lokala skrivare.
+                                </p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Cloud VPN Wifi/Lan accesspunkter:</p>
+                                <p>- Wireless Indoor Wifi6 Access Point</p>
+                                <p>- Wireless Indoor Large Wifi6 Access Point</p>
+                                <p>- Wireless Outdoor Large Wifi6 Access Point</p>
+                                <br>
+                                <p>Telia Cloud VPN Wifi/Lan switchar:</p>
+                                <p>- Wired Switch 8 Ports PoE</p>
+                                <p>- Wired Switch 24 Ports PoE</p>
+                                <p>- Wired Switch 48 Ports PoE</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec9_q3" class="textarea_size" value={dataObject.sec9_q3}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Är kunden i behov av flera nätverk?</b></li>
+                                    <li><b>Har kunden behov av ett gästnätverk?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Cloud VPN Wifi/Lan tillval:</p>
+                                <p>- Design Wireless multiple SSID</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec9_q4" class="textarea_size" value={dataObject.sec9_q4}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Behöver switchar kopplas samman?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Lämpligt om två enheter som är över ca 2 m från varandra ska kopplas samman.</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Cloud VPN Wifi/Lan tillval:</p>
+                                <p>- SFP fiber converter 1G, long range Single mode</p>
+                                <p>- SFP fiber converter 1G, short range Multi mode</p>
+                                <p>- SFP+ fiber converter 10G, long range</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec9_q5" class="textarea_size" value={dataObject.sec9_q5}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </lightning-tab>
+                <lightning-tab label="10. Kommunikation mellan siter">
+                    <table style="table-layout: fixed;">
+                        <thead>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                EXEMPELFRÅGOR</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                INFORMATION</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ERBJUDANDEN</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ANTECKNINGAR </th>
+                        </thead>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden behov av kommunikation mellan siter?</b></li>
+                                    <li><b>Hur många siter ska kunna kommunicera med varandra?</b></li>
+                                    <li><b>Har kunden kommunikation mellan siter idag?</b></li>
+                                    <li>Hur fungerar kommunikationen mellan siterna idag?</li>
+                                    <li>Har kunden sin egen utrustning eller har kunden en tjänst från annan aktör?</li>
+                                    <li>Har kunden behov av Telia Cloud VPN SD-Wan/Firewall eller Datanet?</li>
+                                    <li>Hur många SD-Wan enheter har kunden behov av?</li>
+                                    <li>Har kunden behov av mycket kommunikation mellan siterna?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Tumregel: En SD-Wan enhet per access, två enheter om kunden har backup. Välj storlek
+                                    beroende på bandbredd.</p><br>
+
+                                <p>Kommunikation mellan siter är inte så vanligt. 90 % av kunderna har inte
+                                    kommunikation mellan siter m.h.a. Datanet.
+                                    T.ex. har en butikskedja ofta behov av ett stabilt nät för att klara
+                                    kassabetalningar, men två butiker pratar sällan med
+                                    varandra.</p><br>
+
+                                <p>Har kunden mycket kommunikation mellan sina siter är det viktigt att trafiken går på
+                                    ett bra sätt mellan siterna, ett
+                                    Datanet kan då vara en lösning.</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Cloud VPN SD-Wan/Firewall:</p>
+                                <p>- Wired</p>
+                                <p>- Wired Large</p>
+                                <p>- Wired Large Plus</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec10_q1" class="textarea_size" value={dataObject.sec10_q1}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden behov av ett managerat nätverk?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Datanet möjliggör ett managerat nätverk som kontrolleras av Telia.</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                Telia Datanet
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec10_q2" class="textarea_size" value={dataObject.sec10_q2}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <!-- <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li>Har kunden behov av mycket kommunikation mellan siterna?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Har kunden mycket kommunikation mellan sina siter är det viktigt att trafiken går på
+                                    ett bra sätt mellan siterna, ett
+                                    Datanet kan då vara en lösning</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec10_q3" class="textarea_size" value={dataObject.sec10_q3}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Har kunden några särskilda krav på kommunikationen mellan siterna?</b></li>
+                                    <li><b>Har kunden behov av att kommunicera med andra företag?</b></li>
+                                    <li><b>Jobbar kunden med partners som måste komma åt centrala funktioner?</b></li>
+                                    <li><b>Har kunden några särskilda krav på kommunikationen med andra företag?</b>
+                                    </li>
+                                    <li>Har kunden videokonferenser internt mellan kontor som är viktig att den fungerar
+                                        bra och säkert?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec10_q4" class="textarea_size" value={dataObject.sec10_q4}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Vill kunden ha kontroll på uppkoppling och datatrafik från en central portal?
+                                        </b></li>
+                                    <li><b>Är kunden intresserad av att få insikter kring deras dataanvändande på ett
+                                            enkelt sätt?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Telia Cloud VPN SD-Wan/Firewall</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec10_q5" class="textarea_size" value={dataObject.sec10_q5}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b> Vill kunden på ett enkelt sätt kunna sätta upp och ta ned förbindelser efter
+                                            behov över tid?</b></li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Om kunden har behov av att sätta upp och ta ned förbindelser över tid kan Telia Cloud
+                                    VPN SD-Wan/Firewall vara ett
+                                    bättre alternativ än Telia Datanet.</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec10_q6" class="textarea_size" value={dataObject.sec10_q6}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </lightning-tab>
+                <lightning-tab label="11. Installation">
+                    <table style="table-layout: fixed;">
+                        <thead>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                EXEMPELFRÅGOR</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                INFORMATION</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ERBJUDANDEN</th>
+                            <th
+                                class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                ANTECKNINGAR </th>
+                        </thead>
+                        <tr>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <ul class="slds-list_dotted">
+                                    <li><b>Vill kunden att Telia installerar lösningen eller vill de själva
+                                            installera?</b></li>
+                                    <li><b>Finns det ett fastighetsnät från nätanslutningspunkten till brukarstället
+                                            (plats där kunden vill placera routern)?</b></li>
+                                    <li>Finns befintligt fastighetsnät vid kundens siter?</li>
+                                    <li>Har kunden behov av kompletteringar i det befintliga fastighetsnätet vid
+                                        leverans av tjänsten?</li>
+                                </ul>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Vid val av Telia Bredband Plus, Telia Bredband Pro och Telia Datanet är det vanligt
+                                    att tjänsten Anslutning i
+                                    fastighetsnät läggs till för en kostnad på 7500 kr vilket inkluderar 200 meter
+                                    fiberdragning.</p>
+                                <br>
+                                <p>Kostnaden bestäms för respektive site. Vid komplex eller vid mer än 200 meter
+                                    fiberdragning presenteras en offert för
+                                    kunden.</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <p>Installation ingår inte i Telia Bredband Start. Kunden kan välja tillval Lokal-ID sök
+                                </p>
+                                <br>
+                                <p>Installation ingår i Telia Bredband Plus, Telia Bredband Pro och Telia Datanet.
+                                    Kunden kan välja tillval Anslutning i fastighetsnät</p>
+                                <br>
+                                <p>Telia Cloud VPN Wifi/Lan tillval:</p>
+                                <p>- Installation Wireless per Enhet</p>
+                                <p>- Installation Wired Switch per Enhet</p>
+                                <p>- Installation Övrigt per Timme</p>
+                                <br>
+                                <p>Telia Cloud VPN SD-Wan/Firewall tillval:</p>
+                                <p>- Installation Wired per Enhet</p>
+                                <p>- Installation Övrigt per Timme</p>
+                            </td>
+                            <td
+                                class="size_adjustment slds-border_top slds-border_bottom slds-border_left slds-border_right slds-p-around_x-small">
+                                <lightning-textarea name="sec11_q1" class="textarea_size" value={dataObject.sec11_q1}
+                                    onchange={handleChange}>
+                                </lightning-textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </lightning-tab>
+            </lightning-tabset>
+        </lightning-tab>
+    </lightning-tabset>
+
+    <div class="slds-grid slds-m-top_large">
+        <div class="slds-col slds-size_3-of-4"></div>
+        <!-- <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_outline-brand slds-button_stretch"
+                onclick={previousStep}>Tillbaka</button>
+        </div> -->
+        <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_brand slds-button_stretch" onclick={nextStep}>Spara och stäng</button>
+        </div>
+    </div>
+</template>

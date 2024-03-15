@@ -1,0 +1,231 @@
+<aura:component controller="RevenueImpactController"
+                Implements="force:LightningQuickActionwithoutheader,flexipage:availableForRecordHome,force:hasRecordId">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="oldRITotal" type="Decimal"/>
+    <aura:attribute name="newRITotal" type="Decimal"/>
+    <aura:attribute name="RiImpact" type="Decimal"/>
+    <aura:attribute name="RiImpactPer" type="Decimal"/>
+    <aura:attribute name="IsSpinner" type="Boolean" default="false"/>
+    <aura:if isTrue="{!v.IsSpinner}">
+        <lightning:spinner aura:id="spinnerId" variant="brand" size="large"/>
+    </aura:if>
+    <!--Event handler for Add and Delete Row Event which is fire from Child Component-->
+    <aura:handler name="DeleteRowEvt" event="c:DeleteRowEvt" action="{!c.removeDeletedRow}"/>
+    <aura:handler name="AddRowEvt" event="c:AddNewRowEvt" action="{!c.addNewRow}"/>
+    <aura:attribute access="PUBLIC" name="manageView" type="Object[]"/>
+    <!--<aura:handler name="init" value="{!this}" action="{!c.getRIRecord}" />-->
+
+    <!--Aura Attribute for store Contact Object List as Array-->
+    <aura:attribute name="RIList" type="Revenue_Effect__c[]"/>
+    <aura:attribute name="tableView" type="boolean" default="false" access="public"/>
+    <aura:attribute name="dataView" type="boolean" default="false" access="public"/>
+    <aura:attribute name="perCheck" type="boolean" default="false" access="public"/>
+    <aura:attribute name="krCheck" type="boolean" default="false" access="public"/>
+
+    <!-- Data Table Attributes -->
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="updatedRecord" type="Object[]"/>
+
+
+    <!--Header Part-->
+    <div class="slds-page-header">
+        <h1 class="slds-page-header__title">
+            <center>Intäktseffekt Kalkyl</center>
+        </h1>
+        <aura:if isTrue="{!v.dataView}">
+
+            <div class="slds-float--right" title="Add New">
+                <a onclick="{!c.addadditionalnewRow}">
+                    <lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small"
+                                    alternativeText="add"/>
+                    <span class="slds-assistive-text">Add Icon</span>
+                </a>
+
+            </div>
+            <br/>
+        </aura:if>
+        <p class="slds-text-body_small slds-line-height_reset">
+        <div class="slds-truncate" title="Action"></div>
+        </p>
+    </div>
+    <!--<a onclick="{!c.addadditionalnewRow}">
+                  <lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small" alternativeText="add"/>
+                  <span class="slds-assistive-text">Add Icon</span>
+    </a>-->
+    <aura:html tag="style">
+        .slds-modal__container{
+        width: 95%;
+        max-width: 95rem;
+        }
+        .modal-body{
+        height : 450px !important;
+        max-height: 550px !important;
+        }
+        .slds-modal__content
+        {
+        height : 450px !important;
+        max-height: 550px !important;
+        }
+    </aura:html>
+    <div style="height: 300px; width: 1300px slds-scrollable_y">
+
+        <!--Table to display entered Data-->
+        <aura:if isTrue="{!v.dataView}">
+            <div class="slds">
+
+                <lightning:card title="">
+                    <lightning:datatable
+                            aura:id="RIDataTable"
+                            columns="{! v.columns }"
+                            data="{! v.manageView }"
+                            keyField="Id"
+                            wrapTextMaxLines="2"
+                            onsave="{!c.onSave}"
+                            hideCheckboxColumn="true"
+                            onrowaction="{!c.handleRowAction }"/>
+                </lightning:card>
+            </div>
+            <br></br><br></br><br></br>
+            <!--Table2 to show calculations-->
+            <div class="slds-page-header">
+                <b>
+                    <center>INTÄKTSEFFEKT PÅ KUNDEN I SAMBAND MED AFFÄR</center>
+                </b>
+                <p class="slds-text-body_small slds-line-height_reset"></p>
+            </div>
+            <!--   <div class="demo-only" style="padding:0.5rem;background:#16325c">-->
+            <div class="slds-box slds-theme_shade">
+
+                <table class="slds-table slds--table-bordered">
+                    <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Total Old Revenue Impact">TOTALT NUVARANDE INTÄKTER 12
+                                mån
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Total New Revenue Impact">TOTALT INTÄKTER NY OFFERT/AFFÄR
+                                12 mån
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Revenue Impact">Intäktseffekt 12 mån (Kr)</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Revenue Impact Percentage">Intäktseffekt 12 mån (%)</div>
+                        </th>
+                        <!--<th scope="col">
+                       <div class="slds-truncate" title="Action"></div>
+                          <a onclick="{!c.addadditionalnewRow}">
+                             <lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small" alternativeText="add"/>
+                             <span class="slds-assistive-text">Add Icon</span>
+                           </a>
+                     </th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td scope="row" data-label="OldRITotal">
+                            <div class="slds-truncate"><a href="javascript:void(0);">{!v.oldRITotal}</a></div>
+                        </td>
+                        <td scope="row" data-label="NewRITotal">
+                            <div class="slds-truncate"><a href="javascript:void(0);">{!v.newRITotal}</a></div>
+                        </td>
+                        <td scope="row" data-label="OldRITotal">
+                            <aura:if isTrue="{!v.perCheck}">
+                                <div class="redColor">
+                                    <div class="slds-truncate"><a href="javascript:void(0);">{!v.RiImpact} kr</a></div>
+                                </div>
+                                <aura:set attribute="else">
+                                    <div class="slds-truncate"><a href="javascript:void(0);">{!v.RiImpact} kr</a></div>
+                                </aura:set>
+                            </aura:if>
+                        </td>
+                        <td scope="row" data-label="NewRITotal">
+                            <aura:if isTrue="{!v.krCheck}">
+                                <div class="redColor">
+                                    <div class="slds-truncate"><a href="javascript:void(0);">{!v.RiImpactPer}</a></div>
+                                </div>
+
+                                <aura:set attribute="else">
+                                    <div class="slds-truncate"><a href="javascript:void(0);">{!v.RiImpactPer}</a></div>
+                                </aura:set>
+                            </aura:if>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--</div>-->
+        </aura:if>
+
+        <!--Table Part-->
+        <!--<div class="slds-scrollable_x slds-clearfix slds-card" style="height: 250px; max-height: 150px; width: 1000px">-->
+        <aura:if isTrue="{!v.tableView}">
+            <br><br><br></br></br></br>
+            <!-- Table to get an input-->
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table--striped slds-scrollable_x">
+
+                <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">
+                        <div class="slds-cell-wrap">S.No</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-cell-wrap" title="Category">Kategori</div>
+                    </th>
+                    <!--   <th scope="col">
+                          <div class="slds-cell-wrap" title="Category">Sub Category</div>
+                      </th>-->
+                    <th scope="col">
+                        <div class="slds-cell-wrap" title="Old Antal">Nuvarande antal</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-cell-wrap" title="Old Monthly Cost"> Nuvarande månadskostnad</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-cell-wrap" title="Old Total Revenue">Nuvarande Total intäkt 12 mån</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="New Antal">Nytt antal</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-cell-wrap" title="New Monthly Cost">Ny månadskostnad</div>
+                    </th>
+
+                    <th scope="col">
+                        <div class="slds-cell-wrap" title="New Total Revenue">Ny Total intäkt 12 mån</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-cell-wrap" title="New Antal">Kommentar</div>
+                    </th>
+                    <th scope="col">
+                        <a onclick="{!c.AddNewRowParent}">
+                            <lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small"
+                                            alternativeText="add"/>
+                            <span class="slds-assistive-text">Add Icon</span>
+                        </a>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--Iterate the child Component for display Table rows
+                    with pass the List Item Index for track the Every child Component
+                    and pass each List Contact Instance -->
+                <aura:iteration items="{!v.RIList}" var="item" indexVar="index">
+                    <c:dynamicRowItem RevenueInstance="{!item}" rowIndex="{!index}" opprecordId="{!v.recordId}"/>
+                </aura:iteration>
+                </tbody>
+
+            </table>
+            <br/>
+            <!--Save Button which is call Save js function on click -->
+            <button class="slds-button slds-button_brand" onclick="{!c.Save}">Save</button>
+        </aura:if>
+
+    </div>
+    <c:dynamicRowItem aura:id="childComp" IsVisible="false"/>
+</aura:component>

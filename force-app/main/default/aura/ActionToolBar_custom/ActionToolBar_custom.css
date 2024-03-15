@@ -1,0 +1,120 @@
+.THIS {
+}
+
+
+.THIS .via-top-global-alert.show-validation {
+    opacity: 1;
+    transition: all .2s ease-in;
+}
+
+.THIS .via-top-global-alert {
+    top: auto;
+    opacity: 0;
+}
+
+.THIS .forceIconDeprecated[data-icon]:before {
+    font-family: "forceIconFont" !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+}
+.THIS .selfServiceIcon[data-icon]:before {
+            font-family: 'MSSIcons' !important;
+}
+
+.THIS .vlocity .action-container.action-vertical{
+            display: block;
+        }
+.THIS .vlocity .action-container.action-horizontal{
+    display: inline-table;
+}
+.THIS .action-btn{
+    background:none;
+    outline:none;
+    border:none;
+    box-shadow:none;
+    background-color:none;
+    border-color:none;
+}
+.THIS .action-btn:active{
+    background:none;
+    outline:none;
+    border:none;
+    box-shadow:none;
+}
+.THIS .vlocity .action-container .action-item .image-wrapper {
+    margin: 0;
+}
+ .THIS.slds-notify_container.show-validation {
+    position: inherit;
+}
+.THIS .closeIcon {
+    cursor: pointer;
+    float: right;
+}
+.THIS .ltngDeveloperError .body {
+    padding-top: 10px;
+}
+.THIS .msgHeader {
+    color: rgb(255, 255, 255);
+    background-color: rgba(194, 57, 52, 0.95);
+    opacity: .95;
+}
+.THIS .msgTitle  {
+    display: flex;
+    height: 30px;
+    line-height: 24px;
+    padding-top: 4px;
+    padding-left: 4px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+.THIS .ltngDeveloperError .forceIcon{
+    float: left;
+    display: flex;
+    justify-content: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+}
+.THIS .ltngDeveloperError .label{
+    color: rgb(84, 105, 141);
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+.THIS .ltngDeveloperError .details {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.THIS .dropDownIcon {
+    overflow: hidden;
+}
+.THIS .slds-dropdown__item .action-label {
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    display: inline-block;
+    line-height: 33px;
+    color: #000;
+    float: left;
+}
+.THIS .slds-dropdown__item>a, .THIS .slds-dropdown__item.action-item  {
+    background-color: #f8f8f8;
+    border-right: none !important;
+}
+.THIS .slds-dropdown__item>a:focus, .THIS .slds-dropdown__item>a:hover{
+    text-decoration: none;
+    background-color: #e1f1f6;
+}
+.THIS .action-container.action-horizontal {
+    overflow: visible !important;
+}
+.THIS .slds-button_icon-border {
+    border: 0px;
+}
+.THIS .slds-dropdown__item.action-item {
+    display: flex;
+    width: 100%;
+}

@@ -1,0 +1,11 @@
+.THIS .uiInput {
+    width : 100%;
+}
+
+.THIS.slds-theme_error {
+    background-color : #D34B40;
+}
+
+.THIS .slds-width {
+    width:90px;
+}

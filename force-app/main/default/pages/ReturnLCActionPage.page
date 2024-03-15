@@ -1,0 +1,41 @@
+<apex:page controller="ReturLCActionController">
+    <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+    <script type='text/javascript'>    
+    function init(){
+        if($('[id$=closeReason]').val() == 'Annat'){
+            $('[id$=otherReason]').prop('disabled', false);
+        }else{
+            $('[id$=otherReason]').prop('disabled', true);
+        }
+        
+        
+        $('[id$=owner]').prop('disabled', true);
+        $('[id$=status]').prop('disabled', true);
+        $('[id$=owner_mlktp]').prop('disabled', true);
+    }
+    
+    function enableReason(){
+        if($('[id$=closeReason]').val() == 'Annat'){
+            $('[id$=otherReason]').prop('disabled', false);
+        }else{
+            $('[id$=otherReason]').prop('disabled', true);
+        };
+    }
+    </script>
+    <apex:form >
+        <apex:pageBlock title="{!$Label.RLC_Header}" mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!sendLeadToLCVF}" value="Skicka"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="{!$Label.RLC_Sub_Title}" columns="2">
+                <apex:inputField value="{!LeadRecord.OwnerId}"  id="owner"/>
+                <apex:inputField value="{!LeadRecord.Lead_Close_Reason__c}" id="closeReason" onchange="enableReason()"/>
+                <apex:inputField value="{!LeadRecord.Status}"  id="status" />           
+                <apex:inputField value="{!LeadRecord.Other_reason__c}" id="otherReason" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <script>
+    init();  
+    </script>
+</apex:page>

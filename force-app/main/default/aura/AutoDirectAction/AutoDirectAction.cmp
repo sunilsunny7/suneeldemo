@@ -1,0 +1,51 @@
+<aura:component controller="AutoDirectController" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId,lightning:isUrlAddressable" access="global">
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:attribute name="status" type="String"/>
+    <aura:attribute name="errorMessages" type="String[]"/>
+    <aura:attribute name="isSuccess" type="Boolean"/>
+    <aura:attribute name="listOfLeads" type="List" />
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert" style="z-index:9999">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+    <div class="slds-modal__header">
+        <div class="slds-media">
+            <div class="slds-media__body">
+                <div class="slds-text-heading--large" >{!$Label.c.AD_Auto_Direct}</div>
+            </div>
+        </div>
+    </div>
+    <div class="slds-m-around--medium">
+        <aura:if isTrue="{!!v.isSuccess}">
+            <div class="slds-media" >
+                <div class="slds-media__figure slds-p-vertical--medium">
+                    <c:svgIcon svgPath="/resource/slds213/assets/icons/utility-sprite/svg/symbols.svg#warning" class="slds-icon-text-warning" size="small"  />
+                </div>
+                <div class="slds-media__body">
+                    <div class="slds-text-heading--medium slds-p-vertical--medium" >
+                        {!v.status}
+                    </div>
+                    <aura:iteration items="{!v.errorMessages}" var="e">
+                        <ul>
+                            <li>{!e}</li>
+                        </ul>
+                        <br>
+                        </br>
+
+                            <lightning:button class="{!v.recordId ? 'slds-hide':''}" variant="brand-outline" label="Close" title="Brand action" onclick= "{!c.close}"/>
+
+
+                    </aura:iteration>
+                </div>
+
+            </div>
+
+        </aura:if>
+    </div>
+
+</aura:component>

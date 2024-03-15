@@ -1,0 +1,125 @@
+<template>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="BestallareNamn" label="Beställare hos avtalspart - Namn"
+                value={parentvalue.ContactName} onchange={handleChange} class="required_field" required>
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="BestallareTelefonnummer" label="Beställare - Telefonnummer"
+                value={parentvalue.ContactNumber} onchange={handleChange} class="required_field" required></lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="BestallareEpost" label="Beställare - Epost"
+                value={parentvalue.ContactEmail} onchange={handleChange} class="required_field" required></lightning-input>
+        </div>
+    </div>
+
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="BestallareGatuadress" label="Beställare - Gatuadress"
+                onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="BestallarePostnummer" label="Beställare - Postnummer"
+                onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="BestallarePostort" label="Beställare - Postort" onchange={handleChange}>
+            </lightning-input>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-gutters slds-m-top_x-large">
+        <div class="slds-col">
+            <b>Kontaktperson 1 för:</b>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-gutters">
+
+        <div class="slds-col">
+            <lightning-checkbox-group name="selectedRoles1" label="" options={options} value={value1}
+                onchange={handleChange}></lightning-checkbox-group>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson1Namn" label="Kontaktperson 1: Namn"
+                value={parentvalue.ContactName} onchange={handleChange} class="required_field" required>
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson1Telefonnummer" label="Kontaktperson 1: Telefonnummer"
+                value={parentvalue.ContactNumber} onchange={handleChange} class="required_field" required></lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson1Epost" label="Kontaktperson 1: Epost"
+                value={parentvalue.ContactEmail} onchange={handleChange} class="required_field" required></lightning-input>
+        </div>
+    </div>
+
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson1Gatuadress" label="Kontaktperson 1: Gatuadress"
+                onchange={handleChange} class="required_field" required></lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson1Postnummer" label="Kontaktperson 1: Postnummer"
+                onchange={handleChange} class="required_field" required></lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson1Postort" label="Kontaktperson 1: Postort"
+                onchange={handleChange} class="required_field" required></lightning-input>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-gutters slds-m-top_x-large">
+        <div class="slds-col">
+            <b>Kontaktperson 2 för:</b>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-gutters ">
+    
+        <div class="slds-col">
+            <lightning-checkbox-group name="selectedRoles2" label="" options={options} value={value2}
+                onchange={handleChange}></lightning-checkbox-group>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson2Namn" label="Kontaktperson 2: Namn"
+                onchange={handleChange}>
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson2Telefonnummer" label="Kontaktperson 2: Telefonnummer"
+                onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson2Epost" label="Kontaktperson 2: Epost"
+                onchange={handleChange}></lightning-input>
+        </div>
+    </div>
+
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson2Gatuadress" label="Kontaktperson 2: Gatuadress"
+                onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson2Postnummer" label="Kontaktperson 2: Postnummer"
+                onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-input type="text" name="Kontaktperson2Postort" label="Kontaktperson 2: Postort"
+                onchange={handleChange}></lightning-input>
+        </div>
+    </div>
+</template>

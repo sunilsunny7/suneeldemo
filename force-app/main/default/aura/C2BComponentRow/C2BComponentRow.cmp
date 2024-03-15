@@ -1,0 +1,72 @@
+<aura:component controller="C2BComponentController" >
+    <ltng:require styles="/resource/sldsnew/styles/salesforce-lightning-design-system.css" />
+    <aura:attribute name="IsOpen" type="Boolean" default="false"/>
+    <aura:attribute name="IsLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="Category" type="String" />
+     <aura:attribute name="OrgNumber" type="String" />
+    <aura:attribute name="CategoryCount" type="String" />
+    <aura:attribute name="MethodType" type="String" />
+    <aura:attribute name="DataList" type="C2BComponentController.C2BGenericWrapper[]" />
+    
+    
+    <li id="tree0-node0" role="treeitem" aria-level="1" aria-expanded="true">
+        
+        <div class="slds-tree__item" onclick="{!c.openClick}">
+            <table>
+                <tbody>
+                    <tr>
+                        <td width="5%">
+                        <aura:if isTrue="{!v.IsOpen}">
+                            <button class="slds-button button-effect active"  aria-haspopup="true">                            
+                               <c:svgIcon svgPath="/resource/slds213/assets/icons/utility-sprite/svg/symbols.svg#chevronright" class="slds-icon-text-error"  size="x-small" name="Action" />      
+                            </button>
+                            <aura:set attribute="else">
+                                <button class="slds-button button-effect"   aria-haspopup="true">                            
+                                    <c:svgIcon svgPath="/resource/sldsnew/icons/utility-sprite/svg/symbols.svg#chevronright" class="slds-icon-text-default" size="x-small" name="Action" />   
+                                </button>
+                            </aura:set>
+                        </aura:if>
+                        </td>
+                        <td class="slds-truncate" width="75%">{!v.Category}</td>
+                        <td class="slds-truncate slds-text-align--center" width="20%">{!v.CategoryCount}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </li>
+    
+    
+    <aura:renderIf isTrue="{!v.IsOpen}">
+        <ul class="slds-is-expanded" role="group" aria-labelledby="tree0-node1__label">
+            <li id="tree0-node1" role="treeitem" aria-level="1" aria-expanded="true">
+                <div class="slds-tree__item">
+                    <table class="slds-table slds-table--cell-buffer nested-table">
+                        <thead> 
+                            <tr  class="slds-text-heading--label">            
+                                <th  class="" scope="col" width="80%">
+                                    <div  class="slds-truncate">{!$Label.c.C2BOfferingName}       
+                                    </div>
+                                </th>
+                                <th class="slds-text-align--center" scope="col" width="20%">
+                                    <div class="slds-truncate">
+                                    </div>
+                                </th>
+                                
+                            </tr >
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.DataList}" var="gw">
+                                <tr>  
+                                    <td >{!gw.Name}</td >
+                                    <td class="slds-text-align--center remove-padding-right ">{!gw.Amount}</td >
+                                    
+                                </tr>           
+                            </aura:iteration>    
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        </ul>
+    </aura:renderIf>
+</aura:component>

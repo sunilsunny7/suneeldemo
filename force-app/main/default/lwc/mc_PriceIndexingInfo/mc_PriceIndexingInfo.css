@@ -1,0 +1,12 @@
+.lgc-bg{
+    background-color: #f3f3f3;
+    color: rgb(24, 24, 24);
+    font-size: 16px ;
+    font-stretch :100%;
+    font-weight: 400;
+    font-family: var(--lwc-fontFamily, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol');
+}
+
+.underline{
+    border-bottom: #c9c9c9 solid 1px;
+}

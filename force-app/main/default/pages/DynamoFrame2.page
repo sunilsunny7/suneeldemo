@@ -1,0 +1,10 @@
+<apex:page >
+<apex:stylesheet value="https://dynamo.documill.com/visualforce/dynamo-vf.css" />
+  <apex:includeScript value="https://dynamo.documill.com/visualforce/dynamo-vf.js" />
+  <head></head>
+  <body>
+    <div class="dynamo-container">
+    <apex:iframe src="https://dynamoflow.documill.com/service/sfdco?&serverURL={!$Api.Partner_Server_URL_250}&templateID={!$CurrentPage.parameters.templateID}&id={!$CurrentPage.parameters.id}&useFlow=true&customListenerURL=*&oauthLoginURL=https%3A%2F%2Ftelia--test.lightning.force.com"/>
+    </div>
+   </body>
+</apex:page>

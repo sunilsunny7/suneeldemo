@@ -1,0 +1,25 @@
+<template>
+    <div class="slds-m-top_medium">
+        Subscriptions ( {totalSubs} )
+    </div>
+    <div class="slds-m-top_medium">
+        <template for:each={newSubs} for:item="item" for:index="index">
+            <div key={k}>
+                <lightning-input type="checkbox" label={item.Name} name={item.Id}
+                    onchange={handleChange} checked={item.checked}></lightning-input>
+            </div>
+        </template>
+    </div>
+    
+    
+    <div class="slds-grid slds-m-top_large">
+        <div class="slds-col slds-size_9-of-12"></div>
+        <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_outline-brand slds-button_stretch"
+                onclick={previousStep}>Tillbaka</button>
+        </div>
+        <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_brand slds-button_stretch" onclick={nextStep}>Fortsätt</button>
+        </div>
+    </div>
+</template>

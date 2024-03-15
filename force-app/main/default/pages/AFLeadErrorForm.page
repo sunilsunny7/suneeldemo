@@ -1,0 +1,11 @@
+<apex:page lightningStylesheets="true" controller="LeadAgentFormHandlerController">
+<apex:form >
+ <apex:pageBlock >       
+         <apex:pageBlockButtons location="bottom">
+             <apex:commandButton value="Skapa nytt lead"  action="{!pardotLeadAgentErrorPageBack}"/>
+             <apex:commandButton value="Klar"  action="{!doneHomePage}"/>
+         </apex:pageBlockButtons>        
+        Ett fel har inträffats och ett lead har inte skapats. Vänligen uppdatera sidan och försök igen. Om problemet kvarstår, kontakta din administratör eller försök igen senare.
+ </apex:pageBlock>
+</apex:form>
+</apex:page>

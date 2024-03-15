@@ -1,0 +1,12 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">    
+    <div class="slds-scrollable_x" >
+            <table class="slds slds-table slds-float_left" style="width:100%">
+            <tr>
+                <br/>
+                <td style="height:20px;font-weight:bold;white-space: normal;word-wrap:break-word;overflow-wrap:break-wordpadding-left:25px;"><img src="{!$Resource.SkapaleadIcon}" class=".slds-avatar_medium" style="height:40px;width:50px"/>Skicka in ett nytt Lead till Leadscentralen </td>
+                <td ><lightning:button variant="brand" label="Skapa Lead" onclick="{!c.gotoURL }" /></td>
+                <td><br/></td>
+                </tr>
+        </table>
+        </div>
+</aura:component>

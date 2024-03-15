@@ -1,0 +1,31 @@
+<aura:component controller="LeadAlphaController" implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <ltng:require styles="/resource/sldsnew/styles/salesforce-lightning-design-system.css" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:attribute name="EnableSend" type="Boolean" default="true" />
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" /> 
+    
+     <!-- Ajaz Request spining prototype-->
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert" style="z-index:9999">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div> 
+    </div>
+     <div class="slds-modal__header">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <c:svgIcon svgPath="/resource/slds213/assets/icons/utility-sprite/svg/symbols.svg#change_record_type" class="slds-icon-text-default" size="small"  /> 
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-text-heading--large" >Next Leads Alpha Integration</div>
+            </div>
+        </div>
+    </div>
+    <!-- Button Code Creation-->
+    
+    <div class="slds-grid slds-grid--vertical-align-end slds-grid--align-right slds-m-top--medium">
+        <lightning:button variant="brand" disabled="{!!v.EnableSend}" label="Send to Alpha" onclick="{!c.sendData }" />
+    </div>
+</aura:component>

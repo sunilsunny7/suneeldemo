@@ -1,0 +1,28 @@
+<apex:page standardController="Contact" extensions="ContactController" showHeader="false" sidebar="false">
+    <apex:includeScript value="{!$Resource.jQuerynew}"/>
+    <script src="/soap/ajax/42.0/connection.js" type="text/javascript"/>
+    <script src="/soap/ajax/42.0/apex.js" type="text/javascript"/>
+        <script type = "text/javascript">
+            Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.ContactController.logrecord}',
+            '{!Contact.Id}',
+            function(result, event){
+                if (event.status) {
+                    if (sforce.one != undefined) {
+                        // Lightning Navigation
+                        window.open(result,'_blank')
+                        sforce.one.navigateToSObject('{!Contact.Id}');
+                    } else{
+                        //Classic Navigation
+                        window.open(result,'_self')
+                    }
+                } else if (event.type === 'exception') {
+                    console.log('exception');
+                } else {
+                    console.log(event.message);
+                }
+            }, 
+            {escape: false}
+        );
+    </script>
+</apex:page>

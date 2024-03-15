@@ -1,0 +1,264 @@
+global with sharing class MCOnline_GetAgreementOffers_V0_3 implements vlocity_cmt.VlocityOpenInterface {
+    
+    global Boolean invokeMethod(String methodName, Map<String,Object> inputMap, Map<String,Object> outMap, Map<String,Object> options) {
+        
+        if(methodName.equals('getAgreementOffers_V0_3'))
+        {  
+            getAgreementOffers_V0_3(inputMap, outMap, options);
+        }
+        return true;
+    }
+    
+    public static Map<String,Object> generateError(string errorCode,string errorType, string functionality, Map<String,Object> inputMap){
+        
+        String tscid= (string)inputMap.get('TSCID');
+
+        Map<String,Object> ipInputMap = new Map<String,Object>(); 
+        
+        string urlDetails = '{"tscid": "'+tscid+'"}'; 
+        ipInputMap.put('functionality', functionality); 
+        ipInputMap.put('errorType', errorType);
+        ipInputMap.put('errorCode', errorCode);
+        Map<String,Object> errorResponse = MCOnline_Utility.getError(ipInputMap);
+        MCOnline_Utility.logError(JSON.serialize(errorResponse), errorCode,'MCONLINE_getAgreementOffersV0.2,MCOnline_GetAgreementOffers_V0_2.generateError','Integration Procedure, Apex Class', 'Custom Error',JSON.serialize(inputMap),'','',urlDetails);
+        return MCOnline_Utility.getError(ipInputMap);
+        
+    }
+    
+    public static void getAgreementOffers_V0_3(Map<String,Object> inputMap, Map<String,Object> outMap, Map<String,Object> options){
+        
+        Map<String, Object> ipInputMap = new Map<String, Object>();
+        Map<String, Object> ipOutputMap = new Map<String, Object>();
+        Map<String, Object> agreementOfferMap = new Map<String, Object>();
+        Map<String, Object> agrofferObj1 = new Map<String, Object>();
+        
+        List<Account> tscid_aclst=new List<Account>(); 
+        List<contact> tscid_conlst=new List<contact>(); 
+        List<contract> agreement_lst=new List<contract>();
+        List<vlocity_cmt__ContractLineItem__c> agreementLineItem_lst=new List<vlocity_cmt__ContractLineItem__c>();
+        String error_message=' ';
+        String errorCode;
+        boolean hasError = false; 
+        Try{ 
+            String tscid;
+            tscid= (string)inputMap.get('TSCID');
+            if(String.isBlank(tscid)){
+                    //Blank TSCID
+                    hasError = true;
+                    
+                    outMap.put('ErrorResponse' , generateError('MISSING_INPUT','custom','GetAgreementOffers', inputMap));
+                    outMap.put('StatusCode' , 400);
+            }else{
+                tscid_aclst=[SELECT id, name  
+                             FROM Account 
+                             Where tscid__c =: tscid limit 1];
+            
+               if(tscid_aclst!=null && tscid_aclst.size()>0){
+                
+                    Set<Id> contractidset=new Set<Id>(); 
+                    List<Utilizer_Contract_Relationship__c> utilizerlst= new List<Utilizer_Contract_Relationship__c>();
+                    utilizerlst =[Select ContractNumber__c  FROM Utilizer_Contract_Relationship__c WHERE AccountId__c=:tscid_aclst[0].Id AND ContractNumber__c!=null];
+                    
+                    For(Utilizer_Contract_Relationship__c ut:utilizerlst)
+                        contractidset.add(ut.ContractNumber__c);
+                    
+                    agreement_lst=[SELECT id,name,ContractNumber,AccountId,Status  
+                                   FROM contract 
+                                   where (AccountId=:tscid_aclst[0].Id OR Id IN: contractidset) And Contract_Record_Type__c='Ramavtal' And Status='Active' ORDER BY EndDate DESC Limit 1];
+                    
+                    List<Map<String,object>> agreementlst = new List<Map<String,object>>();
+                    Map<String,List<Map<String,String>>> catalogVsOfferMaplst = new Map<String,List<Map<String,String>>>();
+                    List<Map<String,object>> cataloglst = new List<Map<String,object>>();
+                    System.debug('Agreement List :'+agreement_lst);
+                    if(agreement_lst!=null && agreement_lst.size()>0){ 
+                        List<vlocity_cmt__CatalogProductRelationship__c> catalogproductrelationshiplst  = new List<vlocity_cmt__CatalogProductRelationship__c>();
+                        
+                        catalogproductrelationshiplst=[ SELECT id,vlocity_cmt__CatalogId__r.vlocity_cmt__IsActive__c,vlocity_cmt__CatalogId__r.vlocity_cmt__CatalogCode__c,Name  
+                                                       FROM vlocity_cmt__CatalogProductRelationship__c
+                                                       WHERE vlocity_cmt__IsActive__c=true AND vlocity_cmt__CatalogId__c!=null];
+                        
+                        Set<String> offercodeset=new Set<String>(); 
+                        Map<String,String> prodcodeVsCatalogCode = new Map<String,String>();
+                        
+                        if(catalogproductrelationshiplst!=null && catalogproductrelationshiplst.size()>0){
+                            for(vlocity_cmt__CatalogProductRelationship__c pr:catalogproductrelationshiplst){
+                                if(pr.vlocity_cmt__CatalogId__r.vlocity_cmt__IsActive__c==true){
+                                    List<Map<String,String>> catalogOfferMaplst = new List<Map<String,String>>();
+                                    Map<String,String> catalogOfferMap = new Map<String,String>();
+                                    
+                                    offercodeset.add(pr.Name);
+                                    prodcodeVsCatalogCode.put(pr.Name,pr.vlocity_cmt__CatalogId__r.vlocity_cmt__CatalogCode__c);
+                                    catalogOfferMap.put('name',pr.Name);
+                                    if(catalogVsOfferMaplst!=null && catalogVsOfferMaplst.size()>0 && catalogVsOfferMaplst.containskey(pr.vlocity_cmt__CatalogId__r.vlocity_cmt__CatalogCode__c)){
+                                        catalogOfferMaplst=catalogVsOfferMaplst.get(pr.vlocity_cmt__CatalogId__r.vlocity_cmt__CatalogCode__c);
+                                        catalogOfferMaplst.add(catalogOfferMap);
+                                        catalogVsOfferMaplst.put(pr.vlocity_cmt__CatalogId__r.vlocity_cmt__CatalogCode__c,catalogOfferMaplst);
+                                    }else{
+                                        catalogOfferMaplst.add(catalogOfferMap);
+                                        catalogVsOfferMaplst.put(pr.vlocity_cmt__CatalogId__r.vlocity_cmt__CatalogCode__c,catalogOfferMaplst);
+                                    }
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                        Map<string,CatalogAgreement__c> filtermap = CatalogAgreement__c.getall();
+                        
+                        if(catalogVsOfferMaplst!=null && catalogVsOfferMaplst.size()>0){
+                            for(String str:catalogVsOfferMaplst.keySet()){
+                                System.debug('filterMap :'+filtermap);
+                                 System.debug('Str Value :'+str);
+                               
+                                if(filtermap!=null && filtermap.size()>0 && filtermap.containskey(str) && filtermap.get(str).Non_Negotiable_Catalog__c==true){
+                                    Map<String,object> catalogMap = new Map<String,object>();   
+                                    catalogMap.put('name',str );
+                                    catalogMap.put('offers',catalogVsOfferMaplst.get(str) );
+                                    cataloglst.add(catalogMap);
+                                }
+                            }
+                        }
+                        
+                        Set<Id> agreementIdset=new Set<Id>(); 
+                        for(contract agr: agreement_lst){
+                            agreementIdset.add(agr.Id);
+                        }
+                        
+                        agreementLineItem_lst=[SELECT id,name,vlocity_cmt__ContractId__c,vlocity_cmt__ProductCode__c,TeliaSE_SubsidisedVoice__c  
+                                               FROM vlocity_cmt__ContractLineItem__c 
+                                               where vlocity_cmt__ContractId__c IN: agreementIdset And TeliaSE_ParentItemId__c=null AND vlocity_cmt__ProductCode__c IN:offercodeset ];
+                        
+                        for(contract agr: agreement_lst){
+                            
+                            Map<String,object> agreementMap = new Map<String,object>();
+                            String OverrideCommitment;
+                            agreementMap.put('id',agr.id);
+                            agreementMap.put('ContractNumber',agr.ContractNumber); 
+
+                            agreementMap.put('accountid',tscid_aclst[0].Id); 
+
+                            agreementMap.put('status',agr.Status);
+                            //outMap.put('StatusCode' , 200);
+                            
+                            List<Map<String,String>> lineItemlst = new List<Map<String,String>>();
+                            if(agreementLineItem_lst!=null && agreementLineItem_lst.size()>0){
+                                
+                                Set<String> virtualofferset= new Set<String>(); 
+                                Map<String,List<string>> offervsSubsbundle=new Map<String,List<string>>();
+                                for(vlocity_cmt__ContractLineItem__c agrLine: agreementLineItem_lst){
+                                    if(agr.id==agrLine.vlocity_cmt__ContractId__c){
+                                       virtualofferset.add(agrLine.vlocity_cmt__ProductCode__c);
+                                    }
+                                }
+                                if(virtualofferset!=null && virtualofferset.size()>0){
+                                    
+                                    List<vlocity_cmt__ProductChildItem__c> prodChildlst=new List<vlocity_cmt__ProductChildItem__c>();
+                                    
+                                    prodChildlst=[SELECT id, vlocity_cmt__ChildProductId__c,vlocity_cmt__ChildProductId__r.ProductCode,vlocity_cmt__ParentProductId__c,vlocity_cmt__ParentProductId__r.ProductCode
+                                                  FROM vlocity_cmt__ProductChildItem__c
+                                                  WHERE vlocity_cmt__ParentProductId__r.C2BC_Category__c = 'offerbundle' AND vlocity_cmt__ParentProductId__r.ProductCode IN:virtualofferset AND vlocity_cmt__ParentProductId__r.Family ='Online Order'];
+                                    
+                                    for(vlocity_cmt__ProductChildItem__c pr:prodChildlst){
+                                        
+                                        if(pr.vlocity_cmt__ChildProductId__c!=null && pr.vlocity_cmt__ParentProductId__r.ProductCode!=null && pr.vlocity_cmt__ParentProductId__r.ProductCode!=''){
+                                            List<string> subslst = new List<string>(); 
+                                            
+                                            if(offervsSubsbundle!=null && offervsSubsbundle.size()>0 && offervsSubsbundle.containskey(pr.vlocity_cmt__ParentProductId__r.ProductCode)){
+                                                subslst = offervsSubsbundle.get(pr.vlocity_cmt__ParentProductId__r.ProductCode);
+                                            }
+                                            subslst.add(pr.vlocity_cmt__ChildProductId__r.ProductCode);
+                                            offervsSubsbundle.put(pr.vlocity_cmt__ParentProductId__r.ProductCode,subslst);
+                                        }
+                                    }
+                                    
+                                }
+                                
+                                for(vlocity_cmt__ContractLineItem__c agrLine: agreementLineItem_lst){
+                                    
+                                    if(agr.id==agrLine.vlocity_cmt__ContractId__c){
+                                        if(offervsSubsbundle!=null && offervsSubsbundle.size()>0 && offervsSubsbundle.containskey(agrLine.vlocity_cmt__ProductCode__c))
+                                        {   
+                                            List<String> subscriptionbundlelst=new List<String>();
+                                            subscriptionbundlelst= offervsSubsbundle.get(agrLine.vlocity_cmt__ProductCode__c);
+                                            for(String str: subscriptionbundlelst){
+                                            
+                                                Map<String,String> lineItemMap = new Map<String,String>();
+                                                lineItemMap.put('id',agrLine.id);
+                                                lineItemMap.put('productcode',str);
+                                                if(prodcodeVsCatalogCode!=null && prodcodeVsCatalogCode.size()>0 && prodcodeVsCatalogCode.containskey(agrLine.vlocity_cmt__ProductCode__c)){
+                                                    lineItemMap.put('catalog',prodcodeVsCatalogCode.get(agrLine.vlocity_cmt__ProductCode__c));
+                                                }
+                                                if(agrLine.TeliaSE_SubsidisedVoice__c =='Yes'){
+                                            		lineItemMap.put('commitmentPeriods',System.Label.commitmentPeriods);
+                                            	}else if(agrLine.TeliaSE_SubsidisedVoice__c =='No'){
+                                            		lineItemMap.put('commitmentPeriods',System.Label.ZeroCommitmentPeriod);
+                                            	}
+                                                lineItemlst.add(lineItemMap);
+                                            }
+                                         }else{
+                                            Map<String,String> lineItemMap = new Map<String,String>();
+                                            lineItemMap.put('id',agrLine.id);
+                                            lineItemMap.put('productcode',agrLine.vlocity_cmt__ProductCode__c);
+                                            if(prodcodeVsCatalogCode!=null && prodcodeVsCatalogCode.size()>0 && prodcodeVsCatalogCode.containskey(agrLine.vlocity_cmt__ProductCode__c)){
+                                            lineItemMap.put('catalog',prodcodeVsCatalogCode.get(agrLine.vlocity_cmt__ProductCode__c));
+                                            }
+                                            if(agrLine.TeliaSE_SubsidisedVoice__c =='Yes'){
+                                            lineItemMap.put('commitmentPeriods',System.Label.commitmentPeriods);
+                                            }else if(agrLine.TeliaSE_SubsidisedVoice__c =='No'){
+                                            lineItemMap.put('commitmentPeriods',System.Label.ZeroCommitmentPeriod);
+                                            }
+                                            
+                                            lineItemlst.add(lineItemMap);
+                                        }
+                                    }
+                                }
+                                
+                            }else{
+                                // No Line Item found
+                                hasError = true;
+  
+                                
+                                outMap.put('ErrorResponse' , generateError('NO_LINEITEM','custom','GetAgreementOffers', inputMap));
+                                outMap.put('StatusCode' , 400);
+                                
+                            }
+                            
+                            agreementMap.put('lineItem',lineItemlst);
+                            agreementlst.add(agreementMap);
+                        }
+                        }else{
+                        // No Active Agreement
+                        hasError = true;
+   
+                        outMap.put('ErrorResponse' , generateError('INVALID_AGREEMENT','custom','GetAgreementOffers', inputMap));
+                            outMap.put('StatusCode' , 400);
+                        
+                    }
+                    
+                    outMap.put('agreement',agreementlst );
+                    outMap.put('catalog',cataloglst );
+                    system.debug('hasError ->'+hasError);
+                    if(!hasError){
+
+                       outMap.put('success', true);
+
+                    }
+                    
+                    
+                }else{
+
+                    outMap.put('ErrorResponse' , generateError('INVALID_TSCID','custom','GetAgreementOffers', inputMap));
+                    outMap.put('StatusCode' , 400);
+                }
+            }
+        }catch(Exception e){
+            hasError = true;
+			error_message = e.getMessage()+' line:'+ e.getLineNumber();
+            outMap.put('ErrorResponse', generateError('UNKNOWN_ERROR','custom','GetAgreementOffers', inputMap));
+            outMap.put('StatusCode' , 500);
+            MCOnline_Utility.logError(error_message,'500','MCOnline_GetAgreementOffers_V0_2','Apex Class','Exception',JSON.serialize(inputMap),'','','');
+        }     
+        
+    }
+    
+}

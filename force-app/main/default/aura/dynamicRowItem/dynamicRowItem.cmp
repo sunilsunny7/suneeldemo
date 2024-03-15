@@ -1,0 +1,107 @@
+<aura:component controller="RevenueImpactController">    
+ 
+    <aura:attribute name="RevenueInstance" type="Revenue_Effect__c"/>
+    <aura:attribute name="rowIndex" type="String"/>
+    <aura:attribute name="opprecordId" type = "ID"/>
+    <aura:attribute name="objInfo" type="Revenue_Effect__c" default="{sobjectType : 'Revenue_Effect__c'}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="listControllingValues" type="list" default="[]" description="to store controller field values"/>
+    <aura:attribute name="listDependingValues" type="list" default="['--- None ---']" description="to store dependent field values"/>
+    <aura:attribute name="depnedentFieldMap" type="map" description="map to store dependent values with controlling value"/>
+    <aura:attribute name="bDisabledDependentFld" type="boolean" default="true"/> 
+    <aura:attribute name="controllingFieldAPI" type="string" default="Category__c" description="store field API name of Controller field"/>
+    <aura:attribute name="dependingFieldAPI" type="string" default="Sub_Category__c" description="store field API name of dependent field"/>
+    <!-- Register 2 Lightning Event for handle add or Delete rows on Parent Component  --> 
+    <aura:registerEvent name="DeleteRowEvt" type="c:DeleteRowEvt"/> 
+    <aura:registerEvent name="AddRowEvt" type="c:AddNewRowEvt"/> 
+    <aura:attribute name="IsTotalOld" type="Boolean" default ="false"/>
+    <aura:attribute name="IsTotalNew" type="Boolean" default ="false"/>
+    <aura:attribute name="IsVisible" type="Boolean" default ="true"/>
+    <aura:if isTrue="{!v.IsVisible}">
+    <!-- Table Row -->   
+    <tr class="slds-text-title_caps">
+        <td> 
+            {!v.rowIndex + 1}
+        </td>
+        <td>       
+             <lightning:select name="controllerFld"
+                          value="{!v.objInfo.Category__c}"
+                          
+                          onchange="{!c.onControllerFieldChange}">
+            <aura:iteration items="{!v.listControllingValues}" var="val">
+                <option value="{!val}">{!val}</option>
+            </aura:iteration>
+        </lightning:select>
+        </td>
+      <!--  <td>
+             <lightning:select name="dependentFld"
+                          value="{!v.objInfo.Sub_Category__c}"
+                         onchange = "{!c.ondepPicklistChange}"
+                          disabled="{!v.bDisabledDependentFld}">
+            <aura:iteration items="{!v.listDependingValues}" var="val">
+                <option value="{!val}">{!val}</option>
+            </aura:iteration>
+        </lightning:select>
+        </td>-->
+        
+        <td>
+            <ui:inputText class="slds-input" aura:id="OldAntal" value="{!v.RevenueInstance.Old_Antal__c}" change= "{!c.calculateTotalOld}"/>
+        </td>
+        <td>
+            <ui:inputText class="slds-input" aura:id="OldMonthlyCost" value="{!v.RevenueInstance.Old_Monthly_Cost__c}" change= "{!c.calculateTotalOld}"/>
+        </td>
+        <td>
+            <aura:if isTrue="{!v.IsTotalOld}">
+            <ui:outputText class="slds-output " aura:id="oldTotalCal" />
+            </aura:if>
+        </td>
+        <td>
+            <ui:inputText class="slds-input" aura:id="NewAntal" value="{!v.RevenueInstance.New_Antal__c}" change= "{!c.calculateTotalNew}" />
+        </td>
+        <td>
+            <ui:inputText class="slds-input" aura:id="NewMonthlyCost" value="{!v.RevenueInstance.New_Monthly_Cost__c}" change= "{!c.calculateTotalNew}" />
+        </td>
+        <td>
+            <aura:if isTrue="{!v.IsTotalNew}">
+            <ui:outputText class="slds-output" aura:id="newTotalCal" />
+            </aura:if>
+        </td>
+        <td>
+            <ui:inputText class="slds-input" value="{!v.RevenueInstance.Comments__c}"/>
+        </td>
+        
+        <!--<aura:if isTrue="{!v.IsTotal}">
+            <tr>
+                <td>
+                TOTAL INTÄKT 12 MÅN : 
+            <ui:outputText class="slds-output" aura:id="totalCal" />
+                    </td>
+            </tr>
+            </aura:if>-->
+        <td>
+            <!-- conditionally Display Add or Delete Icons
+                 if rowIndex is 0 then show Add New Row Icon else show delete Icon
+             --> 
+            <aura:if isTrue="{!v.rowIndex == 0}">
+               <!-- <a onclick="{!c.AddNewRow}">
+                  <lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small" alternativeText="add"/>
+                  <span class="slds-assistive-text">Add Icon</span>
+                </a> -->
+                <a onclick="{!c.removeRow}">
+                   <lightning:icon variant="error" iconName="utility:delete" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                   <span class="slds-assistive-text">Delete Icon</span>
+                  </a>
+              <aura:set attribute="else">
+                  <a onclick="{!c.removeRow}">
+                   <lightning:icon variant="error" iconName="utility:delete" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                   <span class="slds-assistive-text">Delete Icon</span>
+                  </a>
+              </aura:set> 
+            </aura:if>
+        </td> 
+    </tr>
+    </aura:if>
+        <aura:method name="AddNewRowMethod" action="{!c.AddNewRow}" />
+       
+
+</aura:component>

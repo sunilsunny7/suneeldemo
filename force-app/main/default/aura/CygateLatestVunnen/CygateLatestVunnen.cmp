@@ -1,0 +1,76 @@
+<aura:component controller="LatestClosedOpportunities" extends="c:LatestClosedOpportunitiesUtility" implements="flexipage:availableForAllPageTypes" access="global">
+
+	<aura:attribute name="opportunity" type="List" />
+    <aura:attribute name="dynamicheight" type="Integer" />
+	<aura:attribute name="IsSpinner" type="Boolean" default ="false"/>
+	<!-- Initialize component by retrieving 10 most recently Closed Opportunities -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	
+	<div class="component-bordered">
+		<lightning:layout multipleRows="true">
+			<lightning:layoutItem size="12">
+				<div class="slds-scrollable slds-clearfix slds-card" style="{!'height:' + v.dynamicheight+'px'}">
+		 			<table class="slds slds-table">
+			 			<tr>
+							<td class="slds-page-header__title" style="height: 40px;padding-left:25px">
+								Senaste vunna affärer
+							</td>
+						</tr>
+					</table>
+					<table class="slds slds-table slds-table--bordered slds-table--cell-buffer" style="position:relative">
+						<!-- LTAT-10218: Spinner to display while processing -->
+						<aura:if isTrue="{!v.IsSpinner}">
+							<lightning:spinner aura:id="spinnerId" variant="brand" size="large"/>
+						</aura:if>
+						
+						<thead>
+							<tr class="slds-text-heading--label">
+								<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Opportunity Owner">Affärsmöjlighetsägare</div></th>
+								<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Account Name">Kontonamn</div></th>
+								<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Opportunity Name">Affärsmöjlighetsnamn</div></th>
+								<!-- <th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Opportunity Owner">Opportunity Owner</div></th> -->
+								<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Total Amount Cygate">Totalt Cygate avtalsvärde</div></th>
+								<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Summa Produkt">Summa Produkt</div></th>
+								<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Summa Tjänst">Summa Tjänst</div></th>
+								<!--<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Close Date">Close Date</div></th>
+								<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Stage">Stage</div></th>
+								<th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Probability (%)">Probability (%)</div></th>-->
+								<!-- <th scope="col" style="font-weight: bold;"><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="Expected Close Date">Expected Close Date</div></th>-->
+							</tr>
+						</thead>
+						
+						<tbody>
+							<!-- Use the Apex model and controller to fetch server side data -->
+							<aura:iteration items="{!v.opportunity}" var="listofclosedopptys">
+								<tr>
+									<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Owner.Name}"><img src="{!listofclosedopptys.Owner.SmallPhotoUrl}" heigth="35" width="25"/>&nbsp; {!listofclosedopptys.Owner.Name}</div></td>
+									<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Account.Name}">{!listofclosedopptys.Account.Name}</div></td>
+									<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Name}">{!listofclosedopptys.Name}</div></td>
+									<!--<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Name}">{!listofclosedopptys.Name}</div></td>-->
+									<!--<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Name}">{!listofclosedopptys.Owner.Name}</div></td>-->
+									<!--<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.CloseDate}">{!listofclosedopptys.CloseDate }</div></td>-->
+									<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Total_Amount_Cygate__c}" > <ui:outputCurrency aura:id="curr" value="{!listofclosedopptys.Total_Amount_Cygate__c}" format="###,###,###,##0 kr"/></div></td>
+									<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Total_Amount_Produkt__c}"><ui:outputCurrency aura:id="curr" value="{!listofclosedopptys.Total_Amount_Produkt__c}" format="###,###,###,##0 kr"/></div></td>
+									<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Total_Amount_Tj_nst__c}"><ui:outputCurrency aura:id="curr" value="{!listofclosedopptys.Total_Amount_Tj_nst__c}" format="###,###,###,##0 kr"/></div></td>
+									<!--<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.CloseDate}">{!listofclosedopptys.CloseDate }</div></td>
+									<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Cygate_Sales_Team__c}">{!listofclosedopptys.stage}</div></td>
+									<td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Probability}">{!listofclosedopptys.Probability}</div></td>-->
+									<!-- <td><div style="white-space: normal;word-wrap:break-word;overflow-wrap: break-word;" title="{!listofclosedopptys.Probability}">{!listofclosedopptys.Original_Closed_Date__c}</div></td>-->
+								</tr>
+							</aura:iteration>
+						</tbody>
+					</table>
+				</div>
+			</lightning:layoutItem>
+			<!-- LTAT-10218: Include child Component allowing to set Opportunity record filters -->
+			<lightning:layoutItem flexibility="auto" size="12">
+				<div>
+					<c:FiltersLatestClosedOpps
+						aura:id="filtersLatestClosedOpps"
+						filterChange="{!c.handleFilterChanges}"
+					/>
+				</div>
+			</lightning:layoutItem>
+		</lightning:layout>
+	</div>
+</aura:component>

@@ -1,0 +1,30 @@
+<template>
+	<div class="slds-grid slds-gutters">
+		<div class="slds-col slds-size_4-of-12">
+			   <lightning-combobox name="Utbyte" class="required_field" label="Utbyte av switch (uppgradering 100 -> 1000 Mbit/s)" placeholder="" options={options}
+					value={parentvalue.switchReplacement} dropdown-alignment="auto" onchange={handleChange} ></lightning-combobox>
+		</div>
+		<div class="slds-col slds-size_4-of-12">
+			<lightning-input type="text" name ="AntalMC" label="Antal MC (hela paketet)" value={parentvalue.isHelaPaketetQuantity} onchange={handleChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-col slds-size_4-of-12">
+			<lightning-input type="text" name ="AntalBredbandsswitch" label="Antal Bredbandsswitch" value={parentvalue.isBredbandsswitchQuantity} onchange={handleChange}>
+			</lightning-input>
+		</div>
+	</div>
+	<div class="slds-grid slds-gutters">
+		<div class="slds-col slds-size_4-of-12">
+			<lightning-input type="text" name="AntalRouter" label="Antal Router" value={parentvalue.isRouterQuantity} onchange={handleChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-col slds-size_4-of-12">
+			<lightning-input type="text" name="AntalTv-boxar" label="Antal Tv-boxar" value={parentvalue.isTvBoxQuantity} onchange={handleChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-col slds-size_4-of-12">
+			<lightning-input type="text" name ="AntalTradlos" label="Antal Trådlös Tv" value={parentvalue.isWirelessTvQuantity} onchange={handleChange}>
+			</lightning-input>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,36 @@
+<apex:page standardController="Contact" extensions="ConExcelDownloadctr"
+           recordSetVar="contacts" cache="true"
+           standardStylesheets="true" contentType="application/vnd.ms-excel#ContacExport.xls"
+           applyHtmlTag="false" showHeader="false" sidebar="false">
+   
+    <apex:outputPanel rendered="{!selected[0] == null}">
+        <div style="text-align:center">Please select at least one contact, prior to clicking the button.</div>
+    </apex:outputPanel>
+
+    <div>
+        <table >
+            <tr><td><apex:outputText style="font-weight:bold;" value="Name"></apex:outputText></td>
+                <td><apex:outputText style="font-weight:bold;" value="Email"></apex:outputText></td>
+                <td><apex:outputText style="font-weight:bold;" value="Account"></apex:outputText></td>
+                <td><apex:outputText style="font-weight:bold;" value="Barcode ID"></apex:outputText></td>
+            </tr>
+        </table>
+        <table class="container">
+            
+            <apex:repeat value="{!groupedContacts}" var="row">
+               
+                    <apex:repeat value="{!row}" var="c">
+                      
+                        <tr><td>
+                            <c:Custom_gpBarcode_Contact contact="{!c}"/>
+                        </td>
+                            </tr>
+
+                    </apex:repeat>
+              
+            </apex:repeat>
+        </table>
+
+    </div>
+    
+</apex:page>

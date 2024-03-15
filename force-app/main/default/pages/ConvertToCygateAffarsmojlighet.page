@@ -1,0 +1,18 @@
+<apex:page standardController="Opportunity" extensions="ConvertToCygateAffarsmojlighet" action="{!processRecord}">
+
+ <script>
+  function redirect(){                  
+      parent.location.href="{!sfdcURL}"+"{!$Label.Salesforce_lightning_URL}"+"{!OpportunityID}"+"{!$Label.Opportunity_specific_lightning_end_URL}";                                
+                              
+  }         
+             if("{!nscsError}" == "true" ){
+                  alert("New Sales eller Continuation Sales måste vara större än 0.");
+                  window.onload = window.setTimeout(redirect(),5000);
+             }
+              else 
+                  window.onload = window.setTimeout(redirect(),5000);
+             
+ 
+        </script>
+
+</apex:page>

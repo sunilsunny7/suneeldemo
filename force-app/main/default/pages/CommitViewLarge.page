@@ -1,0 +1,359 @@
+<apex:page sidebar="false" controller="CommitViewControllerLarge" tabStyle="Commit__tab" standardStylesheets="false">
+    <c:CommitTableComponent ></c:CommitTableComponent>
+    <c:CommitOpportunityPanelComponent ></c:CommitOpportunityPanelComponent>
+    <c:CommitSubHeaderComponent ></c:CommitSubHeaderComponent>
+    
+    <apex:stylesheet value="{!$Resource.jQueryUI_css}"/>
+    <apex:stylesheet value="{!$Resource.bootstrapCSS}"/>    
+    <apex:stylesheet value="{!$Resource.CommitViewCSS}"/>   
+    
+    <apex:includeScript value="{!$Resource.jQuery}"/>
+    <apex:includeScript value="{!$Resource.jQueryUI}"/>
+    <apex:includeScript value="{!$Resource.bootstrapJS}"/>
+    <apex:includeScript value="{!$Resource.tableSorterJS}"/>
+    <apex:includeScript value="{!$Resource.handlebarsJS}"/>       
+    
+    <script>
+    //global variables
+    var weekInstances;
+    var eventListenerPanel = false;
+    var statusReset = true; //if true no status message will be shown
+    
+    //Function that calls the saveJudge method in the controller
+    function saveJudgeJS(){
+        statusReset = false;
+        var judgeValues = [];
+        
+        $('#forecasting-table > tbody  > .parentRow').each(function() {
+            var j = [];
+            j.push($(this).attr("data-week"));
+            j.push($(this).attr("data-seller")); 
+            $(this).find('input').each(function(index,data) {
+                var value = $(this).val().replace(/\−/g,'-'); //get value and replace - signs
+                j.push(value.replace(/\+| |\u00a0+/g,'')); //push value and replace spaces and + signs             
+            });
+            judgeValues.push(j);
+        });
+        
+        JSONcommitValues = JSON.stringify(judgeValues);
+        var result = saveJudge(JSONcommitValues);
+    }
+    
+    //Function that populates the opportunity bottom panel
+    function populateOpportunityPanel(type, column, weekName, isParent, owner){
+        $('#opportunity-table').find("tbody").empty();
+        var opportunities = [];
+        //If the clicked row isParent then add both current's user's opportunities as well as team's opportunities. 
+        if(isParent){
+            for(var i = 0; i < weekInstances.length; i++){
+                if(weekInstances[i].item.Name === weekName && weekInstances[i].ownerName === owner && weekInstances[i].item.Active_Week__c){
+                    if(weekInstances[i].item.Forecast_Opportunity_Links__r != null){
+                        for(var k = 0; k < weekInstances[i].item.Forecast_Opportunity_Links__r.records.length; k++){
+                            var currentRecord = weekInstances[i].item.Forecast_Opportunity_Links__r.records[k];
+                            if((column == "Commit" || column == "Upside") && !currentRecord.Is_Closed__c){
+                                opportunities.push(currentRecord);
+                            }
+                            else if(column == "Risk" && currentRecord.Risk__c && !currentRecord.Is_Closed__c){
+                                opportunities.push(currentRecord);
+                            }
+                            else if(column == "ActualOutcome" && currentRecord.Is_Won__c == true){
+                                opportunities.push(currentRecord);
+                            }
+                            else if(column == "OutcomeCommit" && currentRecord.Is_Won__c == true && currentRecord.Include_in_Outcome_Commit__c == true){
+                                opportunities.push(currentRecord);
+                            }
+                            else if(column == undefined){
+                                opportunities.push(currentRecord);
+                            }
+                        }
+                    }
+                }           
+            }
+        }
+        //If the clicked row is not parent then add only that subweek's owner's opportunities
+        else{
+            for(var i = 0; i < weekInstances.length; i++){
+                if(weekInstances[i].item.Name === weekName && weekInstances[i].item.Active_Week__c){
+                    for(var j = 0; j < weekInstances[i].subWeeks.length; j++){
+                        if(weekInstances[i].subWeeks[j].ownerName === owner && weekInstances[i].subWeeks[j].item.Forecast_Opportunity_Links__r != null){
+                            for(var k = 0; k < weekInstances[i].subWeeks[j].item.Forecast_Opportunity_Links__r.records.length; k++){
+                                var currentRecord = weekInstances[i].subWeeks[j].item.Forecast_Opportunity_Links__r.records[k];
+                                if((column == "Commit" || column == "Upside") && !currentRecord.Is_Closed__c){
+                                    opportunities.push(currentRecord);
+                                }
+                                else if(column == "Risk" && currentRecord.Risk__c && !currentRecord.Is_Closed__c){
+                                    opportunities.push(currentRecord);
+                                }
+                                else if(column == "ActualOutcome" && currentRecord.Is_Won__c == true){
+                                    opportunities.push(currentRecord);
+                                }
+                                else if(column == "OutcomeCommit" && currentRecord.Is_Won__c == true && currentRecord.Include_in_Outcome_Commit__c == true){
+                                    opportunities.push(currentRecord);
+                                }
+                                else if(column == undefined){
+                                    opportunities.push(currentRecord);
+                               }
+                            }
+                        }
+                    }
+                }           
+            }
+        }
+
+        var source = $("#opportunity-table-template").html();
+        var template = Handlebars.compile(source);
+        var context = {opps: opportunities};
+        var tableHTML = template(context);
+        
+        $('#panel-content').html(tableHTML);
+        addTableSorting();
+        
+    }
+    
+    //Function that uses the jquery plugin tablesorter to add sortable columns to opportunity table
+    function addTableSorting(){
+        $('#opportunity-table').tablesorter({
+            headers: { 
+                0: { 
+                    sorter: false 
+                }
+            }
+        });
+    }
+    
+    //Add event listeners to forecasting table
+    function addEventListenersMain(){
+        
+        //Event listeners for the expand button on each week row
+        $('#forecasting-table').find('button').on('click',function(event){
+            event.stopPropagation();
+            $(this).closest('.parentRow').toggleClass('bold-text');
+            $(this).closest('tr').nextUntil('.parentRow').toggle('fast');
+            if($(this).text() === '+'){
+                $(this).text('-');
+            }
+            else{
+                $(this).text('+');
+            }
+        });
+        
+        //Make it possible to click on each row to show opportunity panel
+        $('.clickable').on('click',function(){
+            $('.panel-wrapper').removeClass("hide-panel");
+            $( ".panel-wrapper" ).resizable( "enable" );
+            $('#panel-content').slideDown('fast');
+            $('.panel-handler').find('button').text('{!$Label.Hide}');
+            $('.focus').removeClass('focus');
+            
+            var category = $(this).closest('table').find('th').eq(this.cellIndex).text();
+            
+            if(category === ''){
+                $(this).closest('tr').children().addClass('focus');
+            }
+            else{
+                $(this).addClass('focus');
+            }
+            
+            var row = $(this).closest('tr');
+            populateOpportunityPanel($(this).attr("data-type"), $(this).attr("data-column"), row.attr("data-week"), row.hasClass('parentRow'), row.attr("data-owner"));
+            $('#opportunity-table').trigger("update");
+            
+        });
+ 
+        
+    }
+    
+    //Add event listeners to opportunity panel
+    function addEventListenersPanel(){
+        
+        //Prevents main scroll to move when scrolling in the opportunity panel
+        $('#panel-content').bind('mousewheel DOMMouseScroll', function(e) {
+            var scrollTo = null;
+            
+            if (e.type == 'mousewheel') {
+                scrollTo = (e.originalEvent.wheelDelta * -1);
+            }
+            else if (e.type == 'DOMMouseScroll') {
+                scrollTo = 40 * e.originalEvent.detail;
+            }
+            
+            if (scrollTo) {
+                e.preventDefault();
+                $(this).scrollTop(scrollTo + $(this).scrollTop());
+            }
+        });
+        
+        //Event listener for show/hide button on opportunity panel
+        $('.panel-handler').find('button').on('click',function(){
+            $('#panel-content').slideToggle('fast');
+            if($(this).text() === '{!$Label.Show}'){
+                $(this).text('{!$Label.Hide}');
+                $('.panel-wrapper').removeClass("hide-panel");
+                $( ".panel-wrapper" ).resizable( "enable" );
+            }
+            else{
+                $(this).text('{!$Label.Show}');
+                $('.panel-wrapper').addClass("hide-panel");
+                $( ".panel-wrapper" ).resizable( "disable" );
+            }
+        });
+        
+        //Make it possible to resize opportunity panel
+        $( ".panel-wrapper" ).resizable({
+            alsoResize: "#panel-content",
+            disabled: true,
+            maxHeight: 350,
+            minHeight: 60,
+            handles: "n",
+            resize: function(event, ui) {
+                $(".panel-wrapper").css("position", "fixed");
+                $(".panel-wrapper").css("bottom", "0px");
+                $(".panel-wrapper").css("top", "");
+            }
+        });
+        
+        eventListenerPanel = true;
+    }
+    
+    </script>
+    
+    <div class="bs"> 
+        <apex:form id="TheForm">
+            <div id="header">
+                <h1>
+                    {!$Label.Commit} - {!$User.FirstName} {!$User.LastName} 
+                </h1>
+                
+                <apex:outputLabel value="{!$Label.Year}:" styleClass="picklist-label"></apex:outputLabel>
+                <apex:selectList value="{!selectedYear}" multiselect="false" size="1">
+                    <apex:actionSupport event="onchange" oncomplete="updatePage();"/>
+                    <apex:selectOptions value="{!yearOptions}"/>
+                </apex:selectList>
+                
+                <apex:outputLabel value="{!$Label.Quarter}:" styleClass="picklist-label"></apex:outputLabel>
+                <apex:selectList value="{!selectedQuarter}" multiselect="false" size="1">
+                    <apex:actionSupport event="onchange" oncomplete="updatePage();"/>
+                    <apex:selectOptions value="{!quarterOptions}"/>
+                </apex:selectList> 
+                <span id="statusMessage"></span>
+                <apex:commandButton value="{!$Label.Update}" styleClass="btn btn-default refresh-button" onclick="resetStatus();"></apex:commandButton>
+                <apex:commandButton value="{!$Label.Commit}" onclick="saveJudgeJS();" styleClass="btn btn-success save-button" reRender="null"/>
+                
+            </div>
+            <apex:actionFunction name="saveJudge" action="{!saveJudge}" reRender="outputPanel">
+                <apex:param name="judgeValueString" assignTo="{!judgeValueString}" value=""></apex:param>
+            </apex:actionFunction>
+        </apex:form>
+        <apex:outputPanel id="outputPanel">
+            
+            <script>
+            //allow console.log on earlier IE versions
+            if (!window.console) console = {log: function() {}};
+            
+            $(document).ready(function(){
+                
+                // Work out whether decimal separator is . or , for localised numbers
+                function getDecimalSeparator() {
+                    return /\./.test((1.1).toLocaleString())? '.' : ',';
+                }
+                
+                //**HANDLEBARS FUNCTIONS**//
+                Handlebars.registerHelper('formatCurrency', function(value) {
+                    var re = new RegExp( '\\' + getDecimalSeparator() + '\\d+$');
+                    return Math.round(value).toLocaleString("sv-SE").replace(re,'');
+                });
+                
+                Handlebars.registerHelper('roundNumber', function(value) {
+                    if(value != undefined){
+                        return Math.round(value);
+                    }
+                    else{
+                        return
+                    }
+                });
+                                
+                Handlebars.registerHelper('ifEquals', function(a, b, options) {
+                  if (a === b) {
+                    return options.fn(this);
+                  }
+                
+                  return options.inverse(this);
+                });
+                
+                //**HANDLEBARS END**//
+                
+                //Get data from apex controller
+                var selectedQuarter = '{!selectedQuarter}';
+                var typeOfUser = '{!typeOfUser}';
+                
+                //Update the subheader
+                var targets = {!targets};
+                var shSource = $("#subheader-template").html();
+                var shtemplate = Handlebars.compile(shSource);
+                var shcontext = {subheader: targets, typeOfUser: typeOfUser};
+                var subheaderHTML = shtemplate(shcontext);
+                
+                $('#forecasting-tables').before(subheaderHTML);
+                
+                //Load the commit table
+                weekInstances = {!weekInstances};
+                var source = $("#commit-table-template").html();
+                var template = Handlebars.compile(source);
+                var context = {weeks: weekInstances};
+                var tableHTML = template(context);
+                
+                $('#forecasting-tables').html(tableHTML);
+                $('#forecasting-tables tr').filter('.childRow').hide();
+                addEventListenersMain();
+                if(eventListenerPanel === false){
+                    addEventListenersPanel();
+                }
+                addTableSorting();
+                
+                //Hide judge columns for sellers
+                if(typeOfUser === 'Seller'){
+                    $('#forecasting-table th:nth-child(5)').hide();
+                    $('#forecasting-table td:nth-child(5)').hide();
+                    $('#forecasting-table th:nth-child(11)').hide();
+                    $('#forecasting-table td:nth-child(11)').hide();
+                }
+                
+                //Add status message
+                var status = '{!status}';
+                var statusMessage = $('#statusMessage');
+                if(status === 'Commit Saved' && !statusReset){
+                    statusMessage.removeClass('text-danger').addClass('text-success');
+                    statusMessage.html('<img src="/img/func_icons/util/checkmark16.gif"/> Din commit har sparats!');
+                } 
+                else if(status != '' && status != null && !statusReset){
+                    statusMessage.removeClass('text-success').addClass('text-danger');
+                    statusMessage.html('<img src="/img/icon/unresolved16.png"/>' + status);
+                }
+                statusMessage.show();               
+                setTimeout(function() {
+                    statusMessage.fadeOut('fast');
+                }, 8000);
+            });
+            
+            //Flag that the status is reset
+            function resetStatus(){
+                statusReset = true;
+            }
+                        
+            </script>
+
+            <div id="forecasting-tables">
+                
+            </div>             
+        </apex:outputPanel>    
+        <div class="panel-wrapper hide-panel">
+            <div class="panel-handler">
+                <button class="btn btn-xs btn-default">{!$Label.Show}</button>
+            </div>
+            <div class="table-wrapper">
+                <div id="panel-content">
+                </div>           
+            </div>     
+        </div>
+    </div>    
+</apex:page>

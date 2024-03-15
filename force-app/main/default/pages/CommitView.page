@@ -1,0 +1,766 @@
+<apex:page sidebar="false" controller="CommitViewController" tabStyle="Commit__tab" standardStylesheets="false">
+    <apex:stylesheet value="{!$Resource.jQueryUI_css}"/>
+    <apex:stylesheet value="{!$Resource.bootstrapCSS}"/>    
+    
+    <style type="text/css">      
+        .bs h1 { 
+        font-size: 18px;
+        }
+        
+        .bs #header {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        }
+        
+        .bs .picklist-label {
+        margin-left: 25px;
+        margin-right: 5px;
+        font-size: 14px;
+        }
+        
+        .bs .refresh-button{
+        position: absolute;
+        top: 10px !important;
+        right: 80px !important;
+        }
+        
+        .bs .save-button{
+        position: absolute;
+        top: 10px !important;
+        right: 10px !important;         
+        }
+        
+        .bs #subheader {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-top: 2px solid #ddd;
+        }
+        
+        .bs #subheader span{
+        margin-right: 10px;
+        font-size: 14px;
+        }
+        
+        .bs #statusMessage{
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        }
+        
+        .bs #forecasting-table{
+        margin-bottom: 60px;
+        }
+        
+        .bs table td{
+        vertical-align: middle !important;
+        font-size: 14px;
+        }
+        
+        .bs table button{
+        padding: 2px 8px !important;
+        margin-right: 8px !important; 
+        font-weight: bold !important;
+        width: 30px;
+        }
+        
+        .bs table .name-cell{
+        text-indent: 40px;
+        }
+        
+        .bs table input{
+        font-size: 14px !important;
+        font-family: Arial,Helvetica,sans-serif !important;
+        color: #222 !important;
+        }
+        
+        .bs .bold-text{
+        font-weight: bold;
+        }
+        
+        .bs .clickable{
+        cursor: pointer;
+        }
+        
+        .bs .focus{
+        background-color: #96C5DF !important;
+        border-radius: 2px;
+        }       
+        
+        .bs .tooltip-inner {
+        font-weight: normal !important;
+        text-align: left;
+        max-width: 350px;
+        line-height: 160%;
+        font-size: 13px;
+        background-color: #5f4766;
+        white-space: pre-wrap;
+        }
+        
+        .bs .tooltip-arrow{
+        border-left-color: #5f4766 !important;
+        }     
+        
+        .bs .panel-wrapper{
+        position: fixed !important;
+        width: 100%;
+        left:0;
+        bottom: 0;
+        background-color: white;
+        border-top: 2px solid #ddd;
+        }
+        
+        .bs .panel-content{
+        width: 98.5% !important;
+        max-height: 270px;
+        margin-left: 14px;
+        margin-bottom: 4px;
+        overflow-y: auto;
+        display: none;
+        }
+        
+        .bs .panel-handler{
+        height: 30px;
+        background-color: #D9EDF3;
+        }
+        
+        .bs .panel-handler button{
+        float: right;
+        margin: 2px 20px 1px 10px;
+        padding: 2px 4px 2px 4px;
+        }
+        
+        .bs .hide-panel{
+        height: 30px !important;
+        }
+        
+        .bs #opportunity-table td,th{
+        font-size: 12px;
+        }
+        
+        .bs .table-wrapper{
+        margin-top: 35px;
+        position: relative;
+        }
+        
+        .bs #opportunity-table th .header{
+        position: absolute;
+        top:-20px;
+        height:20px;
+        z-index: 99999;
+        }
+        
+        .bs #opportunity-table th .sortable{
+        cursor: pointer;
+        }        
+        
+        .bs #opportunity-table td a{
+        color: #000;
+        text-decoration: underline;
+        }
+        
+        .bs #opportunity-table td a:hover{
+        color: #015ba7;
+        }
+        
+    </style>
+    
+    <apex:includeScript value="{!$Resource.jQuery}"/>
+    <apex:includeScript value="{!$Resource.jQueryUI}"/>
+    <apex:includeScript value="{!$Resource.bootstrapJS}"/>
+    <apex:includeScript value="{!$Resource.tableSorterJS}"/>    
+    
+    <script>
+    //global variables
+    var userIsSalesUnitManager = {!userIsSalesUnitManager};
+    var subheaderDone = false;
+    var forecastCategories;
+    var selectedSalesType;
+    var weekInstances;
+    var eventListenerPanel = false;
+    var statusReset = true; //if true no status message will be shown
+    
+    // Work out whether decimal separator is . or , for localised numbers
+    function getDecimalSeparator() {
+        return /\./.test((1.1).toLocaleString())? '.' : ',';
+    }
+    
+    // Round n to an integer and present
+    function myToLocaleInteger(n) {
+        var re = new RegExp( '\\' + getDecimalSeparator() + '\\d+$');
+        return Math.round(n).toLocaleString("sv-SE").replace(re,'');
+    }
+    
+    //Get the weekinstances from the controller and add one row for each week
+    function addWeeks(){
+        var userIsManager = {!userIsManager};
+        var userIsSalesUnitManager = {!userIsSalesUnitManager};
+        
+        for(var i = 0; i < weekInstances.length; i++){
+            
+            var thisWeek = weekInstances[i];
+            //Add the week if it is active or if the current user is a manager or a sales unit manager
+            if(thisWeek.item.Active_Week__c || userIsManager || userIsSalesUnitManager){
+                if(selectedSalesType === 'NewSales'){
+                    //Check if it is the last week
+                    if(i === (weekInstances.length - 1)){
+                        createRowNS(thisWeek,true);
+                    }
+                    else{
+                        createRowNS(thisWeek,false);
+                    }
+                }
+                else{
+                    //Check if it is the last week
+                    if(i === (weekInstances.length - 1)){
+                        createRowCS(thisWeek,true);
+                    }
+                    else{
+                        createRowCS(thisWeek,false);
+                    }
+                }
+            }
+            
+            for(var j = 0; j < thisWeek.subWeeks.length; j++){
+                if(thisWeek.subWeeks[j].item.Active_Week__c){
+                    if(selectedSalesType === 'NewSales'){
+                        createRowNS(thisWeek.subWeeks[j],false);
+                    }
+                    else{
+                        createRowCS(thisWeek.subWeeks[j],false);
+                    }
+                }
+            }
+            
+        }
+        $('tr').filter('.childRow').hide();
+        
+        //Hide button and subordinates' commit for users that are not managers
+        
+        var hideColumn = 2 + forecastCategories.length + 2;
+        
+        if(userIsManager === false && userIsSalesUnitManager === false){
+            $('.parentRow').find('button').hide();
+            $('#forecasting-table th:nth-child('+ hideColumn +')').hide();
+            $('#forecasting-table td:nth-child('+ hideColumn +')').hide();
+        }
+        
+    }    
+    
+    //Add Week Name to Forecasting Table
+    function addWeekName(isChild,isCurrentWeek,salesTeam,salesUnit,ownerName, weekName){
+        var weekElement; 
+        if(isChild){
+            if(userIsSalesUnitManager && salesTeam != null){
+                weekElement = '<tr class="childRow" data-week="' + weekName + '" data-owner="' + ownerName + '" data-seller="' + salesTeam + '"data-unit="' + salesUnit + '"><td class="name-cell clickable"> ' + salesTeam.toString() + '</td>';
+            }
+            else{
+                weekElement = '<tr class="childRow" data-week="' + weekName + '" data-owner="' + ownerName + '" data-seller="' + salesTeam + '"data-unit="' + salesUnit + '"><td class="name-cell clickable"> ' + ownerName.toString() + '</td>';
+            }      
+        }
+        else if(isCurrentWeek){
+            weekElement = '<tr class="parentRow info" data-week="' + weekName + '" data-owner="' + ownerName + '" data-seller="' + salesTeam + '"data-unit="' + salesUnit + '"><td class="clickable"><button class="btn btn-default">+</button> Vecka ' + weekName.toString() + '</td>';
+        }
+        else{
+            weekElement = '<tr class="parentRow" data-week="' + weekName + '" data-owner="' + ownerName + '" data-seller="' + salesTeam + '"data-unit="' + salesUnit + '"><td class="clickable"><button class="btn btn-default">+</button> Vecka ' + weekName.toString() + '</td>';        
+        }
+        
+        return weekElement;
+    }
+    
+    //Add Outcome to Forecasting Table
+    function addOutcome(outcome){
+        return '<td class="clickable">' + myToLocaleInteger(outcome) + ' kr</td>';
+    }
+    
+    //Add ForecastSummaries to Forecasting Table
+    function addForecastSummaries(forecastSummary){
+        var summaries = "";
+        for(var k = (forecastCategories.length - 1); k >= 0; k--){
+            summaries = summaries + '<td class="clickable">' + myToLocaleInteger(forecastSummary[forecastCategories[k]]) + ' kr</td>';
+        }
+        return summaries;
+    }
+    
+    //Add Direct Sales to Forecasting Table
+    function addDirectSales(directSales){
+        return '<td>' + myToLocaleInteger(directSales) + ' kr</td>';
+    }
+    
+    //Convert fieldHistory to a string
+    function historyToString(fieldHistory){
+        var tempString = "Historik";
+        if(fieldHistory != null){
+            for(var i = 0; i < fieldHistory.length; i++){
+                var date = fieldHistory[i].CreatedDate.split("T");
+                tempString = tempString + "\n" + date[0] + ":  " + myToLocaleInteger(parseInt(fieldHistory[i].NewValue)) + " kr";
+            }
+        }
+        return tempString;
+    }
+    
+    //Add Commit Values to Forecasting Table
+    function addCommitValues(isChild, isPrevWeek, myCommit, subCommit, fieldHistory){
+        var commitElement;
+        if(isChild){
+            commitElement = '<td>' + myToLocaleInteger(myCommit) + ' kr</td>';
+            commitElement = commitElement + '<td></td>';
+        }
+        else{
+            var historyString = historyToString(fieldHistory);
+            commitElement = '<td>' + myToLocaleInteger(subCommit) + ' kr</td>';
+            if(isPrevWeek){
+                commitElement = commitElement + '<td><input data-toggle="tooltip" data-placement="left" title="' + historyString + '" class="form-control input-sm" id="managerCommit type="text" value="' + myToLocaleInteger(myCommit) + '" readonly></td>';
+            }
+            else{
+                commitElement = commitElement + '<td><input data-toggle="tooltip" data-placement="left" title="' + historyString + '" class="form-control input-sm" id="managerCommit type="text" value="' + myToLocaleInteger(myCommit) + '"></td>';
+                
+            }
+        }
+        return commitElement;
+    }
+    
+    //Create table rows for New Sales
+    function createRowNS(thisWeek,lastWeek){
+        var newRow;
+        
+        //Add week name
+        newRow = addWeekName(thisWeek.isChild,thisWeek.isCurrentWeek,thisWeek.item.Sales_Team__c,thisWeek.item.Sales_Unit__c,thisWeek.ownerName,thisWeek.item.Name);
+        
+        //Add subheader
+        if(!subheaderDone && thisWeek.isCurrentWeek && !thisWeek.isChild){
+            updateSubHeader(thisWeek.item.New_Sales_Target__c, thisWeek.item.Quarterly_Forecast_Item__r.Goal_Achievement_New_Sales__c, thisWeek.item.Quarterly_Forecast_Item__r.Yearly_Target__r.Goal_Achievement_New_Sales__c);
+            subheaderDone = true;
+        }
+        else if(!subheaderDone && lastWeek && !thisWeek.isChild){
+            updateSubHeader(thisWeek.item.New_Sales_Target__c, thisWeek.item.Quarterly_Forecast_Item__r.Goal_Achievement_New_Sales__c, thisWeek.item.Quarterly_Forecast_Item__r.Yearly_Target__r.Goal_Achievement_New_Sales__c);
+            subheaderDone = true;
+        }
+        
+        //Add outcome
+        newRow = newRow + addOutcome(thisWeek.item.Accumulated_New_Sales_Outcome_X__c);
+        
+        //Add forecast category summaries to table
+        if(typeof thisWeek.forecastSummaryNS != 'undefined'){
+            newRow = newRow + addForecastSummaries(thisWeek.forecastSummaryNS);
+        }
+        
+        //Add Direct Sales
+        newRow = newRow + addDirectSales(thisWeek.item.Direct_Sales_Outcome__c);
+        
+        //Add Commit Values
+        newRow = newRow + addCommitValues(thisWeek.isChild, thisWeek.isPrevWeek, thisWeek.item.New_Sales_Commit__c, thisWeek.item.Subordinates_Commit_New_Sales__c, thisWeek.fieldHistoryNS);
+        
+        $('#forecasting-table > tbody:last').append(newRow);
+    }
+    
+
+    function createRowCS(thisWeek,lastWeek){
+        var newRow;
+        
+        //Add week name
+        newRow = addWeekName(thisWeek.isChild,thisWeek.isCurrentWeek,thisWeek.item.Sales_Team__c,thisWeek.item.Sales_Unit__c,thisWeek.ownerName,thisWeek.item.Name);
+        
+        //Add subheader
+        if(!subheaderDone && thisWeek.isCurrentWeek && !thisWeek.isChild){
+            updateSubHeader(thisWeek.item.Continuation_Sales_Target__c, thisWeek.item.Quarterly_Forecast_Item__r.Goal_Achievement_Continuation_Sales__c, thisWeek.item.Quarterly_Forecast_Item__r.Yearly_Target__r.Goal_Achievement_Continuation_Sales__c);
+            subheaderDone = true;
+        }
+        else if(!subheaderDone && lastWeek && !thisWeek.isChild){
+            updateSubHeader(thisWeek.item.Continuation_Sales_Target__c, thisWeek.item.Quarterly_Forecast_Item__r.Goal_Achievement_Continuation_Sales__c, thisWeek.item.Quarterly_Forecast_Item__r.Yearly_Target__r.Goal_Achievement_Continuation_Sales__c);
+            subheaderDone = true;
+        }        
+        
+        //Add outcome
+        newRow = newRow + addOutcome(thisWeek.item.Accumulated_Continuation_Sales_Outcome_X__c);
+        
+        //Add forecast category summaries to table
+        if(typeof thisWeek.forecastSummaryCS != 'undefined'){
+            newRow = newRow + addForecastSummaries(thisWeek.forecastSummaryCS)
+        }    
+        
+        //Add Direct Sales
+        newRow = newRow + addDirectSales(thisWeek.item.Direct_Sales_Outcome__c);
+        
+        //Add Commit Values
+        newRow = newRow + addCommitValues(thisWeek.isChild,thisWeek.isPrevWeek, thisWeek.item.Continuation_Sales_Commit__c,thisWeek.item.Subordinates_Commit_Continuation_Sales__c, thisWeek.fieldHistoryCS);
+        
+        $('#forecasting-table > tbody:last').append(newRow);
+        
+    }    
+    
+    //Reloads the week when salestype is changed
+    function changeSalesType(type){
+        subheaderDone = false;
+        selectedSalesType = type;
+        $('#forecasting-table').find("tr:gt(0)").remove(); //empty table rows
+        
+        addWeeks();
+        addEventListenersMain();
+    }
+    
+    //Function that calls the saveCommit method in the controller
+    function saveCommitJS(selectedSalesType){
+        statusReset = false;
+        subheaderDone = false;
+        var commitValues = [];
+        
+        $('#forecasting-table > tbody  > .parentRow').each(function() {
+            var weeklyCommit = [];
+            weeklyCommit.push($(this).attr("data-week"));
+            weeklyCommit.push($(this).attr("data-seller"));
+            weeklyCommit.push($(this).attr("data-unit")); 
+            weeklyCommit.push($(this).find('input').val().replace(/ |\u00a0+/g,''));
+            commitValues.push(weeklyCommit);
+        });
+        
+        JSONcommitValues = JSON.stringify(commitValues);
+        
+        var result = saveCommit(JSONcommitValues);
+    }
+    
+    //Function that populates the opportunity bottom panel
+    function populateOpportunityPanel(weekName, forecastCategory, isParent, owner, salesTeam, salesUnit){
+        $('#opportunity-table').find("tbody").empty();
+        var opportunityLinks = [];
+        var addRow = false;
+        
+        //If the clicked row isParent then add both current's user's opportunities as well as team's opportunities. 
+        if(isParent){
+            for(var i = 0; i < weekInstances.length; i++){
+                if(weekInstances[i].item.Name === weekName && (weekInstances[i].item.Sales_Team__c == salesTeam || (userIsSalesUnitManager && weekInstances[i].item.Sales_Unit__c == salesUnit))){
+                
+                    if(weekInstances[i].item.Forecast_Opportunity_Links__r != 'undefined'){
+                        for(j = 0; j < weekInstances[i].item.Forecast_Opportunity_Links__r.records.length; j++){
+                            opportunityLinks.push(weekInstances[i].item.Forecast_Opportunity_Links__r.records[j]);
+                        }
+                    }
+                }           
+            }
+        }
+        //If the clicked row is not parent then add only that subweek's owner's opportunities
+        else{
+            for(var i = 0; i < weekInstances.length; i++){
+                if(weekInstances[i].item.Name === weekName){
+                    for(var j = 0; j < weekInstances[i].subWeeks.length; j++){
+                        if(weekInstances[i].subWeeks[j].ownerName === owner){
+                            if(weekInstances[i].subWeeks[j].item.Forecast_Opportunity_Links__r != 'undefined'){
+                                for(k = 0; k < weekInstances[i].subWeeks[j].item.Forecast_Opportunity_Links__r.records.length; k++){
+                                    opportunityLinks.push(weekInstances[i].subWeeks[j].item.Forecast_Opportunity_Links__r.records[k]);
+                                }
+                            }
+                        }
+                    }
+                }           
+            }
+        }
+ 
+        for(var k = 0; k < opportunityLinks.length; k++){
+            var thisLink = opportunityLinks[k];
+            if(typeof thisLink != 'undefined'){
+                if(selectedSalesType === 'NewSales' && thisLink.New_Sales_Amount__c > 0 && (thisLink.Opportunity__r.ForecastCategoryName === forecastCategory || forecastCategory === '')){
+                    addRow = true;
+                }
+                else if(selectedSalesType === 'ContinuousSales' && thisLink.Continuation_Sales_Amount__c > 0 && (thisLink.Opportunity__r.ForecastCategoryName === forecastCategory || forecastCategory === '')){
+                    addRow = true;
+                }
+                else{
+                    addRow = false;
+                }
+                
+                if(addRow){
+                    var newRow = "<tr>";                    
+                 //   newRow = newRow + '<td><a href="/' + thisLink.Opportunity__c + '/e?retURL=/apex/CommitView" target="_blank">Edit</a></td>'; //Add actions
+                    newRow = newRow + '<td><a href="/' + thisLink.Opportunity__c +'" target="_blank">' + thisLink.Opportunity__r.Name + '</a></td>'; //Add opportunity name
+                    newRow = newRow + '<td><a href="/' + thisLink.Opportunity__r.AccountId +'" target="_blank">' + thisLink.Opportunity__r.Account.Name + '</a></td>'; //Add account name
+                    
+                    if(selectedSalesType === 'NewSales'){
+                        newRow = newRow + '<td>' + thisLink.New_Sales_Amount__c + '</td>'; //Add order value
+                    }
+                    else{
+                        newRow = newRow + '<td>' + thisLink.Continuation_Sales_Amount__c + '</td>'; //Add order value
+                    }
+                    newRow = newRow + '<td>' + thisLink.Opportunity__r.StageName + '</td>'; //Add stage name
+                    newRow = newRow + '<td>' + thisLink.Opportunity__r.ForecastCategoryName + '</td>'; //Add forecast category name
+                    newRow = newRow + '<td>' + thisLink.Probability__c + '</td>'; //Add probability
+                    newRow = newRow + '<td>' + thisLink.Opportunity__r.CloseDate + '</td>'; //Add close date
+                    newRow = newRow + '<td>' + thisLink.Opportunity__r.Owner.Name + '</td>'; //Add opportunity owner
+                    
+                    newRow = newRow + '</tr>';
+                    
+                    $('#opportunity-table > tbody:last').append(newRow);
+                }
+            }
+        }
+    }
+    
+    //Function that uses the jquery plugin tablesorter to add sortable columns to opportunity table
+    function addTableSorting(){
+        $('#opportunity-table').tablesorter({
+            headers: { 
+                0: { 
+                    sorter: false 
+                }, 
+                4: { 
+                    sorter: false 
+                },
+                5: {
+                    sorter: false
+                }
+            }
+        });
+    }
+    
+    //Add event listeners to forecasting table
+    function addEventListenersMain(){
+        
+        //Event listeners for the expand button on each week row
+        $('#forecasting-table').find('button').on('click',function(event){
+            event.stopPropagation();
+            $(this).closest('.parentRow').toggleClass('bold-text');
+            $(this).closest('tr').nextUntil('.parentRow').toggle('fast');
+            if($(this).text() === '+'){
+                $(this).text('-');
+            }
+            else{
+                $(this).text('+');
+            }
+        });
+        
+        //Make it possible to click on each row to show opportunity panel
+        $('.clickable').on('click',function(){
+            $('.panel-wrapper').removeClass("hide-panel");
+            $( ".panel-wrapper" ).resizable( "enable" );
+            $('.panel-content').slideDown('fast');
+            $('.panel-handler').find('button').text('Dölj');
+            $('.focus').removeClass('focus');
+            
+            var category = $(this).closest('table').find('th').eq(this.cellIndex).text();
+            
+            if(category === ''){
+                $(this).closest('tr').children().addClass('focus');
+            }
+            else{
+                $(this).addClass('focus');
+            }
+            
+            if($(this).closest('tr').hasClass('parentRow')){
+                populateOpportunityPanel($(this).closest('tr').attr("data-week"), category, true, $(this).closest('tr').attr("data-owner"),$(this).closest('tr').attr("data-seller"),$(this).closest('tr').attr("data-unit"));
+            }
+            else{
+                populateOpportunityPanel($(this).closest('tr').attr("data-week"), category, false, $(this).closest('tr').attr("data-owner"),$(this).closest('tr').attr("data-seller"),$(this).closest('tr').attr("data-unit"));
+            }
+            $('#opportunity-table').trigger("update");
+            
+        });
+        
+        //Add tooltip that shows commit field history
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+        
+    }
+    
+    //Add event listeners to opportunity panel
+    function addEventListenersPanel(){
+        
+        //Prevents main scroll to move when scrolling in the opportunity panel
+        $('.panel-content').bind('mousewheel DOMMouseScroll', function(e) {
+            var scrollTo = null;
+            
+            if (e.type == 'mousewheel') {
+                scrollTo = (e.originalEvent.wheelDelta * -1);
+            }
+            else if (e.type == 'DOMMouseScroll') {
+                scrollTo = 40 * e.originalEvent.detail;
+            }
+            
+            if (scrollTo) {
+                e.preventDefault();
+                $(this).scrollTop(scrollTo + $(this).scrollTop());
+            }
+        });
+        
+        //Event listener for show/hide button on opportunity panel
+        $('.panel-handler').find('button').on('click',function(){
+            $('.panel-content').slideToggle('fast');
+            if($(this).text() === 'Visa'){
+                $(this).text('Dölj');
+                $('.panel-wrapper').removeClass("hide-panel");
+                $( ".panel-wrapper" ).resizable( "enable" );
+            }
+            else{
+                $(this).text('Visa');
+                $('.panel-wrapper').addClass("hide-panel");
+                $( ".panel-wrapper" ).resizable( "disable" );
+            }
+        });
+        
+        //Make it possible to resize opportunity panel
+        $( ".panel-wrapper" ).resizable({
+            alsoResize: ".panel-content",
+            disabled: true,
+            maxHeight: 350,
+            minHeight: 60,
+            handles: "n",
+            resize: function(event, ui) {
+                $(".panel-wrapper").css("position", "fixed");
+                $(".panel-wrapper").css("bottom", "0px");
+                $(".panel-wrapper").css("top", "");
+            }
+        });
+        
+        eventListenerPanel = true;
+    }
+    
+    </script>
+    
+    <div class="bs"> 
+        <apex:form id="TheForm">
+            <div id="header">
+                <h1>
+                    Commit - {!$User.FirstName} {!$User.LastName} 
+                </h1>
+                
+                <apex:outputLabel value="År" styleClass="picklist-label"></apex:outputLabel>
+                <apex:selectList value="{!selectedYear}" multiselect="false" size="1">
+                    <apex:actionSupport event="onchange" oncomplete="updatePage();"/>
+                    <apex:selectOptions value="{!yearOptions}"/>
+                </apex:selectList>
+                
+                <apex:outputLabel value="Kvartal" styleClass="picklist-label"></apex:outputLabel>
+                <apex:selectList value="{!selectedQuarter}" multiselect="false" size="1">
+                    <apex:actionSupport event="onchange" oncomplete="updatePage();"/>
+                    <apex:selectOptions value="{!quarterOptions}"/>
+                </apex:selectList> 
+                
+                <apex:outputLabel value="Säljtyp" styleClass="picklist-label"></apex:outputLabel>
+                <apex:selectList value="{!selectedSalesType}" multiselect="false" size="1" onchange="changeSalesType(this.value);">
+                    <apex:selectOptions value="{!salesTypes}"/>
+                </apex:selectList>
+                
+                <apex:commandButton value="Uppdatera" styleClass="btn btn-default refresh-button" onclick="resetStatus();"></apex:commandButton>
+                <apex:commandButton value="Spara" onclick="saveCommitJS(selectedSalesType);" styleClass="btn btn-success save-button" reRender="null"/>
+                
+            </div>
+            <apex:actionFunction name="saveCommit" action="{!saveCommit}" reRender="outputPanel">
+                <apex:param name="commitValueString" assignTo="{!commitValueString}" value=""></apex:param>
+            </apex:actionFunction>
+        </apex:form>
+        <apex:outputPanel id="outputPanel">
+            
+            <script>
+            $(document).ready(function(){
+                
+                //Get data from apex controller
+                selectedSalesType = '{!selectedSalesType}';
+                var selectedQuarter = '{!selectedQuarter}';     
+                weekInstances = {!weekInstances};
+                var status = '{!status}';
+                
+                //Add the forecast categories dynamically to the table
+                forecastCategories = {!forecastCategories};
+                
+                for(var i = 0; i < forecastCategories.length; i++){       
+                    $('#forecasting-table').find('th:nth-child(2)').after('<th class="col-md-1">' + forecastCategories[i].toString() + '</th>');
+                }
+                
+                addWeeks();
+                addEventListenersMain();
+                if(eventListenerPanel === false){
+                    addEventListenersPanel();
+                }
+                addTableSorting();
+                
+                //Add status message
+                var statusMessage = $('#statusMessage');
+                if(status === 'Commit Saved' && !statusReset){
+                    statusMessage.removeClass('text-danger').addClass('text-success');
+                    statusMessage.html('<img src="/img/func_icons/util/checkmark16.gif"/> Din commit har sparats!');
+                } 
+                else if(status != '' && status != null && !statusReset){
+                    statusMessage.removeClass('text-success').addClass('text-danger');
+                    statusMessage.html('<img src="/img/icon/unresolved16.png"/>' + status);
+                }
+                statusMessage.show();               
+                setTimeout(function() {
+                    statusMessage.fadeOut('fast');
+                }, 8000);
+            });
+            
+            //Flag that the status is reset
+            function resetStatus(){
+                statusReset = true;
+            }
+            
+            //Update subheader with weekly target, quarterly target and yearly target
+            function updateSubHeader(weeklyTarget, quarterlyTarget, yearlyTarget){
+                
+                if(parseInt(weeklyTarget) > 0){
+                    $('#weeklyTarget').html(myToLocaleInteger(parseInt(weeklyTarget)) + ' kr');
+                } else{
+                    $('#weeklyTarget').html('0 kr');
+                }
+                
+                if(quarterlyTarget > 0){
+                    $('#quarterlyTarget').html(quarterlyTarget.toFixed(1) + ' %');
+                } else{
+                    $('#quarterlyTarget').html('0 %');
+                }
+                
+                if(yearlyTarget > 0){
+                    $('#yearlyTarget').html(yearlyTarget.toFixed(1) + ' %');
+                } else{
+                    $('#yearlyTarget').html('0 %');
+                }
+            }
+            
+            </script>
+            
+            <div id="subheader">
+                <p>
+                    <span>Veckomål: <span id="weeklyTarget"></span></span>
+                    <span>Måluppfyllelse kvartal: <span id="quarterlyTarget"></span></span>
+                    <span>Måluppfyllelse år: <span id="yearlyTarget"></span></span>
+                    <span id="statusMessage"></span>    
+                </p>
+            </div>
+            <table class="table table-hover table-condensed" id="forecasting-table">
+                <thead>
+                    <tr>
+                        <th class="col-md-2"></th>
+                        <th class="col-md-1">Utfall</th>
+                        <th class="col-md-2">Prognos Direktsälj</th>
+                        <th class="col-md-2">Commit Underordnade</th>
+                        <th class="col-md-2">Commit {!$User.Firstname}</th>
+                    </tr>
+                </thead>
+                <tbody>            
+                </tbody>
+            </table>  
+        </apex:outputPanel>    
+        <div class="panel-wrapper hide-panel">
+            <div class="panel-handler">
+                <button class="btn btn-xs btn-default">Visa</button>
+            </div>
+            <div class="table-wrapper">
+                <div class="panel-content">
+                    <table class="table table-hover table-condensed" id="opportunity-table">
+                        <thead>
+             <!--               <th class="col-xs-1"><span class="header">Åtgärd</span></th>  -->
+                            <th class="col-xs-1"><span class="header sortable">Affärsmöjlighet <img src="{!URLFOR($Resource.tableSortIcon)}"/></span><div></div></th>
+                            <th class="col-xs-1"><span class="header sortable">Konto <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>                        
+                            <th class="col-xs-1"><span class="header sortable">Intäkt 12 mån (kr) <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>
+                            <th class="col-xs-1"><span class="header">Fas</span></th>
+                            <th class="col-xs-1"><span class="header">Prognoskategori</span></th>
+                            <th class="col-xs-1"><span class="header sortable">Sannolikhet (%) <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>                        
+                            <th class="col-xs-1"><span class="header sortable">Avslutsdatum <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>
+                            <th class="col-xs-1"><span class="header sortable">Ägare affärsmöjlighet <img src="{!URLFOR($Resource.tableSortIcon)}"/></span></th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>           
+            </div>     
+        </div>
+    </div>    
+</apex:page>

@@ -1,0 +1,46 @@
+<aura:component controller="PendingApprovalRequestsController" implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="isOpen" type="boolean" default="true"/>
+    <aura:attribute name="globalheader" type="String" access="public" />
+    <aura:attribute name="firstbtn" type="String" access="public" />
+    <aura:attribute name="secondbtn" type="String" access="public" />
+    <aura:attribute name="workId" type="String" access="public" />
+    <aura:attribute name="IsSpinner" type="Boolean" default ="false"/>
+    <aura:if isTrue="{!v.IsSpinner}">
+    <lightning:spinner aura:id="spinnerId" variant="brand" size="large"/>
+    </aura:if>
+    <aura:if isTrue="{!v.isOpen}">  
+    
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+   
+    <div class="slds-modal__container">
+ 
+    <header class="slds-modal__header">
+    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick = "{!c.cancelops}">
+    <b>X</b>
+    <span class="slds-assistive-text">Close</span>
+    </button>
+    <!--<lightning:buttonIcon iconName="utility:close" onclick = "{!c.cancelops}" alternativeText="close"  variant="bare-inverse"  class="slds-modal__close"/>-->
+
+    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{!v.globalheader} Quote</h2>
+    </header>
+    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+    <div class="uiInput uiInputTextArea">
+                <label class="uiLabel-top form-element__label uiLabel" data-aura-class="uiLabel">
+                    Comments
+                </label>
+                <br/>
+                <ui:inputTextArea aura:id="comments1" value="" rows="8"/>
+            </div>
+    </div>
+    <footer class="slds-modal__footer">
+    <button class="slds-button slds-button_neutral"  variant="neutral" aura:id="cancelButtonId" onclick = "{!c.cancelops}">{!v.firstbtn}</button>
+    <button class="slds-button slds-button_brand" variant="brand" aura:id="approvalButtonId" onclick="{!c.handleAction}">{!v.secondbtn}</button>
+    </footer>
+     
+    </div>
+    
+    </section>
+         
+    <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,6 @@
+<aura:component access="global">
+    <aura:handler event="c:loadYearlyPerformanceScore" action="{!c.handleLoadYearlyPerformanceScoreEvent}"/>
+    <aura:attribute name="title" type="String" default=""/>
+    <aura:attribute name="prop" type="String" default=""/>
+	<div class="gauge" id="{!v.prop}"></div>
+</aura:component>

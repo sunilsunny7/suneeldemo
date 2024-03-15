@@ -1,0 +1,114 @@
+<aura:component controller="ContractUIController" implements="flexipage:availableForAllPageTypes,force:appHostable" access="global">
+    <ltng:require styles="/resource/sldsnew/styles/salesforce-lightning-design-system.css" />
+    <aura:attribute name="AccountId" type="String" default=""/>
+    <aura:attribute name="OpportunityId" type="String" default=""/>
+    <aura:attribute name="ShowError" type="Boolean" default="false"/>
+    <aura:attribute name="ErrorMessage" type="String" default="Something gone wrong"/>
+    <aura:attribute name="Contracts" type="Contract[]" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div> 
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"></aura:handler>
+    
+        <aura:renderIf isTrue="{!v.ShowError}">  
+        <div class="slds-notify_container">
+            <div class="slds-notify slds-notify--alert slds-theme--alert-texture" role="alert">
+                <button onclick="{!c.hideError}" class="slds-button slds-button--icon-inverse slds-notify__close" aria-haspopup="true">                            
+                    <c:svgIcon svgPath="/resource/sldsnew/icons/utility-sprite/svg/symbols.svg#close" class=""  category="standard" size="small" name="Close" />                            
+                </button>
+                <span class="slds-assistive-text">Info</span>
+                <h2>{!v.ErrorMessage}</h2>
+            </div>
+        </div>
+    </aura:renderIf>
+    <div class="slds-page-header" role="banner">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <h1 class="slds-page-header__title slds-truncate" title="{!$Label.c.conContracts}">{!$Label.c.conContracts}</h1>
+            </div>
+            <div class="slds-col slds-no-flex slds-align-bottom">
+                <div class="slds-grid">
+                    <div class="slds-button-group">
+                        <button class="slds-button slds-button--neutral" onclick="{!c.newContractClick}">{!$Label.c.conNewContract}</button>
+                        <button class="slds-button slds-button--neutral" onclick="{!c.doInit}">{!$Label.c.conRefresh}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="slds-text-body--small slds-page-header__info">{!v.Size} items</p>
+    </div>
+
+    
+    
+    <table class="slds-table slds-table--bordered">
+        <thead>
+            <tr class="slds-text-heading--label">            
+                <th class="" scope="col">
+                    <div class="slds-truncate">{!$Label.c.conStartDate}
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">{!$Label.c.conEndDate}        
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">{!$Label.c.conTerm}      
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">{!$Label.c.conTypeOfAgreement}         
+                    </div>
+                </th>
+                <th class="slds-cell-shrink"><div class="slds-truncate">{!$Label.c.conActions}        
+                    </div></th>
+            </tr>
+        </thead>
+        <tbody aura:id="tableBody">           
+            <aura:iteration items="{!v.Contracts}" var="contract" indexVar="i">
+                <tr class="slds-hint-parent" > 
+                    <td class="slds-truncate" data-label="Status">{!contract.StartDate}</td>
+                    <td class="slds-truncate" data-label="Start Date">{!contract.EndDate}</td>
+                    <td class="slds-truncate" data-label="Term">{!contract.ContractTerm}</td> 
+                    <td class="slds-truncate" data-label="Type of Agreement">{!contract.Type_of_Agreement__c }</td>
+                    <td>                                                
+                        <div class="slds-dropdown-trigger slds-dropdown-trigger--click" onclick="{!c.actionClick}" aria-expanded="true">
+                            <button class="slds-button slds-button--icon-border-filled" aria-haspopup="true">                            
+                                <c:svgIcon svgPath="/resource/sldsnew/icons/utility-sprite/svg/symbols.svg#down" class="slds-icon-text-default"  category="standard" size="small" name="Action" />                            
+                            </button>
+                              <div class="button-layer"> </div>
+                            <div class="slds-dropdown slds-dropdown--right">
+                                <ul class="dropdown__list" role="menu">
+                                    <li class="slds-dropdown__item">
+                                        <a href="#void" role="menuitem" data-id="{!contract.Id}" onclick="{!c.editContractClick}">
+                                            {!$Label.c.conEdit}
+                                        </a>
+                                    </li>
+                                    <li class="slds-dropdown__item">
+                                        <a href="#void" role="menuitem" data-id="{!contract.Id}" onclick="{!c.newProspectClick}">
+                                            {!$Label.c.conCreateProspect}
+                                        </a>
+                                    </li>
+                                    <li class="slds-dropdown__item">
+                                        <a href="#void" role="menuitem" data-id="{!contract.Id}" onclick="{!c.newOpportunityClick}">
+                                            {!$Label.c.conCreateOpportunity}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> 
+                        
+                    </td>
+                </tr>
+                
+            </aura:iteration>
+            
+            
+        </tbody>
+    </table>
+</aura:component>

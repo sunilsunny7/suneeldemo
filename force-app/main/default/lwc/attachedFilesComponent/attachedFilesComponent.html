@@ -1,0 +1,49 @@
+<!--
+ - Created by uly8476 on 2023-02-23.
+ -->
+
+<!-- Attached Files Component -->
+<template>
+    <!-- Error Panel -->
+    <template if:true={error}>
+        <c-error-panel-component errors={error} type="inlineMessage"></c-error-panel-component>
+    </template>
+    <!-- Error Panel ENDS-->
+    <div class="slds-card slds-p-around_small">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="1">
+                <lightning-icon icon-name="utility:upload" size="small"></lightning-icon>
+            </lightning-layout-item>
+            <lightning-layout-item size="11">
+                <h2 class="slds-card__header-title">
+                    Upload Files
+                </h2>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-spinner if:true={isLoading} variant="brand" size="medium"></lightning-spinner>
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item>
+                <lightning-file-upload
+                        onuploadfinished={handleUploadFinished}
+                        multiple="true"
+                        record-id={linkedRecordId}>
+                </lightning-file-upload>
+            </lightning-layout-item>
+            <template if:true={filesAttached}>
+                <lightning-layout-item size="12" class="slds-p-top_small slds-p-bottom_small">
+                    <lightning-datatable
+                            key-field="ContentDocumentId"
+                            columns={filesLayout}
+                            data={attachments}
+                            resize-column-disabled="true"
+                            onrowaction={handleDelete}
+                            hide-checkbox-column="true"
+                            sorted-by={sortBy}
+                            sorted-direction={sortDirection}
+                            onsort={doSorting}
+                    ></lightning-datatable>
+                </lightning-layout-item>
+            </template>
+        </lightning-layout>
+    </div>
+</template>

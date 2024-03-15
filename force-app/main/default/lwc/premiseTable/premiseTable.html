@@ -1,0 +1,93 @@
+<template>
+
+	<template lwc:if={secondaryAccess}>
+
+		<div class="slds-text-color_destructive"> Kom ihåg att fylla i Hera-information om Sekundär access finns med i
+			varukorgen. </div>
+
+	</template>
+
+	<div class="slds-m-top_medium slds-m-bottom_medium">
+		<lightning-radio-group name="radioGroup" label="Har HERA-förfrågningar gjorts för någon av adresserna?"
+			options={options} value={value} onchange={handleChange} type="radio"></lightning-radio-group>
+	</div>
+	<template lwc:if={Answer}>
+		<table style="table-layout:fixed;"
+			class="slds-table slds-table_cell-buffer slds-m-horizontal_small slds-table_bordered">
+			<thead>
+				<tr class="slds-border_top slds-border_bottom slds-border_left slds-border_right">
+					<th style="width: 40%; text-align:center; white-space: break-spaces;"
+						class="slds-border_top slds-border_bottom slds-border_left slds-border_right">Adresser</th>
+					<th style="width: 17%; text-align:center; white-space: break-spaces;"
+						class="slds-border_top slds-border_bottom slds-border_right">Hera-typ</th>
+					<th style="width: 12%; text-align:center; white-space: break-spaces;"
+						class="slds-border_top slds-border_bottom slds-border_right">Utökad månadsavgift</th>
+					<th style="width: 12%; text-align:center; white-space: break-spaces;"
+						class="slds-border_top slds-border_bottom slds-border_right">Engångsavgift</th>
+					<th style="width: 13%; text-align:center; white-space: break-spaces;"
+						class="slds-border_top slds-border_bottom slds-border_right">Hera-nummer</th>
+					<th style="width: 6%; text-align:center; white-space: break-spaces;"
+						class="slds-border_top slds-border_bottom slds-border_left slds-border_right"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<template lwc:if={PremiseData}>
+					<template for:each={heraInfoArray} for:index="index" for:item="item">
+						<tr key={item.key}>
+							<td lwc:if={item.isDeleted} style="width:40%"
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right">
+								<lightning-combobox name="siteAddressSelection" label="" data-index={index}
+									data-id={index} value={item.ServicePointId} placeholder="Välj adress"
+									options={siteAddresses} onchange={selectAddress}>
+								</lightning-combobox>
+							</td>
+							<td lwc:if={item.isDeleted}
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right">
+								<lightning-combobox name="heratype" label="" data-index={index}
+									value={item.selectedHeraType} data-id1={index} placeholder="Välj Hera-typ"
+									options={heraType} onchange={selectHera}>
+								</lightning-combobox>
+							</td>
+							<td lwc:if={item.isDeleted}
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right">
+								<lightning-input type="number" name="rc" data-type="2" data-index={index}
+									value={item.Input.rc} onchange={methodUpdate}></lightning-input>
+							</td>
+							<td lwc:if={item.isDeleted}
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right">
+								<lightning-input type="number" name="otc" data-type="1" data-index={index}
+									value={item.Input.otc} onchange={methodUpdate}></lightning-input>
+							</td>
+							<td lwc:if={item.isDeleted}
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right">
+								<lightning-input type="number" name="heraNumber" data-type="3" data-index={index}
+									value={item.Input.heraNumber} onchange={methodUpdate}></lightning-input>
+							</td>
+							<td lwc:if={item.isDeleted} style="padding-left: 5px;"
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right">
+
+								<lightning-icon size="small" data-index={index} onclick={deleteRow}
+									icon-name="action:delete" title="New note">
+								</lightning-icon>
+
+							</td>
+						</tr>
+					</template>
+				</template>
+			</tbody>
+		</table>
+
+		<div class="slds-grid slds-grid_align-end slds-m-top_small">
+			<lightning-button label="Lägg till adress" title="Add new row" icon-name="action:add_relationship"
+				onclick={addNewHeraInfo} class="slds-m-left_x-small"></lightning-button>
+		</div>
+	</template>
+	<div class="slds-grid slds-m-top_large">
+		<div class="slds-col slds-size_2-of-3"></div>
+		<div class="slds-col slds-m-right_small">
+			<button class="slds-button slds-button_brand slds-button_stretch" onclick={nextStep}>Nästa</button>
+
+		</div>
+	</div>
+</template>

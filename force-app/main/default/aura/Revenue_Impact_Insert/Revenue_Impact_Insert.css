@@ -1,0 +1,6 @@
+.THIS .redColor a{
+    color: red !important; 
+}
+.THIS .slds-button_icon-bare{
+    display: none;
+}

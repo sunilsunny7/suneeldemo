@@ -1,0 +1,362 @@
+<apex:page standardController="Account" extensions="ContractUIVFController" showQuickActionVfHeader="true" showHeader="false" standardStylesheets="false" html-style="width: 100%">
+    <apex:stylesheet value="{!URLFOR($Resource.sldsnew, '/styles/salesforce-lightning-design-system.min.css')}" /> 
+    <script type="text/javascript" src="/canvas/sdk/js/publisher.js" />   
+    <!-- SALEF-7206 - Changed reference from the Almond package's almond_uilib .zip resource to jQueryMinJS -->
+    <!--<apex:includeScript value="{!$Resource.jQueryMinJS}"/>-->
+    <apex:includeScript value="/resource/jQueryMinJS"/>
+        <script> 
+        function hasClass(el, className) {
+        if (el.classList)
+            return el.classList.contains(className)
+            else
+                return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+                }
+    
+    function addClass(el, className) {
+        if (el.classList)
+            el.classList.add(className)
+            else if (!hasClass(el, className)) el.className += " " + className
+                }
+    
+    function removeClass(el, className) {
+        if (el.classList)
+            el.classList.remove(className)
+            else if (hasClass(el, className)) {
+                var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+                el.className=el.className.replace(reg, ' ')
+            }
+    }
+    
+    function showSpinner(){
+        var el =  document.getElementById('spinner');
+        removeClass(el, 'slds-hide'); 
+        addClass(el, 'slds-show'); 
+    }
+    
+    function hideSpinner(){
+        var el =  document.getElementById('spinner');
+        removeClass(el, 'slds-show'); 
+        addClass(el, 'slds-hide'); 
+    }
+    
+    function newContractClick() {
+        if (confirm('{!$Label.conContractLabel}')) {
+            showSpinner();
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.ContractUIVFController.createContract}', 
+                '{!Account.Id}',
+                function(result, event){
+                    hideSpinner();
+                    var data = JSON.parse(result);
+                    if(data.IsSuccess){
+                        sforce.one.editRecord(data.ReturnData);
+                    }else{
+                        alert(data);
+                        console.log(data.ReturnData);
+                        displayError(data.ReturnData);
+                    } 
+                }, 
+                {escape: false}
+            );
+        }
+    }
+    
+    function editContractClick(conId) {                 
+        //  var newWindow = window.open('../'+ conId + '/e?retURL=apex/ContractClose&saveURL=apex/ContractClose', 'Popup Name' ,"width=800, height=550, scrollbars=yes,toolbar=no,status=no");
+        sforce.one.editRecord(conId);
+        //  newWindow.focus();
+    }
+    
+    function viewContractClick(conId) {                 
+        var newWindow = window.open('/'+ conId,'_blank');
+        newWindow.focus();
+        //  sforce.one.navigateToSObject(conId,'view');
+    }
+    
+    function newProspectClick(conId,enddate,connumber,kknr,solArea, pricebookId) {
+        if (confirm('{!$Label.conConfirmCreateProspect}')) {
+            var stageOpp = '';
+            var endt = new Date(enddate);
+            var closedt = new Date (endt);
+            var oppclsdt = new Date (closedt.setDate(closedt.getDate()+1));
+            var tdyDt = new Date();
+            //alert(new Date (closedt.setDate(closedt.getDate()+1)));
+            //alert(new Date (tdyDt.setMonth(tdyDt.getMonth()+3)));
+            //alert(oppclsdt);
+            if(oppclsdt < tdyDt.setMonth(tdyDt.getMonth()+3)){
+                stageOpp = 'Aktivt prospect';
+            }else{
+                stageOpp = 'Vilande prospect'; 
+            }
+            sforce.one.createRecord('Opportunity','{!$Label.CygateProspectRecord}',{ 
+                AccountId : '{!Account.Id}',
+                ContractId : conId,
+                Agreement_Start__c : endt,
+                Name : connumber,
+                KKnr__c  : kknr,
+                Pricebook2Id : pricebookId,
+                CloseDate : oppclsdt,
+                Main_Product_Area__c  : solArea,
+                StageName  : stageOpp,
+                Is_Contract_Prospect_Opportunity__c : true
+            });
+        }
+    }
+    
+    
+    function newCygateOpportunityClick(conId,enddate,connumber,kknr,solArea, pricebookId) {                 
+        if (confirm('{!$Label.conConfirmCreateCygateOpportunity}')) {
+            var endt = new Date(enddate);
+            sforce.one.createRecord('Opportunity','{!$Label.CygateAffarRecord}',{
+                AccountId : '{!Account.Id}',
+                ContractId : conId,
+                Agreement_Start__c : endt,
+                Name : connumber,
+                KKnr__c  : kknr,
+                Pricebook2ID : pricebookId,
+                Main_Product_Area__c  : solArea,
+                StageName  : "Kvalificera",
+                Is_Contract_Prospect_Opportunity__c : true
+            });
+        }
+    }
+    
+    function newSmeOpportunityClick(conId) {
+        if (confirm('{!$Label.conConfirmCreateSmeOpportunity}')) {
+            showSpinner();
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.ContractUIVFController.createSmeOpportunity}', 
+                conId, 
+                function(result, event){
+                    hideSpinner();
+                    var data = JSON.parse(result);
+                    if(data.IsSuccess){
+                        sforce.one.editRecord(data.ReturnData);
+                    }else{
+                        console.log(data.ReturnData);
+                        displayError(data.ReturnData);
+                    } 
+                }, 
+                {escape: false}
+            );
+        }
+    }
+    
+    function newSmeQuickOpportunityClick(conId) {
+        if (confirm('{!$Label.conConfirmCreateSmeQuickOpportunity}')) {
+            showSpinner();
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.ContractUIVFController.createSmeQuickOpportunity}', 
+                conId, 
+                function(result, event){
+                    hideSpinner();
+                    var data = JSON.parse(result);
+                    if(data.IsSuccess){
+                        sforce.one.editRecord(data.ReturnData);
+                    }else{
+                        console.log(data.ReturnData);
+                        displayError(data.ReturnData);
+                    } 
+                }, 
+                {escape: false}
+            );
+        }
+    }
+    </script>   
+    <style>
+        .sfdcBody {
+        padding:0 !important;
+        },
+        .hasMotif{
+        padding:0px !important;
+        margin:0px !important;
+        overflow:visible !important;
+        }
+        
+        .slds-dropdown{
+        margin-top:-3px !important;
+        }
+        
+        .slds-dropdown-trigger--click:hover .slds-dropdown{
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        }
+        
+        #contract-table{
+        margin-bottom:100px;
+        }
+    </style>
+    <div id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium slds-hide" aria-hidden="false" role="alert">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div> 
+    <apex:outputPanel id="errorPanel" layout="block">
+        <div style="display:{!IF(ISBLANK(errorMessage),'none', 'block')}; position:relative" class="slds-notify_container">
+            <div class="slds-notify slds-notify--alert slds-theme--alert-texture" role="alert">
+                <span class="slds-assistive-text">Info</span>
+                <h2>{!errorMessage}</h2>
+            </div>
+        </div>
+    </apex:outputPanel>
+    <apex:form >
+        <apex:actionFunction name="displayError" action="{!setError}" rerender="errorPanel">       
+            <apex:param id="p1" name="pErrorMessage" value="" />
+        </apex:actionFunction>  
+        <!-- <header class="slds-modal__header">
+<h1 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" style="font-size:2em">Contract</h1>
+</header> -->
+        <div class="slds-page-header" role="banner">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <h2 class="slds-page-header__title slds-truncate" title="{!$Label.conContracts}">{!$Label.conContracts}</h2>
+                </div>
+                <div class="slds-col slds-no-flex slds-align-bottom">
+                    <div class="slds-grid">
+                        <div class="slds-button-group">
+                            <apex:commandButton styleClass="slds-button slds-button--neutral" rerender="none" onclick="newContractClick()" value="{!$Label.conNewContract}" id="newContractBtn">
+                            </apex:commandButton>
+                            <apex:commandButton styleClass="slds-button slds-button--neutral" action="{!refresh}"  value="{!$Label.conRefresh}" id="refreshBtn">
+                            </apex:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="slds-text-body--small slds-page-header__info">{!size} items</p>
+        </div>
+    </apex:form>
+    
+    <table class="slds-table slds-table--bordered" id="contract-table" >
+        <thead>
+            <tr class="slds-text-heading--label">
+                <th class="" scope="col">
+                    <div class="slds-truncate">{!$Label.conAgreementNumber}       
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">{!$Label.conAgreementNumberFiber}       
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">{!$Label.conStartDate}
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">{!$Label.conEndDate}        
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">{!$Label.conTerm}      
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate">{!$Label.conTypeOfAgreement}         
+                    </div>
+                </th>
+                <th class="slds-cell-shrink"><div class="slds-truncate">{!$Label.conActions}        
+                    </div></th>
+            </tr>
+        </thead>
+        <tbody> 
+            <apex:repeat value="{!contracts}" var="contract">    
+                <tr class="slds-hint-parent" > 
+                    <td class="slds-truncate" data-label="Agreement Number(MADAM)">  
+                        <a href="/{!contract.Id}" role="menuitem" target="_blank">
+                           <!-- <apex:outputText value="{!IF((contract.RecordType.Name =="Cygateavtal"),contract.Cygate_Agreement_Nr__c,contract.Agreement_Nr__c)}"/> -->
+                           <apex:outputText value="{!IF((contract.RecordType.Name =="Cygateavtal"),contract.Cygate_Agreement_Nr__c,IF((contract.RecordType.Name =="Connected & Smart Building"),"-",contract.Agreement_Nr__c))}"/>
+                        </a>
+                    </td>
+                    <td class="slds-truncate" data-label="Agreement Number(Fiber)">  
+                        <a href="/{!contract.Id}" role="menuitem" target="_blank">
+                          <apex:outputText value="{!IF((contract.RecordType.Name =="Connected & Smart Building"),contract.ContractNumber,"-")}"/>
+                        </a>
+                    </td>
+                    <td class="slds-truncate" data-label="Status">  
+                        <apex:outputText value="{0,date,yyyy-MM-dd}">
+                            <apex:param value="{!contract.StartDate}" /> 
+                        </apex:outputText>
+                    </td>
+                    <td class="slds-truncate" data-label="Start Date">  <apex:outputText value="{0,date,yyyy-MM-dd}"> 
+                        <apex:param value="{!contract.EndDate}" /> 
+                        </apex:outputText></td>
+                    <td class="slds-truncate" data-label="Term">{!contract.ContractTerm}</td> 
+                    <td class="slds-truncate" data-label="Type of Agreement">{!IF(ISBLANK(contract.Type_of_Agreement__c),contract.RecordType.Name, contract.Type_of_Agreement__c)}</td>
+                    <td>                                                
+                        <div class="slds-dropdown-trigger slds-dropdown-trigger--click" onclick="" aria-expanded="true">
+                            <button class="slds-button slds-button--icon-border-filled" aria-haspopup="true"> 
+                                <svg aria-hidden="true" class="slds-icon slds-icon-standard slds-icon-text-default slds-icon--x-small" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <use xlink:href="{!URLFOR($Resource.sldsnew,
+                                                     'icons/utility-sprite/svg/symbols.svg#down')}"></use>
+                                </svg>                                                               
+                            </button>
+                            <div class="button-layer"> </div>
+                            <div class="slds-dropdown slds-dropdown--right">
+                                <ul class="dropdown__list" role="menu">
+                                    <li class="slds-dropdown__item">
+                                        <a href="#void" role="menuitem" onclick="viewContractClick('{!contract.Id}')">
+                                            {!$Label.conView}
+                                        </a>
+                                    </li>
+                                    <li class="slds-dropdown__item">
+                                        <a href="#void" role="menuitem" onclick="editContractClick('{!contract.Id}')">
+                                            {!$Label.conEdit}
+                                        </a>
+                                    </li>
+                                    
+                                    <apex:outputPanel id="newCygOppPanel" rendered="{!customSettings.CanCreateCygateStandardOpportunity__c}">
+                                        <li class="slds-dropdown__item">
+                                            <a href="#void" role="menuitem" onclick="newCygateOpportunityClick('{!contract.Id}','{!contract.EndDate}','{!contract.ContractNumber}','{!contract.KKnr__c}','{!contract.Solution_Area__c}','{!customSettings.PricebookId__c}')">
+                                                {!$Label.conCreateCygateOpportunity}
+                                            </a>
+                                        </li>
+                                    </apex:outputpanel>
+                                    
+                                    <apex:outputPanel id="newProspectPanel" rendered="{!customSettings.CanCreateProspect__c}">
+                                        <li class="slds-dropdown__item">
+                                            <a href="#void" role="menuitem" onclick="newProspectClick('{!contract.Id}','{!contract.EndDate}','{!contract.ContractNumber}','{!contract.KKnr__c}','{!contract.Solution_Area__c}', '{!customSettings.PricebookId__c}')">
+                                                {!$Label.conCreateProspect}
+                                            </a>
+                                        </li>
+                                    </apex:outputpanel>
+                                    
+                                    <apex:outputPanel id="newSmeOppPanel" rendered="{!customSettings.CanCreateSMEStandardOpportunity__c}">
+                                        <li class="slds-dropdown__item">
+                                            <a href="#void" role="menuitem" onclick="newSmeOpportunityClick('{!contract.Id}')">
+                                                {!$Label.conCreateSmeOpportunity}
+                                            </a>
+                                        </li>
+                                    </apex:outputpanel>
+                                    <apex:outputPanel id="newSmeQuickOppPanel" rendered="{!customSettings.CanCreateSMEQuickOpportunity__c}">
+                                        <li class="slds-dropdown__item">
+                                            <a href="#void" role="menuitem" onclick="newSmeQuickOpportunityClick('{!contract.Id}')">
+                                                {!$Label.conCreateSmeQuickOpportunity}
+                                            </a>
+                                        </li>
+                                    </apex:outputpanel>
+                                </ul>
+                            </div>
+                        </div> 
+                        
+                    </td>
+                </tr>
+                
+            </apex:repeat>
+        </tbody>
+    </table>
+    <script>
+    Sfdc.canvas.publisher.resize( {        
+        "clientHeight": "600px", 
+        "clientWidth": "500px", 
+        "height": "600px", 
+        "width": "500px", 
+        "maxHeight": "600px", 
+        "maxWidth": "500px" 
+    });  
+    
+    
+    </script>
+    
+    
+</apex:page>

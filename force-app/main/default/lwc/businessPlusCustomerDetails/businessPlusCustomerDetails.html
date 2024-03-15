@@ -1,0 +1,16 @@
+<template>
+    <lightning-card  title = "Telia Pluskund">
+        <div class="slds-p-left_small slds-p-right_x-small">
+        <p>Telia Pluskund är ett koncept där vi belönar och uppmuntrar kunder att samla sina tjänster hos Telia. Konceptet gäller för SME kunder med MFA/styckes- avtal, som har Mobilabonnemang kombinerat med antingen Bredband eller Växel från Telia. Om kunden uppfyller kraven har denne rätt att aktivera upp till 10 förmåner som vardera kopplas till deras mobilabonnemang, detta görs i MyBusiness.
+            <br>Läs mer här: telia.se/pluskund</br></p></div>
+        <div class = "slds-grid slds-grid_vertical-align-end slds-gutters">
+            <lightning-input class="slds-p-left_x-large" type="checkbox" label="Inte giltig Telia Pluskund" checked={customerFlag} disabled="">  </lightning-input>
+        </div>  
+        <div class = "slds-grid slds-grid_vertical-align-end slds-gutters">
+            <lightning-input class="slds-p-left_x-large" type="checkbox" label="Giltig Telia Pluskund, inte valt förmån" checked={customerFlag2} disabled="">  </lightning-input>
+        </div>
+        <div class = "slds-grid slds-grid_vertical-align-end slds-gutters">
+            <lightning-input class="slds-p-left_x-large" type="checkbox" label="Giltig Telia Pluskund, minst en förmån aktiv" checked={customerFlag3} disabled="">  </lightning-input>
+        </div>     
+    </lightning-card>
+</template>

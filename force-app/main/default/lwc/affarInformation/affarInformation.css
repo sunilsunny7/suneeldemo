@@ -1,0 +1,7 @@
+.required_field {
+    --lwc-colorBorderInput: #FF3264;
+}
+
+.already_filled {
+    --lwc-colorBorderInput:rgb(201, 201, 201);
+}

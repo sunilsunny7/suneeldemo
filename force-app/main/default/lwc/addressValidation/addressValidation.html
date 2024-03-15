@@ -1,0 +1,374 @@
+<template>
+	<div class="slds-grid slds-gutters slds-m-vertical_medium slds-grid_vertical">
+		<div class="slds-col slds-m-bottom_small">
+			<div>OBS! Max 100 adresser kan hanteras</div>
+			<div>Om <b>endast koordinater (RT90)</b> finns så lägg förfrågan genom
+				<span class="slds-m-left_xxx-small"> <a href={link} target="_blank"><b>Webb-Hera</b></a> </span>
+			</div>
+			<div><b>VPN</b> krävs för att komma åt länken</div>
+			<div><b>SLA D, sekundära accesser</b> och <b>hastigheter över 1 Gbit/s</b> kräver <b>Webb-HERA</b></div>
+
+		</div>
+		<div class="slds-col slds-m-bottom_small">
+			<p>Guidning</p>
+			<ol class="slds-list_ordered">
+				<li>Fyll i enstaka adresser eller välj Ladda ner mall för adresser.</li>
+				<li>Tryck på Validera Alla knappen – så valideras adressen.</li>
+				<li>Välj sedan Anslutningspunkt i rullistan</li>
+				<li>Tryck sedan Leveranskontroll Alla för att komma vidare</li>
+			</ol>
+			<p>
+				* Knappen <b>Leveranskontroll Nya</b> används när du redan gjort en Leveranskontroll och <b>behöver
+					lägga till ytterligare adresser</b>
+			</p>
+		</div>
+	</div>
+	<div if:true={validationInProcess}
+		style="width: 98%; position: absolute;
+        z-index: 100; background: rgba(0,0,0,0.3); height: 48%; font-size: xx-large; text-align:center; vertical-align:center">
+		<div style="position:absolute; top: 40%; left:30%">Adressvalideringen pågår, var snäll och vänta </div>
+	</div>
+	<div if:false={processing} style="text-align:center;">
+		<div class="exampleHolder">
+			<lightning-spinner alternative-text="Loading" variant="brand" size="medium"></lightning-spinner>
+		</div>
+	</div>
+	<div if:true={processing}>
+		<table class="slds-table slds-table_cell-buffer">
+			<thead>
+				<tr>
+					<th class="size-6">
+						<div class="slds-text-align_center">
+							<lightning-button-icon icon-name="utility:info_alt" size="large" variant="bare"
+								tooltip="Bokstäver, nummer samt '-' och ':' är tillåtna" title="info">
+							</lightning-button-icon>
+						</div>
+					</th>
+					<!-- <th class="size-16"><label class="slds-form-element__label" for="text-input-id-1">
+							<abbr class="slds-required" title="required">* </abbr>Ort</label></th> -->
+					<!-- <th class="size-7"><label class="slds-form-element__label" for="text-input-id-1">
+							Välj</label></th> -->
+					<th class="size-8"><label class="slds-form-element__label" for="text-input-id-1">
+							<abbr class="slds-required" title="required">* </abbr>Ort</label></th>
+					<th class="size-7"><label class="slds-form-element__label" for="text-input-id-1">
+							Postnummer </label></th>
+					<th class="size-8"><label class="slds-form-element__label" for="text-input-id-1">
+							<abbr class="slds-required" title="required">* </abbr>Gata</label></th>
+					<th class="size-7"><label class="slds-form-element__label" for="text-input-id-1">
+							<abbr class="slds-required" title="required">* </abbr>Gatu Nr</label></th>
+					<th class="size-7"><label class="slds-form-element__label" for="text-input-id-1">
+							Ingång</label></th>
+					<th class="size-7"><label class="slds-form-element__label" for="text-input-id-1">
+							Lokal/Lgh Nr </label></th>
+
+							<!-- Y- coordinate -->
+					<!-- <th class="size-7"><label class="slds-form-element__label" for="text-input-id-1">
+							<abbr class="slds-required" title="required">* </abbr>Latitud </label></th> -->
+
+							<!-- X- co-ordinate -->
+					<!-- <th class="size-7"><label class="slds-form-element__label" for="text-input-id-1">
+							<abbr class="slds-required" title="required">* </abbr>Longitud </label></th> -->
+					<!-- <th class="size-7"><label class="slds-form-element__label" for="text-input-id-1">
+							<abbr class="slds-required" title="required">* </abbr>Radie </label></th> -->
+					<th class="size-7"></th>
+					<th class="size-8"><label class="slds-form-element__label" for="text-input-id-1">
+							Anslutningspunkt</label></th>
+					<th class="size-5"></th>
+					<th class="size-5"></th>
+					<th class="size-5"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<template for:each={siteList} for:item="item" for:index="index">
+					<tr key={item.keyIndex} if:false={item.isDeleted}>
+						<td class="size-6">
+							<div class="slds-m-top_medium" if:true={item.addButton}>
+								<lightning-button-icon icon-name="utility:add" size="medium"
+									alternative-text="View More" class="slds-m-left_xx-small" onclick={addRow}>
+								</lightning-button-icon>
+							</div>
+						</td>
+						<!-- <td class="size-7">
+							<div>
+								<div class="slds-form-element">
+									<label class="slds-form-element__label"></label>
+									<div class="slds-form-element__control">
+										<div class="slds-select_container">
+											<select class="slds-select" onchange={handleSearch} data-opp={index}
+												data-item={index} disabled={item.isDisabled}>
+												<template for:each={item.addressType} for:item="item2">
+													<option key={d} value={item2.value}>{item2.label}</option>
+												</template>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td> -->
+						<td class="size-8">
+							<lightning-input class="slds-text-body_small" name="city" data-opp={index}
+								onchange={handleChange} type="text" pattern="^[a-zA-Z0-9\s\u00c0-\u017eäöåÄÖÅ\-:]*$"
+								maxlength="50" message-when-too-long="Max 50 characters allowed"
+								message-when-pattern-mismatch={invalid_error}
+								message-when-value-missing={required_error} value={item.city}
+								disabled={item.isDisabled}> </lightning-input>
+						</td>
+						<td class="size-7">
+							<lightning-input class="slds-text-body_small" name="postalCode" data-opp={index}
+								onchange={handleChange} type="text" pattern="^[a-zA-Z0-9\s\u00c0-\u017eäöåÄÖÅ\-:]*$"
+								maxlength="50" message-when-too-long="Max 50 characters allowed"
+								message-when-pattern-mismatch={invalid_error} value={item.postalCode}
+								disabled={item.isDisabled}>
+							</lightning-input>
+						</td>
+						<td class="size-8">
+							<lightning-input class="slds-text-body_small" name="streetName" data-opp={index}
+								onchange={handleChange} type="text" pattern="^[a-zA-Z0-9\s\u00c0-\u017eäöåÄÖÅ\-:]*$"
+								maxlength="50" message-when-too-long="Max 50 characters allowed"
+								message-when-pattern-mismatch={invalid_error}
+								message-when-value-missing={required_error} value={item.streetName}
+								disabled={item.isDisabled}>
+							</lightning-input>
+						</td>
+						<td class="size-7">
+							<lightning-input class="slds-text-body_small" name="streetNumber" data-opp={index}
+								onchange={handleChange} type="text" pattern="^[a-zA-Z0-9\s\u00c0-\u017eäöåÄÖÅ\-:]*$"
+								maxlength="5" message-when-range-overflow="Max 5 characters allowed"
+								message-when-pattern-mismatch={invalid_error}
+								message-when-value-missing={required_error} value={item.streetNumber}
+								disabled={item.isDisabled}>
+							</lightning-input>
+						</td>
+						<td class="size-7">
+							<lightning-input class="slds-text-body_small" name="gateNumber" data-opp={index}
+								onchange={handleChange} type="text" pattern="^[a-zA-Z0-9\s\u00c0-\u017eäöåÄÖÅ\-:]*$"
+								maxlength="5" message-when-too-long="Max 5 characters allowed"
+								message-when-pattern-mismatch={invalid_error} value={item.gateNumber}
+								disabled={item.isDisabled}>
+							</lightning-input>
+						</td>
+						<td class="size-7">
+							<lightning-input class="slds-text-body_small" name="aptno" data-opp={index}
+								onchange={handleChange} type="text" pattern="^[a-zA-Z0-9\s\u00c0-\u017eäöåÄÖÅ\-:]*$"
+								maxlength="20" message-when-too-long="Max 20 characters allowed"
+								message-when-pattern-mismatch={invalid_error} value={item.aptno} placeholder="lgh 1102"
+								disabled={item.isDisabled}>
+							</lightning-input>
+						</td>
+
+						<!-- <td class="size-7">
+							<lightning-input class="slds-text-body_small slds-input_borders myClassStyle"
+								name="yCoordinate" data-opp={index} onchange={handleChange} type="text"
+								pattern="^\d+$" message-when-pattern-mismatch={invalid_error}
+								value={item.yCoordinate} disabled={item.isDisabled}>
+							</lightning-input>
+						</td>
+						<td class="size-7">
+							<lightning-input class="slds-text-body_small slds-input_borders myClassStyle"
+								name="xCoordinate" data-opp={index} onchange={handleChange} type="text"
+								pattern="^\d+$" message-when-pattern-mismatch={invalid_error}
+								value={item.xCoordinate} disabled={item.isDisabled}>
+							</lightning-input>
+						</td> -->
+						<!-- <td class="size-7">
+							<lightning-input class="slds-text-body_small slds-input_borders myClassStyle"
+								name="perimeter" data-opp={index} onchange={handleChange} type="text" pattern="[0-9.]*$"
+								message-when-pattern-mismatch={invalid_error} value={item.perimeter}
+								disabled={item.isDisabled}>
+							</lightning-input>
+						</td> -->
+
+						<td class="size-7">
+							<div class="slds-m-top_medium" if:true={item.Disabled}>
+								<lightning-button label="Validera" variant="validate" data-opp={index}
+									onclick={handleValidation} disabled={item.isDisabled}>
+								</lightning-button>
+							</div>
+							<div class="slds-m-top_medium" if:false={item.Disabled}>
+								<lightning-button label="Validera" variant="validate" data-opp={index}
+									onclick={handleValidation} disabled={item.isValidated}>
+								</lightning-button>
+							</div>
+						</td>
+						<td class="size-8">
+							<div class="slds-form-element slds-m-top_medium">
+								<div class="slds-form-element__control">
+									<div class="slds-select_container">
+										<select class="slds-select selectServicePoints" id={index} data-id1={index}
+											disabled={item.isDisabled} name="selectedServicePoint" data-opp={index}
+											onchange={handleChange}>
+
+											<!-- <template > -->
+											<option value='' selected disabled>Välj anslutningspunkt</option>
+											<!-- </template> -->
+											<template if:true={item.defaultServicePoint}>
+												<option value={item.selectedServicePoint.servicePointId} selected>
+													{item.selectedServicePoint.servicePointName}
+												</option>
+											</template>
+
+
+											<template for:each={item.servicePoints} for:item="item2">
+												<template if:false={item.defaultServicePoint}>
+													<template if:true={item2.isSelected}>
+														<option key={item2.servicePointId} value={item2.servicePointId}
+															selected={item2.Id}>{item2.servicePointName}</option>
+													</template>
+													<template if:false={item2.isSelected}>
+														<option key={item2.servicePointId} value={item2.servicePointId}>
+															{item2.servicePointName}</option>
+													</template>
+												</template>
+											</template>
+										</select>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td class="size-5" if:false={item.isValidated}>
+							<div class="slds-m-top_medium slds-text-align_center">
+								<lightning-button-icon icon-name="utility:clear" class="custom-icon-size clear-icon"
+									size="large" variant="bare" tooltip={item.errorMessage} title="">
+								</lightning-button-icon>
+							</div>
+						</td>
+						<td class="size-5" if:true={item.isValidated}>
+							<div class="slds-m-top_medium slds-text-align_center"
+								if:false={item.isServicePointSelected}>
+								<div if:false={item.checkServicePoints}>
+									<lightning-button-icon icon-name="utility:info" class="custom-icon-size info-icon"
+										size="large" variant="bare"
+										tooltip="Adressen är giltig men anslutningspunkt är ej vald" title="Info">
+									</lightning-button-icon>
+								</div>
+								<div if:true={item.checkServicePoints}>
+									<lightning-button-icon icon-name="utility:warning"
+										class="custom-icon-size warning-icon" size="large" variant="bare"
+										tooltip="Adressen är giltig, dock fås fler träffar än vad som visas i listan - mer information behövs kring anslutningspunkten"
+										title="Warning"></lightning-button-icon>
+								</div>
+							</div>
+							<div class="slds-m-top_medium slds-text-align_center" if:true={item.isServicePointSelected}>
+								<lightning-button-icon icon-name="utility:success" class="custom-icon-size success-icon"
+									size="large" variant="bare"
+									tooltip="Adressen är giltig och anslutningspunkt är vald" title="Success">
+								</lightning-button-icon>
+							</div>
+						</td>
+						<td class="size-5">
+							<div class="slds-m-top_medium slds-text-align_center">
+								<lightning-icon icon-name="action:edit" size="x-small" class="my-icon" data-opp={index}
+									alternative-text="edit" onclick={editRow}>
+								</lightning-icon>
+							</div>
+						</td>
+						<td class="size-5">
+							<div class="slds-m-top_medium slds-text-align_center">
+								<lightning-icon icon-name="action:delete" size="x-small" class="my-icon"
+									data-opp={index} alternative-text="delete" onclick={deleteRow}>
+								</lightning-icon>
+							</div>
+						</td>
+					</tr>
+				</template>
+			</tbody>
+		</table>
+	</div>
+	<div class="slds-grid slds-m-top_large">
+		<div class="slds-col slds-size_1-of-4">
+			<div class="slds-form-element">
+				<span class="slds-form-element__label" id="file-selector-primary-label">Ladda upp
+					addresslista</span>
+				<div class="slds-form-element__control">
+					<div class="slds-file-selector slds-file-selector_files">
+						<div class="slds-file-selector__dropzone">
+							<input type="file" class="slds-file-selector__input slds-assistive-text" accept="csv"
+								id="file-upload-input-01" onchange={getFileName} onclick={emptyFileSelector}
+								aria-labelledby="file-selector-primary-label file-selector-secondary-label" />
+							<label class="slds-file-selector__body" for="file-upload-input-01"
+								id="file-selector-secondary-label">
+								<span class="slds-file-selector__button slds-button slds-button_neutral">
+									<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+										<use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#opened_folder">
+										</use>
+									</svg>Bläddra</span>
+								<span class="slds-file-selector__text slds-medium-show"
+									if:true={showFileName}>{fileName}</span>
+								<span class="slds-icon_container slds-icon-utility-close"
+									style="position:absolute; right:5px;" onclick={deleteFile}>
+									<svg class="slds-icon slds-icon-text-light slds-icon_small" aria-hidden="true">
+										<use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#close"></use>
+									</svg>
+									<span class="slds-assistive-text">Remove the file</span>
+								</span>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="slds-col slds-size_1-of-6">
+			<button class="slds-button slds-button_neutral custom-margin-upload-button" onclick={readFiles}>Ladda
+				Upp
+				<svg class="slds-button__icon slds-button__icon_right" aria-hidden="true">
+					<use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#download"></use>
+				</svg>
+			</button>
+		</div>
+	</div>
+	<div>
+		<lightning-button variant="base"
+			label="Ladda ner mall för adresser (.xls). Spara sedan filen som CSV UTF-8 och ladda upp filen här."
+			onclick={downloadCSVFile} class="slds-m-left_x-small"></lightning-button>
+	</div>
+	<div class="slds-grid slds-grid_align-spread">
+		<div class="slds-col"></div>
+		<div class="slds-col" style="position: absolute; right: 50px; bottom: 20px;">
+			<div class="slds-grid slds-grid_align-space">
+				<div class="slds-col">
+					<lightning-button variant="brand" class="slds-m-right_medium" onclick={deleteAll}
+						label="RADERA ALLA"></lightning-button>
+				</div>
+				<div class="slds-col">
+					<lightning-button variant="brand" class="slds-m-right_large" onclick={validateAll}
+						label="VALIDERA ALLA"></lightning-button>
+				</div>
+				<div class="slds-col">
+					<lightning-button variant="brand" class="slds-m-right_medium" onclick={nextStep}
+						label="LEVERANSKONTROLL ALLA"></lightning-button>
+				</div>
+				<div class="slds-col">
+					<lightning-button variant="brand" onclick={nextStep1} disabled={increamentalPrecheck}
+						label="LEVERANSKONTROLL NYA">
+					</lightning-button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div if:true={isModalOpen}>
+		<section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true"
+			aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+			<div class="slds-modal__container">
+				<header class="slds-modal__header slds-modal__header_empty">
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+						title="Close">
+						<svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+							<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+						</svg>
+						<span class="slds-assistive-text">Close</span>
+					</button>
+				</header>
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<p>{deleteMessage}</p>
+				</div>
+				<footer class="slds-modal__footer">
+					<button class="slds-button slds-button_neutral" onclick={cancelDelete}>Avbryt</button>
+					<button class="slds-button slds-button_brand" onclick={confirmDelete}>Ja</button>
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</div>
+</template>

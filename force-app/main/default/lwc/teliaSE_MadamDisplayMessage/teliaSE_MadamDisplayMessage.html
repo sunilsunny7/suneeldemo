@@ -1,0 +1,189 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div class="slds-m-bottom_medium">
+        <span>{data.TeliaSE_TuppHead} <lightning-formatted-url value="https://salessupportsystem.telia.se" tooltip="https://salessupportsystem.telia.se" label="TUPP" target="_blank"></lightning-formatted-url> {data.TeliaSE_TuppHead1}</span>
+    </div>
+    <div style="overflow-x: auto;" class="slds-m-bottom_medium">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+
+                    <th scope="col" class="slds-border_bottom slds-border_left">
+                        <div if:true={data.Renegotiation} class="slds-truncate"> {data.Renegotiation}</div>
+                        <div if:false={data.Renegotiation} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.SFAgreement} class="slds-truncate"> {data.SFAgreement}</div>
+                        <div if:false={data.SFAgreement} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.MADAMagree} class="slds-truncate"> {data.MADAMagree}</div>
+                        <div if:false={data.MADAMagree} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.AgreementDuration} class="slds-truncate"> {data.AgreementDuration}</div>
+                        <div if:false={data.AgreementDuration} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.End} class="slds-truncate"> {data.End}</div>
+                        <div if:false={data.End} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.SwitchingSolution} class="slds-truncate"> {data.SwitchingSolution}</div>
+                        <div if:false={data.SwitchingSolution} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.Owner} class="slds-truncate"> {data.Owner}</div>
+                        <div if:false={data.Owner} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.LEVEL} class="slds-truncate"> {data.LEVEL}</div>
+                        <div if:false={data.LEVEL} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.TYPE} class="slds-truncate"> {data.TYPE}</div>
+                        <div if:false={data.TYPE} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.Start} class="slds-truncate"> {data.Start}</div>
+                        <div if:false={data.Start} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.ValidswitchingsolutiontorenegotiateinSF} class="slds-truncate">
+                            {data.ValidswitchingsolutiontorenegotiateinSF}</div>
+                        <div if:false={data.ValidswitchingsolutiontorenegotiateinSF} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.Agreementstatus} class="slds-truncate"> {data.Agreementstatus}</div>
+                        <div if:false={data.Agreementstatus} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.UtiliserCounts} class="slds-truncate"> {data.UtiliserCounts}</div>
+                        <div if:false={data.UtiliserCounts} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.SubAgreementsExists} class="slds-truncate"> {data.SubAgreementsExists}</div>
+                        <div if:false={data.SubAgreementsExists} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.Priceplan} class="slds-truncate"> {data.Priceplan}</div>
+                        <div if:false={data.Priceplan} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom">
+                        <div if:true={data.MiniDeb} class="slds-truncate"> {data.MiniDeb}</div>
+                        <div if:false={data.MiniDeb} class="slds-truncate"></div>
+                    </th>
+                    <th scope="col" class="slds-border_bottom slds-border_right">
+                        <div if:true={data.MiniDebTP} class="slds-truncate"> {data.MiniDebTP}</div>
+                        <div if:false={data.MiniDebTP} class="slds-truncate"></div>
+                    </th>
+                </tr>
+            </thead>
+
+            <template for:each={data1} for:item="item" for:index="index">
+                <tr key={k1} class="slds-hint-parent">
+
+                    <td class="slds-border_bottom slds-border_left">
+                        <div if:true={item.renegotiation} class="slds-truncate">{item.renegotiation}</div>
+                        <div if:false={item.renegotiation} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.sfAgreement} class="slds-truncate"> {item.sfAgreement}</div>
+                        <div if:false={item.sfAgreement} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.agreementId} class="slds-truncate"> {item.agreementId}</div>
+                        <div if:false={item.agreementId} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.agreementTerm} class="slds-truncate"> {item.agreementTerm}</div>
+                        <div if:false={item.agreementTerm} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.endDate} class="slds-truncate"> {item.endDate}</div>
+                        <div if:false={item.endDate} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.switchingSolution} class="slds-truncate"> {item.switchingSolution}</div>
+                        <div if:false={item.switchingSolution} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.owner} class="slds-truncate"> {item.owner}</div>
+                        <div if:false={item.owner} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.level} class="slds-truncate"> {item.level}</div>
+                        <div if:false={item.level} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.agreementType} class="slds-truncate"> {item.agreementType}</div>
+                        <div if:false={item.agreementType} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.startDate} class="slds-truncate"> {item.startDate}</div>
+                        <div if:false={item.startDate} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.validswitchingSolution} class="slds-truncate"> {item.validswitchingSolution}
+                        </div>
+                        <div if:false={item.validswitchingSolution} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.status} class="slds-truncate"> {item.status}</div>
+                        <div if:false={item.status} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.utilizerCount} class="slds-truncate"> {item.utilizerCount}</div>
+                        <div if:false={item.utilizerCount} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.subagreementExist} class="slds-truncate"> {item.subagreementExist}</div>
+                        <div if:false={item.subagreementExist} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.zeropricePlan} class="slds-truncate"> {item.zeropricePlan}</div>
+                        <div if:false={item.zeropricePlan} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom">
+                        <div if:true={item.miniDebMobile} class="slds-truncate"> {item.miniDebMobile}</div>
+                        <div if:false={item.miniDebMobile} class="slds-truncate"></div>
+                    </td>
+                    <td class="slds-border_bottom slds-border_right">
+                        <div if:true={item.miniDebTP} class="slds-truncate"> {item.miniDebTP}</div>
+                        <div if:false={item.miniDebTP} class="slds-truncate"></div>
+                    </td>
+                </tr>
+
+            </template>
+        </table>
+    </div>
+    <br>
+<div>
+    <p>{data.TeliaSE_Tuppinfo5}</p>
+    <div class="slds-m-around_medium">
+        <!-- <lightning-input type="checkbox" onchange={show}>
+            <span class="slds-icon_container slds-icon-utility-add slds-current-color" title="Description of icon when needed">
+                <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                  <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#add"></use>
+                </svg>
+            </span>
+        </lightning-input> -->
+        <!-- info -->
+        <lightning-button-icon icon-name="action:info" class="custom-icon-size clear-icon" size="large" variant="bare"
+            tooltip="Info" title="" onclick={toggleModal}>
+        </lightning-button-icon>
+    </div>
+    
+<div if:true={showTupp} class="slds-box">
+    <p><b>{data.TeliaSE_Tuppinfo2}</b></p>
+    <p>{data.TeliaSE_Tuppinfo3}</p>
+    <p>{data.TeliaSE_Tuppinfo4}</p><br>
+    <p><b>{data.TeliaSE_Tuppinfo6}</b></p>
+    <p>{data.TeliaSE_Tuppinfo7}</p>
+    <p>{data.TeliaSE_Tuppinfo8}</p>
+    <p>{data.TeliaSE_Tuppinfo9}</p>
+    
+
+</div>
+</div>
+</template>

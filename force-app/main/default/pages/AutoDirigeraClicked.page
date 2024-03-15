@@ -1,0 +1,31 @@
+<apex:page standardController="lead" extensions="AutoDirigeraClicked" action="{!processRecord}">
+
+ <script>
+  function redirect(){
+                if({!$User.UIThemeDisplayed == 'Theme4d'}){
+                    parent.location.href="{!sfdcURL}"+"{!$Label.Salesforce_lightning_URL}"+"{!leadID}"+"{!$Label.Lead_specific_lightning_end_URL}"; 
+                    console.log(parent.location.href);           
+                     }
+                else
+              parent.location.href= "{!sfdcURL}"+"{!leadID}";
+                
+            }
+
+
+            if("{!ldsAccError}" == "true" ){
+                  alert("För att styra om (rout) lead, konto måste vara ifyllt");
+                  window.onload = window.setTimeout(redirect(),5000);
+             }           
+             
+             else if("{!ldsAccOwError}" == "true"){
+                  alert("Säljenhet eller Kontoägare saknas");
+                  window.onload = window.setTimeout(redirect(),5000);
+             }
+              else 
+
+
+            window.onload = window.setTimeout(redirect(),5000);
+ 
+        </script>
+
+</apex:page>

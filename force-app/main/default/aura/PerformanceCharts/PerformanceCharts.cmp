@@ -1,0 +1,67 @@
+<aura:component controller="YearlyPerformanceChartController" access="global">
+    <aura:attribute name="yearlyPerformanceScore" type="Yearly_Performance_Score__c" default=""/>    
+    <aura:attribute name="contMissingData" type="Boolean" default="false"/>   
+    <aura:attribute name="compMissingData" type="Boolean" default="false"/>   
+    <aura:attribute name="contChart" type="Object" />
+    <aura:attribute name="compChart" type="Object" />
+    <aura:handler event="c:loadYearlyPerformanceScore" action="{!c.handleLoadYearlyPerformanceScoreEvent}"/>
+    <aura:handler event="c:destroyComponentEvent" action="{!c.destroyAll}"/>   
+    <aura:handler name="destroy" value="{!this}" action="{!c.destroyCharts}"/>
+        
+    <div class="slds-grid slds-wrap slds-grid--pull-padded">
+        <div class="slds-col--padded slds-size--1-of-1 slds-large-size--1-of-2">
+            <div class="slds-grid slds-wrap chart-container">
+                <div class="slds-col--padded slds-size--1-of-1 slds-large-size--1-of-3">
+                    <div class="slds-text-heading--label slds-m-top--x-large">
+                        {!$Label.c.ypsMonthlyContributionPerformance}
+                    </div>
+                </div>
+                <div class="slds-col--padded slds-size--1-of-1 slds-large-size--2-of-3">
+                    <div class="slds-m-medium slds-m-top--x-large">
+                        <aura:renderIf isTrue="{!!v.contMissingData}"> 
+                            <canvas aura:id="monthlyContributionChart"></canvas>
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!v.contMissingData}">                           
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <c:svgIcon svgPath="/resource/sldsnew/icons/utility-sprite/svg/symbols.svg#warning" class="slds-icon-text-warning" category="standard" size="small" name="Warning" />
+                                </div>
+                                <div class="slds-media__body">
+                                    <h2 class="slds-text-heading--small"> {!$Label.c.ypsDataMissing}</h2>
+                                    <p> {!$Label.c.ypsDataMissingContDesc}</p>
+                                </div>
+                            </div>
+                        </aura:renderIf>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col--padded slds-size--1-of-1 slds-large-size--1-of-2">
+            <div class="slds-grid slds-wrap chart-container">
+                <div class="slds-col--padded slds-size--1-of-1 slds-large-size--1-of-3">
+                    <div class="slds-text-heading--label slds-m-top--x-large">
+                        {!$Label.c.ypsMonthlyCompetencePerformance}                       
+                    </div>
+                </div>
+                <div class="slds-col--padded slds-size--1-of-1 slds-large-size--2-of-3 ">
+                    <div class="slds-m-left--medium slds-m-top--x-large">
+                        <aura:renderIf isTrue="{!!v.compMissingData}"> 
+                            <canvas aura:id="monthlyCompetenceChart" ></canvas>
+                        </aura:renderIf>
+                        <aura:renderIf isTrue="{!v.compMissingData}">                                                              
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <c:svgIcon svgPath="/resource/sldsnew/icons/utility-sprite/svg/symbols.svg#warning" class="slds-icon-text-warning" category="standard" size="small" name="Warning" />
+                                </div>
+                                <div class="slds-media__body">
+                                    <h2 class="slds-text-heading--small"> {!$Label.c.ypsDataMissing}</h2>
+                                    <p> {!$Label.c.ypsDataMissingCompDesc}</p>
+                                </div>
+                            </div>
+                        </aura:renderIf>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>      
+</aura:component>

@@ -1,0 +1,20 @@
+/*testingOrderUnderLag.css*/
+
+
+/* .THIS li.slds-active{
+     background: red;
+} */
+
+.myTabCss{
+    position: relative;
+    overflow: auto;
+}
+
+.required_field {
+    --lwc-colorBorderInput: #FF3264;
+}
+
+/* a{
+    pointer-events: none !important;
+    text-decoration: line-through !important;
+} */

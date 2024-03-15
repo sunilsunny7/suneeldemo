@@ -1,0 +1,80 @@
+.slds-input{
+    padding-left: 5px;
+    padding-right: 5px;;
+}
+
+tbody {
+    display:block;
+    height:250px;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+
+th{
+    font-size: 75%;
+}
+
+.size-5{
+    width: 5%;
+}
+
+.size-6{
+    width: 6%;
+}
+.size-7{
+    width: 7%;
+}
+.size-9{
+    width: 9%;
+}
+
+.size-12{
+    width: 12%;
+}
+
+.size-16{
+    width:16%;
+}
+
+.custom-icon-size{
+    --lwc-squareIconUtilityLarge: 2.2rem;
+}
+
+.clear-icon{
+    --slds-g-color-neutral-base-50: #c23934;
+}
+.info-icon{
+    --slds-g-color-neutral-base-50: #367df8;
+}
+.warning-icon{
+    --slds-g-color-neutral-base-50: #ffbf29;
+}
+.success-icon{
+    --slds-g-color-neutral-base-50: #1aaa45;
+}
+
+.clear-icon:hover{
+    --lwc-brandAccessibleActive :#c23934;
+}
+.info-icon:hover{
+    --lwc-brandAccessibleActive :#367df8;
+}
+.warning-icon:hover{
+    --lwc-brandAccessibleActive :#ffbf29;
+}
+.success-icon:hover{
+    --lwc-brandAccessibleActive :#1aaa45;
+}
+
+.custom-margin-upload-button{
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+td.content {
+    position: relative;
+}

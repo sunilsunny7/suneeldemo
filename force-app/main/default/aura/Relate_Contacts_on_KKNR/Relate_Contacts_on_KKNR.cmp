@@ -1,0 +1,26 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="gourl" type="String" access="public" default="/lightning/r/Report/00O1p000005W56sEAC/view?fv0=" />
+    <aura:attribute name="gourlactive" type="String" access="public" default="/lightning/r/Report/00O1p000005W56sEAC/view?fv0=" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    <!--<p><lightning:formattedUrl value="/lightning/o/00O0D000000VCUmUAO/view?fv0={!v.recordId}" tooltip="Related Contacts" label="Related Contacts" target="_blank" /></p>-->
+    <lightning:card title="Kontakter på underliggande Org.nr" iconName="standard:contact">
+        <div class="slds-grid slds-p-top_medium">
+            <div class="slds-size_6-of-12 slds-p-left_xx-small slds-p-horizontal_x-large ">
+
+                <p><b>
+                    <lightning:formattedUrl value="{!v.gourlactive}" label="Aktiva kontakter på underliggande konton" target="_blank" />
+                </b></p>
+            </div>
+            <div class="slds-size_5-of-12 slds-p-left_xx-small slds-p-horizontal_x-large ">
+
+                <p><b>
+                    <lightning:formattedUrl value="{!v.gourl}" label="Inaktiva kontakter på underliggande konton" target="_blank" />
+                </b></p>
+            </div>
+        </div>
+    </lightning:card>
+
+
+    <!--</div>-->
+</aura:component>

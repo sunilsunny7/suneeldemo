@@ -1,0 +1,107 @@
+<apex:page id="aggregatedMobilePage" standardcontroller="Account" extensions="AggregatedCommitmentMobileController" cache="true">
+    <style type="text/css">
+        tr:hover {
+            background-color: #e3f3ff;
+        }
+
+        th {
+            background: #f2f3f3;
+            border-width: 0 0 1px 1px;
+            border-color: #e0e3e5;
+            color: #000;
+            font-size: .9em;
+            font-weight: bold;
+            padding: 5px 2px 4px 5px;
+            border: 1px solid #ededed !important;
+        }
+
+        .table-fix {
+            border-spacing: 0px;
+        }
+
+        a.listItem {
+            border-right: 1px solid #cfcece;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+            a.listItem.active {
+                text-decoration: underline;
+            }
+
+        span.listItemPad {
+            padding: 0 5px;
+        }
+
+            span.listItemPad:hover {
+                background-color: #e0f5fc;
+            }
+
+        td.secondLevel, th.secondLevel, span.secondLevel {
+            padding-left: 40px;
+        }
+
+        td.firstLevel, th.firstLevel {
+            padding-left: 20px;
+        }
+
+        .hasMotif {
+            margin: 0px !important;
+        }
+    </style>
+    <apex:form id="mobList">
+        <apex:actionstatus id="actionstatus">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                       height: 100%;opacity:0.65;width:100%;">
+                    <div class="waitingHolder" style="top: 74.2px; width: 91px;">
+                        <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                        <span class="waitingDescription">{!$Label.Loading}...</span>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+        <div style="display:{!if(Loaded, 'none;', 'block')}">
+            <apex:commandbutton rerender="mobList" action="{!loadData}" value="{!$Label.ShowSummary}" status="actionstatus">
+            </apex:commandbutton>
+        </div>
+            <table class="table-fix list" style="width: 100%; display:{!if(!Loaded, 'none;', 'table')}">
+                <tbody>
+                    <tr class="headerRow">
+                        <th width="40%">{!$Label.Category}</th>
+                        <th width="15%">{!$Label.Amount}</th>
+                        <th width="15%">{!$Label.ShortBindingLeft}</th>
+                        <th width="15%">{!$Label.MediumBindingLeft}</th>
+                        <th width="15%">{!$Label.Expand}</th>
+                    </tr>
+                    <apex:repeat value="{!getAggregatedData}" var="varKey">
+                        <tr>
+                            <td><apex:outputtext value="{!getAggregatedData[varKey].Category}"></apex:outputtext></td>
+                            <td><apex:outputtext value="{!getAggregatedData[varKey].Count}"></apex:outputtext></td>
+                            <td><apex:outputtext value="{!getAggregatedData[varKey].ShortTimeLeft}"></apex:outputtext></td>
+                            <td><apex:outputtext value="{!getAggregatedData[varKey].MediumTimeLeft}"></apex:outputtext></td>
+                            <td>
+                                <apex:commandlink rerender="mobList" action="{!ExpandLevelOne}" value="{!If(getAggregatedData[varKey].Expanded, '[-] ' + $Label.Close, '[+] ' + $Label.Open)}" id="expandLink">
+                                    <apex:param name="expandFirstLevel" value="{!varKey}" assignto="{!selectedLevelOneCategory}" />
+                                </apex:commandlink>
+                            </td>
+                        </tr>
+                        <apex:actionregion rendered="{!getAggregatedData[varKey].Expanded}">
+                            <tr class="headerRow">
+                                <th class="firstLevel" colspan="5">{!$Label.Offering_name}</th>
+                            </tr>
+                            <apex:repeat value="{!getAggregatedData[varKey].NextLevelMap}" var="subKey">
+                                <tr>
+                                    <td class="firstLevel"><apex:outputtext value="{!getAggregatedData[varKey].NextLevelMap[subKey].Category}"></apex:outputtext></td>
+                                    <td class="firstLevel"><apex:outputtext value="{!getAggregatedData[varKey].NextLevelMap[subKey].Count}"></apex:outputtext></td>
+                                    <td class="firstLevel"><apex:outputtext value="{!getAggregatedData[varKey].NextLevelMap[subKey].ShortTimeLeft}"></apex:outputtext></td>
+                                    <td class="firstLevel"><apex:outputtext value="{!getAggregatedData[varKey].NextLevelMap[subKey].MediumTimeLeft}"></apex:outputtext></td>
+                                    <td class="firstLevel"></td>
+                                </tr>
+                            </apex:repeat>
+                        </apex:actionregion>
+                    </apex:repeat>
+                </tbody>
+            </table>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,13 @@
+<apex:page >
+    <apex:includeLightning />
+    <div id="lightning" />
+    <script>
+        $Lightning.use("c:MyPerformanceApp", function() {
+          $Lightning.createComponent("c:MyPerformance",
+          {  },
+          "lightning",
+          function(cmp) {
+          });
+        });
+    </script>
+</apex:page>

@@ -1,0 +1,14 @@
+<apex:page lightningStylesheets="true" controller="LeadAgentFormHandlerController">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Skapa nytt lead" action="{!pardotSalesRepSuccessPageBack}" />
+                <apex:commandButton value="Klar" action="{!doneHomePage}" />
+            </apex:pageBlockButtons>
+            Tack! Ett lead har skapats och bearbetas nu av oss. <br/><br/>
+
+            Med vänliga hälsningar,<br/>
+            Leadscentralen<br/>
+          </apex:pageBlock>
+    </apex:form>
+</apex:page>

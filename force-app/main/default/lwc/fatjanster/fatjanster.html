@@ -1,0 +1,30 @@
+<template>
+
+	<lightning-input  type="text" name ="Etableringsavgift" label="Etableringsavgift för fastighetsnät, områdesnät och bostadsnät (exkl. moms)"
+		value={parentvalue.OneTimePropertyOwner}  onchange={handleChange} >
+	</lightning-input>
+	<lightning-combobox name="Nathyra" label="Näthyra" value={nathyradefault} options={bool} onchange={handleChange}>
+	</lightning-combobox>
+    <lightning-combobox name="Serviceavtal" label="Serviceavtal" value={parentvalue.Serviceavtal} options={bool} onchange={handleChange}>
+	</lightning-combobox>
+	<div class="slds-grid slds-gutters">
+		<div class="slds-col slds-size_3-of-12">
+			<lightning-input type="text" name ="Centralpunktsadress" label="Centralpunktsadress" required={makerequired} onchange={handleChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-col slds-size_3-of-12">
+			<lightning-input type="text" name="FNTnummer" label="FNT-nummer" required={makerequired} onchange={handleChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-col slds-size_3-of-12">
+			<lightning-combobox dropdown-alignment="auto" name="natbrygga" label="Är det en ny nätbrygga?" required={makerequired}
+				placeholder="" options={newBridge} onchange={handleChange}>
+			</lightning-combobox>
+		</div>
+		<div class="slds-col slds-size_3-of-12">
+			<lightning-combobox dropdown-alignment="auto" name="Servicetyp" label="Servicetyp" placeholder="" required={makerequired}
+				options={Servicetype} onchange={handleChange} ></lightning-combobox>
+		</div>
+	</div>
+
+</template>

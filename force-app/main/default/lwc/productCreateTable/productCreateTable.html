@@ -1,0 +1,140 @@
+<!--
+ - Created by kwn687 on 2022-07-07.
+ -->
+
+<!-- Product Create Table -->
+<template>
+    <template if:true={opportunityProductInfo.data}>
+    <div class="slds-modal__content">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="">{mainProductsLabel}</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="">{cygateProductsLabel}</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="">{opportunityProductInfo.data.fields.Supplier__c.label}</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="">{opportunityProductInfo.data.fields.Cygate_Margin__c.label}</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="">{opportunityProductInfo.data.fields.UnitPrice.label}</div>
+                </th>
+                <!-- Removed for LTAT-10020 by Ignas Bujevičius on 2023/05/22
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="">{opportunityProductInfo.data.fields.Quantity.label}</div>
+                </th>
+                -->
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="">{opportunityProductInfo.data.fields.Start_Fee__c.label}</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="">{opportunityProductInfo.data.fields.Contact_Duration__c.label}</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="">{opportunityProductInfo.data.fields.Sales_Type_Cygate__c.label}</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <template if:true={selectedProducts}>
+                <template for:each={selectedProducts} for:item="products">
+                    <tr key={products.key} class="slds-hint-parent">
+                        <td data-label="products" rowspan={products.rowspan}>
+                            {products.key}
+                        </td>
+                    </tr>
+                    <template for:each={products.name} for:item="cygateProduct">
+                        <tr key={cygateProduct}>
+                            <td key={cygateProduct} data-label="products">
+                                {cygateProduct}
+                            </td>
+                            <td>
+                                <lightning-combobox
+                                        name="Supplier"
+                                        label=""
+                                        placeholder="-Select-"
+                                        options={picklistValues}
+                                        variant="label-hidden"
+                                        dropdown-alignment="auto"
+                                        title={products.key}
+                                        data-index={cygateProduct}
+                                        onchange={handleSaveSupplier}
+                                >
+                                </lightning-combobox>
+                            </td>
+                            <td>
+                                <lightning-input
+                                        title={products.key}
+                                        data-index={cygateProduct}
+                                        type="number"
+                                        variant="label-hidden"
+                                        onchange={handleSaveTG}
+                                ></lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input
+                                        title={products.key}
+                                        data-index={cygateProduct}
+                                        type="number"
+                                        variant="label-hidden"
+                                        onchange={handleSaveUP}
+                                ></lightning-input>
+                            </td>
+                            <!-- Removed for LTAT-10020 by Ignas Bujevičius on 2023/05/22
+                            <td>
+                                <lightning-input
+                                        title={products.key}
+                                        data-index={cygateProduct}
+                                        type="number"
+                                        variant="label-hidden"
+                                        onchange={handleSaveQuantity}
+                                ></lightning-input>
+                            </td>
+                            -->
+                            <td>
+                                <lightning-input
+                                        title={products.key}
+                                        data-index={cygateProduct}
+                                        type="number"
+                                        variant="label-hidden"
+                                        onchange={handleSaveSF}
+                                ></lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input
+                                        title={products.key}
+                                        data-index={cygateProduct}
+                                        type="number"
+                                        variant="label-hidden"
+                                        onchange={handleSaveContractPeriod}
+                                ></lightning-input>
+                            </td>
+                            <td>
+                                <lightning-combobox
+                                        name="Sales type"
+                                        label=""
+                                        placeholder="-Select-"
+                                        options={salesTypeValues}
+                                        variant="label-hidden"
+                                        dropdown-alignment="auto"
+                                        title={products.key}
+                                        data-index={cygateProduct}
+                                        onchange={handleSaveSalesType}
+                                        required
+                                >
+                                </lightning-combobox>
+                            </td>
+                        </tr>
+                    </template>
+                </template>
+            </template>
+            </tbody>
+        </table>
+    </div>
+    </template>
+</template>

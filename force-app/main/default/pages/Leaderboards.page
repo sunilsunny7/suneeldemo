@@ -1,0 +1,13 @@
+<apex:page >
+    <apex:includeLightning />
+    <div id="lightning" />
+    <script>
+        $Lightning.use("c:LeaderboardApp", function() {
+          $Lightning.createComponent("c:LeaderboardList",
+          {  },
+          "lightning",
+          function(cmp) {
+          });
+        });
+    </script>
+</apex:page>

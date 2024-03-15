@@ -1,0 +1,35 @@
+<!-- Updated Version - By S.S. Case 2544 - Updated the Record type check, if the logged in user is of Cygate profile or Alisar then passing Cygate konkureenavtal recordtype else
+                       passing telia record type
+-->
+
+<apex:page standardController="Opportunity">  
+   <script>       
+    function newContract()
+    {
+        var acc = '{!Opportunity.Account.Name}';
+        var accId = '{!Opportunity.AccountId}';
+        var competitor =  '{!Opportunity.Competitor__c}';
+        var otherCompetitor =  '{!Opportunity.Other_Competitor__c}';
+        var currentuserProfileId = '{!$Profile.Id}';        
+        var currentuserid = '{!$User.Id}';
+        var RecordtypeId;
+        if(currentuserProfileId == '00e240000017CGhAAM' || currentuserid == '00524000001yBbqAAE')
+        {
+            RecordtypeId ='&RecordType=01224000000LRNF&ent=Contract&ctrc7=';
+        }
+        else
+        {
+            RecordtypeId = '&RecordType=012240000002Ndi&ent=Contract&ctrc7=';
+        }
+        var url = '/800/e?retURL=apex/ContractClose&accid=' + accId + RecordtypeId + acc + '&00N2400000HBGiI=' + competitor + '&00N2400000HBGiL=' + otherCompetitor + '&saveURL=apex/ContractClose&isdtp=vw';       
+        var newWindow = window.open(url, 'New Competitor Agreement' ,"width=800, height=550, scrollbars=yes,toolbar=no,status=no");
+        newWindow.focus(); 
+    }
+    newContract();
+    </script>    
+    <p>
+      {!$Label.conPopupInfo}    
+        <a onclick="newContract()" style="cursor:pointer; color:blue"> {!$Label.conPopupLink}</a>
+    </p>
+ 
+</apex:page>

@@ -1,0 +1,15 @@
+.start-select{
+    --lwc-colorBorderInput: #0176d3;
+    --lwc-colorTextDefault : #0176d3;
+}
+td{
+    border-bottom: 1px solid lightgrey;
+    border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}
+
+.customCheckbox{
+        --lwc-fontSize3: 1rem;
+        --lwc-colorTextLabel: #0176d3;
+}

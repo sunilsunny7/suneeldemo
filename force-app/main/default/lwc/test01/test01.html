@@ -1,0 +1,26 @@
+<template>
+         
+        <div class="slds-col slds-size_12-of-12 slds-button">
+            <lightning-input type="checkbox" data-id="SelectAll" label="Markera/Avmarkera alla" name="Valj"
+                value={selectAllOrUnselect}
+                class="slds-form-element slds-size_1-of-3 slds-text-title_bold"
+                onchange={handleCheckBox}></lightning-input>
+        </div>
+        <lightning-input  type="checkbox"  
+        name="Broadband Start" label="Broadband Start"></lightning-input>
+        <lightning-input  type="checkbox"  
+        name="Broadband Plus" label="Broadband Plus"></lightning-input>
+        <lightning-input  type="checkbox"  
+        name="Broadband Pro" label="Broadband Pro"></lightning-input>
+        <lightning-input  type="checkbox"  
+        name="Datanet" label="Datanet"></lightning-input>
+
+    
+    
+    <div class="slds-grid slds-m-top_large">
+        <div class="slds-col slds-size_9-of-12"></div>
+        <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_brand slds-button_stretch" onclick={nextStep}>Nästa</button>
+        </div>
+    </div>
+</template>

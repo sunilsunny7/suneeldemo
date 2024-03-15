@@ -1,0 +1,89 @@
+<apex:page standardController="Account" extensions="IntaktController" tabstyle="account" sidebar="false">
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    text-align: left;
+    height: 13px;
+}
+
+tr:{background-color: f9f9f9}
+
+th {
+    background-color: #f9f9f9;
+    color: black;
+    height: 13px;
+}
+</style>
+    <apex:pageBlock >
+        <table border="1" class="list" cellspacing="0" cellpadding="0" columns="6"> 
+            <tr class="headerRow">
+                <th>{!$Label.Year_Month}</th>
+                <th>{!$Label.Jan}</th>
+                <th>{!$Label.Feb}</th>
+                <th>{!$Label.Mar}</th>
+                <th>{!$Label.Apr}</th>
+                <th>{!$Label.May}</th>
+                <th>{!$Label.Jun}</th>
+                <th>{!$Label.Jul}</th>
+                <th>{!$Label.Aug}</th>
+                <th>{!$Label.Sep}</th>
+                <th>{!$Label.Oct}</th>
+                <th>{!$Label.Nov}</th>
+                <th>{!$Label.Dec}</th>
+                <th>{!$Label.Total_Revenue}</th>
+            </tr> 
+            <tr>
+                <td>{!$Label.Current_Year}</td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"> <apex:param value="{!currentyrJanRevenue}" /></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}" ><apex:param value="{!currentyrFebRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!currentyrMarRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!currentyrAprRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!currentyrMayRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!currentyrJunRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!currentyrJulRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!currentyrAugRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!currentyrSepRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!currentyrOctRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!currentyrNovRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!currentyrDecRevenue}"/></apex:outputText></td>
+                <td><apex:outputfield value="{!Account.Revenue_YTD_Current_Year__c}"/></td>
+            </tr>
+            <tr>
+                <td>{!$Label.Previous_Year}</td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!lastyrJanRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}" ><apex:param value="{!lastyrFebRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!lastyrMarRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!lastyrAprRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!lastyrMayRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!lastyrJunRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!lastyrJulRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!lastyrAugRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!lastyrSepRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!lastyrOctRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!lastyrNovRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, Number, ###,###,###,##0 kr}"><apex:param value="{!lastyrDecRevenue}"/></apex:outputText></td>
+                <td><apex:outputfield value="{!Account.Total_Revenue_Previous_Year__c}"/></td> 
+            </tr>  
+            <tr>
+                <td>{!$Label.Change}</td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffJanRevenue != null}"><apex:param value="{!diffJanRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffFebRevenue != null}"><apex:param value="{!diffFebRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffMarRevenue != null}"><apex:param value="{!diffMarRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffAprRevenue != null}"><apex:param value="{!diffAprRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffMayRevenue != null}"><apex:param value="{!diffMayRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffJunRevenue != null}"><apex:param value="{!diffJunRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffJulRevenue != null}"><apex:param value="{!diffJulRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffAugRevenue != null}"><apex:param value="{!diffAugRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffSeptRevenue != null}"><apex:param value="{!diffSeptRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffOctRevenue != null}"><apex:param value="{!diffOctRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffNovRevenue != null}"><apex:param value="{!diffNovRevenue}"/></apex:outputText></td>
+                <td><apex:outputText value="{0, number, ##}%" rendered="{!diffDecRevenue != null}"><apex:param value="{!diffDecRevenue}"/></apex:outputText></td>
+                <td></td>         
+            </tr>        
+        </table>
+    </apex:pageBlock>    
+</apex:page>

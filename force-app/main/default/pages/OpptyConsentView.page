@@ -1,0 +1,32 @@
+<apex:page standardController="Opportunity" lightningStylesheets="true" extensions="OperatingController">
+    <apex:includeLightning />
+    <style>
+        html {
+        line-height: 2.0;
+        }
+        body {
+        padding-right: 0px !IMPORTANT;
+        padding-top: 0px !IMPORTANT;
+        }
+    </style>
+    <apex:form >
+        <apex:outputPanel rendered="{!warningMsg}" style="color:RED;font-weight:bold">
+            {!$Label.Consent_Warning_Msg}
+            <br/>
+        </apex:outputPanel>
+        <apex:outputPanel >
+            <apex:outputLabel value="{!$Label.CM_Marketing}" style="margin-right:0px" for="cm1">
+                <apex:outputText id="cm2" value="{!Opportunity.Account.CMFinalMarketing__c}" escape="false"/>
+            </apex:outputLabel><br/> 
+            <apex:outputLabel value="{!$Label.CM_service_network}" style="margin-right:0px" for="cm3">
+                <apex:outputText id="cm4" value="{!Opportunity.Account.CMFinalServiceNetwork__c}" escape="false"/>
+            </apex:outputLabel><br/> 
+            <apex:outputLabel value="{!$Label.CM_ConsentDate}" style="margin-right:0px" for="cm5">
+                <strong>
+                    <apex:outputText id="cm6" value="{!dateDisplay}" escape="false" />
+                </strong>
+            </apex:outputLabel>
+        </apex:outputPanel>
+        <br/>
+    </apex:form> 
+</apex:page>

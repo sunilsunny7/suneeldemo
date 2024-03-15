@@ -1,0 +1,88 @@
+<aura:component controller="HardwareController"
+                description="Account table with column sorting example"
+                implements="flexiPage:availableForAllPageTypes,force:hasRecordId">
+    <aura:html tag="style">
+        .slds-modal__container {
+             max-width:90% !important;
+         	width: 90% !important;
+        }
+        a.slds-is-sorted_asc, a.slds-is-sorted_desc{
+        	font-size: 10px;
+        }
+        lightning-formatted-text{
+        	font-size: 10px;
+        }
+    </aura:html> 
+    
+    <aura:attribute name="recordId" type="String" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+   <!--aura attributes--> 
+    <aura:attribute name="accountColumns" type="List"/>
+    <aura:attribute name="accountData" type="Object"/>
+    <aura:attribute name="accountDataToSearch" type="List"/>
+    <aura:attribute name="sortBy" type="String"/>
+    <aura:attribute name="sortDirection" type="String"/>
+    <aura:attribute name="finalListToAdd" type="list" />
+    <aura:attribute name="accountName" type="String" />
+    <aura:attribute name="loading" type="Boolean" />
+    
+    <!--Page header-->
+    <div class="slds-page-header">
+  <div class="slds-page-header__row">
+    <div class="slds-page-header__col-title">
+      <div class="slds-media">
+        <div class="slds-media__figure">
+          <span class="slds-icon_container slds-icon-standard-opportunity" title="opportunity">
+           	<lightning:icon width="13px" height="13px" iconName="standard:account" title="Subscription" size="small" alternativeText="Subscription"/>
+            <span class="slds-assistive-text">opportunity</span>
+          </span>
+        </div>
+        <div class="slds-media__body">
+          <div class="slds-page-header__name">
+            <div class="slds-page-header__name-title">
+              <h1>
+                <span class="slds-page-header__title slds-truncate" title="Abonnemangslista">Abonnemangslista</span>
+              </h1>
+            </div>
+          </div>
+          <p class="slds-page-header__name-meta">{!v.accountName}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    <br/>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_6-of-12">
+            <aura:renderIf isTrue="{!v.loading}">
+                <div class="exampleHolder">
+                    <lightning:spinner alternativeText="Loading" size="medium" />
+                </div>
+                <aura:set attribute="else">
+                  
+                </aura:set>
+          </aura:renderIf>
+      </div>
+        <div class="slds-col slds-size_5-of-12" style="text-align: right;">
+            <lightning:input  onchange="{!c.searchTable}" type="search" label="Searh" variant="label-hidden" placeholder="Sök I denna lista…" aura:id="SearchBox"/>
+      </div>
+        <div class="slds-col slds-size_1-of-12" style="text-align: left;">
+            <lightning:icon onclick="{!c.downloadCsv}" width="13px" height="13px" iconName="utility:download" title="Download Subscription" size="small" alternativeText="Download Subscription"/>
+      </div>
+    </div>
+    
+    <lightning:datatable aura:id="accountTable"
+                         keyField="Id"
+                         hideCheckboxColumn="true"
+                         columns="{!v.accountColumns}"
+                         data="{!v.accountData}"
+                         sortedBy="{!v.sortBy}"
+                         sortedDirection="{!v.sortDirection}"
+                         onsort="{!c.handleSort}"/>
+    
+     
+    
+    
+</aura:component>

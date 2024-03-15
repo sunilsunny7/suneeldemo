@@ -1,0 +1,26 @@
+<aura:component controller="CaseAlphaController" implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <ltng:require styles="/resource/sldsnew/styles/salesforce-lightning-design-system.css" />
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    
+        <aura:attribute name="EnableSend" type="Boolean" default="False" />
+    <aura:attribute name="EnableRefresh" type="Boolean" default="False" />
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" /> 
+    
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert" style="z-index:9999">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div> 
+    </div>
+    <div class="slds-box">
+    <div class="slds-grid slds-grid--vertical-align-end slds-grid--align-right slds-m-top--medium">
+        <lightning:button variant="brand" disabled="{!!v.EnableSend}" label="{!$Label.c.AC_Btn_Send}" onclick="{!c.sendCaseClick }" />
+    </div>
+    
+    <div class="slds-grid slds-grid--vertical-align-end slds-grid--align-right slds-m-top--medium">
+        <lightning:button variant="brand" disabled="{!!v.EnableRefresh}" label="{!$Label.c.AC_Btn_Refresh}" onclick="{!c.refreshCaseClick }" />
+    </div>
+    </div>
+</aura:component>

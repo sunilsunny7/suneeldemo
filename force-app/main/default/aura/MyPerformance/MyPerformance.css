@@ -1,0 +1,11 @@
+.THIS.container slds-table tr>td:first-child, .THIS.container .slds-table tr>th:first-child {   
+        padding: .75rem;  
+}
+
+.THIS.container .slds-table th, .THIS.container .slds-table td {
+    vertical-align: top;
+}
+
+.THIS.container{
+    border: 1px solid #d8dde6;
+}

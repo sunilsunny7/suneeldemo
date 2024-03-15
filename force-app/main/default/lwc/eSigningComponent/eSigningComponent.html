@@ -1,0 +1,129 @@
+<!--
+ - Created by uly8476 on 2021-10-20.
+ -->
+
+<!-- Send For E-Signing Component -->
+<template>
+    <template if:false={displayModal}>
+        <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+            <h2>{label.signatoryRoleErrorLabel}</h2>
+        </div>
+    </template>
+    <template if:true={displayModal}>
+        <div class="slds-is-relative">
+            <lightning-quick-action-panel header={label.headerLabel}>
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-item>
+                        <lightning-file-upload
+                                label={label.uploadDocumentLabel}
+                                onuploadfinished={handleUploadFinished}
+                                multiple="true"
+                                accept={acceptedFormats}
+                                record-id={recordId}>
+                        </lightning-file-upload>
+                    </lightning-layout-item>
+                    <lightning-layout-item>
+                        <lightning-helptext content={label.uploadHelptextLabel}></lightning-helptext>
+                    </lightning-layout-item>
+                    <template if:true={filesAttached}>
+                        <lightning-layout-item size="12" class="slds-p-top_small">
+                            <div if:true={fileNotSelected} class="slds-text-color_error">{label.fileSelectErrorLabel}</div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" class="slds-p-top_small slds-p-bottom_small">
+                            <lightning-datatable
+                                    key-field="documentId"
+                                    columns={filesLayout}
+                                    data={files}
+                                    resize-column-disabled="true"
+                                    onrowaction={handleDelete}
+                                    max-row-selection="1"
+                                    onrowselection={handleFileSelect}
+                            ></lightning-datatable>
+                        </lightning-layout-item>
+                    </template>
+                    <lightning-layout-item size="12">
+                        <lightning-combobox
+                                name="documentTypes"
+                                label={label.documentTypeLabel}
+                                options={documentTypeOptions}
+                                onchange={handleDocumentTypeChange}
+                                required="true">
+                        </lightning-combobox>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <template if:true={documentTypeContract}>
+                    <lightning-layout multiple-rows="true">
+                        <lightning-layout-item size="12">
+                            <lightning-combobox
+                                    options={productOptions}
+                                    name="productOptions"
+                                    label={label.selectProductLabel}
+                                    onchange={handleProductChange}
+                                    required="true">
+                            </lightning-combobox>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6">
+                            <lightning-input
+                                    name="startDate"
+                                    type="date"
+                                    required="true"
+                                    onchange={handleStartDateChange}
+                                    label={label.contractStartLabel}>
+                            </lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-p-left_small">
+                            <lightning-input
+                                    name="endDate"
+                                    type="date"
+                                    required="true"
+                                    onchange={handleEndDateChange}
+                                    label={label.contractEndLabel}>
+                            </lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6">
+                            <lightning-input
+                                    type="text"
+                                    required="true"
+                                    name="agreementNumber"
+                                    onchange={handleAgreementNumberChange}
+                                    label={label.agreementNumberLabel}>
+                            </lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6" class="slds-p-left_small">
+                            <lightning-input
+                                    type="text"
+                                    name="replacementAgreement"
+                                    onchange={handleReplacementAgreementChange}
+                                    label={label.replacementLabel}>
+                            </lightning-input>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+                <lightning-textarea
+                        name="note"
+                        onchange={handleNoteChange}
+                        label={label.noteLabel}>
+                </lightning-textarea>
+                <div class="slds-p-top_small slds-p-bottom_small">
+                    <div class="slds-text-color_weak">{label.signingContactLabel}</div>
+                </div>
+                <lightning-datatable class="contactsTable"
+                                     id="contactsTable"
+                                     key-field="Id"
+                                     columns={contactsLayout}
+                                     data={contacts}
+                                     min-column-width="125"
+                                     max-row-selection="8"
+                                     onrowselection={handleContactSelection}
+                                     resize-column-disabled="true"
+                ></lightning-datatable>
+                <div slot="footer">
+                    <lightning-button variant="neutral" label={label.cancelLabel} onclick={closeHandler}></lightning-button>
+                    <lightning-button variant="brand" label={label.submitLabel} onclick={submitHandler} disabled={submitDisabled}
+                                      class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </lightning-quick-action-panel>
+            <lightning-spinner if:true={isLoading} variant="brand" size="medium"></lightning-spinner>
+        </div>
+    </template>
+</template>

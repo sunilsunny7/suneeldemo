@@ -1,0 +1,21 @@
+<apex:page standardController="Account" lightningStylesheets="true">
+    <apex:includeLightning />
+    
+    <div id="lightning" />
+    
+    <script>
+    window.onload = doInit;
+    function doInit(){
+        var loadThemeSF = {!$User.UITheme != 'Theme4d'};
+        if(loadThemeSF){
+            $Lightning.use("c:ConsentApplication", function() {
+                $Lightning.createComponent("c:LConsentComponent",
+                                           { recordId : "{!Account.Id}" },
+                                           "lightning",
+                                           function(cmp) {
+                                           });
+            });
+        }
+    }
+    </script>
+</apex:page>

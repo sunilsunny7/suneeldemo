@@ -1,0 +1,11 @@
+/**
+ * Created by kwn687 on 2022-01-13.
+ */
+
+.THIS .form-element__help{
+    white-space: break-spaces;
+    font-size: 10px;
+}
+.THIS .errorRed{
+    border: 2px solid red;
+}

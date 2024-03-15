@@ -1,0 +1,18 @@
+<apex:page showHeader="false" standardController="User" extensions="UserExtension">
+   
+    <script>
+    Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.UserExtension.updateusr}','{!$CurrentPage.parameters.id}',
+            function(result, event){
+                if (event.status) {
+                    if(result =='Job complete'){
+
+                    }
+                } else {
+                    alert(event.message);
+                }
+            }, 
+            {escape: true}
+        );
+    </script>
+</apex:page>

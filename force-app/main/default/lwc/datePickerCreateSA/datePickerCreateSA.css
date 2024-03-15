@@ -1,0 +1,18 @@
+/*datePickerCreateSA.css*/
+
+.warning_message {
+    color: orange;
+    font-size: 14px;
+}
+
+.datepickerColorWhite {
+    color: white;
+}
+
+.datePickerColorBlack {
+    color: black;
+}
+
+.columnSize{
+    max-width: 80px;
+}

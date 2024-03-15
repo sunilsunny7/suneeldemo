@@ -1,0 +1,22 @@
+.THIS .slds-badge_inverse {
+    background-color : rgb(241, 18, 78);
+}
+.THIS .slds-colorBlack {
+    color: white;
+    background-color : rgb(32, 30, 31);
+}
+.THIS .slds-colorRed {
+    background-color : rgb(250, 35, 14);
+}
+.THIS .slds-colorGreen {
+    background-color : rgb(156, 250, 14);
+}
+.THIS .slds-colorBlue {
+    background-color : rgb(14, 186, 250);
+}
+.THIS .slds-colorPurple {
+    background-color : rgb(241, 14, 250);
+}
+.THIS .slds-colorOrange {
+    background-color : rgb(250, 153, 14);
+}

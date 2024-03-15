@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <isExposed>false</isExposed>
+    <description>
+    Implements a row of fields relevant for a new Revenue Effect insertion. Child of revenueImpactComponent.
+    Modifications: 26.10.2022 [TB] SALEF-7482 - Introduced.
+    </description>
+</LightningComponentBundle>

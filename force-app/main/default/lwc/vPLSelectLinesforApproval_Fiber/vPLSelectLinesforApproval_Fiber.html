@@ -1,0 +1,58 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    
+    <div style="overflow-x: auto;" class = "slds-m-bottom_medium">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+            <thead>  
+                <tr class="slds-line-height_reset">
+                    
+                    <th scope="col" class = "slds-border_bottom slds-border_left" >
+                        <div class="slds-truncate"> </div>Produkt
+                    </th>
+                    <th scope="col" class = "slds-border_bottom">
+                        <div class="slds-truncate"> Antal</div>
+                    </th>
+                    <th scope="col" class = "slds-border_bottom">
+                        <div class="slds-truncate"> Engångsavgift</div>
+                    </th>
+                    <th scope="col" class = "slds-border_bottom">
+                        <div class="slds-truncate"> Listpris</div>
+                    </th>
+                    <th scope="col" class = "slds-border_bottom">
+                        <div class="slds-truncate"> </div>Önskat pris
+                    </th>
+                    <th scope="col" class = "slds-border_bottom slds-border_right">
+                        <div class="slds-truncate">Rabatt %</div>
+                    </th>
+                </tr>
+            </thead>
+
+            <template for:each={data} for:item="item" for:index="index">
+                <tr key={k1} class="slds-hint-parent">               
+                   <td class = "slds-border_bottom slds-border_left">
+                        <div if:true={item.Name} class="slds-truncate"> {item.Name}</div>
+                        <div if:false={item.Name} class="slds-truncate"></div>
+                    </td>
+                    <td class = "slds-border_bottom">
+                        <div if:true={item.Quantity} class="slds-truncate"> {item.Quantity}</div>
+                        <div if:false={item.Quantity} class="slds-truncate"></div>
+                    </td>
+                    <td class = "slds-border_bottom">
+                        <div class="slds-truncate"> {item.OneTimePrice}</div>
+                    </td>
+                    <td class = "slds-border_bottom">
+                        <div class="slds-truncate"> {item.Price}</div>
+                    </td>
+                    <td class = "slds-border_bottom">
+                        <div class="slds-truncate"> {item.CRP}</div>
+                    </td>
+                    <td class = "slds-border_bottom slds-border_right">
+                        <div if:true={item.Discount} class="slds-truncate"> {item.Discount} %</div>
+                        <div if:false={item.Discount} class="slds-truncate"></div>
+                    </td>
+                </tr>
+                
+            </template>
+        </table>
+    </div>
+</template>

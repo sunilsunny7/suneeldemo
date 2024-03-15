@@ -1,0 +1,446 @@
+<template>
+	<template lwc:if={processing}>
+		<lightning-spinner alternative-text="Loading"></lightning-spinner>
+	</template>
+
+	<div class="slds-m-bottom_large slds-grid slds-grid_align-spread">
+		<div class="slds-col slds-size_1-of-2">
+			Om en <b>offertförfråga</b> krävs, kan förfrågan göras i
+			<b> <span class="slds-m-left_xx-small"><a target="_blank"
+						href="https://arsprodweb.han.telia.se/arsys/forms/arsprod/HERA/WebbHera_Registrera">Webb-Hera</a></span></b>
+
+			<p class="purple-color"><b>Levererbarhetskontrollen</b> och priserna är <b>giltiga i 90 dagar</b>. Gäller
+				även HERA förfrågor.</p>
+			<p><b>Levererbarhetskontrollen skapad {precheckDate}.</b></p>
+			<br>
+
+
+			<ul class="slds-list_dotted">
+				<li>För att få fram priserna kan man behöva trycka på knappen <b>Uppdatera Tabell flera gånger</b></li>
+				<li>Knappen <b>Räkna om Priser</b> användas när det är en omförhandling</li>
+				<li>För att <b>lägga till/ta bort adresser</b>, tryck på knappen <b>Tillbaka till Leveranskontroll</b>
+				</li>
+				<li>För att komma <b>tillbaka till affärsmöjligheten/prisförhandlingen</b>, tryck <b>Avbryt</b></li>
+				<li>Vänta tills alla siter har <b>bearbetats</b> innan du klickar på <b>Nästa</b> eller går
+					<b>tillbaka till leveranskontrollen</b>
+				</li>
+			</ul>
+
+		</div>
+		<div class="slds-col slds-grid_align-end slds-align-bottom">
+			<span lwc:if={isPrecheckNotProcessed}>
+				<lightning-button label="Ta bort felaktiga adresser" title="Ta bort felaktiga adresser"
+					class="slds-m-left_x-small" onclick={deleteAllFailedSites}></lightning-button>
+			</span>
+			<lightning-button label="Räkna om priser" title="Räkna om priser" class="slds-m-left_x-small"
+				onclick={recalculatePricing}></lightning-button>
+			<lightning-button label="Updatera tabell" title="Updatera tabell" icon-name="utility:sync"
+				icon-position="right" class="slds-m-left_x-small" name="update" onclick={refreshData}>
+			</lightning-button>
+			<lightning-button label="Ladda ner" title="Ladda ner" icon-name="utility:package" icon-position="right"
+				class="slds-m-left_x-small" onclick={downloadExcelFile}></lightning-button>
+		</div>
+	</div>
+
+	<div class="slds-m-bottom_large">
+		<div class="slds-m-top_large slds-m-bottom_small">
+			<h3 slot="title">Välja produkter</h3>
+		</div>
+		<div class="slds-grid slds-wrap">
+			<template for:each={productsArray} for:item="data" for:index="i">
+				<div key={keyIndex1} class="slds-size_3-of-12">
+					<div class="slds-form-element slds-m-around_x-small slds-col">
+						<label
+							class="slds-checkbox_toggle slds-grid slds-grid_align-spread custom-spacing-for-checkbox">
+							<span class="slds-form-element__label slds-m-bottom_none">{data.productName}</span>
+							<input type="checkbox" onchange={selectProducts} name="products" value={data.productName}
+								aria-describedby="x1" checked={data.checked} data-index={i} />
+							<span id={i} class="slds-checkbox_faux_container" aria-live="assertive">
+								<span class="slds-checkbox_faux"></span>
+							</span>
+						</label>
+					</div>
+				</div>
+			</template>
+		</div>
+	</div>
+
+	<div class="slds-grid">
+		<lightning-radio-group name="radioGroup1" label="Välja bredband 1" options={b1} value={selectedBandwidth1}
+			type="button" onchange={selectBandwidth}></lightning-radio-group>
+	</div>
+	<div class="slds-grid slds-m-bottom_large">
+		<lightning-radio-group name="radioGroup2" label="Välja bredband 2" options={b2} value={selectedBandwidth2}
+			type="button" onchange={selectBandwidth}> </lightning-radio-group>
+	</div>
+
+
+	<div class="slds-grid slds-m-bottom_medium">
+		<div class="slds-col slds-text-heading_small">Totalt antal adresser : {total}</div>
+		<div class="slds-col slds-text-heading_small">Antal adresser utan fel : {items_displayed}</div>
+		<div class="slds-col slds-text-heading_small">Antal adresser med fel : {failedItems}</div>
+	</div>
+
+	<div lwc:if={dataReceived}>
+		<div style="overflow-x: auto;">
+			<table class="slds-table slds-table_cell-buffer slds-m-horizontal_small slds-table_bordered">
+				<thead>
+					<tr>
+						<td
+							class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+							Ta bort adress</td>
+						<td
+							class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+							Plats
+						</td>
+						<template for:each={headers} for:item="data" for:index="i">
+							<td key={keyI} colspan="2"
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+								{data.productName}
+							</td>
+						</template>
+					</tr>
+
+					<tr>
+						<td
+							class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+						</td>
+						<td
+							class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+						</td>
+						<template for:each={headers} for:item="data" for:index="i">
+							<td key={keyI}
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center salesforce_color">
+								{data.b1}
+							</td>
+							<td key={keyI}
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center salesforce_color">
+								{data.b2}
+							</td>
+						</template>
+
+					</tr>
+				</thead>
+
+				<tbody>
+					<template for:each={modifiedData} for:item="item" for:index="index">
+						<tr key={item.ServicePoint} lwc:if={item.PrecheckProcessed} class="background">
+							<td
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+								<lightning-icon icon-name="action:delete" size="small" onclick={deleteSite}
+									data-opp={index} alternative-text="Delete" title="Delete"></lightning-icon>
+							</td>
+							<td lwc:if={item.SiteAddress}
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+								<button class="slds-button salesforce_color" onclick={openModal} data-id={item.ServicePoint}
+									data-account={item.AccountId} id={item.ServicePoint}>
+							
+									<div class="slds-grid slds-grid_vertical">
+										
+							
+										<!-- <div lwc:if={item.SiteAddress.Latitude}>
+											<div class="slds-col">
+												<span>Lat : {item.SiteAddress.Latitude}</span>
+											</div>
+											<div class="slds-col">
+												<span lwc:if={item.SiteAddress.Longitude}>Long : {item.SiteAddress.Longitude}</span>
+											</div>
+										</div> -->
+
+										<div class="slds-col">
+											<span lwc:if={item.SiteAddress.StreetAddress}>{item.SiteAddress.StreetAddress} ,
+											</span>
+
+											<span class="slds-m-right_xx-small" lwc:if={item.SiteAddress.StreetNumber}>
+												{item.SiteAddress.StreetNumber}</span>
+										
+											<span class="slds-m-right_xx-small" lwc:if={item.SiteAddress.City}>
+												, {item.SiteAddress.City}</span>
+										</div>
+									</div>
+							
+								</button>
+							</td>
+							<td rowspan="2" lwc:else> NA </td>
+							<template for:each={item.Products} for:item="item1" for:index="i">
+								<template lwc:if={item1}>
+									<template lwc:if={item1.Data}>
+										<template for:each={item1.Data} for:item="x" for:index="i2">
+											<td class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center"
+												key={d} lwc:if={x}>
+												<div lwc:if={x.info.isEmpty}>
+													Data not found
+												</div>
+												<!-- <div lwc:else>{x.info.isEmpty}</div> -->
+												<div lwc:else class="salesforce_color">
+													<div class="underline_text" lwc:if={x.info.LineType}>
+														<span>{x.info.LineType}</span>
+														<span lwc:if={x.info.AccessTypeName}> -
+															{x.info.AccessTypeName}</span>
+													</div>
+													<div lwc:if={x.info.maxbandwidth}>Nedströmshastighet :
+														{x.info.maxbandwidth} kbps
+													</div>
+													<div lwc:if={x.info.maxSLA}>Max SLA : {x.info.maxSLA}</div>
+													<div lwc:if={x.info.DeliveryTime}>Möjlig leverans :
+														{x.info.DeliveryTime}
+													</div>
+													<div lwc:if={x.info.ReturnCode} class="red-color">
+														{x.info.ErrorMessage}
+													</div>
+													<div lwc:else></div>
+													<div lwc:if={x.info.ContractType}>Kontraktyp :
+														{x.info.ContractType}
+													</div>
+													<div lwc:if={x.info.SlaAvailable}>
+														<div lwc:if={x.info.AvailableC4} style="color:green;text-decoration: underline;"> SLA C4 Available </div>
+														<div lwc:else style="color:red;text-decoration: underline;">SLA C4 Not Available</div>
+													</div>
+													<div lwc:else ></div>
+													<!-- <div lwc:if={x.info.AvailableSLA}>
+														Available SLA : {x.info.AvailableSLA}
+													</div> -->
+												</div>
+
+											</td>
+											<td key={d} lwc:else class="salesforce_color"> NA </td>
+										</template>
+									</template>
+								</template>
+							</template>
+						</tr>
+						<tr key={keyIndex} lwc:if={item.PrecheckProcessed}>
+							<td
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+							</td>
+							<td
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+								Månadsavgift</td>
+							<template for:each={item.Products} for:item="item1" for:index="i">
+								<template lwc:if={item1}>
+									<template lwc:if={item1.Data}>
+										<template for:each={item1.Data} for:item="x" for:index="i2">
+											<td class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center"
+												key={d} lwc:if={x.info}>
+												<div lwc:if={x.info.isEmpty}>
+													<div lwc:if={x.info.Price}></div>
+													<div lwc:else>NA</div>
+												</div>
+
+												<div lwc:if={x.info.Price}> {x.info.Price} SEK</div>
+
+											</td>
+										</template>
+									</template>
+								</template>
+							</template>
+						</tr>
+					</template>
+					<tr>
+						<td
+							class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+						</td>
+						<td
+							class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+							Average Prices</td>
+						<template for:each={averagePricesArray} for:item="item3" for:index="i">
+							<td key={key}
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center"
+								lwc:if={item3}>{item3}</td>
+							<td key={key}
+								class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center"
+								lwc:else>NA</td>
+						</template>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div lwc:else
+		style="left:1%; width: 98%; position: absolute; top:5%;
+        z-index: 100; background: rgba(0,0,0,0.7); height: 90%; font-size: xx-large; text-align:center; vertical-align:center">
+		<div style="position:absolute; top: 40%; left:35%; color:white">{items_processed} av {total} siter har
+			bearbetats </div>
+		<div style="position:absolute; top: 50%; left:34%; color:white">
+			<progress style="width:400px" value={progressBarValue} max="100"> </progress>
+		</div>
+	</div>
+
+
+	<!-- Failed table-->
+	<div lwc:if={isPrecheckNotProcessed} class="slds-m-bottom_medium" style="width:60%">
+		<table class="slds-table slds-table_cell-buffer slds-m-horizontal_small slds-table_bordered">
+			<thead>
+				<tr>
+					<td style="width: 10%"
+						class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+						Ta bort adress</td>
+					<td style="width: 40%"
+						class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+						Site</td>
+					<td style="width: 50%"
+						class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+						Felmeddelande</td>
+				</tr>
+			</thead>
+			<tbody>
+				<template for:each={errorSitesDetails} for:item="item" for:index="index">
+					<tr key={item.ServicePoint} class="background">
+						<td
+							class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+							<lightning-icon icon-name="action:delete" size="small" onclick={deleteSingleFailedSite}
+								data-opp={index} alternative-text="Delete" title="Delete"></lightning-icon>
+						</td>
+						<td lwc:if={item.SiteAddress}
+							class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+							<button class="slds-button salesforce_color" onclick={openModal} data-id={item.ServicePoint}
+								data-account={item.AccountId} id={item.ServicePoint}>
+
+								<span class="slds-m-right_xx-small"
+									lwc:if={item.SiteAddress.StreetAddress}>{item.SiteAddress.StreetAddress} , </span>
+								<span class="slds-m-right_xx-small" lwc:if={item.SiteAddress.StreetNumber}>
+									{item.SiteAddress.StreetNumber} ,</span>
+								<span class="slds-m-right_xx-small" lwc:if={item.SiteAddress.City}>
+									{item.SiteAddress.City}</span>
+
+							</button>
+						</td>
+						<td
+							class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-grid_align-center">
+							<div class="red-color">
+								Kan ej köras i MC flödet, vänligen ta bort adress
+							</div>
+						</td>
+					</tr>
+				</template>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- </div> -->
+	<div class="slds-grid slds-grid_align-spread">
+		<div class="slds-col"></div>
+		<div class="slds-col" style="position: absolute; right: 50px; bottom: 20px;">
+			<div class="slds-grid slds-grid_align-space">
+				<div class="slds-col">
+					<lightning-button variant="neutral" class="slds-m-right_medium" onclick={previousStep}
+						label="Tillbaka Till Leveranskontroll"></lightning-button>
+				</div>
+				<div class="slds-col">
+					<lightning-button variant="brand" onclick={nextStep} label="Nästa">
+					</lightning-button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal starts here -->
+	<template lwc:if={isModalOpen}>
+		<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+			aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+			<div class="slds-modal__container">
+				<header class="slds-modal__header">
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+						title="Close" onclick={closeModal}>
+						<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+							size="small">
+						</lightning-icon>
+						<span class="slds-assistive-text">Close</span>
+					</button>
+					<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+						Realisation Types and Detail Information</h2>
+				</header>
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<div class="slds-grid slds-gutters">
+
+						<template for:each={selectedSiteArray} for:item="item" for:index="index">
+							<template lwc:if={item}>
+								<template for:each={item.Products} for:item="product" for:index="i">
+									<div key={product.ProductName} class={calculateNumberOfRows}>
+
+										<table class="slds-table slds-table_bordered">
+											<thead>
+												<tr lwc:if={product.ProductName}>
+													<td>{product.ProductName}</td>
+
+												</tr>
+
+												<tr lwc:else>
+													<td>Product Name not found</td>
+												</tr>
+											</thead>
+
+											<tbody>
+												<template lwc:if={product.Data}>
+													<template for:each={product.Data} for:item="item2" for:index="i">
+														<tr key={item2.key}>
+															<td>
+																<div lwc:if={item2.Type}><b>Tjänstetyp :
+																		{item2.Type}</b>
+																</div>
+																<div lwc:if={item2.LineType}>
+																	<b>Linjetyp : {item2.LineType}</b>
+																</div>
+																<div lwc:if={item2.TechnologyId}>Teknologi-ID :
+																	{item2.TechnologyId}</div>
+																<div lwc:if={item2.TechnologyName}>Teknologi-namn :
+																	{item2.TechnologyName}</div>
+																<div lwc:if={item2.AccessTypeId}>Accesstyp-ID :
+																	{item2.AccessTypeId}</div>
+																<div lwc:if={item2.AccessTypeName}>Accesstyp-namn :
+																	{item2.AccessTypeName}</div>
+																<div lwc:if={item2.MaxDownloadSpeed}>Nedströmshastighet
+																	:
+																	{item2.MaxDownloadSpeed}</div>
+																<div lwc:if={item2.MaxUploadSpeed}>Uppströmshastighet :
+																	{item2.MaxUploadSpeed}</div>
+																<div lwc:if={item2.maxSLA}>Max SLA : {item2.maxSLA}
+																</div>
+																<div lwc:if={item2.QoS}>Max QoS : {item2.QoS}</div>
+																<div lwc:if={item2.PriceParameter}>P/T-värde :
+																	{item2.PriceParameter}</div>
+																<div lwc:if={item2.DeliveryTime}>Möjlig leverans :
+																	{item2.DeliveryTime}</div>
+																<div lwc:if={item2.KONumber}>Avtalsnummer :
+																	{item2.KONumber}</div>
+																<div lwc:if={item2.LanType}>LAN-typ : {item2.LanType}
+																</div>
+																<div lwc:if={item2.KONumber}>Avtalsnummer :
+																	{item2.KONumber}</div>
+																<div lwc:if={item2.PriorityLessThanGBPS}>Prioritet :
+																	{item2.PriorityLessThanGBPS}</div>
+																<div lwc:if={item2.ErrorCode}>Felkod :
+																	{item2.ErrorCode}
+																</div>
+																<div lwc:if={item2.ErrorMessage}>Felmeddelande :
+																	{item2.ErrorMessage}</div>
+																<div lwc:if={item2.FiberPairs}>Fastprisområde :
+																	{item2.FiberPairs}</div>
+																<div lwc:if={item2.FiberLength}>Fiberlängd :
+																	{item2.FiberLength}</div>
+																<div lwc:if={item2.FixedPriceArea}>Fiberpar :
+																	{item2.FixedPriceArea}</div>
+
+															</td>
+
+														</tr>
+													</template>
+												</template>
+											</tbody>
+										</table>
+									</div>
+								</template>
+							</template>
+						</template>
+					</div>
+				</div>
+				<footer class="slds-modal__footer">
+					<button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+					<button class="slds-button slds-button_brand" onclick={closeModal} title="OK">OK</button>
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</template>
+
+</template>

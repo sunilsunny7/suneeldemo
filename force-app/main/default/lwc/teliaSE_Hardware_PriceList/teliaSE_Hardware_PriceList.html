@@ -1,0 +1,116 @@
+<template>
+    <div style="overflow-x: auto;">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th>
+                        <div class="slds-truncate">MOBILTELEFON</div>
+                    </th>
+                    <th>
+                        <div class="slds-truncate">LISTPRIS</div>
+                    </th>
+                    <th colspan="2">
+                        <div class="slds-truncate"> {finalMap.sub1}</div>
+                    </th>
+                    <th colspan="2">
+                        <div class="slds-truncate"> {finalMap.sub2}</div>
+                    </th>
+                    <th colspan="2">
+                        <div class="slds-truncate"> {finalMap.sub3}</div>
+                    </th>
+                </tr>
+            </thead>
+
+            <tr>
+                <td>
+                    <div class="slds-truncate">
+                    </div>
+                </td>
+                <td>
+                    <div class="slds-truncate">Engångspris
+                    </div>
+                </td>
+                <td>
+                    <div class="slds-truncate">Engångsavgift
+                    </div>
+                </td>
+                <td>
+                    <div class="slds-truncate">Månadsavgift
+                    </div>
+                </td>
+                <td>
+                    <div class="slds-truncate">Engångsavgift
+                    </div>
+                </td>
+                <td>
+                    <div class="slds-truncate">Månadsavgift
+                    </div>
+                </td>
+                <td>
+                    <div class="slds-truncate">Engångsavgift
+                    </div>
+                </td>
+                <td>
+                    <div class="slds-truncate">Månadsavgift
+                    </div>
+                </td>
+            </tr>
+
+            <template for:each={priceList} for:item="item" for:index="index">
+                <tr key={k1} class="slds-hint-parent">
+                    <td>
+                        <div class="slds-truncate">
+                            {item.Name}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">                          
+                            {item.Amount} kr                       
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">
+                            {item.OTC1} kr
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">
+                            {item.RTC1} kr
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">
+                            {item.OTC2} kr
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">
+                            {item.RTC2} kr
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">
+                            {item.OTC3} kr
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate">
+                            {item.RTC3} kr
+                        </div>
+                    </td>
+                </tr>
+            </template>
+        </table>
+    </div>
+
+    <div class="slds-grid slds-m-top_large">
+        <div class="slds-col slds-size_9-of-12"></div>
+        <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_outline-brand slds-button_stretch"
+                onclick={previousStep}>Tillbaka</button>
+        </div>
+        <div class="slds-col slds-m-right_small">
+            <button class="slds-button slds-button_brand slds-button_stretch" onclick={nextStep}>Fortsätt</button>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,21 @@
+.slds-modal__content{
+    overflow: initial;
+}
+.relatedSpinner {
+    position: absolute;
+}
+.mainSpinner {
+    position: fixed;
+}
+.narrowCol{
+    width:4.25rem
+}
+.newRETableFooter{
+    padding: 3px;
+}
+.summaryTableStyle{
+    padding: 10px;
+}
+.newRETableContainer{
+    padding: 30px;
+}

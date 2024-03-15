@@ -1,0 +1,23 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+
+<!-- LTAT-10218: Event to fire upon value changes of the Opportuntiy filter parameters. -->
+    <aura:registerEvent name="filterChange" type="c:FilterChangeLatestClosedOpps" />
+
+    <!-- LTAT-10218: Only return Opportunities with Cygate_Sales_Team
+        matching the context User's Cygate_User_Team -->
+    <div class="c-container slds-theme_shade">
+        <lightning:layout >
+            <lightning:layoutItem padding="around-small">
+                <div style="font-weight: bold;">
+                    <ui:inputCheckbox 
+                        class="checkboxFilters"
+                        aura:id="filterByRegion"
+                        label="{!$Label.c.LatestClosedOpps_FilterByUserRegion}"
+                        change="{!c.onFilterChange}"
+                    />
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+
+</aura:component>

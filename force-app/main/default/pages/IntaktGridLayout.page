@@ -1,0 +1,35 @@
+<apex:page standardController="Account" tabstyle="account" sidebar="false">
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    text-align: left;
+    height: 13px;
+}
+
+tr:{background-color: f9f9f9}
+
+th {
+    background-color: #f9f9f9;
+    color: black;
+    height: 13px;
+}
+</style>
+    <apex:pageBlock >
+    <table border="1" class="list" cellspacing="0" cellpadding="0" columns="6"> 
+    <tr class="headerRow">
+        <th>{!$Label.Revenue_Target}</th>
+        <th>{!$Label.Revenue_Target_Fulfillment_YTD}</th>
+        <th>{!$Label.Revenue_Change_Last_Year}</th>
+      </tr>  
+      <tr>  <td><apex:outputfield value="{!Account.Revenue_Target__c}"/></td>
+            <td><apex:outputfield value="{!Account.Revenue_Target_Fulfillment_YTD__c}"/></td>
+            <td><apex:outputfield value="{!Account.Revenue_change_last_year__c}"/></td>
+       
+        </tr>
+        </table>
+     </apex:pageBlock>    
+</apex:page>

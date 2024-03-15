@@ -1,0 +1,50 @@
+<apex:page standardController="Account" recordSetVar="unused" sidebar="false">
+<apex:includeScript value="{!$Resource.UtilJS}" />
+<apex:form >
+<apex:pageBlock >
+<apex:pageMessages />
+<apex:pageBlock >
+Note: All modifications made on the page will be lost if Return button is clicked without clicking the Save button first. 
+</apex:pageBlock>
+<apex:pageBlockButtons >
+<apex:commandButton value="Save" action="{!save}"/>
+<apex:commandButton value="Return" action="{!cancel}"/>
+</apex:pageBlockButtons>
+<apex:pageBlockTable value="{!selected}" var="acc" id="table">
+<apex:column headerValue="Kundkonto Nr">
+<apex:inputField value="{!acc.Kundkonto_Nr__c}"/>
+</apex:column>
+<apex:column headerValue="Name">
+<apex:inputField value="{!acc.Name}"/>
+</apex:column>
+<apex:column headerValue="Suggested Owner">
+<apex:inputField value="{!acc.Suggested_Owner__c}"/>
+</apex:column>
+<apex:column headerValue="Suggested Business Area">
+<apex:inputField value="{!acc.Suggested_Business_Area__c}"/>
+</apex:column>
+<apex:column headerValue="Suggested Business Unit">
+<apex:inputField value="{!acc.Suggested_Business_Unit__c}"/>
+</apex:column>
+<apex:column headerValue="Suggested Business Unit Level 1">
+<apex:inputField value="{!acc.Suggested_SubBusinessUnitLvl1__c}"/>
+</apex:column>
+<apex:column headerValue="Suggested Business Unit Level 1 2">
+<apex:inputField value="{!acc.Suggested_SubBusinessUnitLvl2__c}"/>
+</apex:column>
+<apex:column headerValue="Suggested Business Unit">
+<apex:inputField value="{!acc.Suggested_Business_Sales_Unit__c}"/>
+</apex:column>
+<apex:column headerValue="Suggested Sales Unit">
+<apex:inputField value="{!acc.Suggested_Sales_Unit__c}"/>
+</apex:column>
+<apex:column headerValue="Suggested Sales Team">
+<apex:inputField value="{!acc.Suggested_Sales_Team__c}"/>
+</apex:column>
+<apex:column headerValue="Suggested Delsegment">
+<apex:inputField value="{!acc.Suggested_Delsegment__c}"/>
+</apex:column>
+</apex:pageBlockTable>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

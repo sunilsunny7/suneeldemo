@@ -1,0 +1,53 @@
+<aura:component controller="SolutionVerificationController" implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global"   >
+    <ltng:require styles="/resource/sldsnew/styles/salesforce-lightning-design-system.css" />
+    <ltng:require scripts="{!$Resource.datatables}" afterScriptsLoaded="{!c.afterScriptsLoaded}" />
+    <ltng:require styles="{!$Resource.datatablecss}"  />
+    
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}" />
+    <aura:handler event="aura:locationChange" action="{!c.update}"/>
+    
+    <aura:attribute name="Accounts" type="Account[]" />
+    
+    
+    <div aura:id="spinner" class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false"  role="alert" style="z-index:9999">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+    
+    <div class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                        <c:svgIcon svgPath="/resource/slds213/assets/icons/standard-sprite/svg/symbols.svg#account" class="slds-icon" size="small"  /> 
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2>
+                        <span class="slds-text-heading--small">{!$Label.c.SV_Account}</span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        
+        <div class="slds-card__body">
+            <div class="slds-form--stacked slds-m-top--medium"> 
+                <table role="grid" class="slds-table slds-table--fixed-layout slds-table--bordered slds-no-row-hover slds-scrollable--none" id="acc-table"  cellspacing="0" width="100%">
+                    <thead  class="slds-line-height--reset">
+                        <tr>
+                            <th aria-label="Name" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                                <span class="slds-truncate" title="{!$Label.c.SV_Name}">{!$Label.c.SV_Name}</span>
+                            </th>
+                            <th aria-label="Status" class="slds-is-sortable slds-is-resizable slds-text-title--caps" scope="col">
+                                <span class="slds-truncate" title="{!$Label.c.SV_Business_Unit}">{!$Label.c.SV_Business_Unit}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</aura:component>

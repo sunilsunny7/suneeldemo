@@ -1,0 +1,65 @@
+<apex:component >
+    <apex:attribute name="elementId" description="Id of element" type="String"/>
+    <apex:attribute name="data" description="Data" type="String"/>    
+    <apex:attribute name="label" description="Label header for the chart" type="String"/>   
+    <div id="container{!elementId}" style="width:100%">       
+    </div>
+    
+    <script>    
+    function configChart(){
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];                        
+        var parsedData = JSON.parse('{!data}');
+        
+        var chartData = {
+            labels: months,
+            datasets:  parsedData 
+        };               
+        var config = { 
+            type: 'bar',
+            data: chartData,
+            options: { 
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Month'
+                        },
+                        ticks: {
+                            suggestedMin: 0,
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            suggestedMin: 0,
+                        },
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Value'
+                        },
+                    }]
+                },
+                title:{
+                    display:false,
+                    text:"{!label}"
+                }
+            }
+        };
+        var context = document.getElementById('{!elementId}').getContext("2d");
+        
+        var chart = new Chart(context, config); 
+        
+    }; 
+    function createCanvas(){
+        var canvas = document.createElement('canvas'); 
+        var  div = document.getElementById("container{!elementId}"); 
+        canvas.id = '{!elementId}';
+        div.appendChild(canvas);
+    }
+    
+    createCanvas();
+    configChart(); 
+    </script>
+</apex:component>

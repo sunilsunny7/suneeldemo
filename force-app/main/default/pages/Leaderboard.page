@@ -1,0 +1,1581 @@
+<apex:page controller="LeaderboardVFController" standardStylesheets="false" >
+    <apex:stylesheet value="{!URLFOR($Resource.sldsnew, '/styles/salesforce-lightning-design-system.min.css')}" />    
+   
+    <apex:form id="tabRegion"  >
+     
+        <div class="slds-tabs--scoped" >
+            <ul class="slds-tabs--scoped__nav" role="tablist">
+            
+                <li class="slds-tabs_scoped__overflow-button slds-text-heading--label {!IF((selectedTab == 'result'),'slds-active','')}" title="{!$Label.ypsResult}" role="presentation">
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.ypsResult}" id="resultTab">
+                        <apex:param name="resultTab" value="result" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li>
+                
+                 <!-- this tab is hidden in August 2018 and will be opened in Jan 2019 as per request-->
+                
+                <li class="slds-tabs_scoped__overflow-button slds-text-heading--label {!IF((selectedTab == 'PYResult'),'slds-active','')}" title="{!$Label.result_Last_Year}" role="presentation">                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.result_Last_Year}" id="PYResultTab">
+                        <apex:param name="PYResultTab" value="PYResult" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li>
+                
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'score'),'slds-active','')}" title="{!$Label.ypsScore}" role="presentation">                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.ypsScore}" id="scoreTab">
+                        <apex:param name="scoreTab" value="score" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li>
+                
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'q1'),'slds-active','')}" title="{!$Label.Q1}" role="presentation">                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.Q1}" id="q1Tab">
+                        <apex:param name="q1Tab" value="q1" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li> 
+                
+                
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'q2'),'slds-active','')}" title="{!$Label.Q2}" role="presentation">                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.Q2}" id="q2Tab">
+                        <apex:param name="q2Tab" value="q2" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li> 
+                
+                
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'q3'),'slds-active','')}" title="{!$Label.Q3}" role="presentation" >                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.Q3}" id="q3Tab">
+                        <apex:param name="q3Tab" value="q3" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li> 
+                
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'q4'),'slds-active','')}" title="{!$Label.Q4}" role="presentation" >                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.Q4}" id="q4Tab">
+                        <apex:param name="q4Tab" value="q4" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li> 
+                
+                  <!-- this tab is hidden in August 2018 and will be opened in Jan 2019 as per request-->
+                
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'PYscore'),'slds-active','')}" title="{!$Label.yps_Last_Year}" role="presentation">                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.yps_Last_Year}" id="PYscoreTab">
+                        <apex:param name="PYscoreTab" value="PYscore" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li>
+                
+                <!-- this tab is hidden in August 2018 and will be opened in Jan 2019 as per request-->
+                 <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'PYq1'),'slds-active','')}" title="{!$Label.PY_Q1}" role="presentation">                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.PY_Q1}" id="PYq1Tab">
+                        <apex:param name="q1Tab" value="PYq1" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li> 
+                
+                 <!-- this tab is hidden in August 2018 and will be opened in Jan 2019 as per request-->
+                  
+                
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'PYq2'),'slds-active','')}" title="{!$Label.PY_Q2}" role="presentation">                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.PY_Q2}" id="PYq2Tab">
+                        <apex:param name="q2Tab" value="PYq2" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li> 
+                
+                 <!-- this tab is hidden in August 2018 and will be opened in Jan 2019 as per request-->
+                 
+                
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'PYq3'),'slds-active','')}" title="{!$Label.PY_Q3}" role="presentation" >                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.PY_Q3}" id="PYq3Tab">
+                        <apex:param name="q3Tab" value="PYq3" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li> 
+                
+                 <!-- this tab is hidden in August 2018 and will be opened in Jan 2019 as per request-->
+                  
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'PYq4'),'slds-active','')}" title="{!$Label.PY_Q4}" role="presentation" >                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.PY_Q4}" id="PYq4Tab">
+                        <apex:param name="q4Tab" value="PYq4" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li>
+                  
+                <li class="slds-tabs--scoped__item slds-text-heading--label {!IF((selectedTab == 'pointtab'),'slds-active','')}" title="{!$Label.Point_Tab}" role="presentation">                   
+                    <apex:commandlink styleClass="slds-tabs--scoped__link" rerender="tabRegion"  value="{!$Label.Point_Tab}" id="pointexptab">
+                        <apex:param name="pointexp" value="pointtab" assignto="{!selectedTab}" />
+                    </apex:commandlink>
+                </li>
+            </ul>
+            
+            <div id="tab-scoped-1" class="slds-tabs--scoped__content {!IF((selectedTab == 'result'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-1__item">
+                <apex:outputPanel rendered="{!selectedTab == 'result'}" id="resultPanel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection"> 
+                        
+                        <apex:variable value="1" var="resultRank"/>
+                        <apex:repeat value="{!results}" var="s">
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile">
+                                        <!--<div class="slds-truncate" title="UserDet"></div>-->
+                                            <table class="slds-table slds-wrap slds-table_cell-buffer">
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="UserDet"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 150px; font-weight : bold ">
+                                                        <div class="slds-truncate" title="UserName">{!$Label.CG_Leaderboard_UserName}</div>
+                                                         
+                                                    </th>
+                                                    <th scope="col" style="width : 170px; font-weight : bold ">
+                                                        <div class="slds-truncate" title="UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope = "col" style="font-weight : bold ">
+                                                        <div class = "slds-truncate" title="UserResult">Resultat</div>
+                                                    </th>
+                                                    <th scope = "col" style="font-weight : bold ">
+                                                        <div class = "slds-truncate" title="ResultatUpdateDate">{!$Label.CG_Leaderboard_Resultat_Update_Date}</div>
+                                                    </th>
+                                                </tr> 
+                                            </thead>           
+                                            <tbody>        
+                                                <td>                                
+                                                    <div class="slds-media__figure">
+                                                        <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                            <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" /> 
+                                                        </span>
+                                                        <span class="slds-badge slds-theme--shade">
+                                                            {!resultRank}
+                                                            <apex:variable var="resultRank" value="{!VALUE(resultRank) + 1}"/>
+                                                        </span>
+                                                    </div>                                 
+                                                </td>
+                                                <td>      
+                                                    <p class="slds-tile__title slds-truncate name">
+                                                        <a href="/apex/MyPerformance?ypsId={!s.Id}"> {!s.User_Performance__r.User__r.Name}</a> 
+                                                    </p>                                                         
+                                                </td>
+                                                <td>
+                                                    <p class = "slds-tile__title slds-truncate name">{!s.Cygate_Sales_Team__c}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class = "slds-text-heading--label points">{!s.result__c}%</p>
+                                                </td>
+                                                <td>
+                                                    <p class = "slds-tile__title slds-truncate name">{!s.Resultat_Update_Date__c}</p>
+                                                </td>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                                  
+                                    <!--<div class="slds-col--bump-left">
+                                    <table> 
+                                        <thead>
+                                        <tr class="slds-text-title_caps"> 
+                                        
+                                        <th scope="col">
+                                        <span>
+                                        <div class="slds-truncate" title="UserName"> Resultat</div>
+                                        </span>
+                                        </th>
+                                        
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <td>
+                                        <span>
+                                        <!--<div class="slds-text-heading--label points">-->
+                                        <!--<div>
+                                        <p  class="slds-tile__title slds-truncate name">{!CEILING(s.Result__c)} %</p>
+                                        
+                                        </div>  
+                                        </span>
+                                        </td>
+                                        </tbody>
+                                        </table>
+                                    </div>-->
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+            </div>
+            
+             <div id="tab-scoped-1" class="slds-tabs--scoped__content {!IF((selectedTab == 'PYResult'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-1__item">
+                <apex:outputPanel rendered="{!selectedTab == 'PYResult'}" id="PYResultPanel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection"> 
+                        
+                        <apex:variable value="1" var="resultRank"/>
+                        <apex:repeat value="{!PYResults}" var="s">
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile">
+                                        <!--<div class="slds-truncate" title="UserDet"></div>-->
+                                            <table class="slds-table slds-wrap slds-table_cell-buffer">
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="UserDet"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 150px; font-weight : bold ">
+                                                        <div class="slds-truncate" title="UserName">{!$Label.CG_Leaderboard_UserName}</div>
+                                                         
+                                                    </th>
+                                                    <th scope="col" style="width : 170px; font-weight : bold ">
+                                                        <div class="slds-truncate" title="UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope = "col" style="font-weight : bold ">
+                                                        <div class = "slds-truncate" title="UserResult">Resultat</div>
+                                                    </th>
+                                                    <th scope = "col" style="font-weight : bold ">
+                                                        <div class = "slds-truncate" title="ResultatUpdateDate">{!$Label.CG_Leaderboard_Resultat_Update_Date}</div>
+                                                    </th>
+                                                </tr> 
+                                            </thead>           
+                                            <tbody>        
+                                                <td>                                
+                                                    <div class="slds-media__figure">
+                                                        <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                            <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" /> 
+                                                        </span>
+                                                        <span class="slds-badge slds-theme--shade">
+                                                            {!resultRank}
+                                                            <apex:variable var="resultRank" value="{!VALUE(resultRank) + 1}"/>
+                                                        </span>
+                                                    </div>                                 
+                                                </td>
+                                                <td>      
+                                                    <p class="slds-tile__title slds-truncate name">
+                                                        <a href="/apex/MyPerformance?ypsId={!s.Id}"> {!s.User_Performance__r.User__r.Name}</a> 
+                                                    </p>                                                         
+                                                </td>
+                                                <td>
+                                                    <p class = "slds-tile__title slds-truncate name">{!s.Cygate_Sales_Team__c}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class = "slds-text-heading--label points">{!s.result__c}%</p>
+                                                </td>
+                                                <td>
+                                                    <p class = "slds-tile__title slds-truncate name">{!s.Resultat_Update_Date__c}</p>
+                                                </td>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                                  
+                                    <!--<div class="slds-col--bump-left">
+                                    <table> 
+                                        <thead>
+                                        <tr class="slds-text-title_caps"> 
+                                        
+                                        <th scope="col">
+                                        <span>
+                                        <div class="slds-truncate" title="UserName"> Resultat</div>
+                                        </span>
+                                        </th>
+                                        
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <td>
+                                        <span>
+                                        <!--<div class="slds-text-heading--label points">-->
+                                        <!--<div>
+                                        <p  class="slds-tile__title slds-truncate name">{!CEILING(s.Result__c)} %</p>
+                                        
+                                        </div>  
+                                        </span>
+                                        </td>
+                                        </tbody>
+                                        </table>
+                                    </div>-->
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+            </div>                                     
+             
+                              
+            <div id="tab-scoped-2" class="slds-tabs--scoped__content {!IF((selectedTab == 'score'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-2__item"> 
+                
+                
+                <apex:outputPanel rendered="{!selectedTab == 'score'}" id="scorePanel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">
+                        
+                        <apex:variable value="1" var="scoreRank"/>
+                        <apex:repeat value="{!scores}" var="s">                    
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile">
+                                        <table class="slds-table slds-wrap slds-table_cell-buffer">
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="Userrank"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 100px; font-weight : bold">
+                                                        <div class="slds-truncate" title="User">User</div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 170px; font-weight : bold">
+                                                        <Div Class = 'slds-truncate' title = "UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund">Befintlig Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ny Kund">Ny Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">Befintlig Kund Ny Kontakt</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Bredda Affären">Bredda Affären</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                      <!-- D.C.  <div class="slds-truncate" title="Växa Befintlig Affär">Växa Befintlig Affär</div> -->
+                                                      <div class="slds-truncate" title="Växa Befintlig Affär">Växa/ny affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">Öka Avtalad Affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Sambesök">Sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ej sambesök">Ej sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Points">{!$Label.CG_Leaderboard_Points}</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-label="Userrank">
+                                                        <div class="slds-truncate" title="Userrank">
+                                                            <div class="slds-media__figure">
+                                                                <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                                    <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" />
+                                                                </span>
+                                                                <span class="slds-badge slds-theme--shade">
+                                                                    {!scoreRank}
+                                                                    <apex:variable var="scoreRank" value="{!VALUE(scoreRank) + 1}"/>
+                                                                </span>
+                                                            </div>     
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="User">
+                                                        <div class="slds-truncate" title="User" style="width : 120px">
+                                                            
+                                                            <p class="slds-tile__title">
+                                                                <a  href="/apex/MyPerformance?ypsId={!s.Id}"> {!s.User_Performance__r.User__r.Name}</a>
+                                                            </p>
+                                                        </div>                                                                            
+                                                    </td>
+                                                    <td>     
+                                                        <div class = "slds-truncate" title="userTeam">{!s.Cygate_Sales_Team__c}</div>    
+                                                    </td>
+                                                    <td data-label="Befintlig Kund">
+                                                        <div class="slds-truncate" title="Befintlig Kund">{!s.Befintlig_Kund__c * 2} P</div>
+                                                    </td>
+                                                    <td data-label="Ny Kund">
+                                                        <div class="slds-truncate" title="Ny Kund">{!s.Ny_Kund__c *6} P</div>
+                                                    </td>
+                                                    <td data-label="Befintlig Kund Ny Kontakt">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">{!s.Befintlig_Kund_Ny_Kontakt__c *4} P</div>
+                                                    </td>
+                                                   <!-- <td data-label="Bredda Affären">
+                                                        <div class="slds-truncate" title="Bredda Affären">{!s.Bredda_Aff_ren__c *4} P</div>
+                                                    </td>
+                                                    <td data-label="Växa Befintlig Affär">
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">{!s.V_xa_Befintlig_Aff_r__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Öka Avtalad Affär">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">{!s.ka_Avtalad_Aff_r__c *4} P</div>
+                                                    </td>-->
+                                                    <td data-label="Sambesök">
+                                                        <div class="slds-truncate" title="Sambesök">{!s.Sambes_k__c *8} P</div>
+                                                    </td>
+                                                    <td data-label="Ej sambesök">
+                                                        <div class="slds-truncate" title="Ej sambesök">{!s.Esambes_k__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Points">
+                                                        <div class="slds-truncate" title="Points">{!s.Total_Points__c} P</div>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>                                                  
+                                    </div>  
+                                    <div class="slds-col--bump-left">
+                                        <div class="slds-text-heading--label points">{!s.Total_Score__c} P</div>  
+                                    </div>  
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+                <apex:outputLink value="{!$Label.Leaderboard_Report}">Rapport: Poäng per kvartal 2019</apex:outputLink>
+            </div>
+            
+            
+            <div id="tab-scoped-3"  class="slds-tabs--scoped__content {!IF((selectedTab == 'q1'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-3__item"> 
+                
+                <apex:outputPanel rendered="{!selectedTab == 'q1'}" id="q1Panel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">
+                        
+                        <apex:variable value="1" var="scoreRank"/>
+                        <apex:repeat value="{!q1}" var="s">                    
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile" >
+                                        
+                                        <table class="slds-table slds-wrap slds-table_cell-buffer">
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="Userrank"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 100px;font-weight : bold">
+                                                        <div class="slds-truncate" title="User">User</div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 170px; font-weight : bold">
+                                                        <Div Class = 'slds-truncate' title = "UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund">Befintlig Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ny Kund">Ny Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">Befintlig Kund Ny Kontakt</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Bredda Affären">Bredda Affären</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <!-- D.C. <div class="slds-truncate" title="Växa Befintlig Affär">Växa Befintlig Affär</div> -->
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">Växa/ny affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">Öka Avtalad Affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Sambesök">Sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ej sambesök">Ej sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Points">Points</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-label="Userrank">
+                                                        <div class="slds-truncate" title="Userrank">
+                                                            <div class="slds-media__figure">
+                                                                <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                                    <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" />
+                                                                </span>
+                                                                <span class="slds-badge slds-theme--shade">
+                                                                    {!scoreRank}
+                                                                    <apex:variable var="scoreRank" value="{!VALUE(scoreRank) + 1}"/>
+                                                                </span>
+                                                            </div>     
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="User">
+                                                        <div class="slds-truncate" title="User" style="width : 120px">
+                                                            
+                                                            <p class="slds-tile__title">
+                                                                <a  href="/apex/MyPerformance?ypsId={!s.Yearly_Performance_Score__c}"> {!s.User_Performance__r.User__r.Name}</a>
+                                                            </p>
+                                                        </div>                                                                            
+                                                    </td>
+                                                    <td>     
+                                                        <div class = "slds-truncate" title="userTeam">{!s.Yearly_Performance_Score__r.Cygate_Sales_Team__c}</div>    
+                                                    </td>
+                                                    <td data-label="Befintlig Kund">
+                                                        <div class="slds-truncate" title="Befintlig Kund">{!s.Befintlig_Kund__c * 2} P</div>
+                                                    </td>
+                                                    <td data-label="Ny Kund">
+                                                        <div class="slds-truncate" title="Ny Kund">{!s.Ny_Kund__c *6} P</div>
+                                                    </td>
+                                                    <td data-label="Befintlig Kund Ny Kontakt">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">{!s.Befintlig_Kund_Ny_Kontakt__c *4} P</div>
+                                                    </td>
+                                                <!--    <td data-label="Bredda Affären">
+                                                        <div class="slds-truncate" title="Bredda Affären">{!s.Bredda_Aff_ren__c *4} P</div>
+                                                    </td>
+                                                    <td data-label="Växa Befintlig Affär">
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">{!s.V_xa_Befintlig_Aff_r__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Öka Avtalad Affär">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">{!s.ka_Avtalad_Aff_r__c *4} P</div>
+                                                    </td>-->
+                                                    <td data-label="Sambesök">
+                                                        <div class="slds-truncate" title="Sambesök">{!s.Sambes_k__c *8} P</div>
+                                                    </td>
+                                                    <td data-label="Ej sambesök">
+                                                        <div class="slds-truncate" title="Ej sambesök">{!s.Esambes_k__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Points">
+                                                        <div class="slds-truncate" title="Points">{!s.Total_Points__c} P</div>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                       </table>
+                                    </div>
+                                    <div class="slds-col--bump-left">
+                                        <div class="slds-text-heading--label points">{!s.Total_Points__c} P</div>  
+                                    </div>                                   
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+            </div>
+            
+            <div id="tab-scoped-4" class="slds-tabs--scoped__content {!IF((selectedTab == 'q2'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-4__item"> 
+                
+                <apex:outputPanel rendered="{!selectedTab == 'q2'}" id="q2Panel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">
+                        
+                        <apex:variable value="1" var="scoreRank"/>
+                        <apex:repeat value="{!q2}" var="s">                    
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile" >
+                                        
+                                        <table class="slds-table slds-wrap slds-table_cell-buffer" >
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="Userrank"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 100px; font-weight : bold">
+                                                        <div class="slds-truncate" title="User">User</div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 170px; font-weight : bold">
+                                                        <Div Class = 'slds-truncate' title = "UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund">Befintlig Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ny Kund">Ny Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">Befintlig Kund Ny Kontakt</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Bredda Affären">Bredda Affären</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <!-- D.C. <div class="slds-truncate" title="Växa Befintlig Affär">Växa Befintlig Affär</div> -->
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">Växa/ny affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">Öka Avtalad Affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Sambesök">Sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ej sambesök">Ej sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Points">Points</div>
+                                                    </th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-label="Userrank">
+                                                        <div class="slds-truncate" title="Userrank">
+                                                            <div class="slds-media__figure">
+                                                                <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                                        <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" /> 
+                                                                </span>
+                                                                <span class="slds-badge slds-theme--shade">
+                                                                    {!scoreRank}
+                                                                    <apex:variable var="scoreRank" value="{!VALUE(scoreRank) + 1}"/>
+                                                                </span>
+                                                            </div>     
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="User">
+                                                        <div class="slds-truncate" title="User" style="width : 120px">
+                                                            
+                                                            <p class="slds-tile__title">
+                                                                <a  href="/apex/MyPerformance?ypsId={!s.Yearly_Performance_Score__c}"> {!s.User_Performance__r.User__r.Name}</a>
+                                                            </p>
+                                                        </div>                                                                            
+                                                    </td>
+                                                    <td>     
+                                                        <div class = "slds-truncate" title="userTeam">{!s.Yearly_Performance_Score__r.Cygate_Sales_Team__c}</div>    
+                                                    </td>
+                                                    <td data-label="Befintlig Kund">
+                                                        <div class="slds-truncate" title="Befintlig Kund">{!s.Befintlig_Kund__c * 2} P</div>
+                                                    </td>
+                                                    <td data-label="Ny Kund">
+                                                        <div class="slds-truncate" title="Ny Kund">{!s.Ny_Kund__c *6} P</div>
+                                                    </td>
+                                                    <td data-label="Befintlig Kund Ny Kontakt">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">{!s.Befintlig_Kund_Ny_Kontakt__c *4} P</div>
+                                                    </td>
+                                                   <!-- <td data-label="Bredda Affären">
+                                                        <div class="slds-truncate" title="Bredda Affären">{!s.Bredda_Aff_ren__c *4} P</div>
+                                                    </td>
+                                                    <td data-label="Växa Befintlig Affär">
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">{!s.V_xa_Befintlig_Aff_r__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Öka Avtalad Affär">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">{!s.ka_Avtalad_Aff_r__c *4} P</div>
+                                                    </td>-->
+                                                    <td data-label="Sambesök">
+                                                        <div class="slds-truncate" title="Sambesök">{!s.Sambes_k__c *8} P</div>
+                                                    </td>
+                                                    <td data-label="Ej sambesök">
+                                                        <div class="slds-truncate" title="Ej sambesök">{!s.Esambes_k__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Points">
+                                                        <div class="slds-truncate" title="Points">{!s.Total_Points__c} P</div>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="slds-col--bump-left">
+                                        <div class="slds-text-heading--label points">{!s.Total_Points__c} P</div>  
+                                    </div>   
+                                    
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+            </div>
+            
+            <div id="tab-scoped-5" class="slds-tabs--scoped__content {!IF((selectedTab == 'q3'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-5__item"> 
+                
+                <apex:outputPanel rendered="{!selectedTab == 'q3'}" id="q3Panel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">
+                        
+                        <apex:variable value="1" var="scoreRank"/>
+                        <apex:repeat value="{!q3}" var="s">                    
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile" >
+                                        
+                                        <table class="slds-table slds-wrap slds-table_cell-buffer" >
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="Userrank"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 100px ; font-weight : bold">
+                                                        <div class="slds-truncate" title="User">User</div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 170px ; font-weight : bold">
+                                                        <Div Class = 'slds-truncate' title = "UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund">Befintlig Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ny Kund">Ny Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">Befintlig Kund Ny Kontakt</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Bredda Affären">Bredda Affären</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <!-- D.C. <div class="slds-truncate" title="Växa Befintlig Affär">Växa Befintlig Affär</div> -->
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">Växa/ny affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">Öka Avtalad Affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Sambesök">Sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ej sambesök">Ej sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Points">Points</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-label="Userrank">
+                                                        <div class="slds-truncate" title="Userrank">
+                                                            <div class="slds-media__figure">
+                                                                <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                                       <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" /> 
+                                                                </span>
+                                                                <span class="slds-badge slds-theme--shade">
+                                                                    {!scoreRank}
+                                                                    <apex:variable var="scoreRank" value="{!VALUE(scoreRank) + 1}"/>
+                                                                </span>
+                                                            </div>     
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="User">
+                                                        <div class="slds-truncate" title="User" style="width : 120px">
+                                                            
+                                                            <p class="slds-tile__title">
+                                                                <a  href="/apex/MyPerformance?ypsId={!s.Yearly_Performance_Score__c}"> {!s.User_Performance__r.User__r.Name}</a>
+                                                            </p>
+                                                        </div>                                                                            
+                                                    </td>
+                                                    <td>     
+                                                        <div class = "slds-truncate" title="userTeam">{!s.Yearly_Performance_Score__r.Cygate_Sales_Team__c}</div>    
+                                                    </td>
+                                                    <td data-label="Befintlig Kund">
+                                                        <div class="slds-truncate" title="Befintlig Kund">{!s.Befintlig_Kund__c * 2} P</div>
+                                                    </td>
+                                                    <td data-label="Ny Kund">
+                                                        <div class="slds-truncate" title="Ny Kund">{!s.Ny_Kund__c *6} P</div>
+                                                    </td>
+                                                    <td data-label="Befintlig Kund Ny Kontakt">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">{!s.Befintlig_Kund_Ny_Kontakt__c *4} P</div>
+                                                    </td>
+                                                   <!-- <td data-label="Bredda Affären">
+                                                        <div class="slds-truncate" title="Bredda Affären">{!s.Bredda_Aff_ren__c *4} P</div>
+                                                    </td>
+                                                    <td data-label="Växa Befintlig Affär">
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">{!s.V_xa_Befintlig_Aff_r__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Öka Avtalad Affär">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">{!s.ka_Avtalad_Aff_r__c *4} P</div>
+                                                    </td>-->
+                                                    <td data-label="Sambesök">
+                                                        <div class="slds-truncate" title="Sambesök">{!s.Sambes_k__c *8} P</div>
+                                                    </td>
+                                                    <td data-label="Ej sambesök">
+                                                        <div class="slds-truncate" title="Ej sambesök">{!s.Esambes_k__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Points">
+                                                        <div class="slds-truncate" title="Points">{!s.Total_Points__c} P</div>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="slds-col--bump-left">
+                                        <div class="slds-text-heading--label points">{!s.Total_Points__c} P</div>  
+                                    </div>   
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+            </div>
+            
+            
+            <div id="tab-scoped-6" class="slds-tabs--scoped__content {!IF((selectedTab == 'q4'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-6__item"> 
+                
+                <apex:outputPanel rendered="{!selectedTab == 'q4'}" id="q4Panel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">
+                        
+                        <apex:variable value="1" var="scoreRank"/>
+                        <apex:repeat value="{!q4}" var="s">                    
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile" >
+                                        
+                                        <table class="slds-table slds-wrap slds-table_cell-buffer">
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="Userrank"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 100px ;font-weight : bold">
+                                                        <div class="slds-truncate" title="User">User</div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 170px; font-weight : bold">
+                                                        <Div Class = 'slds-truncate' title = "UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund">Befintlig Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ny Kund">Ny Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">Befintlig Kund Ny Kontakt</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Bredda Affären">Bredda Affären</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                       <!-- D.C.  <div class="slds-truncate" title="Växa Befintlig Affär">Växa Befintlig Affär</div> -->
+                                                       <div class="slds-truncate" title="Växa Befintlig Affär">Växa/ny affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">Öka Avtalad Affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Sambesök">Sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ej sambesök">Ej sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Points">Points</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-label="Userrank">
+                                                        <div class="slds-truncate" title="Userrank">
+                                                            <div class="slds-media__figure">
+                                                                <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                                      <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" /> 
+                                                                </span>
+                                                                <span class="slds-badge slds-theme--shade">
+                                                                    {!scoreRank}
+                                                                    <apex:variable var="scoreRank" value="{!VALUE(scoreRank) + 1}"/>
+                                                                </span>
+                                                            </div>     
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="User">
+                                                        <div class="slds-truncate" title="User" style="width : 120px">
+                                                            
+                                                            <p class="slds-tile__title">
+                                                                <a  href="/apex/MyPerformance?ypsId={!s.Yearly_Performance_Score__c}"> {!s.User_Performance__r.User__r.Name}</a>
+                                                            </p>
+                                                        </div>                                                                            
+                                                    </td>
+                                                    <td>     
+                                                        <div class = "slds-truncate" title="userTeam">{!s.Yearly_Performance_Score__r.Cygate_Sales_Team__c}</div>    
+                                                    </td>
+                                                    <td data-label="Befintlig Kund">
+                                                        <div class="slds-truncate" title="Befintlig Kund">{!s.Befintlig_Kund__c * 2} P</div>
+                                                    </td>
+                                                    <td data-label="Ny Kund">
+                                                        <div class="slds-truncate" title="Ny Kund">{!s.Ny_Kund__c *6} P</div>
+                                                    </td>
+                                                    <td data-label="Befintlig Kund Ny Kontakt">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">{!s.Befintlig_Kund_Ny_Kontakt__c *4} P</div>
+                                                    </td>
+                                                  <!-- <td data-label="Bredda Affären">
+                                                        <div class="slds-truncate" title="Bredda Affären">{!s.Bredda_Aff_ren__c *4} P</div>
+                                                    </td>
+                                                    <td data-label="Växa Befintlig Affär">
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">{!s.V_xa_Befintlig_Aff_r__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Öka Avtalad Affär">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">{!s.ka_Avtalad_Aff_r__c *4} P</div>
+                                                    </td>-->
+                                                    <td data-label="Sambesök">
+                                                        <div class="slds-truncate" title="Sambesök">{!s.Sambes_k__c *8} P</div>
+                                                    </td>
+                                                    <td data-label="Ej sambesök">
+                                                        <div class="slds-truncate" title="Ej sambesök">{!s.Esambes_k__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Points">
+                                                        <div class="slds-truncate" title="Points">{!s.Total_Points__c} P</div>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="slds-col--bump-left">
+                                        <div class="slds-text-heading--label points">{!s.Total_Points__c} P</div>  
+                                    </div>   
+                                    
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+            </div>
+            
+             <div id="tab-scoped-7" class="slds-tabs--scoped__content {!IF((selectedTab == 'PYscore'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-7__item"> 
+                
+              <apex:outputPanel rendered="{!selectedTab == 'PYscore'}" id="pyscorePanel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">
+                        
+                        <apex:variable value="1" var="scoreRank"/>
+                        <apex:repeat value="{!PYscores}" var="s">                    
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile">
+                                        <table class="slds-table slds-wrap slds-table_cell-buffer">
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="Userrank"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 100px ; font-weight : bold">
+                                                        <div class="slds-truncate" title="User">User</div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 170px ; font-weight : bold">
+                                                        <Div Class = 'slds-truncate' title = "UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund">Befintlig Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ny Kund">Ny Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">Befintlig Kund Ny Kontakt</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Bredda Affären">Bredda Affären</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <!-- D.C. <div class="slds-truncate" title="Växa Befintlig Affär">Växa Befintlig Affär</div> -->
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">Växa/ny affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">Öka Avtalad Affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Sambesök">Sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ej sambesök">Ej sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Points">Points</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-label="Userrank">
+                                                        <div class="slds-truncate" title="Userrank">
+                                                            <div class="slds-media__figure">
+                                                                <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                                    <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" />
+                                                                </span>
+                                                                <span class="slds-badge slds-theme--shade">
+                                                                    {!scoreRank}
+                                                                    <apex:variable var="scoreRank" value="{!VALUE(scoreRank) + 1}"/>
+                                                                </span>
+                                                            </div>     
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="User">
+                                                        <div class="slds-truncate" title="User" style="width : 120px">
+                                                            
+                                                            <p class="slds-tile__title">
+                                                                <a  href="/apex/MyPerformance?ypsId={!s.Id}"> {!s.User_Performance__r.User__r.Name}</a>
+                                                            </p>
+                                                        </div>                                                                            
+                                                    </td>
+                                                    <td>     
+                                                        <div class = "slds-truncate" title="userTeam">{!s.Cygate_Sales_Team__c}</div>    
+                                                    </td>
+                                                    <td data-label="Befintlig Kund">
+                                                        <div class="slds-truncate" title="Befintlig Kund">{!s.Befintlig_Kund__c * 2} P</div>
+                                                    </td>
+                                                    <td data-label="Ny Kund">
+                                                        <div class="slds-truncate" title="Ny Kund">{!s.Ny_Kund__c *6} P</div>
+                                                    </td>
+                                                    <td data-label="Befintlig Kund Ny Kontakt">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">{!s.Befintlig_Kund_Ny_Kontakt__c *4} P</div>
+                                                    </td>
+                                                   <!-- <td data-label="Bredda Affären">
+                                                        <div class="slds-truncate" title="Bredda Affären">{!s.Bredda_Aff_ren__c *4} P</div>
+                                                    </td>
+                                                    <td data-label="Växa Befintlig Affär">
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">{!s.V_xa_Befintlig_Aff_r__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Öka Avtalad Affär">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">{!s.ka_Avtalad_Aff_r__c *4} P</div>
+                                                    </td>-->
+                                                    <td data-label="Sambesök">
+                                                        <div class="slds-truncate" title="Sambesök">{!s.Sambes_k__c *8} P</div>
+                                                    </td>
+                                                    <td data-label="Ej sambesök">
+                                                        <div class="slds-truncate" title="Ej sambesök">{!s.Esambes_k__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Points">
+                                                        <div class="slds-truncate" title="Points">{!s.Total_Points__c} P</div>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>                                                  
+                                    </div>  
+                                    <div class="slds-col--bump-left">
+                                        <div class="slds-text-heading--label points">{!s.Total_Score__c} P</div>  
+                                    </div>  
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+            </div>
+            
+            <div id="tab-scoped-8"  class="slds-tabs--scoped__content {!IF((selectedTab == 'PYq1'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-8__item"> 
+                
+                <apex:outputPanel rendered="{!selectedTab == 'PYq1'}" id="PYq1Panel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">
+                        
+                        <apex:variable value="1" var="scoreRank"/>
+                        <apex:repeat value="{!PYq1}" var="s">                    
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile" >
+                                        
+                                        <table class="slds-table slds-wrap slds-table_cell-buffer">
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="Userrank"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 100px;font-weight : bold">
+                                                        <div class="slds-truncate" title="User">User</div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 170px; font-weight : bold">
+                                                        <Div Class = 'slds-truncate' title = "UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund">Befintlig Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ny Kund">Ny Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">Befintlig Kund Ny Kontakt</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Bredda Affären">Bredda Affären</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <!-- D.C. <div class="slds-truncate" title="Växa Befintlig Affär">Växa Befintlig Affär</div> -->
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">Växa/ny affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">Öka Avtalad Affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Sambesök">Sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ej sambesök">Ej sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Points">Points</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-label="Userrank">
+                                                        <div class="slds-truncate" title="Userrank">
+                                                            <div class="slds-media__figure">
+                                                                <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                                    <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" />
+                                                                </span>
+                                                                <span class="slds-badge slds-theme--shade">
+                                                                    {!scoreRank}
+                                                                    <apex:variable var="scoreRank" value="{!VALUE(scoreRank) + 1}"/>
+                                                                </span>
+                                                            </div>     
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="User">
+                                                        <div class="slds-truncate" title="User" style="width : 120px">
+                                                            
+                                                            <p class="slds-tile__title">
+                                                                <a  href="/apex/MyPerformance?ypsId={!s.Yearly_Performance_Score__c}"> {!s.User_Performance__r.User__r.Name}</a>
+                                                            </p>
+                                                        </div>                                                                            
+                                                    </td>
+                                                    <td>     
+                                                        <div class = "slds-truncate" title="userTeam">{!s.Yearly_Performance_Score__r.Cygate_Sales_Team__c}</div>    
+                                                    </td>
+                                                    <td data-label="Befintlig Kund">
+                                                        <div class="slds-truncate" title="Befintlig Kund">{!s.Befintlig_Kund__c * 2} P</div>
+                                                    </td>
+                                                    <td data-label="Ny Kund">
+                                                        <div class="slds-truncate" title="Ny Kund">{!s.Ny_Kund__c *6} P</div>
+                                                    </td>
+                                                    <td data-label="Befintlig Kund Ny Kontakt">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">{!s.Befintlig_Kund_Ny_Kontakt__c *4} P</div>
+                                                    </td>
+                                                 <!--   <td data-label="Bredda Affären">
+                                                        <div class="slds-truncate" title="Bredda Affären">{!s.Bredda_Aff_ren__c *4} P</div>
+                                                    </td>
+                                                    <td data-label="Växa Befintlig Affär">
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">{!s.V_xa_Befintlig_Aff_r__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Öka Avtalad Affär">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">{!s.ka_Avtalad_Aff_r__c *4} P</div>
+                                                    </td>-->
+                                                    <td data-label="Sambesök">
+                                                        <div class="slds-truncate" title="Sambesök">{!s.Sambes_k__c *8} P</div>
+                                                    </td>
+                                                    <td data-label="Ej sambesök">
+                                                        <div class="slds-truncate" title="Ej sambesök">{!s.Esambes_k__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Points">
+                                                        <div class="slds-truncate" title="Points">{!s.Total_Points__c} P</div>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                       </table>
+                                    </div>
+                                    <div class="slds-col--bump-left">
+                                        <div class="slds-text-heading--label points">{!s.Total_Points__c} P</div>  
+                                    </div>                                   
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+            </div>
+            
+            <div id="tab-scoped-9"  class="slds-tabs--scoped__content {!IF((selectedTab == 'PYq2'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-9__item"> 
+                
+                <apex:outputPanel rendered="{!selectedTab == 'PYq2'}" id="PYq2Panel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">
+                        
+                        <apex:variable value="1" var="scoreRank"/>
+                        <apex:repeat value="{!PYq2}" var="s">                    
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile" >
+                                        
+                                        <table class="slds-table slds-wrap slds-table_cell-buffer">
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="Userrank"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 100px;font-weight : bold">
+                                                        <div class="slds-truncate" title="User">User</div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 170px; font-weight : bold">
+                                                        <Div Class = 'slds-truncate' title = "UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund">Befintlig Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ny Kund">Ny Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">Befintlig Kund Ny Kontakt</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Bredda Affären">Bredda Affären</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <!-- D.C. <div class="slds-truncate" title="Växa Befintlig Affär">Växa Befintlig Affär</div> -->
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">Växa/ny affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">Öka Avtalad Affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Sambesök">Sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ej sambesök">Ej sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Points">Points</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-label="Userrank">
+                                                        <div class="slds-truncate" title="Userrank">
+                                                            <div class="slds-media__figure">
+                                                                <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                                    <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" />
+                                                                </span>
+                                                                <span class="slds-badge slds-theme--shade">
+                                                                    {!scoreRank}
+                                                                    <apex:variable var="scoreRank" value="{!VALUE(scoreRank) + 1}"/>
+                                                                </span>
+                                                            </div>     
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="User">
+                                                        <div class="slds-truncate" title="User" style="width : 120px">
+                                                            
+                                                            <p class="slds-tile__title">
+                                                                <a  href="/apex/MyPerformance?ypsId={!s.Yearly_Performance_Score__c}"> {!s.User_Performance__r.User__r.Name}</a>
+                                                            </p>
+                                                        </div>                                                                            
+                                                    </td>
+                                                    <td>     
+                                                        <div class = "slds-truncate" title="userTeam">{!s.Yearly_Performance_Score__r.Cygate_Sales_Team__c}</div>    
+                                                    </td>
+                                                    <td data-label="Befintlig Kund">
+                                                        <div class="slds-truncate" title="Befintlig Kund">{!s.Befintlig_Kund__c * 2} P</div>
+                                                    </td>
+                                                    <td data-label="Ny Kund">
+                                                        <div class="slds-truncate" title="Ny Kund">{!s.Ny_Kund__c *6} P</div>
+                                                    </td>
+                                                    <td data-label="Befintlig Kund Ny Kontakt">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">{!s.Befintlig_Kund_Ny_Kontakt__c *4} P</div>
+                                                    </td>
+                                                <!--    <td data-label="Bredda Affären">
+                                                        <div class="slds-truncate" title="Bredda Affären">{!s.Bredda_Aff_ren__c *4} P</div>
+                                                    </td>
+                                                    <td data-label="Växa Befintlig Affär">
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">{!s.V_xa_Befintlig_Aff_r__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Öka Avtalad Affär">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">{!s.ka_Avtalad_Aff_r__c *4} P</div>
+                                                    </td>-->
+                                                    <td data-label="Sambesök">
+                                                        <div class="slds-truncate" title="Sambesök">{!s.Sambes_k__c *8} P</div>
+                                                    </td>
+                                                    <td data-label="Ej sambesök">
+                                                        <div class="slds-truncate" title="Ej sambesök">{!s.Esambes_k__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Points">
+                                                        <div class="slds-truncate" title="Points">{!s.Total_Points__c} P</div>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                       </table>
+                                    </div>
+                                    <div class="slds-col--bump-left">
+                                        <div class="slds-text-heading--label points">{!s.Total_Points__c} P</div>  
+                                    </div>                                   
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+            </div>
+            
+            <div id="tab-scoped-10"  class="slds-tabs--scoped__content {!IF((selectedTab == 'PYq3'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-10__item"> 
+                
+                <apex:outputPanel rendered="{!selectedTab == 'PYq3'}" id="PYq3Panel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">
+                        
+                        <apex:variable value="1" var="scoreRank"/>
+                        <apex:repeat value="{!PYq3}" var="s">                    
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile" >
+                                        
+                                        <table class="slds-table slds-wrap slds-table_cell-buffer">
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="Userrank"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 100px;font-weight : bold">
+                                                        <div class="slds-truncate" title="User">User</div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 170px; font-weight : bold">
+                                                        <Div Class = 'slds-truncate' title = "UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund">Befintlig Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ny Kund">Ny Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">Befintlig Kund Ny Kontakt</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Bredda Affären">Bredda Affären</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <!-- D.C.<div class="slds-truncate" title="Växa Befintlig Affär">Växa Befintlig Affär</div> -->
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">Växa/ny affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">Öka Avtalad Affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Sambesök">Sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ej sambesök">Ej sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Points">Points</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-label="Userrank">
+                                                        <div class="slds-truncate" title="Userrank">
+                                                            <div class="slds-media__figure">
+                                                                <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                                    <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" />
+                                                                </span>
+                                                                <span class="slds-badge slds-theme--shade">
+                                                                    {!scoreRank}
+                                                                    <apex:variable var="scoreRank" value="{!VALUE(scoreRank) + 1}"/>
+                                                                </span>
+                                                            </div>     
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="User">
+                                                        <div class="slds-truncate" title="User" style="width : 120px">
+                                                            
+                                                            <p class="slds-tile__title">
+                                                                <a  href="/apex/MyPerformance?ypsId={!s.Yearly_Performance_Score__c}"> {!s.User_Performance__r.User__r.Name}</a>
+                                                            </p>
+                                                        </div>                                                                            
+                                                    </td>
+                                                    <td>     
+                                                        <div class = "slds-truncate" title="userTeam">{!s.Yearly_Performance_Score__r.Cygate_Sales_Team__c}</div>    
+                                                    </td>
+                                                    <td data-label="Befintlig Kund">
+                                                        <div class="slds-truncate" title="Befintlig Kund">{!s.Befintlig_Kund__c * 2} P</div>
+                                                    </td>
+                                                    <td data-label="Ny Kund">
+                                                        <div class="slds-truncate" title="Ny Kund">{!s.Ny_Kund__c *6} P</div>
+                                                    </td>
+                                                    <td data-label="Befintlig Kund Ny Kontakt">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">{!s.Befintlig_Kund_Ny_Kontakt__c *4} P</div>
+                                                    </td>
+                                                    <!-- <td data-label="Bredda Affären">
+                                                        <div class="slds-truncate" title="Bredda Affären">{!s.Bredda_Aff_ren__c *4} P</div>
+                                                    </td>
+                                                    <td data-label="Växa Befintlig Affär">
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">{!s.V_xa_Befintlig_Aff_r__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Öka Avtalad Affär">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">{!s.ka_Avtalad_Aff_r__c *4} P</div>
+                                                    </td> -->
+                                                    <td data-label="Sambesök">
+                                                        <div class="slds-truncate" title="Sambesök">{!s.Sambes_k__c *8} P</div>
+                                                    </td>
+                                                    <td data-label="Ej sambesök">
+                                                        <div class="slds-truncate" title="Ej sambesök">{!s.Esambes_k__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Points">
+                                                        <div class="slds-truncate" title="Points">{!s.Total_Points__c} P</div>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                       </table>
+                                    </div>
+                                    <div class="slds-col--bump-left">
+                                        <div class="slds-text-heading--label points">{!s.Total_Points__c} P</div>  
+                                    </div>                                   
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+            </div>
+            
+            <div id="tab-scoped-11"  class="slds-tabs--scoped__content {!IF((selectedTab == 'PYq4'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-11__item"> 
+                
+                <apex:outputPanel rendered="{!selectedTab == 'PYq4'}" id="PYq4Panel" layout="block">
+                    <ul class="slds-list--vertical slds-has-dividers--bottom-space slds-has-selection">
+                        
+                        <apex:variable value="1" var="scoreRank"/>
+                        <apex:repeat value="{!PYq4}" var="s">                    
+                            <li class="slds-list__item">
+                                <div class="slds-grid slds-wrap">                            
+                                    <div class="slds-media slds-tile" >
+                                        
+                                        <table class="slds-table slds-wrap slds-table_cell-buffer">
+                                            <thead>
+                                                <tr class="slds-text-title_caps">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate" title="Userrank"></div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 100px;font-weight : bold">
+                                                        <div class="slds-truncate" title="User">User</div>
+                                                        
+                                                    </th>
+                                                    <th scope="col" style="width : 170px; font-weight : bold">
+                                                        <Div Class = 'slds-truncate' title = "UserTeam">{!$Label.CG_Leaderboard_SalesTeam}</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund">Befintlig Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ny Kund">Ny Kund</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">Befintlig Kund Ny Kontakt</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Bredda Affären">Bredda Affären</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                       <!-- D.C. <div class="slds-truncate" title="Växa Befintlig Affär">Växa Befintlig Affär</div> -->
+                                                       <div class="slds-truncate" title="Växa Befintlig Affär">Växa/ny affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">Öka Avtalad Affär</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Sambesök">Sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Ej sambesök">Ej sambesök</div>
+                                                    </th>
+                                                    <th scope="col" style= "font-weight : bold">
+                                                        <div class="slds-truncate" title="Points">Points</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td data-label="Userrank">
+                                                        <div class="slds-truncate" title="Userrank">
+                                                            <div class="slds-media__figure">
+                                                                <span class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                                                    <img src="{!s.User_Performance__r.User__r.SmallPhotoUrl}" alt="person's name" />
+                                                                </span>
+                                                                <span class="slds-badge slds-theme--shade">
+                                                                    {!scoreRank}
+                                                                    <apex:variable var="scoreRank" value="{!VALUE(scoreRank) + 1}"/>
+                                                                </span>
+                                                            </div>     
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="User">
+                                                        <div class="slds-truncate" title="User" style="width : 120px">
+                                                            
+                                                            <p class="slds-tile__title">
+                                                                <a  href="/apex/MyPerformance?ypsId={!s.Yearly_Performance_Score__c}"> {!s.User_Performance__r.User__r.Name}</a>
+                                                            </p>
+                                                        </div>                                                                            
+                                                    </td>
+                                                    <td>     
+                                                        <div class = "slds-truncate" title="userTeam">{!s.Yearly_Performance_Score__r.Cygate_Sales_Team__c}</div>    
+                                                    </td>
+                                                    <td data-label="Befintlig Kund">
+                                                        <div class="slds-truncate" title="Befintlig Kund">{!s.Befintlig_Kund__c * 2} P</div>
+                                                    </td>
+                                                    <td data-label="Ny Kund">
+                                                        <div class="slds-truncate" title="Ny Kund">{!s.Ny_Kund__c *6} P</div>
+                                                    </td>
+                                                    <td data-label="Befintlig Kund Ny Kontakt">
+                                                        <div class="slds-truncate" title="Befintlig Kund Ny Kontakt">{!s.Befintlig_Kund_Ny_Kontakt__c *4} P</div>
+                                                    </td>
+                                                    <!--<td data-label="Bredda Affären">
+                                                        <div class="slds-truncate" title="Bredda Affären">{!s.Bredda_Aff_ren__c *4} P</div>
+                                                    </td>
+                                                    <td data-label="Växa Befintlig Affär">
+                                                        <div class="slds-truncate" title="Växa Befintlig Affär">{!s.V_xa_Befintlig_Aff_r__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Öka Avtalad Affär">
+                                                        <div class="slds-truncate" title="Öka Avtalad Affär">{!s.ka_Avtalad_Aff_r__c *4} P</div>
+                                                    </td>-->
+                                                    <td data-label="Sambesök">
+                                                        <div class="slds-truncate" title="Sambesök">{!s.Sambes_k__c *8} P</div>
+                                                    </td>
+                                                    <td data-label="Ej sambesök">
+                                                        <div class="slds-truncate" title="Ej sambesök">{!s.Esambes_k__c *2} P</div>
+                                                    </td>
+                                                    <td data-label="Points">
+                                                        <div class="slds-truncate" title="Points">{!s.Total_Points__c} P</div>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                       </table>
+                                    </div>
+                                    <div class="slds-col--bump-left">
+                                        <div class="slds-text-heading--label points">{!s.Total_Points__c} P</div>  
+                                    </div>                                   
+                                </div>
+                            </li>
+                        </apex:repeat> 
+                    </ul>
+                </apex:outputPanel>
+            </div>
+            
+            
+            <div id="tab-scoped-12" class="slds-tabs--scoped__content {!IF((selectedTab == 'pointtab'),'slds-show','slds-hide')}" role="tabpanel" aria-labelledby="tab-scoped-12__item"> 
+                
+                
+                <apex:outputPanel rendered="{!selectedTab == 'pointtab'}" id="pointtabpanel" layout="block">
+                       <tr><td>Poängstruktur:</td></tr> 
+                       <tr><td><br/></td></tr>
+                       <tr><td>Så här samlas poäng in för aktiviteter taggade som Fysisk möte och Web möte. (Taggar man aktiviteter på annat sätt så räknas inte poängen). <br/></td></tr>
+                       <tr><td><br/></td></tr>
+                       <tr><td>Kund status: <br/></td></tr>
+                       <tr><td> Befintlig kund = 2P</td></tr>
+                       <tr><td>Befintlig kund, ny kontakt = 4P</td></tr>
+                       <tr><td>Ny kund = 6P </td></tr>
+                       <tr><td>Sambesök (Cygate kontakt)* = 4P </td></tr>
+                       <tr><td>Sambesök** = 8P</td></tr>
+                       <tr><td>Ej Sambesök* = 2P</td></tr>
+                       <tr><td>Bredda affären = 4P</td></tr>
+                       <tr><td>Växa/ny affär = 2P</td></tr>
+                       <tr><td>Öka avtalad affär = 4P</td></tr>
+                       <tr><td><br/></td></tr>
+                       <tr><td><span style="font-weight:bold">*Sambesök (Cygate kontakt) logik set up;</span> aktiviteten flaggas automatiskt i systemet som <span style="font-weight:bold">Sambesök (Cygate kontakt)</span> om man i kontaktfältet (förutom kundkontakten) har angett en person eller flera som tillhör kontot: <span style="font-weight:bold">Cygate Internal AB (org. nr: 5565498952)</span> och kontakten har titeln enligt länk:</td></tr>
+                       <tr><td><br/></td></tr>
+                       <tr><td><apex:outputLink value="{!$Resource.Cygate_Contact_Titles}">Sambesök (Cygate kontakt) - Titellista</apex:outputLink></td></tr>
+                       <!--<tr><td><apex:outputLink value="{!$Resource.Cygate_Contact_Titles}">Sambesök (Cygate kontakt) - Titellista</apex:outputLink></td></tr> -->
+                       <tr><td><br/></td></tr>
+                       <tr><td>**<span style="font-weight:bold">Sambesök logik set up;</span>  aktiviteten flaggas automatiskt i systemet som <span style="font-weight:bold">Sambesök</span> om man i kontaktfältet (förutom kundkontakten) har angett en person eller flera som tillhör nedan konton:<br/></td></tr>
+                       <tr><td><br/></td></tr>
+                       <tr><td>-<span style="font-weight:bold">Cygate AB&nbsp;(org. nr: 5565498952) om kollegan har rollen</span> BID/Digital Workspace/E-Commerce/Erbjudande Digital arbetsplats/Erbjudande Hybrid IT/Erbjudande NÄT/Erbjudande SÄK/Infrastruktur/Konsult Hybrid IT/Konsult Info.säkerhet Öst/Konsult IT &amp; NÄT Mellan/Konsult Mellan Nkpg/Konsult Nedre Norr/Konsult Networking Öst/Konsult NÄT Syd/Konsult SoLa Syd/Konsult SÄK Syd/Konsult SÄK Öst/Konsult Väst/Konsult Övre Norr/Konsultchef Hybrid IT/Konsultchef Info.säkerhet Öst/Konsultchef IT &amp; NÄT Mellan/Konsultchef Mellan Nkpg/Konsultchef Nedre Norr/Konsultchef NÄT Syd/Konsultchef NÄT Öst/Konsultchef PL/SM/Ark Mellan/Konsultchef SoLa Syd/Konsultchef SÄK Syd/Konsultchef SÄK Öst/Konsultchef Väst/Konsultchef Övre Norr/LCA Specialistsälj/Partneransvarig Hybrid IT/Partneransvarig NÄT/Partneransvarig SÄK/PL/SM chef Syd/PL/SM chef Väst/PL/SM chef Öst/Presale Öst/Presales Syd &amp; Mellan/Projektledning Mellan/Projektledning Syd/Projektledning Väst/Projektledning Öst/Regionschef Norr &amp; Väst/Regionschef Syd &amp; Mellan/Regionschef Öst/Service Manager Mellan/Service Manager Syd/Service Manager Väst/Service Manager Öst/Service Presale</td></tr>
+                       <tr><td><br/></td></tr>
+                       <tr><td>och/eller</td></tr>
+                       <tr><td><br/></td></tr>
+                       <tr><td>-<span style="font-weight:bold">Telia AB&nbsp;(org. nr: 6703065083)</span><br/></td></tr>
+                       <tr><td><br/></td></tr>
+                       <tr><td>och/eller</td></tr>
+                       <tr><td><br/></td></tr>
+                       <tr><td>-<span style="font-weight:bold">Strategiska partners;</span> dvs. kontakter tillhörande konton som taggats som <span style="font-weight:bold">Strategisk partner</span> i fält <span style="font-weight:bold">Cygate leverantörstyp.</span><br/><br/></td></tr>
+                       <tr><td><span style="font-weight:bold">Exempelscenarion:</span></td></tr>
+                       <tr><td>Fysiskt möte: Befintlig kund (2p) + Sambesök (Cygate kontakt) (4p) + Bredda affären (4p) = 10p.</td></tr>
+                       <tr><td>Web möte: Befintlig kund (2p) + Sambesök (8p) + Bredda affären (4p) = 14p </td></tr>
+                       <tr><td><br/></td></tr> 
+                       <!--<tr><td><apex:outputLink value="{!$Resource.Cygate_Contact_Titles}">Sambesök (Cygate kontakt) - Titellista</apex:outputLink></td></tr> -->
+                       <!--<tr><td><apex:includeScript value="{!$Resource.Cygate_Contact_Titles}">Titles for Sambesök - Cygate kontakt </apex:includeScript></td></tr> -->                     
+                </apex:outputPanel>
+                </div> 
+                <!--<apex:outputLink value="https://telia--amyoginik.cs108.my.salesforce.com/00O1l000000KZrE">**Report Link**</apex:outputLink>-->
+                <!--<apex:outputLink value="{!$Label.Leaderboard_Report}">**Report Link**</apex:outputLink>-->
+
+                </div>     
+    </apex:form>  
+</apex:page>
