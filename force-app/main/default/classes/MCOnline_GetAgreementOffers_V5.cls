@@ -31,21 +31,7 @@ global with sharing class MCOnline_GetAgreementOffers_V5 implements vlocity_cmt.
         }
         return true;
     }
-    @TestVisible
-    private static Map<String,Object> generateError(string errorCode,string errorType, string functionality, Map<String,Object> inputMap){
-        String tscid='';
-        if(inputMap.containsKey('TSCID')){
-            tscid= (string)inputMap.get('TSCID');
-        }
-        Map<String,Object> ipInputMap = new Map<String,Object>();
-        string urlDetails = '{"tscid": "'+tscid+'"}'; 
-        ipInputMap.put('functionality', functionality); 
-        ipInputMap.put('errorType', errorType);
-        ipInputMap.put('errorCode', errorCode);
-        Map<String,Object> errorResponse = MCOnline_Utility.getError(ipInputMap);
-        MCOnline_Utility.logError(JSON.serialize(errorResponse), errorCode,'MCOnline_GetAgreementOffers_V5,MCOnline_GetAgreementOffers_V5.generateError','Integration Procedure, Apex Class', 'Custom Error',JSON.serialize(inputMap),'','',urlDetails);
-        return MCOnline_Utility.getError(ipInputMap);
-    }
+    
     /*
 * ************************************************************************************************************
 * Overview:-
@@ -188,14 +174,14 @@ global with sharing class MCOnline_GetAgreementOffers_V5 implements vlocity_cmt.
     @TestVisible
     private static List<Map<String,object>> getNegotiableProducts(Map<String,Object> inputMap, Map<String,Object> outMap, Map<String,Object> options, List<contract> agreement_lst, List<Account> tscid_aclst)
     {
+        Boolean isswitch=vlocity_cmt__GeneralSettings__c.getInstance('getAgreementOffersSwitch') !=null && vlocity_cmt__GeneralSettings__c.getInstance('getAgreementOffersSwitch').vlocity_cmt__Value__c=='true'?true:false;
         List<Map<String,object>> agreementlst = new List<Map<String,object>>();
         String ramAgreementNumber;
         Map<String,Boolean> ramOffers=new Map<String,Boolean>{'mobilevoicesubscription'=>false,'smartconnect'=>false,'touchpoint'=>false};
         Set<Id> agreementIdset = (new Map<Id,contract>(agreement_lst)).keySet();
         List<vlocity_cmt__ContractLineItem__c> agreementLineItem_lst=[SELECT id,name,vlocity_cmt__ContractId__c,vlocity_cmt__ContractId__r.Agreement_Nr__c,vlocity_cmt__ContractId__r.Contract_Record_Type__c,vlocity_cmt__ProductCode__c,vlocity_cmt__Product2Id__r.Ordering_Flag__c, vlocity_cmt__Product2Id__r.C2BC_Category__c,vlocity_cmt__Product2Id__r.C2BC_Subcategory__c,vlocity_cmt__Product2Id__r.Family,MC_Show_Subscription_In_Channel__c FROM vlocity_cmt__ContractLineItem__c where vlocity_cmt__ContractId__c IN: agreementIdset And TeliaSE_ParentItemId__c=null AND vlocity_cmt__ProductCode__c IN:offercodeset and MC_Show_Subscription_In_Channel__c !='N' WITH SECURITY_ENFORCED];
         if(!agreementLineItem_lst.isEmpty()){
-            Set<String> virtualofferset= new Set<String>();
-            
+                Set<String> virtualofferset= new Set<String>();
                 for(vlocity_cmt__ContractLineItem__c agrLine: agreementLineItem_lst){
                     if(agrLine.vlocity_cmt__ContractId__r.Contract_Record_Type__c == 'Ramavtal'
                        && agrLine.vlocity_cmt__Product2Id__c != null 
@@ -208,18 +194,23 @@ global with sharing class MCOnline_GetAgreementOffers_V5 implements vlocity_cmt.
 
             for(vlocity_cmt__ContractLineItem__c agrLine: agreementLineItem_lst)
             {
-                if((agrLine.vlocity_cmt__ContractId__r.Contract_Record_Type__c == 'Ramavtal' || agrLine.vlocity_cmt__ContractId__r.Contract_Record_Type__c =='EMR Readonly') && agrLine.vlocity_cmt__Product2Id__c!= null)
-                {
-                    virtualofferset.add(agrLine.vlocity_cmt__ProductCode__c);
+                if(isswitch){
+                    if((agrLine.vlocity_cmt__ContractId__r.Contract_Record_Type__c == 'Ramavtal' || agrLine.vlocity_cmt__ContractId__r.Contract_Record_Type__c =='EMR Readonly') && agrLine.vlocity_cmt__Product2Id__c!= null)
+                    {
+                        virtualofferset.add(agrLine.vlocity_cmt__ProductCode__c);
+                    }
+                    else if(agrLine.vlocity_cmt__Product2Id__r !=null && !ramOffers.get(agrLine.vlocity_cmt__Product2Id__r.C2BC_Subcategory__c) && (ramAgreementNumber == agrLine.vlocity_cmt__ContractId__r.Agreement_Nr__c))
+                    {
+                        virtualofferset.add(agrLine.vlocity_cmt__ProductCode__c);
+                    }
+                    else if((ramAgreementNumber != agrLine.vlocity_cmt__ContractId__r.Agreement_Nr__c))
+                    {
+                        virtualofferset.add(agrLine.vlocity_cmt__ProductCode__c);
+                    }
+                }else {
+                    virtualofferset.add(agrLine.vlocity_cmt__ProductCode__c);    
                 }
-                else if(agrLine.vlocity_cmt__Product2Id__r !=null && !ramOffers.get(agrLine.vlocity_cmt__Product2Id__r.C2BC_Subcategory__c) && (ramAgreementNumber == agrLine.vlocity_cmt__ContractId__r.Agreement_Nr__c))
-                {
-                    virtualofferset.add(agrLine.vlocity_cmt__ProductCode__c);
-                }
-                else if((ramAgreementNumber != agrLine.vlocity_cmt__ContractId__r.Agreement_Nr__c))
-                {
-                    virtualofferset.add(agrLine.vlocity_cmt__ProductCode__c);
-                }
+                
             }
             Map<String,List<vlocity_cmt__ProductChildItem__c>> offervsSubsbundle=new Map<String,List<vlocity_cmt__ProductChildItem__c>>();
             if(!virtualofferset.isEmpty()){
@@ -242,21 +233,22 @@ global with sharing class MCOnline_GetAgreementOffers_V5 implements vlocity_cmt.
                 agreementMap.put('madamAgreementNumber',agr.Agreement_Nr__c);// Madam Agreement Number
                 agreementMap.put('accountid',tscid_aclst[0].Id);   // agr.AccountId
                 if(agr.Contract_Record_Type__c=='MFA ReadOnly'){
-                agreementMap.put('role','Owner');
+                    agreementMap.put('role','Owner');
                 }
                 else{
-                agreementMap.put('role',tscid_aclst[0].TeliaSE_Utilzer_Role__c); // Role of the Organisation MCONL-12373 
+                    agreementMap.put('role',tscid_aclst[0].TeliaSE_Utilzer_Role__c); // Role of the Organisation MCONL-12373 
                 }
                 agreementMap.put('status',agr.Status);
                 agreementMap.put('agreementOwnerStatus',agr.MC_Owner_Status__c);
                 agreementMap.put('CreatedDate',agr.CreatedDate);//LTAT-10214 (Added by Itishree)
                 Set<Map<String,Object>> lineItemlst = new Set<Map<String,Object>>();
                 Map<Integer,Map<String,Object>> ItemlstTempMap = new Map<Integer,Map<String,Object>>();
-                for(vlocity_cmt__ContractLineItem__c agrLine: agreementLineItem_lst){
-                if(agrLine.vlocity_cmt__ContractId__r.Contract_Record_Type__c != 'Ramavtal' && agrLine.vlocity_cmt__ContractId__r.Agreement_Nr__c==ramAgreementNumber && ramOffers.get(agrLine.vlocity_cmt__Product2Id__r.C2BC_Subcategory__c)  )
+                for(vlocity_cmt__ContractLineItem__c agrLine: agreementLineItem_lst)
                 {
-                    continue;
-                }
+                    if(isswitch && (agrLine.vlocity_cmt__ContractId__r.Contract_Record_Type__c != 'Ramavtal' && agrLine.vlocity_cmt__ContractId__r.Agreement_Nr__c==ramAgreementNumber && ramOffers.get(agrLine.vlocity_cmt__Product2Id__r.C2BC_Subcategory__c)))
+                    {
+                        continue;
+                    }
                     if(agr.id==agrLine.vlocity_cmt__ContractId__c){
                         if(offervsSubsbundle!=null && offervsSubsbundle.containskey(agrLine.vlocity_cmt__ProductCode__c)){
                             List<vlocity_cmt__ProductChildItem__c> subscriptionbundlelst=new List<vlocity_cmt__ProductChildItem__c>();
@@ -311,5 +303,22 @@ global with sharing class MCOnline_GetAgreementOffers_V5 implements vlocity_cmt.
             outMap.put('StatusCode' , 400);
         }
         return agreementlst;
+    }
+
+
+    @TestVisible
+    private static Map<String,Object> generateError(string errorCode,string errorType, string functionality, Map<String,Object> inputMap){
+        String tscid='';
+        if(inputMap.containsKey('TSCID')){
+            tscid= (string)inputMap.get('TSCID');
+        }
+        Map<String,Object> ipInputMap = new Map<String,Object>();
+        string urlDetails = '{"tscid": "'+tscid+'"}'; 
+        ipInputMap.put('functionality', functionality); 
+        ipInputMap.put('errorType', errorType);
+        ipInputMap.put('errorCode', errorCode);
+        Map<String,Object> errorResponse = MCOnline_Utility.getError(ipInputMap);
+        MCOnline_Utility.logError(JSON.serialize(errorResponse), errorCode,'MCOnline_GetAgreementOffers_V5,MCOnline_GetAgreementOffers_V5.generateError','Integration Procedure, Apex Class', 'Custom Error',JSON.serialize(inputMap),'','',urlDetails);
+        return MCOnline_Utility.getError(ipInputMap);
     }
 }

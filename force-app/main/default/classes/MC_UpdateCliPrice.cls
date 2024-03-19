@@ -81,6 +81,11 @@ records or objects passed to the job. In this case contract object.
                 {
                     for(vlocity_cmt__ContractLineItem__c cli :[Select id, vlocity_cmt__Product2Id__c, vlocity_cmt__Product2Id__r.ProductCode, vlocity_cmt__Product2Id__r.TeliaSE_Subscription_Type__c,vlocity_cmt__ContractId__r.Contract_Record_Type__c,vlocity_cmt__ContractId__r.Status  from vlocity_cmt__ContractLineItem__c Where vlocity_cmt__ContractId__c =: contractList[0].Id and vlocity_cmt__Product2Id__r.TeliaSE_Subscription_Type__c !=null and (vlocity_cmt__ContractId__r.Contract_Record_Type__c !='Ramavtal' or (vlocity_cmt__ContractId__r.Contract_Record_Type__c ='Ramavtal' and vlocity_cmt__ContractId__r.Status in('Signed','Active'))) WITH SECURITY_ENFORCED])
                     {
+                        if(cli.vlocity_cmt__Product2Id__r.TeliaSE_Subscription_Type__c!=null && cli.vlocity_cmt__Product2Id__r.TeliaSE_Subscription_Type__c.contains('-KÖ'))
+                        {
+                            String subType=cli.vlocity_cmt__Product2Id__r.TeliaSE_Subscription_Type__c.split('-KÖ')[0];
+                            subscriptionTypeList.add(subType);
+                        }
                         subscriptionTypeList.add(cli.vlocity_cmt__Product2Id__r.TeliaSE_Subscription_Type__c);
                     }
                     If(subscriptionTypeList.size()>0){

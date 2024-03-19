@@ -13,6 +13,11 @@ public class MCOnline_GetAgreementOffers_V5Test {
     @testSetup
     static void initTestData() {
     
+        List<vlocity_cmt__GeneralSettings__c> genSetting = new List<vlocity_cmt__GeneralSettings__c>();
+        vlocity_cmt__GeneralSettings__c genset1 = new vlocity_cmt__GeneralSettings__c(Name = 'getAgreementOffersSwitch', vlocity_cmt__Value__c = 'true');
+        genSetting.add(genset1); 
+        insert genSetting;
+
         User salesManager;
         salesManager = Test_DataFactory.createAdminUser();
         salesManager.ForecastEnabled = true;
