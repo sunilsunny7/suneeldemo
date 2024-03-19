@@ -212,7 +212,7 @@ global with sharing class MassCustomized_MadamIntegration implements vlocity_cmt
             utilizerflag = agreementUtilizerMethod(inputMap, outMap, agreementNode, contractDetails.Id, contractDetails.Account.Org_Nr__c, contractDetails.Account.Id,contractNumber, errorLogMap);
             
             //The If starting from here is considered only for RAMMFA agreements incase of upsert || Update
-            if(String.valueOf(agreementNode.get('agreementType')) != null && contractDetails.Contract_Record_Type__c != null && (contractDetails.Contract_Record_Type__c.equalsIgnoreCase(String.valueOf(RAMMFAMap.get(String.valueOf(agreementNode.get('agreementType'))).Type_Name__c))))
+            if(RAMMFAMap.get(String.valueOf(agreementNode.get('agreementType'))) != null && String.valueOf(agreementNode.get('agreementType')) != null && contractDetails.Contract_Record_Type__c != null && (contractDetails.Contract_Record_Type__c.equalsIgnoreCase(String.valueOf(RAMMFAMap.get(String.valueOf(agreementNode.get('agreementType'))).Type_Name__c))))
             {
                 String agreementCategory = (String.valueOf(agreementNode.get('agreementType')) == 'EMR') ? '%EMN%' : ('%' + checkNull(agreementNode.get('agreementCategory')) + '%');
                     OfferId = [Select Id, ProductCode, Name, TeliaSE_Subscription_Type__c from Product2 Where ProductCode LIKE :agreementCategory AND Family = 'Mobility Management' AND C2BC_Category__c = 'offerbundle' AND IsActive= true AND vlocity_cmt__Status__c= 'Active' LIMIT 1]?.Id;

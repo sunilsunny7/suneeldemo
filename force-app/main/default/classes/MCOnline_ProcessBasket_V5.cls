@@ -960,6 +960,10 @@ global with sharing class MCOnline_ProcessBasket_V5 implements vlocity_cmt.Vloci
     private static void processAttributes(Map<String,Object> offerDetailsMap,Map<String,Object> productMap)
     {
         Map<String,Object> attribute=(Map<String,Object>)productMap.get('attributes');
+        if(attribute.containsKey('Quantity') && attribute.get('Quantity')!=null)
+        {
+            offerDetailsMap.put('Quantity',Integer.valueOf(attribute.get('Quantity')));
+        }
         if(offerDetailsMap.containsKey('AttributeCategory')){
             Map<String,Object> atts=(Map<String,Object>)((List<Object>)((Map<String,Object>)offerDetailsMap.get('AttributeCategory')).get('records'))[0];
             Map<String,Object> prodAttributes=(Map<String,Object>)atts.get('productAttributes');
