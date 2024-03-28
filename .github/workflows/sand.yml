@@ -26,7 +26,7 @@ jobs:
         git fetch --all
         for branch in $(git branch -r | grep -v '\->' | sed 's/origin\///'); do
           git checkout $branch
-          xmlstarlet sel -t -c manifest/package.xml >> merged_file.xml
+          cat manifest/package.xml >> merged_file.xml
           echo "" >> merged_file.xml
         done
         echo "</root>" >> merged.xml
