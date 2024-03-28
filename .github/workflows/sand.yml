@@ -16,18 +16,18 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Install requests library
-      run: pip install requests
+    - name: Install xmlstarlet
+      run: sudo apt-get install -y xmlstarlet
       
     - name: Merge XML files
       run: |
         echo "test121313"
+        echo "<root>" > merged.xml
         git fetch --all
         for branch in $(git branch -r | grep -v '\->' | sed 's/origin\///'); do
           git checkout $branch
-          echo "reading data"
-          cat manifest/package.xml
-          python mergexml.py merged_file.xml  manifest/package.xml > merged_file.xml
+          xmlstarlet sel -t -c "manifest/package.xml" >> merged.xml
+          echo "" >> merged.xml
         done
         echo "test12"
 
