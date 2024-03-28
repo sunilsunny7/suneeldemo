@@ -26,8 +26,10 @@ jobs:
         # Install xmlstarlet if not available
         sudo apt-get update
         echo "test121313"
-        # Merge XML files from branches starting with 'feature' into merged.xml
-        for branch in $(git branch --list dev*); do
+        for branch in $(git branch --list dev*)
+        do
           echo "Found branch: $branch"
         done
+
+        echo "test12"
       
