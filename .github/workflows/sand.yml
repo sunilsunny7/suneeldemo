@@ -28,9 +28,11 @@ jobs:
         git fetch --all
         for branch in $(git branch -r | grep -v '\->' | sed 's/origin\///'); 
         do
-          git checkout $branch
-          cat manifest/package.xml >> mergedfile.xml
-          echo "" >> mergedfile.xml
+           if [[ $branch == "dev"* ]]; then
+             git checkout $branch
+             cat manifest/package.xml >> mergedfile.xml
+             echo "" >> mergedfile.xml
+           fi
         done
         echo "</root>" >> mergedfile.xml
         cat mergedfile.xml 
