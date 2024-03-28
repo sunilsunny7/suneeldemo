@@ -20,12 +20,7 @@ jobs:
         # Merge XML files from branches starting with 'feature' into merged.xml
         for branch in $(git branch --list 'dev*'); do
         git checkout $branch
-        
+        echo "test1"
         done
     - name: Commit and push package.xml
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add package.xml
-        git commit -m "Merge XML files"
-        git push origin main
+      
