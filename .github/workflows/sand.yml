@@ -28,6 +28,7 @@ jobs:
           git checkout $branch
           echo "reading data"
           cat manifest/package.xml
+          python mergexml.py merged_file.xml  manifest/package.xml > merged_file.xml
         done
         echo "test12"
 
