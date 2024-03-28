@@ -23,8 +23,7 @@ jobs:
       run: |
         echo "test121313"
         git fetch --all
-        for branch in $(git branch --list 'dev*')
-        do
+        for branch in $(git branch -r | grep -v '\->' | sed 's/origin\///'); do
           echo "Found branch: $branch"
           git checkout $branch
           echo "reading data"
