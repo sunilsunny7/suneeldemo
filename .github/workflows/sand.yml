@@ -19,7 +19,7 @@ jobs:
         sudo apt-get update
         # Merge XML files from branches starting with 'feature' into merged.xml
         for branch in $(git branch --list dev*); do
-        git checkout $branch
-        echo "test1"
+           git checkout $branch
+           echo "test1"
         done
       
