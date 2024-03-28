@@ -22,12 +22,12 @@ jobs:
     - name: Merge XML files
       run: |
         echo "test121313"
-        echo "<root>" > merged.xml
+        echo "<root>" > merged_file.xml
         git fetch --all
         for branch in $(git branch -r | grep -v '\->' | sed 's/origin\///'); do
           git checkout $branch
-          xmlstarlet sel -t -c "manifest/package.xml" >> merged.xml
-          echo "" >> merged.xml
+          xmlstarlet sel -t -c "manifest/package.xml" >> merged_file.xml
+          echo "" >> merged_file.xml
         done
         echo "test12"
 
