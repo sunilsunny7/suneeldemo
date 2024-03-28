@@ -23,10 +23,12 @@ jobs:
       run: |
         echo "test121313"
         git fetch --all
-        for branch in $(git branch --list dev*); do
+        for branch in $(git branch --list 'dev*')
+        do
           echo "Found branch: $branch"
           git checkout $branch
-          python mergexml.py ./manifest/package.xml ./merged_file.xml > merged_file.xml
+          echo "reading data"
+          cat manifest/package.xml
         done
         echo "test12"
 
