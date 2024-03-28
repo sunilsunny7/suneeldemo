@@ -33,7 +33,7 @@ jobs:
           echo "" >> mergedfile.xml
         done
         echo "</root>" >> mergedfile.xml
-
+        cat mergedfile.xml 
     - name: Commit and push changes
       run: |
        git config --global user.email "suni9636@gmail.com"
