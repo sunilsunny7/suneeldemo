@@ -12,7 +12,7 @@ def merge_xml(file1, file2):
     
     # Get root elements
     root1 = tree1.getroot()
-    root2 = tree2.getroot(
+    root2 = tree2.getroot()
     
     # Append elements from file2 to file1
     root1.extend(root2)
