@@ -23,8 +23,9 @@ jobs:
       
     - name: Merge XML files
       run: |
-        echo "test121313"
-        echo mergedfile.xml
+        echo "<?xml version="1.0" encoding="UTF-8" ?>" > mergedfile.xml
+        echo "" >> mergedfile.xml
+        echo "<Package xmlns="http://soap.sforce.com/2006/04/metadata">" >> mergedfile.xml
         git fetch --all
         for branch in $(git branch -r | grep -v '\->' | sed 's/origin\///'); 
         do
@@ -37,6 +38,7 @@ jobs:
              echo "" >> mergedfile.xml
            fi
         done
+        echo "</Package>" >> mergedfile.xml
         cat mergedfile.xml 
     - name: Commit and push changes
       run: |
