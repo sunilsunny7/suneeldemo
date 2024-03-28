@@ -22,5 +22,4 @@ jobs:
         git checkout $branch
         echo "test1"
         done
-    - name: Commit and push package.xml
       
