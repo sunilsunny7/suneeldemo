@@ -22,7 +22,7 @@ jobs:
     - name: Merge XML files
       run: |
         echo "test121313"
-        for branch in $(git branch --list dev*);
+        for branch in $(git branch --list 'dev*');
         do
           echo "Found branch: $branch"
         done
