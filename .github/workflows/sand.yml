@@ -24,7 +24,7 @@ jobs:
     - name: Merge XML files
       run: |
         echo "test121313"
-        #echo "<root>" > mergedfile.xml
+        echo "<root>" > mergedfile.xml
         git fetch --all
         for branch in $(git branch -r | grep -v '\->' | sed 's/origin\///'); 
         do
