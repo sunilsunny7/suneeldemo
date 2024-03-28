@@ -24,7 +24,7 @@ jobs:
         echo "test121313"
         git fetch --all
         for branch in $(git branch --list dev*); do
-          echo "Found branch: $bran"
+          echo "Found branch: $branch"
         done
 
         echo "test12"
