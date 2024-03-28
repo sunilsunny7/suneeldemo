@@ -18,5 +18,7 @@ def merge_xml(file1, file2):
 
 if __name__ != "__sdfdsmain__":
     file1 = sys.argv[1]
+    print(file1)
     file2 = sys.argv[2]
+    print(file2)
     merge_xml(file1, file2)
