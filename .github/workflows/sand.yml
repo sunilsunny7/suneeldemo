@@ -10,7 +10,15 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+   
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
+    - name: Install requests library
+      run: pip install requests
+      
     - name: Merge XML files
       run: |
         # Merge XML files using a tool like `xmlstarlet`
@@ -19,9 +27,7 @@ jobs:
         sudo apt-get update
         echo "test121313"
         # Merge XML files from branches starting with 'feature' into merged.xml
-        for branch in $(git branch --list dev*)
-        do
-           git checkout $branch
-           echo "test1"
+        for branch in $(git branch --list dev*); do
+          echo "Found branch: $branch"
         done
       
