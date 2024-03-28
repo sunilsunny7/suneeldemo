@@ -1,1 +1,32 @@
+name: Merge XML Files
 
+on:
+   workflow_dispatch: 
+
+jobs:
+  merge_xml:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Merge XML files
+      run: |
+        # Merge XML files using a tool like `xmlstarlet`
+        # Replace the commands below with the appropriate merging tool and commands
+        # Install xmlstarlet if not available
+        sudo apt-get update
+        sudo pip install python
+        # Merge XML files from branches starting with 'feature' into merged.xml
+        for branch in $(git branch --list 'dev*'); do
+        git checkout $branch
+        
+        done
+    - name: Commit and push package.xml
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add package.xml
+        git commit -m "Merge XML files"
+        git push origin main
