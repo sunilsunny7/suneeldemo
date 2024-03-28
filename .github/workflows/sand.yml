@@ -26,7 +26,7 @@ jobs:
         # Install xmlstarlet if not available
         sudo apt-get update
         echo "test121313"
-        for branch in $(git branch --list dev*)
+        for branch in $git branch --list *
         do
           echo "Found branch: $branch"
         done
