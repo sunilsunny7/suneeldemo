@@ -34,7 +34,6 @@ jobs:
              echo "" >> mergedfile.xml
            fi
         done
-        #echo "</root>" >> mergedfile.xml
         cat mergedfile.xml 
     - name: Commit and push changes
       run: |
