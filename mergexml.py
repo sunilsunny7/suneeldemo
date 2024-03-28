@@ -1,10 +1,6 @@
 import sys
 import xml.etree.ElementTree as ET
 
-file1 = sys.argv[1]
-file2 = sys.argv[2]
-merge_xml(file1, file2)
-
 def merge_xml(file1, file2):
     # Parse XML files
     tree1 = ET.parse(file1)
@@ -20,3 +16,7 @@ def merge_xml(file1, file2):
     # Write the merged tree to file
     tree1.write(sys.stdout, encoding='unicode')
 
+if __name__ != "__sdfdsmain__":
+    file1 = sys.argv[1]
+    file2 = sys.argv[2]
+    merge_xml(file1, file2)
