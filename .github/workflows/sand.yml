@@ -28,6 +28,10 @@ jobs:
           git checkout $branch
           python mergexml.py ./manifest/package.xml ./merged_file.xml > merged_file.xml
         done
-
         echo "test12"
-      
+
+    - name: Commit and push changes
+      run: |
+       git add merged_file.xml
+       git commit -m "merged package xml"
+       git push
