@@ -29,7 +29,7 @@ jobs:
           xmlstarlet sel -t -c manifest/package.xml >> merged_file.xml
           echo "" >> merged_file.xml
         done
-        echo "test12"
+        echo "</root>" >> merged.xml
 
     - name: Commit and push changes
       run: |
