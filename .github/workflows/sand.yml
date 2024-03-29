@@ -13,13 +13,6 @@ jobs:
       with:
         ref: 'master'
    
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-
-    - name: Install xmlstarlet
-      run: sudo apt-get install -y xmlstarlet
       
     - name: Merge XML files
       run: |
@@ -39,7 +32,8 @@ jobs:
            fi
         done
         echo "</Package>" >> mergedfile.xml
-        cat mergedfile.xml 
+        uniq mergedfile.xml>package.xml
+        cat package.xml 
     - name: Commit and push changes
       run: |
        git config --global user.email "suni9636@gmail.com"
