@@ -32,7 +32,7 @@ jobs:
            fi
         done
         echo "</Package>" >> mergedfile.xml
-        uniq mergedfile.xml>package.xml
+        sort mergedfile.xml | uniq > package.xml
         cat package.xml 
     - name: Commit and push changes
       run: |
