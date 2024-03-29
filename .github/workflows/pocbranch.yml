@@ -1,0 +1,29 @@
+name: branchpoc
+
+on:
+   workflow_dispatch: 
+
+jobs:
+  merge_xml:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: 'master'
+   
+      
+    - name: Get branch
+      run: |
+        git fetch --all
+        for branch in $(git branch -r | grep -v '\->' | sed 's/origin\///'); 
+        do
+           #give the name of the feature branches here to me merged in this regular expression 
+           if [[ $branch == "feature"* ]]; then
+             git checkout $branch
+           fi
+        done
+        
