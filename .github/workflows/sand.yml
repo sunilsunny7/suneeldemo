@@ -39,4 +39,4 @@ jobs:
        git config --global user.name "Deadpool"
        git add mergedfile.xml
        git commit -m "merged package xml"
-       git push origin main
+       git push origin master
