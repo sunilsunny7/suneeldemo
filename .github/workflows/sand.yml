@@ -17,7 +17,6 @@ jobs:
     - name: Merge XML files
       run: |
         echo "<?xml version="1.0" encoding="UTF-8" ?>" > mergedfile.xml
-        echo "" >> mergedfile.xml
         echo "<Package xmlns="http://soap.sforce.com/2006/04/metadata">" >> mergedfile.xml
         git fetch --all
         for branch in $(git branch -r | grep -v '\->' | sed 's/origin\///'); 
@@ -32,12 +31,12 @@ jobs:
            fi
         done
         echo "</Package>" >> mergedfile.xml
-        perl -ne 'print if !$seen{$_}++  || /<types>/ || /<\/types>/'  mergedfile.xml > package.xml
-        cat package.xml 
+        #perl -ne 'print if !$seen{$_}++  || /<types>/ || /<\/types>/'  mergedfile.xml > package.xml
+        cat mergedfile.xml 
     - name: Commit and push changes
       run: |
        git config --global user.email "suni9636@gmail.com"
        git config --global user.name "Deadpool"
        git add mergedfile.xml
        git commit -m "merged package xml"
-       git push
+       git push origin main
