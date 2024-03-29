@@ -27,7 +27,6 @@ jobs:
              git checkout $branch
              cp manifest/package.xml p2.xml
              head -n $(($(wc -l < p2.xml) - 2)) p2.xml | tail -n +3 > temp.xml && mv temp.xml p2.xml
-             #cat manifest/package.xml >> mergedfile.xml
              cat p2.xml >>mergedfile.xml
              echo "" >> mergedfile.xml
            fi
