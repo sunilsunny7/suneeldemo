@@ -34,6 +34,8 @@ jobs:
         #perl -ne 'print if !$seen{$_}++  || /<types>/ || /<\/types>/'  mergedfile.xml > package.xml
         cat mergedfile.xml 
     - name: Commit and push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
       run: |
        git config --global user.email "suni9636@gmail.com"
        git config --global user.name "Deadpool"
