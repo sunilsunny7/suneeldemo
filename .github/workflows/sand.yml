@@ -32,7 +32,7 @@ jobs:
            fi
         done
         echo "</Package>" >> mergedfile.xml
-        awk '!seen[$0]++ || <types> || </types>'  mergedfile.xml > package.xml
+        awk '!seen[$0]++ || /<types>/ || /<//types>/'  mergedfile.xml > package.xml
         cat package.xml 
     - name: Commit and push changes
       run: |
