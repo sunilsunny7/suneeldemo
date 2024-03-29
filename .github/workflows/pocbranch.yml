@@ -19,7 +19,7 @@ jobs:
     - name: Get branch
       run: |
         git fetch --all
-        for branch in $(git branch ); 
+        for branch in $(git branch -r | grep 'origin/dev' ); 
         do
            echo "Name is $branch"
            #give the name of the feature branches here to me merged in this regular expression 
