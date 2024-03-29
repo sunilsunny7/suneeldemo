@@ -32,7 +32,7 @@ jobs:
            fi
         done
         echo "</Package>" >> mergedfile.xml
-        perl -ne 'print if !$seen{$_}++  || /<types>/ || /</types>/'  mergedfile.xml > package.xml
+        perl -ne 'print if !$seen{$_}++  || /<types>/ || /<\/types>/'  mergedfile.xml > package.xml
         cat package.xml 
     - name: Commit and push changes
       run: |
