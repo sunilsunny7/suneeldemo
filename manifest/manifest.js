@@ -95,6 +95,8 @@ function stripFilePath(file) {
 }
 
 async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
+	console.log(manifest)
+	console.log(name)
     let oldManifestData = Buffer.from('');
     try {
         oldManifestData = await fs.readFile(`manifest/${name}.xml`);
@@ -103,7 +105,7 @@ async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
             members.forEach((member) => manifest.addMember(key, member, true));
         });
     } catch (error) {
-        //console.error('no need to log if manifest does not exists');
+        console.error('no need to log if manifest does not exists');
     } finally {
         if (Buffer.compare(oldManifestData, Buffer.from(manifest.toXML())) !== 0) {
             saveToFile(manifest.toXML(), name);
