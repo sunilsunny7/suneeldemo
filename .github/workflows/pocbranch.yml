@@ -24,5 +24,6 @@ jobs:
       run: |
          git fetch --all
          node manifest/manifest.js
+         echo "suneel"
         
 
