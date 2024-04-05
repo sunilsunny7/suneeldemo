@@ -115,7 +115,10 @@ async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
 
 async function saveToFile(data, name) {
     try {
+        
         await fs.writeFile(`manifest/${name}.xml`, Buffer.from(data));
+        console.log(data)
+        console.log(name)
         await addToGit(name);
     } catch (error) {
         console.log('COULD NOT SAVE THE MANIFEST.');
@@ -125,6 +128,8 @@ async function saveToFile(data, name) {
 
 async function addToGit(fileName) {
     exec(`git add manifest/${fileName}.xml`);
+    exec(`git commit -m 'test'`);
+    exec(`git push`);
 }
 
 main();
