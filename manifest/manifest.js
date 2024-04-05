@@ -97,6 +97,7 @@ function stripFilePath(file) {
 async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
 
     let oldManifestData = Buffer.from('');
+    console.log(manifest.toXML())
     try {
         oldManifestData = await fs.readFile(`manifest/package.xml`);
         console.log(oldManifestData)
