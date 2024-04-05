@@ -65,7 +65,7 @@ async function getBranchName() {
     const { stdout, stderr } = await exec(GIT_COMMANDS.BRANCH_NAME);
     if (stderr) throw new Error('Could not get git branch name');
     let branchName = stdout.replace(/\n|\r/g, '');
-    if (!branchName.startsWith('EP-') && !branchName.startsWith('NOCT-') && !branchName.startsWith('manifest-maker')) {
+    if (!branchName.startsWith('mas') && !branchName.startsWith('dev') && !branchName.startsWith('manifest-maker')) {
         throw new Error('Manifest script was not ran, as you are not in a ticket branch please move to a EP-XXXXX or NOCT-XXXXX branch.');
     }
     return branchName;
