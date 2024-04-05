@@ -128,8 +128,6 @@ async function saveToFile(data, name) {
 
 async function addToGit(fileName) {
     exec(`git add manifest/${fileName}.xml`);
-    exec(`git commit -m 'test'`);
-    exec(`git push`);
 }
 
 main();
