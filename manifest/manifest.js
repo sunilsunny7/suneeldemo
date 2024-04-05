@@ -76,7 +76,7 @@ async function getFromBranch(branchName) {
         let data = await fs.readFile('manifest/ManifestScripts/.env.json');
         return JSON.parse(Buffer.from(data).toString())[branchName].fromBranch;
     } catch (error) {
-        return 'QA';
+        return 'dev';
     }
 }
 
