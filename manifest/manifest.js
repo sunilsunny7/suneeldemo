@@ -26,7 +26,7 @@ const GIT_COMMANDS = {
     BRANCH_NAME: 'git rev-parse --abbrev-ref HEAD',
     CACHED_DIFF: 'git --no-pager diff --cached --name-only',
     COMPARATIVE_DIFF_WITH_QA: (fromBranch, branchName) => {
-        return `git --no-pager diff --name-only ${fromBranch} ${branchName}`;
+        return `git --no-pager diff --name-only origin/${fromBranch} ${branchName}`;
     }
 };
 
