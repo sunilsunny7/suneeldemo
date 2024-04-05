@@ -97,12 +97,10 @@ function stripFilePath(file) {
 async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
 
     let oldManifestData = Buffer.from('');
-    console.log(manifest.toXML())
-    try {
+    saveToFile(manifest.toXML(), name);
+    /*try {
         oldManifestData = await fs.readFile(`manifest/package.xml`);
-        console.log(oldManifestData)
         let oldManifest = parse(Buffer.from(oldManifestData).toString());
-        console.log(oldManifest)
         oldManifest.types.forEach((members, key) => {
             members.forEach((member) => manifest.addMember(key, member, true));
         });
@@ -112,7 +110,7 @@ async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
         if (Buffer.compare(oldManifestData, Buffer.from(manifest.toXML())) !== 0) {
             saveToFile(manifest.toXML(), name);
         }
-    }
+    }*/
 }
 
 async function saveToFile(data, name) {
