@@ -24,6 +24,8 @@ jobs:
       run: |
          git fetch --all
          node manifest/manifest.js
+         git commit -m "merged package xml"
+         git push origin main
          echo "suneel"
         
 
