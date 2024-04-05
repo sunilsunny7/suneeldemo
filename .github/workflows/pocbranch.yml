@@ -15,16 +15,12 @@ jobs:
       with:
         ref: 'master'
    
-      
-    - name: Get branch
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Get content
       run: |
-        git fetch --all
-        for branch in $(git branch -r | grep 'origin/dev' ); 
-        do
-           echo "Name is $branch"
-           #give the name of the feature branches here to me merged in this regular expression 
-           if [[ $branch == "feature"* ]]; then
-             git checkout $branch
-           fi
-        done
+         node manifest/manifest.js
         
