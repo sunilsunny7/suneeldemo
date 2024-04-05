@@ -26,7 +26,7 @@ const GIT_COMMANDS = {
     BRANCH_NAME: 'git rev-parse --abbrev-ref HEAD',
     CACHED_DIFF: 'git --no-pager diff --cached --name-only',
     COMPARATIVE_DIFF_WITH_QA: (fromBranch, branchName) => {
-        return `git --no-pager diff --name-only Origin/${fromBranch}...${branchName}`;
+        return `git --no-pager diff --name-only Origin/${fromBranch} ${branchName}`;
     }
 };
 
@@ -65,7 +65,7 @@ async function getBranchName() {
     const { stdout, stderr } = await exec(GIT_COMMANDS.BRANCH_NAME);
     if (stderr) throw new Error('Could not get git branch name');
     let branchName = stdout.replace(/\n|\r/g, '');
-    if (!branchName.startsWith('EP-') && !branchName.startsWith('NOCT-') && !branchName.startsWith('manifest-maker')) {
+    if (!branchName.startsWith('mas') && !branchName.startsWith('dev') && !branchName.startsWith('manifest-maker')) {
         throw new Error('Manifest script was not ran, as you are not in a ticket branch please move to a EP-XXXXX or NOCT-XXXXX branch.');
     }
     return branchName;
@@ -76,7 +76,7 @@ async function getFromBranch(branchName) {
         let data = await fs.readFile('manifest/ManifestScripts/.env.json');
         return JSON.parse(Buffer.from(data).toString())[branchName].fromBranch;
     } catch (error) {
-        return 'QA';
+        return 'dev';
     }
 }
 

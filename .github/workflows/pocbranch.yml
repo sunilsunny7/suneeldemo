@@ -1,0 +1,26 @@
+name: pomgenerator
+
+on:
+   workflow_dispatch: 
+
+jobs:
+  merge_xml:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: 'master'
+   
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Get content
+      run: |
+         node manifest/manifest.js
+        
