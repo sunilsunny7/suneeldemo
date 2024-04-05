@@ -1,4 +1,4 @@
-name: branchpoc
+name: pomgenerator
 
 on:
    workflow_dispatch: 
