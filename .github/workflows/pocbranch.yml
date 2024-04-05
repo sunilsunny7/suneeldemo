@@ -22,5 +22,7 @@ jobs:
 
     - name: Get content
       run: |
+         git fetch --all
          node manifest/manifest.js
         
+
