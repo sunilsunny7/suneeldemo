@@ -101,7 +101,7 @@ async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
         oldManifestData = await fs.readFile(`manifest/package.xml`);
         console.log(oldManifestData)
         let oldManifest = parse(Buffer.from(oldManifestData).toString());
-        console.log(oldManifestData)
+        console.log(oldManifest)
         oldManifest.types.forEach((members, key) => {
             members.forEach((member) => manifest.addMember(key, member, true));
         });
