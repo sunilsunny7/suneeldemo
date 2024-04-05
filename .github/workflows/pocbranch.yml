@@ -24,8 +24,9 @@ jobs:
       run: |
          git fetch --all
          node manifest/manifest.js
+         git config --global user.email "gitbot@github.com"
+         git config --global user.name "Gitbot"
          git commit -m "merged package xml"
          git push origin main
-         echo "suneel"
         
 
