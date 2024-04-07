@@ -4,7 +4,7 @@ name: Manifest Merging CI
 on:
   # Triggers the workflow on push or pull request events but only for the sprint* or Sprint* branch
   push:
-    branches: [master ]
+    branches: [mas ]
 
   # Allows you to run this workflow manually from the Actions tab TBD?
   workflow_dispatch:
