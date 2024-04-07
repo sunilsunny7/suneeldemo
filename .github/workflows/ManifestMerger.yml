@@ -4,7 +4,6 @@ name: Manifest Merging CI
 on:
   # Triggers the workflow on push or pull request events but only for the sprint* or Sprint* branch
   push:
-    branches: [mas ]
 
   # Allows you to run this workflow manually from the Actions tab TBD?
   workflow_dispatch:
@@ -32,7 +31,7 @@ jobs:
         run: |
           echo "${GITHUB_REF#refs/heads/}"
           echo starting merging.
-          python3 manifest/Merger.py manifest/merged.xml
+          python3 manifest/Merger.py mergedfile.xml
           echo merging done.
 
       # Runs a set of commands to push new manifest into branch
