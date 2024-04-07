@@ -31,7 +31,7 @@ jobs:
         run: |
           echo "${GITHUB_REF#refs/heads/}"
           echo starting merging.
-          python3 manifest/Merger.py mergedfile.xml
+          python3 manifest/Merger.py manifest/mergedfile.xml
           echo merging done.
 
       # Runs a set of commands to push new manifest into branch
