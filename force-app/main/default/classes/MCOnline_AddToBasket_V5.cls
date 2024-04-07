@@ -12,6 +12,7 @@ global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.Vlocity
      static String uniqueParentId = '',cartContextKey='';
      static Decimal mrcPrice=0;
      static Decimal nrcPrice=0;
+     static Boolean isAsync=vlocity_cmt__GeneralSettings__c.getInstance('isAsync')!=null &&vlocity_cmt__GeneralSettings__c.getInstance('isAsync').vlocity_cmt__Value__c =='true'?true:false;
      static ProductDetail__mdt prodDetails = [Select MCOnline_Fields_To_Display__c,fields_to_be_mapped__c from ProductDetail__mdt];
      static List<String> productFields = prodDetails.MCOnline_Fields_To_Display__c.split(',');    
      static Map<String, Object> attribMap = new Map<String, Object>();
@@ -61,19 +62,25 @@ global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.Vlocity
              else{
                  for(Object offers: productConfigList)
                  {
-                         Map<String, Object> tempMap = (Map<String, Object>)offers;
-                         productConfigMap = tempMap;
-                         outMap.clear();
-                         reserveNumber(productConfigMap,outMap,TSCID);
-                         if(vlocity_cmt__GeneralSettings__c.getInstance('SkipNHFError').vlocity_cmt__Value__c=='True')
-                         {
-                         	if(outMap.get('errorResults')!=null)
-                         	{
-                             	outMap.put('errorCode','Invoke-500');
-                             	outMap.put('success',false);
-                             	return;
-                         	}
-                         }
+                         
+                  	Map<String, Object> tempMap = (Map<String, Object>)offers;
+                    productConfigMap = tempMap;
+                    String getCatalogStr = String.valueOf((((Map<String, Object>)((Map<String, Object>)((Map<String, Object>)( (Map<String, Object>)(productConfigMap).get('offerDetails')).get('offer')).get('addtocart')).get('rest')).get('link')));
+                    String catalog = getCatalogStr.split('/')[2];
+                    outMap.clear();
+                     if(catalog.equalsIgnoreCase('SUBSCRIPTIONS')){
+                       reserveNumber(productConfigMap,outMap,TSCID);
+                       if(vlocity_cmt__GeneralSettings__c.getInstance('SkipNHFError').vlocity_cmt__Value__c=='True')
+                       {
+                       		if(outMap.get('errorResults')!=null)
+                            {
+                                outMap.put('errorCode','Invoke-500');
+                                outMap.put('success',false);
+                                return;
+                             }
+                         }   
+                     }
+                                                 
                  }
                  for(Object offers: productConfigList){
                      if(!outMap.containsKey('errorResponse')){
@@ -94,8 +101,11 @@ global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.Vlocity
                              }
                              else 
                              {
-                                 remotemethodResponse=addtobasket_remotemethod(cartContextKey,JSON.serialize(productConfigMap),Catalog,isManagedFlow);
-                                 outMap=addToBasket_V3_NormalCallout(inputMap,remotemethodResponse, outMap,options,JSON.serialize(productConfigMap),BasketIds,catalog,parameters,isManagedFlow,storeInput,isChangeBasket);
+                                if(!isAsync) 
+                                {
+                                    remotemethodResponse=addtobasket_remotemethod(cartContextKey,JSON.serialize(productConfigMap),Catalog,isManagedFlow);
+                                }
+                                outMap=addToBasket_V3_NormalCallout(inputMap,remotemethodResponse, outMap,options,JSON.serialize(productConfigMap),BasketIds,catalog,parameters,isManagedFlow,storeInput,isChangeBasket);
                              }
                          }
                          
@@ -111,15 +121,13 @@ global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.Vlocity
              List<MCOnline_Basket__c> basketlst= new List<MCOnline_Basket__c>();
              Map<String, Object> offerdetails = new Map<String, Object>();
              output=MCOnline_utility.addToBasket_remote(ContextKey,(Map<String, Object>)JSON.deserializeUntyped(productConfigMap),Catalog,isManagedFlow);
-         }
-         Catch(Exception e){   
+         }catch(Exception e){   
              logExceptions(e, output);
          }
          return output; 
      }
      
      public static Map<String,Object> addToBasket_V3_NormalCallout(Map<String,Object> inputMap,Map<String,Object> HA_AddToBasket, Map<String,Object> outMap, Map<String,Object> options,String productConfigMap,List<id> basketIds,string catalog1,List<MCOnline_Basket__c> parameters,boolean isManagedFlow,Map<String, String> storeInput,boolean isChangeBasket){
-         //Call addtobasket synchronously via normal callout
          Map<String, Object> productConfigMap1 = (Map<String, Object>)JSON.deserializeUntyped(productConfigMap);
          Map<String, Object> offerObj1 = new Map<String, Object>();
          Id parentbasket;
@@ -139,9 +147,9 @@ global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.Vlocity
          }
          try
          {
-             Map<String, Object> errorResponse = new Map<String, Object>();
-             if(!HA_AddToBasket.isEmpty())
-             {
+            Map<String, Object> errorResponse = new Map<String, Object>();
+            if(!isAsync && !HA_AddToBasket.isEmpty())
+            {
                  if(HA_AddToBasket.get('success')!=null && !Boolean.valueOf(HA_AddToBasket.get('success')))
                  {
                      Map<String,Object> error = (Map<String,Object>)HA_AddToBasket.get('result');
@@ -209,7 +217,7 @@ global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.Vlocity
                  }
                  else
                  {
-                     cartContextKey=resultMap.get('cartContextKey')+'';
+                            cartContextKey=resultMap.get('cartContextKey')+'';
                              Map<String, Object> compMsg = new Map<String, Object>();
                              Map<String, Object> result = (Map<String,Object>)JSON.deserializeUntyped(HA_AddToBasket.get('result')+'');
                              String compItems= '';
@@ -262,19 +270,14 @@ global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.Vlocity
                  
                  offerObj1=(Map<String, Object>)((Map<String, Object>)(productConfigMap1).get('offerDetails')).get('offer');
                  agreementid = String.valueOf(((Map<String, Object>)(productConfigMap1).get('offerDetails')).get('agreementId'));
-                 //===================parse json===========================//
+    
                  List<Object> childProducts2ndLevel = new List<Object>();
-                 //childProducts2ndLevel= (List<Object>)offerObj1.get('childProducts');
                  Map<String, Object> rootproductMap2save = new Map<String, Object>();
                  List<Object> rootproductList2save = new List<Object>();
                  Integer count = 0;
                  fetchData(offerObj1,rootproductList2save,count);
                  rootproductMap2save.put('products',rootproductList2save);
                  attributeJSON=JSON.serialize(rootproductMap2save) ;
-                 
-                
-                 //==================parse json============================//
-                 
                  if(parameters == null || parameters.size()==0  )
                  {
                      accountid=String.Valueof(((Map<string,object>)inputMap.get('options')).get('Accountid'));
@@ -553,26 +556,37 @@ global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.Vlocity
          Map<String, Object> rootproductMap2save = new Map<String, Object>();
          List<Object> rootproductList2save = new List<Object>();
          Integer count = 0;
+         Boolean numberReserved = false;
          fetchData(offerObj1,rootproductList2save,count);
          mrcPrice=0;
          nrcPrice=0;
          rootproductMap2save.put('products',rootproductList2save);
-         String attributeJSON=JSON.serialize(rootproductMap2save) ;
-         String updatedAttributeJSON = formatMSISDN(AttributeJSON, false);
-         Map<String, Object> response= MCOnline_Utility.reserveNumber(updatedAttributeJSON, null, tscid,'addToBasket');
-         if(response!= null){
-             MCOnline_NumberReservation_V2.ReservationResponseWrapper res=(MCOnline_NumberReservation_V2.ReservationResponseWrapper)((List<Object>)response.get('success'))[0];
-             Map<String,Object> resData=(Map<String,Object>)((Map<String,Object>)((Map<String,Object>)JSON.deserializeUntyped(res.response)).get('message')).get('srp');
-             if(resData.get('returnCode')+'' != '0')
-             {
-                 List<Object> msisdn=(List<Object>)(((Map<String,Object>)resData.get('listOfMSISDN')).get('msisdn'));
-                 outMap.put('errorResults',new List<Object>{new Map<String,String>{'offer'=>offerObj1.get('ProductCode')+'','msisdn'=>msisdn[0]+'','msisdntype'=>resData.get('msisdntype')+'', 'reservationReturnCode'=>resData.get('returnCode')+'', 'ErrorCode'=>'UNABLE_TO_RESERVE_THE_NUMBER'+''}});
-                 //MCOnline_Utility.logErrorWithoutFuture('unable to reserve the number', 'NUMBER_NOT_RESERVED','MCONLINE_AddToBasket_V5,MCONLINE_AddToBasket_V5.reserveNumber','Apex Class', 'Custom Error',attributeJSON,'','');
-             }else
-             {
-                 outMap.put('reservationStatus',resData.get('returnCode')+'');
+         for(Object obj:rootproductList2save){
+            Map<String,Object> attMap = (Map<String,Object>)obj;
+             attMap = (Map<String,Object>)attMap.get('attributes');
+             if(attMap!= null && attMap.containsKey('Reserved_MSISDN')){
+                numberReserved = Boolean.valueOf(attMap.get('Reserved_MSISDN'));
              }
          }
+         String attributeJSON=JSON.serialize(rootproductMap2save);         
+         if(!numberReserved){
+            String updatedAttributeJSON = formatMSISDN(AttributeJSON, false);
+            Map<String, Object> response= MCOnline_Utility.reserveNumber(updatedAttributeJSON, null, tscid,'addToBasket');
+         	if(response!= null){
+                 MCOnline_NumberReservation_V2.ReservationResponseWrapper res=(MCOnline_NumberReservation_V2.ReservationResponseWrapper)((List<Object>)response.get('success'))[0];
+                 Map<String,Object> resData=(Map<String,Object>)((Map<String,Object>)((Map<String,Object>)JSON.deserializeUntyped(res.response)).get('message')).get('srp');
+                 if(resData.get('returnCode')+'' != '0')
+                 {
+                     List<Object> msisdn=(List<Object>)(((Map<String,Object>)resData.get('listOfMSISDN')).get('msisdn'));
+                     outMap.put('errorResults',new List<Object>{new Map<String,String>{'offer'=>offerObj1.get('ProductCode')+'','msisdn'=>msisdn[0]+'','msisdntype'=>resData.get('msisdntype')+'', 'reservationReturnCode'=>resData.get('returnCode')+'', 'ErrorCode'=>'UNABLE_TO_RESERVE_THE_NUMBER'+''}});
+                     //MCOnline_Utility.logErrorWithoutFuture('unable to reserve the number', 'NUMBER_NOT_RESERVED','MCONLINE_AddToBasket_V5,MCONLINE_AddToBasket_V5.reserveNumber','Apex Class', 'Custom Error',attributeJSON,'','');
+                 }else
+                 {
+                     outMap.put('reservationStatus',resData.get('returnCode')+'');
+                 }
+         } 
+         }
+         
      }
      @testvisible
      private static void logExceptions(Exception e, Map<String, Object> output){

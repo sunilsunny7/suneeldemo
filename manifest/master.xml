@@ -10,6 +10,7 @@
         <members>Test_AccountChildUpdaterBatch</members>
         <members>TimeEntryTriggerHandler</members>
         <members>TimeEntryTriggerHandler_Test</members>
+        <members>MCOnline_AddToBasket_V5</members>
         <name>ApexClass</name>
     </types>
     <types>
