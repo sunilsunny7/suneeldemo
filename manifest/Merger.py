@@ -36,7 +36,7 @@ def setValidTypeNames():
 def buildConsolitdatedManifest(filePath):
     cleanXML(filePath)
     print(filePath)
-    tree = ET.parse(r'%s' % filePath)
+    tree = ET.parse(filePath)
     root = tree.getroot()
     for child in root.findall('types'):
         typeName = child.find('name').text
