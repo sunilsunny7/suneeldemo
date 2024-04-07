@@ -13,7 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        ref: 'master'
+        ref: 'mssds'
    
     - name: Setup Node.js
       uses: actions/setup-node@v2
