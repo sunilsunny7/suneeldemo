@@ -24,7 +24,7 @@ def cleanXML(path):
 
 def setValidTypeNames():
     for filename in os.listdir(directory):
-        if filename == 'package.xml':
+        if filename == 'merged.xml':
             path = directory + '/' + filename
             cleanXML(path)
             tree = ET.parse(r'%s' % path)
