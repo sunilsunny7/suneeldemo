@@ -30,6 +30,7 @@ jobs:
       # Runs a set of commands that merges manifests using branch name as a reference
       - name: MERGE
         run: |
+          echo "${GITHUB_REF#refs/heads/}"
           echo starting merging.
           python3 manifest/Merger.py manifest/merged.xml
           echo merging done.
