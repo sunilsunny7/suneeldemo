@@ -1,0 +1,44 @@
+# This is a workflow that merges small sprint manifests into one sprint manifest.
+# Branch out of QA creating Sprint** branch, it will trigger this job and merge all the User story manifests into Sprint manifest.
+
+name: Manifest Merging CI
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the sprint* or Sprint* branch
+  push:
+    branches: [ sprint*, Sprint* ]
+
+  # Allows you to run this workflow manually from the Actions tab TBD?
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "Merge-Job"
+  Merge-Job:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Setup
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.11.0'
+
+      # Runs a set of commands that merges manifests using branch name as a reference
+      - name: MERGE
+        run: |
+          echo starting merging.
+          python3 .github/workflows/Merger.py manifest/SprintManifests/${GITHUB_REF#refs/heads/}.xml
+          echo merging done.
+
+      # Runs a set of commands to push new manifest into branch
+      - name: GIT COMMIT PUSH
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add manifest/SprintManifests/${GITHUB_REF#refs/heads/}.xml
+          git commit -m "Adding merged manifest"
+          git push
