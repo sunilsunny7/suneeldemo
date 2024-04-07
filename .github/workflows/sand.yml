@@ -25,9 +25,8 @@ jobs:
         for branch in $(git branch -r | grep -v '\->' | sed 's/origin\///'); 
         do
            if [[ $branch == "dev"* ]]; then
-             echo "test1"
+             git update-index --assume-unchanged mergedfile.xml
              git checkout $branch
-             echo "test1"
              cp manifest/feature_package.xml p2.xml
              head -n $(($(wc -l < p2.xml) - 2)) p2.xml | tail -n +3 > temp.xml && mv temp.xml p2.xml
              cat p2.xml >>mergedfile.xml
