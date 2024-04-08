@@ -18,6 +18,9 @@ jobs:
       
     - name: Merge XML files
       run: |
+        git rm mergedfile.xml
+        git commit -m 'removed mergedfile'
+        git push
         echo "<?xml version="1.0" encoding="UTF-8" ?>" > mergedfile.xml
         echo "<Package xmlns="http://soap.sforce.com/2006/04/metadata">" >> mergedfile.xml
         git fetch --all
