@@ -33,8 +33,8 @@ jobs:
         else 
            echo "no merged file"
         fi
-        echo "<?xml version="1.0" encoding="UTF-8" ?>" > manifest/merged.xml
-        echo "<Package xmlns="http://soap.sforce.com/2006/04/metadata">" >> manifest/merged.xml
+        echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" > manifest/merged.xml
+        echo "<Package xmlns=\"http://soap.sforce.com/2006/04/metadata\">" >> manifest/merged.xml
         git fetch --all
         for branch in $(git branch -r | grep -v '\->' | sed 's/origin\///'); 
         do
