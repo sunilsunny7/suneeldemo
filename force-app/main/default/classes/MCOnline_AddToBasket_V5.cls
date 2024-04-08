@@ -8,7 +8,7 @@
 ******************************************************************************************************************************/
 
 global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.VlocityOpenInterface {
-    static String apiFunctionality='AddToBasket' ;
+    static String apiFunctionality='AddToBasket';
      static String uniqueParentId = '',cartContextKey='';
      static Decimal mrcPrice=0;
      static Decimal nrcPrice=0;
