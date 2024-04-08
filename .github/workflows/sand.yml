@@ -27,7 +27,7 @@ jobs:
         if [ -f "manifest/merged.xml" ];  then
            git config --global user.email "suni9636@gmail.com"
            git config --global user.name "Deadpool"
-           git rm mergedfile.xml
+           git rm manifest/merged.xml
            git commit -m 'removed mergedfile'
            git push
         else 
