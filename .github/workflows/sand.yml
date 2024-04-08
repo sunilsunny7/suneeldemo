@@ -18,7 +18,7 @@ jobs:
       
     - name: Merge XML files
       run: |
-        if git status -s | grep -x "** [mergedfile.xml]";  then
+        if [ -f "manifest/Merger.py" ];  then
            git config --global user.email "suni9636@gmail.com"
            git config --global user.name "Deadpool"
            git rm mergedfile.xml
