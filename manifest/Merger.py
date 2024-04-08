@@ -18,6 +18,7 @@ def cleanXML(path):
     package_file = open(path)
     package_content = package_file.read()
     package_content_new = re.sub(' xmlns="[^"]+"', '', package_content, count=1)
+    print(package_content_new)
     package_file = open(path, 'w')
     package_file.write(package_content_new)
     package_file.close()
