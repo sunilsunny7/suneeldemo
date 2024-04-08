@@ -18,7 +18,7 @@ jobs:
       
     - name: Merge XML files
       run: |
-        if [ -f "mergedfile.xml" ]; 
+        if git status -s | grep -x "** [mergedfile.xml]"; 
         then
            git config --global user.email "suni9636@gmail.com"
            git config --global user.name "Deadpool"
