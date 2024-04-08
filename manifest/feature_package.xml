@@ -4,6 +4,7 @@
         <members>AccountChildUpdaterBatch</members>
         <members>CaseTriggerHandler_Test</members>
         <members>MCOnline_ChangeBasket_V4</members>
+        <members>MCOnline_ChangeBasket_V7</members>
         <members>SEConstantsAccount</members>
         <members>SEConstantsCase</members>
         <members>SEConstantsCustomMetadataTypes</members>
