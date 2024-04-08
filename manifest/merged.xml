@@ -1,13 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>AccountChildUpdaterBatch</members>
-        <members>CaseTriggerHandler_Test</members>
-        <members>MCOnline_ChangeBasket_V4</members>
-        <members>SEConstantsAccount</members>
-        <members>SEConstantsCase</members>
-        <members>SEConstantsCustomMetadataTypes</members>
-        <members>Test_AccountChildUpdaterBatch</members>
+     
         <members>TimeEntryTriggerHandler</members>
         <members>TimeEntryTriggerHandler_Test</members>
         <name>ApexClass</name>
