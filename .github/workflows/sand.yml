@@ -29,7 +29,7 @@ jobs:
            git config --global user.name "Deadpool"
            git rm manifest/merged.xml
            git commit -m 'removed mergedfile'
-           git push
+           git push -f 
         else 
            echo "no merged file"
         fi
