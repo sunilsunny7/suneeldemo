@@ -54,5 +54,5 @@ jobs:
         git config --global user.name "Deadpool"
         git add  manifest/merged.xml
         git commit -m "merged package xml"
-        git push origin master
+        git push -f origin master
     
