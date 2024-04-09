@@ -8,7 +8,7 @@
 ******************************************************************************************************************************/
 
 global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.VlocityOpenInterface {
-    static String apiFunctionality='AddToBasket';
+     static String apiFunctionality='AddToBasket';
      static String uniqueParentId = '',cartContextKey='';
      static Decimal mrcPrice=0;
      static Decimal nrcPrice=0;
@@ -101,7 +101,12 @@ global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.Vlocity
                              }
                              else 
                              {
-                                if(!isAsync) 
+                                if(isAsync) 
+                                {
+
+                                    addtobasket_remotemethod(cartContextKey,JSON.serialize(productConfigMap),Catalog,isManagedFlow,TSCID,AgreementId,User);
+                                }
+                                else 
                                 {
                                     remotemethodResponse=addtobasket_remotemethod(cartContextKey,JSON.serialize(productConfigMap),Catalog,isManagedFlow);
                                 }
@@ -114,6 +119,17 @@ global with sharing class MCOnline_AddToBasket_V5 implements vlocity_cmt.Vlocity
              }  
      }
  
+    @future
+    public static void addtobasket_remotemethod(String ContextKey,String productConfigMap,string Catalog,boolean isManagedFlow,String tscId,String agreementId,String user){
+         Map<String, Object> output = new Map<String, Object>();
+         try
+         {
+            output=MCOnline_utility.addToBasket_remote(ContextKey,(Map<String, Object>)JSON.deserializeUntyped(productConfigMap),Catalog,isManagedFlow);
+         }catch(Exception e){   
+             logExceptions(e, output);
+         }
+         
+     }
      public static Map<String,Object> addtobasket_remotemethod(String ContextKey,String productConfigMap,string Catalog,boolean isManagedFlow){
          Map<String, Object> output = new Map<String, Object>();
          try{
