@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>AccountChildUpdaterBatch</members>
-        <members>CaseTriggerHandler_Test</members>
-        <members>MCOnline_ChangeBasket_V4</members>
-        <members>SEConstantsAccount</members>
-        <members>SEConstantsCase</members>
-        <members>SEConstantsCustomMetadataTypes</members>
-        <members>Test_AccountChildUpdaterBatch</members>
-        <members>TimeEntryTriggerHandler</members>
+       
         <members>TimeEntryTriggerHandler_Test</members>
         <name>ApexClass</name>
     </types>
@@ -30,13 +23,6 @@
         <members>cfProductQuantityParentCard_1_Telia</members>
         <members>cfProductQuantityParentCard_B</members>
         <members>cfProductQuantityParentCard_B_1_Telia</members>
-        <members>cfQuoteQuantityAndInitialQuantityTesting_13_Telia</members>
-        <members>cfTest123</members>
-        <members>cfTest123_1_Telia</members>
-        <members>cfTestAditiFlexcard_2_Telia</members>
-        <members>cfTestCard_Suneel</members>
-        <members>cfTestCard_Suneel_1_Telia</members>
-        <members>cfWarningPopup_3_Telia</members>
         <name>LightningComponentBundle</name>
     </types>
     <version>55.0</version>
