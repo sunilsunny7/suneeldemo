@@ -211,7 +211,6 @@ This method is a common method for doing an http callout towards std addtobasket
             ipOutputMap.put('errorCode',mdtList[0].MCONL_Error_Code__c); 
             ipOutputMap.put('error',mdtList[0].MCONL_Error_Message__c);
             ipOutputMap.put('success',false);
-            
         }else{
             system.debug('You dont have IP output, This error message is not documented in metadata.'); 
             ipOutputMap.put('errorCode','INCOMPLETE_TRANSACTION');//This error message is not documented in metadata.
