@@ -11,7 +11,7 @@
         <members>Test_AccountChildUpdaterBatch</members>
         <members>TimeEntryTriggerHandler</members>
         <members>TimeEntryTriggerHandler_Test</members>
-        <members>MCOnline_ActivateAgreements</members>
+        <members>MCOnline_Utility</members>
         <name>ApexClass</name>
     </types>
     <types>

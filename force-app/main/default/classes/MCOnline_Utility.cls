@@ -214,7 +214,7 @@ This method is a common method for doing an http callout towards std addtobasket
             
         }else{
             system.debug('You dont have IP output, This error message is not documented in metadata.'); 
-            ipOutputMap.put('errorCode','INCOMPLETE_TRANSACTION');//This error message is not documented in metadata.
+            ipOutputMap.put('errorCode','INCOMPLETE_TRANSACTION');//This error message is not documented in metadata
             ipOutputMap.put('error','Could not complete the processing. Please contact system Admin');
             ipOutputMap.put('success',false);
         }
