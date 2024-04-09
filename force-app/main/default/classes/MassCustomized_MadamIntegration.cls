@@ -1379,6 +1379,7 @@ global with sharing class MassCustomized_MadamIntegration implements vlocity_cmt
 * @param contextId                                Context Id
 * @param objectName                               Containing object Name
 * @param url                                      Full request endpoints
+
 * ************************************************************************************************************
 */  
     public static void getErrorLog(Map<String,Object> errorLogMap, String errorMessage, String errorCode, String source, String sourceType, String errorType,String inputData,String contextId,String objectName, String url)
