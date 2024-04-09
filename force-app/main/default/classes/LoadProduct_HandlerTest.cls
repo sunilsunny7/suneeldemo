@@ -371,7 +371,8 @@ public class LoadProduct_HandlerTest {
     @isTest
     static void dynamicOffercodegeneratorTest()
     {
-    try{
+        try
+        {
         String offercode=LoadProduct_Handler.getOfferCode('1234',6,'mobiledevice');
         System.assertEquals('HW_MOBILEDEVICES4', offercode);
         String productcode=[select id,vlocity_cmt__Product2Id__r.productcode from vlocity_cmt__CatalogProductRelationship__c limit 1]?.vlocity_cmt__Product2Id__r.productcode;
