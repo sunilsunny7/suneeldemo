@@ -56,3 +56,4 @@ global class MCOnline_ActivateAgreements implements Database.Batchable<sObject>,
     }
 
 }
+
