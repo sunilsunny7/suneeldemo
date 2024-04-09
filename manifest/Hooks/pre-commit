@@ -1,0 +1,28 @@
+#!/bin/bash
+# run this command to use this hook by default
+# git config --local core.hooksPath manifest/Hooks
+
+if which node >/dev/null; then
+    echo "Node is installed"
+else
+    echo "Node is not installed"
+    exit
+fi
+
+exec </dev/tty
+while true; do
+    read -r -p "Do you want to create/update manifest?" yn
+    echo "$yn"
+    if [ "$yn" = "" ]; then
+        yn='Y'
+    fi
+
+    case $yn in
+    [Yy])
+        node "$(git rev-parse --show-toplevel)/manifest/manifest.js"
+        break
+        ;;
+    [Nn]) exit ;;
+    *) echo "Please answer Y/N" ;;
+    esac
+done
