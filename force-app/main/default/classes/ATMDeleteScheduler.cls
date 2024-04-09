@@ -5,7 +5,7 @@ global class ATMDeleteScheduler implements Schedulable{
             Database.executeBatch(atmDel,100);
         }
         catch(exception e){
-            system.debug('error' +e.getmessage());            
+            system.debug('errr' +e.getmessage());            
         }
     }
 
