@@ -75,7 +75,7 @@ global class TeliaSE_ContractStatusUpdateHandler {
                 else if(document.scrive__status__c == System.label.SIGNED)
                 {
                     contractForUpdate.Status=System.label.SIGNED;
-                    if(contractForUpdate.Manual_Check__c == False){
+                    if(!contractForUpdate.Manual_Check__c){
                         contractForUpdate.customerSignedDate=Date.today();
                         contractForUpdate.TeliaSE_Agreement_Received_Date__c = Date.Today();
                     }
@@ -89,7 +89,6 @@ global class TeliaSE_ContractStatusUpdateHandler {
                     else{
                         contractForUpdate.Status = 'Approved' ;  
                     }
-                    
                     contracts.add(contractForUpdate);
                 }
                 else if(document.scrive__status__c == System.label.REJECTED)

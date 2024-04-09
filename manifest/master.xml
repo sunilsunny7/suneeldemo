@@ -11,6 +11,7 @@
         <members>Test_AccountChildUpdaterBatch</members>
         <members>TimeEntryTriggerHandler</members>
         <members>TimeEntryTriggerHandler_Test</members>
+        <members>TeliaSE_ContractStatusUpdateHandler</members>
         <name>ApexClass</name>
     </types>
     <types>
