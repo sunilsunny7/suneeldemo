@@ -207,6 +207,7 @@ This method is a common method for doing an http callout towards std addtobasket
         else if((errorType != null && errorType.equalsIgnoreCase('custom')) && ( code!=null )){
             mdtList = [SELECT Id, DeveloperName, MasterLabel, Language, NamespacePrefix, Label, QualifiedApiName, Additional_Parameters__c,MCONL_Error_Code__c, MCONL_Error_Message__c, Standard_Error__c, Standard_Error_Code__c, LANGUAGE__c, VERSION__c, API_NAME__c FROM MCOnline_Error__mdt WHERE CustomError__c=:code AND Status__c = true AND API_NAME__c=:functionality limit 1];
         }
+        
         if(mdtList!=null && mdtList.size() > 0){
             ipOutputMap.put('errorCode',mdtList[0].MCONL_Error_Code__c); 
             ipOutputMap.put('error',mdtList[0].MCONL_Error_Message__c);
