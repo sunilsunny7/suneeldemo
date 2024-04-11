@@ -525,7 +525,7 @@ global class MCOnline_UpdateOrderItemParameter_V3
     global static void updateAssetIdentifier(Map<Id,Map<String, Attribute>> basketMap, Id orderNumber, String orderNumberBasket)
     {
         List<MCOnline_Basket__c> parentBasketObject = [SELECT  MCOnline_AttributeJSON__c, Id,MCOnline_Billing_Account__c,basket_Line_Relation_Count__c,Basket_Line_Relation_Id__c, MCOnline_Basket_Key__c, Account__c, MCOnline_Order__c, MCOnline_Contract__c,MCOnline_Catalog__c, TSCID__c, MCOnline_ParentBasket__c, MCOnline_OfferCode__c,MConline_Offer_ActionCode__c FROM MCOnline_Basket__c where Order__c = :orderNumberBasket];
-        List<OrderItem> ordproduct = [Select Id,vlocity_cmt__Product2Id__r.ProductCode,MCOnline_Billing_Account__c,MCOnline_Basket_Relation_Id__c,MCOnline_CommitmentPeriod__c, MCOnline_UserName__c,MCOnline_MSISDN__c, MCONL_multiSubscriptionAssetIdentifier__c,vlocity_cmt__RootItemId__c from OrderItem where Order.Id =:orderNumber order by id];
+        List<OrderItem> ordproduct = [Select Id,vlocity_cmt__Product2Id__r.ProductCode,vlocity_cmt__Product2Id__r.C2BC_Category__c,MCOnline_Billing_Account__c,MCOnline_Basket_Relation_Id__c,MCOnline_CommitmentPeriod__c, MCOnline_UserName__c,MCOnline_MSISDN__c, MCONL_multiSubscriptionAssetIdentifier__c,vlocity_cmt__RootItemId__c from OrderItem where Order.Id =:orderNumber order by id];
         Map<String, String> msisdnaddon1 = new Map<String, String>();
         Map<String, String> commitmentaddon = new Map<String, String>();
         Map<String,String> rootitemIdVSMSISDN=new Map<String,String>();
@@ -534,7 +534,6 @@ global class MCOnline_UpdateOrderItemParameter_V3
         Map<String,String> actionCodeMap=new Map<String,String>();
         for(MCOnline_Basket__c basketSFObj : parentBasketObject)
         {
-            //testsdgdsf
             if(basketSFObj != null && basketSFObj.MCOnline_AttributeJSON__c != null )
             {   
                 Map<String,Object> itemList1 = (Map<String,Object>)JSON.deserializeUntyped(basketSFObj.MCOnline_AttributeJSON__c);
@@ -545,7 +544,7 @@ global class MCOnline_UpdateOrderItemParameter_V3
                     Map<String, Object> recObj = ( Map<String, Object>)obj;
                     if(recObj.get('productCode')!=null && recObj.get('actionCode')!=null)
                     {
-                        actionCodeMap.put(recObj.get('productCode')+'',recObj.get('actionCode')+'');
+                        actionCodeMap.put(recObj.get('productCode')+'_'+RelationId1,recObj.get('actionCode')+'');
                     }
                     Map<String, Object> attributeMap = (Map<String, Object>)recObj.get('attributes');
                     if(attributeMap != null)
@@ -567,11 +566,20 @@ global class MCOnline_UpdateOrderItemParameter_V3
         }
         List<OrderItem> ordlist= new List<OrderItem>();
         List<OrderItem> ordlist1= new List<OrderItem>();
+        Set<String> skipCommitment=new Set<String>();
+        List<String> c2bcCategoriestoSkip=vlocity_cmt__GeneralSettings__c.getInstance('c2bcCategoriestoSkip')!=null?vlocity_cmt__GeneralSettings__c.getInstance('c2bcCategoriestoSkip').vlocity_cmt__Value__c.split(','):new List<String>{'switchboardextension'};
+        for(OrderItem item : ordproduct)
+        {
+            if(c2bcCategoriestoSkip.contains(item.vlocity_cmt__Product2Id__r.C2BC_Category__c))
+            {
+                skipCommitment.add(item.vlocity_cmt__RootItemId__c);
+            }
+        }
         for(OrderItem ordproduct1 : ordproduct)
         {
             if(actionCodeMap.containsKey(ordproduct1.vlocity_cmt__Product2Id__r.ProductCode))
             {
-                ordproduct1.MCONL_Action_Code__c=actionCodeMap.get(ordproduct1.vlocity_cmt__Product2Id__r.ProductCode);
+                ordproduct1.MCONL_Action_Code__c=actionCodeMap.get(ordproduct1.vlocity_cmt__Product2Id__r.ProductCode+'_'+ordproduct1.MCOnline_Basket_Relation_Id__c);
             }
             if(ordproduct1.MCOnline_Billing_Account__c == null &&  ordproduct1.MCOnline_Basket_Relation_Id__c !=null && BillingAccountMap != null)
             {
@@ -591,10 +599,13 @@ global class MCOnline_UpdateOrderItemParameter_V3
             }
             if(ordproduct1.MCOnline_CommitmentPeriod__c == null && ordproduct1.MCOnline_Basket_Relation_Id__c !=null && commitmentaddon != null)
             {
-                ordproduct1.MCOnline_CommitmentPeriod__c = commitmentaddon.get(ordproduct1.MCOnline_Basket_Relation_Id__c);
+                if(!skipCommitment.contains(ordproduct1.vlocity_cmt__RootItemId__c))
+                {
+                    ordproduct1.MCOnline_CommitmentPeriod__c = commitmentaddon.get(ordproduct1.MCOnline_Basket_Relation_Id__c);
+                }
                 if(ordproduct1.vlocity_cmt__RootItemId__c!=null && ordproduct1.MCOnline_CommitmentPeriod__c != null)
                 {
-                rootitemIdVSCommitment.put(ordproduct1.vlocity_cmt__RootItemId__c, ordproduct1.MCOnline_CommitmentPeriod__c);
+                    rootitemIdVSCommitment.put(ordproduct1.vlocity_cmt__RootItemId__c, ordproduct1.MCOnline_CommitmentPeriod__c);
                 }
             }
             ordlist.add(ordproduct1);

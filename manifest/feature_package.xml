@@ -3,12 +3,13 @@
     <types>
         <members>ATMDeleteScheduler</members>
         <members>BatchAccountSegScheduler</members>
+        <members>LoadProduct_HandlerTest</members>
         <members>MCOnline_ActivateAgreements</members>
         <members>MCOnline_AddToBasket_V5</members>
         <members>MCOnline_Utility</members>
         <members>MassCustomized_MadamIntegration</members>
         <members>TeliaSE_ContractStatusUpdateHandler</members>
-        <members>LoadProduct_HandlerTest</members>
+        <members>MCOnline_UpdateOrderItemParameter_V3</members>
         <name>ApexClass</name>
     </types>
     <version>55.0</version>
