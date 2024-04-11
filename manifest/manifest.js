@@ -26,7 +26,7 @@ const GIT_COMMANDS = {
     BRANCH_NAME: 'git rev-parse --abbrev-ref HEAD',
     CACHED_DIFF: 'git --no-pager diff --cached --name-only',
     COMPARATIVE_DIFF_WITH_QA: (fromBranch, branchName) => {
-        return `git --no-pager diff --name-only origin/${fromBranch} origin/${branchName}`;
+        return `git --no-pager diff --name-only ${fromBranch} origin/${branchName}`;
     }
 };
 
@@ -76,7 +76,7 @@ async function getFromBranch(branchName) {
         let data = await fs.readFile('manifest/ManifestScripts/.env.json');
         return JSON.parse(Buffer.from(data).toString())[branchName].fromBranch;
     } catch (error) {
-        return 'dev';
+        return 'master';
     }
 }
 
@@ -97,9 +97,9 @@ function stripFilePath(file) {
 async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
 
     let oldManifestData = Buffer.from('');
-    saveToFile(manifest.toXML(), name);
-    /*try {
-        oldManifestData = await fs.readFile(`manifest/package.xml`);
+    //saveToFile(manifest.toXML(), name);
+    try {
+        oldManifestData = await fs.readFile(`manifest/feature_package.xml`);
         let oldManifest = parse(Buffer.from(oldManifestData).toString());
         oldManifest.types.forEach((members, key) => {
             members.forEach((member) => manifest.addMember(key, member, true));
@@ -110,15 +110,12 @@ async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
         if (Buffer.compare(oldManifestData, Buffer.from(manifest.toXML())) !== 0) {
             saveToFile(manifest.toXML(), name);
         }
-    }*/
+    }
 }
 
 async function saveToFile(data, name) {
     try {
-        
-        await fs.writeFile(`manifest/${name}.xml`, Buffer.from(data));
-        console.log(data)
-        console.log(name)
+        await fs.writeFile(`manifest/feature_package.xml`, Buffer.from(data));
         await addToGit(name);
     } catch (error) {
         console.log('COULD NOT SAVE THE MANIFEST.');
@@ -127,7 +124,7 @@ async function saveToFile(data, name) {
 }
 
 async function addToGit(fileName) {
-    exec(`git add manifest/${fileName}.xml`);
+    exec(`git add manifest/feature_package.xml`);
 }
 
 main();
