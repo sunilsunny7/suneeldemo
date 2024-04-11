@@ -173,7 +173,7 @@ global class MCOnline_UpdateOrderItemParameter_V3
                                     if(Actionc != null && !String.isBlank(Actionc) && !(Actionc.equalsIgnoreCase('Add') || Actionc.equalsIgnoreCase('Update')))
                                     {
                                         ordprod1.vlocity_cmt__RecurringCharge__c = 0;
-                                        ordprod1.vlocity_cmt__RecurringTotal__c=0;
+                                        ordprod1.vlocity_cmt__RecurringTotal__c=0
                                     }else{
                                         ordprod1.vlocity_cmt__RecurringCharge__c = mrc_amount;
                                         ordprod1.vlocity_cmt__RecurringTotal__c=mrc_amount;
