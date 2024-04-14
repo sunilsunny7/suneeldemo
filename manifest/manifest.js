@@ -16,6 +16,7 @@
 */
 
 const util = require('util');
+const fsys = require('fs');
 const exec = util.promisify(require('child_process').exec);
 const fs = require('fs').promises;
 const { Manifest, parse, SUPPORTED_METADATA_TYPES, DEFAULT_METADATA_PATH } = require('./xmlbuilder.js');
@@ -99,11 +100,13 @@ async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
     let oldManifestData = Buffer.from('');
     //saveToFile(manifest.toXML(), name);
     try {
-        oldManifestData = await fs.readFile(`manifest/feature_package.xml`);
-        let oldManifest = parse(Buffer.from(oldManifestData).toString());
-        oldManifest.types.forEach((members, key) => {
-            members.forEach((member) => manifest.addMember(key, member, true));
-        });
+        if (fsys.existsSync(`manifest/feature_package.xml`)) {
+            oldManifestData = await fs.readFile(`manifest/feature_package.xml`);
+            let oldManifest = parse(Buffer.from(oldManifestData).toString());
+            oldManifest.types.forEach((members, key) => {
+                members.forEach((member) => manifest.addMember(key, member, true));
+            });
+        }
     } catch (error) {
         console.error(error);
     } finally {
