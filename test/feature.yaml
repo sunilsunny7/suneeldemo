@@ -1,0 +1,8 @@
+projectPath: ./vlocity
+queries: 
+  - VlocityDataPackType: DataRaptor
+    query: select id from vlocity_cmt__DRBundle__c limit 1
+ 
+manifestOnly: true
+oauthConnection: true
+activate: true
