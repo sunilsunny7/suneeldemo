@@ -1,0 +1,16 @@
+{
+    "BackupContract": {
+        "Id": "Text",
+        "Name": "Text"
+    },
+    "Contract": {
+        "FAQuote": "Text",
+        "Name": "Text",
+        "contractid": "Text",
+        "status": "Text"
+    },
+    "OriginialContract": {
+        "FAQuote": "Text",
+        "contractid": "Text"
+    }
+}

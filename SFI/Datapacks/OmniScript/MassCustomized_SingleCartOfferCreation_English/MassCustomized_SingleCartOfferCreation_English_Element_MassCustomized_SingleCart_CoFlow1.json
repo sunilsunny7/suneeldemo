@@ -1,0 +1,34 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "TeliaSE_Singlecart_OfferCreation",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/SingleCartOfferCreation/English",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__PropertySet__c": {
+        "Language": "English",
+        "Sub Type": "singleCart_coflow",
+        "Type": "MassCustomized",
+        "disOnTplt": false,
+        "show": {
+            "group": {
+                "operator": "AND",
+                "rules": [
+                    {
+                        "condition": "=",
+                        "data": "true",
+                        "field": "CheckCO"
+                    }
+                ]
+            }
+        }
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": false,
+    "%vlocity_namespace%__SearchKey__c": "MassCustomized|singleCart_coflow|English",
+    "%vlocity_namespace%__Type__c": "OmniScript",
+    "Name": "MassCustomized_SingleCart_CoFlow1",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/SingleCartOfferCreation/English/MassCustomized_SingleCart_CoFlow1"
+}

@@ -1,0 +1,31 @@
+{
+    "%vlocity_namespace%__CustomJavaScript__c": "MCONLINE_GetAccountManagementDetailsV1_SampleInput.json",
+    "%vlocity_namespace%__DisableMetadataCache__c": false,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": [
+        "MCONLINE_GetAccountManagementDetailsV1_Element_DR_AccountManagementDetails.json",
+        "MCONLINE_GetAccountManagementDetailsV1_Element_RP_ProcessJSON.json",
+        "MCONLINE_GetAccountManagementDetailsV1_Element_ResponseAction.json",
+        "MCONLINE_GetAccountManagementDetailsV1_Element_ConditionalBlock_500.json",
+        "MCONLINE_GetAccountManagementDetailsV1_Element_ResponseAction500.json",
+        "MCONLINE_GetAccountManagementDetailsV1_Element_ConditionalBlock_200.json",
+        "MCONLINE_GetAccountManagementDetailsV1_Element_ResponseAction200.json",
+        "MCONLINE_GetAccountManagementDetailsV1_Element_ConditionalBlock_400.json",
+        "MCONLINE_GetAccountManagementDetailsV1_Element_ResponseAction400.json"
+    ],
+    "%vlocity_namespace%__IsLwcEnabled__c": false,
+    "%vlocity_namespace%__IsProcedure__c": true,
+    "%vlocity_namespace%__IsReusable__c": false,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "Procedure",
+    "%vlocity_namespace%__OmniProcessType__c": "Integration Procedure",
+    "%vlocity_namespace%__ProcedureKey__c": "MCONLINE_GetAccountManagementDetailsV1",
+    "%vlocity_namespace%__ProcedureResponseCacheType__c": "Org Cache",
+    "%vlocity_namespace%__PropertySet__c": "MCONLINE_GetAccountManagementDetailsV1_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "GetAccountManagementDetailsV1",
+    "%vlocity_namespace%__Type__c": "MCONLINE",
+    "Name": "MCONLINE_GetAccountManagementDetailsV1",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MCONLINE/GetAccountManagementDetailsV1/Procedure"
+}

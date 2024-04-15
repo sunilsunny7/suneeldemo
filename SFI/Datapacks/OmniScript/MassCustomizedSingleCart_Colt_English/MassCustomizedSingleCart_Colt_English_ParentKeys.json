@@ -1,0 +1,6 @@
+[
+    "DataRaptor/ExtractHWColtItems",
+    "DataRaptor/TeliaSE_ColtStatusTransform",
+    "DataRaptor/TeliaSE_MC_HardwareDRGetQuoteLineItems",
+    "IntegrationProcedure/MassCustomized_ColtStockCheck"
+]

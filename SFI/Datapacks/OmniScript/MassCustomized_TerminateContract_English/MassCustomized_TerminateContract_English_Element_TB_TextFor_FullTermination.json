@@ -1,0 +1,51 @@
+{
+    "%vlocity_namespace%__Active__c": false,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "Terminate Contract",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/TerminateContract/English",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__ParentElementId__c": {
+        "%vlocity_namespace%__OmniScriptId__c": {
+            "Name": "Terminate Contract",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/TerminateContract/English",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+        },
+        "Name": "Step_Links",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/TerminateContract/English/Step_Links",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c"
+    },
+    "%vlocity_namespace%__ParentElementName__c": "Step_Links",
+    "%vlocity_namespace%__ParentElementType__c": "Step",
+    "%vlocity_namespace%__PropertySet__c": {
+        "HTMLTemplateId": "",
+        "controlWidth": 12,
+        "dataJSON": false,
+        "disOnTplt": false,
+        "label": "TextBlock3",
+        "sanitize": false,
+        "show": {
+            "group": {
+                "operator": "AND",
+                "rules": [
+                    {
+                        "condition": "=",
+                        "data": "Terminate the entire contract",
+                        "field": "TerminateOption"
+                    }
+                ]
+            }
+        },
+        "text": "<ul>\n<li><strong>Jobbmobil</strong>:&nbsp;<a rel=\"nofollow\" class=\"external-link\" href=\"https://teliase.service-now.com/nav_to.do?uri=/com.glideapp.servicecatalog_cat_item_view.do?v%3D1%26sysparm_id%3Dd4366863dbd42810727f49803996194b%26sysparm_link_parent%3D1b8611d5c3921200b0449f2974d3ae12%26sysparm_catalog%3D65bcd377c3011200b12d9f2974d3aea0%26sysparm_catalog_view%3Dcatalog_Customer_Service%26sysparm_view%3Dcatalogs_default\">https://teliase.service-now.com/nav_to.do?uri=/com.glideapp.servicecatalog_cat_item_view.do?v%3D1%26sysparm_id%3Dd4366863dbd42810727f49803996194b%26sysparm_link_parent%3D1b8611d5c3921200b0449f2974d3ae12%26sysparm_catalog%3D65bcd377c3011200b12d9f2974d3aea0%26sysparm_catalog_view%3Dcatalog_Customer_Service%26sysparm_view%3Dcatalogs_default</a></li>\n<li>\n<h5><strong>Touchpoint</strong>: &nbsp;<sup><a href=\"https://casey-ext.han.telia.se/1075\" target=\"_blank\" title=\"TouchPoint with Casey\" rel=\"noopener\" style=\"font-family: inherit; background-color: #ffffff; color: #003366;\">https://casey-ext.han.telia.se/1075</a></sup></h5>\n</li>\n<li><strong>Office 365</strong>:&nbsp;<a rel=\"nofollow\" class=\"external-link\" href=\"https://proofx.teliacompany.com/pLhV5WgV7tuEy8ArAfh9EF/\">https://proofx.teliacompany.com/pLhV5WgV7tuEy8ArAfh9EF/</a></li>\n<li><strong>Smart s&auml;kerhet</strong>:&nbsp;<a class=\"external-link\" href=\"https://proofx.teliacompany.com/pLhV5WgV7tuEy8ArAfh9EF/\" rel=\"nofollow\">https://proofx.teliacompany.com/pLhV5WgV7tuEy8ArAfh9EF/</a></li>\n<li><strong>Personlig tekniker</strong>:&nbsp;<a rel=\"nofollow\" href=\"https://proofx.teliacompany.com/E7OVxP5zmkcWoeSH92RMmA/sweden/enterprise/bo%20sme/bestallningpt+/\" class=\"external-link\">https://proofx.teliacompany.com/E7OVxP5zmkcWoeSH92RMmA/sweden/enterprise/bo sme/bestallningpt+/</a></li>\n</ul>",
+        "textKey": ""
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": false,
+    "%vlocity_namespace%__Type__c": "Text Block",
+    "Name": "TB_TextFor_FullTermination",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/TerminateContract/English/TB_TextFor_FullTermination"
+}

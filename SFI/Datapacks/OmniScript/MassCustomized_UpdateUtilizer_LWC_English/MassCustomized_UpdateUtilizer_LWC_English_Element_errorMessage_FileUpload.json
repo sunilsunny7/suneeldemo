@@ -1,0 +1,51 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "TeliaSE_UpdateUtilizer",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer_LWC/English",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__ParentElementId__c": {
+        "%vlocity_namespace%__OmniScriptId__c": {
+            "Name": "TeliaSE_UpdateUtilizer",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer_LWC/English",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+        },
+        "Name": "UtilizerResult",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer_LWC/English/UtilizerResult",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c"
+    },
+    "%vlocity_namespace%__ParentElementName__c": "UtilizerResult",
+    "%vlocity_namespace%__ParentElementType__c": "Step",
+    "%vlocity_namespace%__PropertySet__c": {
+        "HTMLTemplateId": "",
+        "controlWidth": 12,
+        "dataJSON": false,
+        "disOnTplt": false,
+        "label": "errorMessage_FileUpload",
+        "sanitize": false,
+        "show": {
+            "group": {
+                "operator": "AND",
+                "rules": [
+                    {
+                        "condition": "<>",
+                        "data": null,
+                        "field": "errorMessage"
+                    }
+                ]
+            }
+        },
+        "text": "<div><strong><span style=\"color: #ff0000;\">Felmeddelanden</span></strong></div>\n<div>&nbsp;</div>\n<div>Det uppstod problem med att l&auml;gga till n&aring;gra av nyttjarna. <strong><span style=\"color: #ff0000;\"><a href=\"%errorMessage%\" target=\"_blank\" rel=\"noopener\">Klicka h&auml;r</a> </span></strong>f&ouml;r&nbsp;att&nbsp;ladda&nbsp;se&nbsp;de&nbsp;drabbade&nbsp;nyttjarna&nbsp;och&nbsp;orsaken.</div>",
+        "textKey": ""
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": true,
+    "%vlocity_namespace%__Type__c": "Text Block",
+    "Name": "errorMessage_FileUpload",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer_LWC/English/errorMessage_FileUpload"
+}

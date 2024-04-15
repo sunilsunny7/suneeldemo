@@ -1,0 +1,14 @@
+[
+    "CalculationMatrix/MockMatrix",
+    "DataRaptor/ITDaaS_AutoTaskPostAgreementTransform",
+    "DataRaptor/ITDaaS_AutoTask_Contract",
+    "DataRaptor/ITDaaS_DRLoad_ContractDetails",
+    "DataRaptor/MC_ContractLineExtractMaster",
+    "DataRaptor/MC_DRContractContactExtractMaster",
+    "DataRaptor/MC_DRExtractContractUtilizers",
+    "DataRaptor/MC_DR_OpportunityExtractMaster",
+    "DataRaptor/MC_DR_QuoteExtractMaster",
+    "DataRaptor/MC_UserMaster",
+    "DataRaptor/TeliaSE_DRExtractWebService",
+    "IntegrationProcedure/MassCustomized_APIGarden"
+]

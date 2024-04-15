@@ -1,0 +1,81 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "TeliaSE Create TouchPoint Case",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/TouchPointIntegration/English",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__PropertySet__c": {
+        "HTMLTemplateId": "",
+        "Outcome": "",
+        "consoleTabLabel": "New",
+        "controlWidth": 12,
+        "disOnTplt": false,
+        "label": "Submit",
+        "message": {
+        },
+        "redirectPageName": "",
+        "redirectTemplateUrl": "",
+        "show": {
+            "group": {
+                "operator": "AND",
+                "rules": [
+                    {
+                        "condition": "<>",
+                        "data": "true",
+                        "field": "ErrorAlreadyCaseExist:ErrorMsgExistingCase"
+                    },
+                    {
+                        "group": {
+                            "operator": "OR",
+                            "rules": [
+                                {
+                                    "condition": "=",
+                                    "data": "true",
+                                    "field": "ContractNotValid:ContractNA"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "true",
+                                    "field": "TouchpointValidation:TouchpointError"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "true",
+                                    "field": "ErrorTouchPointIntegration:ErrorTouchPoint"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "true",
+                                    "field": "ServerDown:ServerDownMSG"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "true",
+                                    "field": "ContractCaseIdNotAvailable:CaseIdError"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "true",
+                                    "field": "ErrorTouchPointIntegration:MultiSql"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "source": "/apex/%vlocity_namespace%__HybridCPQ?type=Offer&id=%ContextId%",
+        "ssm": false,
+        "type": "URL",
+        "validationRequired": "Submit",
+        "wpm": false
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": true,
+    "%vlocity_namespace%__Type__c": "Done Action",
+    "Name": "DoneActionFailure",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/TouchPointIntegration/English/DoneActionFailure"
+}

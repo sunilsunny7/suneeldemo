@@ -1,0 +1,14 @@
+{
+    "request": [
+        {
+            "basketName": "123123",
+            "billingAccount": "MC123"
+        },
+        {
+            "basketName": "12534453",
+            "billingAccount": "MC123"
+        }
+    ],
+    "tscid": "7896578654",
+    "user": "binu"
+}

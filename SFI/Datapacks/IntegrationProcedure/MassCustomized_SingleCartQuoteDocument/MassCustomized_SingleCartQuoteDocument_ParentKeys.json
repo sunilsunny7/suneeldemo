@@ -1,0 +1,5 @@
+[
+    "DataRaptor/DRQuoteLineItemsExtract",
+    "DataRaptor/TeliaSETransformOffers",
+    "DataRaptor/TeliaSE_GetAdditionalQuoteInfo"
+]

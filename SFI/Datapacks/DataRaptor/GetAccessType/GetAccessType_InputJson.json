@@ -1,0 +1,29 @@
+{
+    "ContextId": null,
+    "Generate Document": {
+        "GenerateDocumentWord": null
+    },
+    "Step2": {
+        "AccessType": null,
+        "ContractDealType": null
+    },
+    "timeStamp": null,
+    "userId": null,
+    "userName": null,
+    "userProfile": null,
+    "userTimeZone": null,
+    "vlcPersistentComponent": {
+    },
+    "vlcTimeTracking": {
+        "CreateObjDocument": null,
+        "DataRaptorPostAction1": null,
+        "DoneAction1": null,
+        "Generate Document": null,
+        "GetTemplateDetails": null,
+        "PDF": null,
+        "SetContractValues": null,
+        "SetTemplate": null,
+        "SetTemplateValues": null,
+        "Step2": null
+    }
+}

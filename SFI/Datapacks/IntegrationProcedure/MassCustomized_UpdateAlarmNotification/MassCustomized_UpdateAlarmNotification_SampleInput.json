@@ -1,0 +1,12 @@
+{
+    "agreedAmountMobile": "230",
+    "agreedAmountTP": "345",
+    "contractId": "8000Q000004g4wZQAQ",
+    "miniDebAlertType": "Active",
+    "mobileMiniDebWarningPercentage": "34%",
+    "mobileMiniWarningActiveFlag": "Y",
+    "numberOfSubscriptionsMobile": "6",
+    "numberOfSubscriptionsTP": "8",
+    "tpMiniDebWarningPercentage": "23%",
+    "tpMiniWarningActiveFlag": "N"
+}

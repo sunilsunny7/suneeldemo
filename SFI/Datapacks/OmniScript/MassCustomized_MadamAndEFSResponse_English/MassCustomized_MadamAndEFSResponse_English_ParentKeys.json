@@ -1,0 +1,10 @@
+[
+    "DataRaptor/AgreementID",
+    "DataRaptor/DR_transfrom_EFSResponse",
+    "DataRaptor/TeliaSE_DR_TransformMadamResponse_Message7",
+    "DataRaptor/TeliaSE_TransformMADAMAuthToken",
+    "DataRaptor/getOneTimeCharge",
+    "IntegrationProcedure/MassCustomized_GetEFSSubscriptionPrices",
+    "IntegrationProcedure/MassCustomized_HardwareSolution",
+    "VlocityUITemplate/TeliaSE_Hardware_Agreements"
+]

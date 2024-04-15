@@ -1,0 +1,292 @@
+{
+    "Account": {
+        "Status": "Active"
+    },
+    "ApexError": false,
+    "BindingMap": [
+        {
+            " ProductCode": "CO-BBSTART",
+            "AccountId": "0013E00001CqOc5QAF",
+            "ApprovedPercentage": "",
+            "ApprovedPrice": "",
+            "BindingPeriod": "24",
+            "ExcludeItem": false,
+            "FACallOffQuantity": 0,
+            "Id": "0QL5E000000kIEoWAM",
+            "ImParentProduct": "",
+            "IsRoot": 1,
+            "Level": 0,
+            "LineNumber": "0005",
+            "OfferType": "AgreementOffering",
+            "OneTimeManualDiscount": 0,
+            "OneTimePrice": 0,
+            "OpportunityId": "0063E000007VsIsQAK",
+            "ParentItemId": "01t5E000006tNODQA2",
+            "ParentProductName": "Telia Bredband Start",
+            "PriceBookEntryId": "01u5E00000I310sQAB",
+            "Product2Id": "01t5E000006tNODQA2",
+            "Product2Name": "Telia Bredband Start",
+            "ProductHierarchyPath": "01t5E000006tNODQA2",
+            "ProductHierarchyPathfull": "01t5E000006tNODQA2",
+            "ProductObjectType": "Broadband Start Offering Spec",
+            "ProductType": "Price",
+            "Quantity": 1,
+            "QuoteId": "0Q05E000001AqtfSAC",
+            "RecurringManualDiscount": 0,
+            "RecurringPrice": 0,
+            "RequestedPercentage": "",
+            "SequenceNumber": 1,
+            "TargetPercentage": 0,
+            "campaignId": ""
+        },
+        {
+            " ProductCode": "CO-BBPLUS",
+            "AccountId": "0013E00001CqOc5QAF",
+            "ApprovedPercentage": "",
+            "ApprovedPrice": "",
+            "BindingPeriod": "24",
+            "ExcludeItem": false,
+            "FACallOffQuantity": 0,
+            "Id": "0QL5E000000kIEjWAM",
+            "ImParentProduct": "",
+            "IsRoot": 1,
+            "Level": 0,
+            "LineNumber": "0004",
+            "OfferType": "AgreementOffering",
+            "OneTimeManualDiscount": 0,
+            "OneTimePrice": 0,
+            "OpportunityId": "0063E000007VsIsQAK",
+            "ParentItemId": "01t5E000006tNOMQA2",
+            "ParentProductName": "Telia Bredband Plus",
+            "PriceBookEntryId": "01u5E00000I310vQAB",
+            "Product2Id": "01t5E000006tNOMQA2",
+            "Product2Name": "Telia Bredband Plus",
+            "ProductHierarchyPath": "01t5E000006tNOMQA2",
+            "ProductHierarchyPathfull": "01t5E000006tNOMQA2",
+            "ProductObjectType": "Broadband Plus Offering Spec",
+            "ProductType": "Price",
+            "Quantity": 1,
+            "QuoteId": "0Q05E000001AqtfSAC",
+            "RecurringManualDiscount": 0,
+            "RecurringPrice": 0,
+            "RequestedPercentage": "",
+            "SequenceNumber": 1,
+            "TargetPercentage": 0,
+            "campaignId": ""
+        }
+    ],
+    "CancelledContractExists": false,
+    "CheckCO": true,
+    "ColtTechnicalErrorMessage": null,
+    "ContextId": "0Q05E000001AqtfSAC",
+    "Contract": {
+        "Id": "8005E000002VaWfQAK",
+        "Status": "Draft"
+    },
+    "ContractExists": true,
+    "CountQLI": true,
+    "EFSIp_Error": null,
+    "FAQuote": {
+        "Status": "Approved"
+    },
+    "FAQuoteFlagUpdated": false,
+    "ITDaaSCondition": null,
+    "IsCallOffQtyAvailable": true,
+    "NoHardwareProducts": null,
+    "OfferCartId": "0Q05E000001BxAjSAK",
+    "OfferQuoteExists": false,
+    "OldOfferQuote": "",
+    "OpportunityList": {
+        "AccountId": "0013E00001CqOc5QAF"
+    },
+    "Pricebook2": {
+        "pricebook2Id": "01s24000000BkpHAAS",
+        "pricebookName": "Standard Price Book"
+    },
+    "QLI": [
+        {
+            "CallOffQuantity": 2
+        },
+        {
+            "CallOffQuantity": 2
+        },
+        {
+            "CallOffQuantity": 3
+        },
+        {
+            "CallOffQuantity": 2
+        }
+    ],
+    "Quote": {
+        "FAQuoteId": "0Q05E000001AqtfSAC",
+        "FAQuoteName": "05_MC_Test__FA",
+        "OppoName": "05_MC_Test_",
+        "OpptyId": "0063E000007VsIsQAK",
+        "PriceBookId": "01s24000000BkpHAAS",
+        "PriceListId": "a5h3E0000004fXtQAI",
+        "QTName": "05_MC_Test__Offer",
+        "inex": 11
+    },
+    "RecordType": {
+        "recordTypeId": "0121p00000114BhAAI"
+    },
+    "Step1": {
+        "Radio1": "No"
+    },
+    "Step2_MANAGE_GROUPS": null,
+    "Step3_Tilldela_offertkvantiet": null,
+    "Step4_getBindingInputs": {
+    },
+    "Step5_getHeraInput": {
+    },
+    "Step7": null,
+    "Step_NoSubidizedSubsReturned": null,
+    "UpdatedPremiseData": [
+        {
+            "Input": {
+                "in1": 213,
+                "in2": 323,
+                "in3": 213
+            },
+            "P_Name": "a5f5E000000IeVp",
+            "P_city": "solna",
+            "P_gatenumber": "",
+            "P_postalcode": "16979",
+            "P_streetName": "Stjärntorget",
+            "P_streetnumber": "",
+            "QuoteGroupId": "",
+            "QuoteMemberId": "",
+            "S_name": "4-148573012",
+            "ServicePointId": "a6K5E000000V8P3UAK"
+        },
+        {
+            "Input": {
+                "in1": 1,
+                "in2": 32,
+                "in3": 23
+            },
+            "P_Name": "a5f5E000000IeVp",
+            "P_city": "solna",
+            "P_gatenumber": "",
+            "P_postalcode": "16979",
+            "P_streetName": "Stjärntorget",
+            "P_streetnumber": "",
+            "QuoteGroupId": "",
+            "QuoteMemberId": "",
+            "S_name": "5-B-148573013",
+            "ServicePointId": "a6K5E000000V8P4UAK"
+        },
+        {
+            "Input": {
+                "in1": "",
+                "in2": "",
+                "in3": ""
+            },
+            "P_Name": "a5f5E000000IfF2",
+            "P_city": "solna",
+            "P_gatenumber": "",
+            "P_postalcode": "16979",
+            "P_streetName": "Stjärntorget",
+            "P_streetnumber": "",
+            "QuoteGroupId": "",
+            "QuoteMemberId": "",
+            "S_name": "145092811",
+            "ServicePointId": "a6K5E000000VBcSUAW"
+        },
+        {
+            "Input": {
+                "in1": "",
+                "in2": "",
+                "in3": ""
+            },
+            "P_Name": "a5f5E000000IfF2",
+            "P_city": "solna",
+            "P_gatenumber": "",
+            "P_postalcode": "16979",
+            "P_streetName": "Stjärntorget",
+            "P_streetnumber": "",
+            "QuoteGroupId": "",
+            "QuoteMemberId": "",
+            "S_name": "1-145661978",
+            "ServicePointId": "a6K5E000000VBcTUAW"
+        },
+        {
+            "Input": {
+                "in1": "",
+                "in2": "",
+                "in3": ""
+            },
+            "P_Name": "a5f5E000000IfF2",
+            "P_city": "solna",
+            "P_gatenumber": "",
+            "P_postalcode": "16979",
+            "P_streetName": "Stjärntorget",
+            "P_streetnumber": "",
+            "QuoteGroupId": "",
+            "QuoteMemberId": "",
+            "S_name": "1-B-145661977",
+            "ServicePointId": "a6K5E000000VBcUUAW"
+        },
+        {
+            "Input": {
+                "in1": "",
+                "in2": "",
+                "in3": ""
+            },
+            "P_Name": "a5f5E000000IfF2",
+            "P_city": "solna",
+            "P_gatenumber": "",
+            "P_postalcode": "16979",
+            "P_streetName": "Stjärntorget",
+            "P_streetnumber": "",
+            "QuoteGroupId": "",
+            "QuoteMemberId": "",
+            "S_name": "1-C-158469563",
+            "ServicePointId": "a6K5E000000VBcVUAW"
+        },
+        {
+            "Input": {
+                "in1": "",
+                "in2": "",
+                "in3": ""
+            },
+            "P_Name": "a5f5E000000IfF2",
+            "P_city": "solna",
+            "P_gatenumber": "",
+            "P_postalcode": "16979",
+            "P_streetName": "Stjärntorget",
+            "P_streetnumber": "",
+            "QuoteGroupId": "",
+            "QuoteMemberId": "",
+            "S_name": "1-D-158469564",
+            "ServicePointId": "a6K5E000000VBcWUAW"
+        }
+    ],
+    "Validation_approval": null,
+    "Validation_noQuantity": null,
+    "Warning_block": null,
+    "isITD": false,
+    "isITDaaS": false,
+    "isLocked": true,
+    "messages": [
+    ],
+    "pricebookEntryList": {
+        "priceListName": "SoHo Standard Price List"
+    },
+    "records": [
+        {
+            "Id": "0Q05E000001BxAjSAK",
+            "Name": "05_MC_Test__Offer",
+            "displaySequence": -1,
+            "messages": [
+            ]
+        }
+    ],
+    "timeStamp": "2021-08-20T14:13:35.274Z",
+    "totalSize": 1,
+    "userCurrencyCode": "SEK",
+    "userId": "0055E0000092Gg3QAE",
+    "userName": "agraj-naman.mishra@capgemini.com.mcdev33new",
+    "userProfile": "System Administrator",
+    "userTimeZone": "120"
+}

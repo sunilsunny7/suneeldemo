@@ -1,0 +1,25 @@
+{
+    "%vlocity_namespace%__CustomJavaScript__c": "{}",
+    "%vlocity_namespace%__DisableMetadataCache__c": false,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": [
+        "MC_SingleCartQuoteDoc_Element_DRPostAdditionalInfo.json",
+        "MC_SingleCartQuoteDoc_Element_IncludeOffers.json",
+        "MC_SingleCartQuoteDoc_Element_SimplifiedItems.json",
+        "MC_SingleCartQuoteDoc_Element_GetDocumentTemplates.json"
+    ],
+    "%vlocity_namespace%__IsLwcEnabled__c": false,
+    "%vlocity_namespace%__IsProcedure__c": true,
+    "%vlocity_namespace%__IsReusable__c": false,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "Procedure",
+    "%vlocity_namespace%__OmniProcessType__c": "Integration Procedure",
+    "%vlocity_namespace%__ProcedureKey__c": "MC_SingleCartQuoteDoc",
+    "%vlocity_namespace%__PropertySet__c": "MC_SingleCartQuoteDoc_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "SingleCartQuoteDoc",
+    "%vlocity_namespace%__Type__c": "MC",
+    "Name": "SingleCartQuoteDocument_ClubbedActions2",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MC/SingleCartQuoteDoc/Procedure"
+}

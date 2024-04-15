@@ -1,0 +1,27 @@
+{
+    "ContextId": "0Q00Q000000Af0DSAS",
+    "DRId_Quote": "0Q00Q000000Af0DSAS",
+    "FiberStatus": "Price Approved",
+    "Quote": {
+        "Status": "Draft",
+        "TeliaSE_Approval_Count__c": 0,
+        "Type": "Individual Quote"
+    },
+    "discountFlag": true,
+    "error": "OK",
+    "id": "a530Q0000001TvIQAU",
+    "isFiberFlow": true,
+    "isdtp": "p1",
+    "layout": "lightning",
+    "sfdcIFrameHost": "web",
+    "sfdcIFrameOrigin": "https://telia--crmfbstcln--vlocity-cmt.visualforce.com",
+    "testContextId": "0Q00Q000000Af0DSAS",
+    "timeStamp": "2020-02-22T06:16:09.833Z",
+    "userCurrencyCode": "SEK",
+    "userId": "0050Q000002wUVOQA2",
+    "userName": "adarsh.b.singh@capgemini.com.crmfbstcln",
+    "userProfile": "System Administrator",
+    "userTimeZone": 330,
+    "vlcPersistentComponent": {
+    }
+}

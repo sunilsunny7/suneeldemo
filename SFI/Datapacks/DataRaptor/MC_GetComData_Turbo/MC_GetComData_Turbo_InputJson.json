@@ -1,0 +1,22 @@
+{
+    "ContextId": null,
+    "timeStamp": null,
+    "userId": null,
+    "userName": null,
+    "userProfile": null,
+    "userTimeZone": null,
+    "vlcPersistentComponent": {
+    },
+    "vlcTimeTracking": {
+        "CustomerAgreementSummary": null,
+        "GetComdata": null,
+        "GetComdataTurbo": null,
+        "GetEndPoint": null,
+        "GetEndPointTurbo": null,
+        "ResponseAction": null,
+        "SetEndPoint": null,
+        "TransformRequest": null,
+        "URI": null,
+        "Validation": null
+    }
+}

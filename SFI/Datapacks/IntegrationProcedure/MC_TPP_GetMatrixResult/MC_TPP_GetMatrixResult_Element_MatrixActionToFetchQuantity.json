@@ -1,0 +1,83 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "MC_TPP_GetMatrixResult",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MC_TPP/GetMatrixResult/Procedure",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__PropertySet__c": {
+        "actionMessage": "",
+        "additionalOutput": {
+        },
+        "chainOnStep": false,
+        "defaultMatrixResult": {
+        },
+        "disOnTplt": false,
+        "executionConditionalFormula": "",
+        "failOnStepError": true,
+        "failureConditionalFormula": "",
+        "failureResponse": {
+        },
+        "label": "MatrixAction1",
+        "matrix Input Parameters": [
+            {
+                "name": "DRTransformQuestionsData:ProductCode",
+                "value": "ProductCode"
+            },
+            {
+                "name": "DRTransformQuestionsData:QUES_AD_INTEGRATION",
+                "value": "QUES_AD_INTEGRATION"
+            },
+            {
+                "name": "DRTransformQuestionsData:QUES_FORVALTNING",
+                "value": "QUES_FORVALTNING"
+            },
+            {
+                "name": "DRTransformQuestionsData:QUES_KALENDER_INTEG",
+                "value": "QUES_KALENDER_INTEG"
+            },
+            {
+                "name": "DRTransformQuestionsData:QUES_LANGRINGSTID",
+                "value": "QUES_LANGRINGSTID"
+            },
+            {
+                "name": "DRTransformQuestionsData:QUES_SKYPE",
+                "value": "QUES_SKYPE"
+            },
+            {
+                "name": "DRTransformQuestionsData:QUES_STATISTIK",
+                "value": "QUES_STATISTIK"
+            },
+            {
+                "name": "DRTransformQuestionsData:QUES_SVARSSERVICE",
+                "value": "QUES_SVARSSERVICE"
+            },
+            {
+                "name": "DRTransformQuestionsData:QUES_TPP_SUPPORT",
+                "value": "QUES_TPP_SUPPORT"
+            },
+            {
+                "name": "DRTransformQuestionsData:QUES_WEBKATALOG",
+                "value": "QUES_WEBKATALOG"
+            }
+        ],
+        "remoteOptions": {
+            "matrixName": "MCTPPCOQuantityCalcMatrix"
+        },
+        "responseJSONNode": "",
+        "responseJSONPath": "",
+        "returnOnlyAdditionalOutput": false,
+        "returnOnlyFailureResponse": false,
+        "sendJSONNode": "",
+        "sendJSONPath": "",
+        "show": null,
+        "useFormulas": true
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": false,
+    "%vlocity_namespace%__Type__c": "Matrix Action",
+    "Name": "MatrixActionToFetchQuantity",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MC_TPP/GetMatrixResult/Procedure/MatrixActionToFetchQuantity"
+}

@@ -1,0 +1,63 @@
+{
+    "bundleName": "ITDaaS_DRLoadOpportunityDetails",
+    "filesMap": {
+    },
+    "objectList": {
+        "ContextId": "0063E000007VrWtQAK",
+        "Step1": {
+            "Block1": {
+                "itdaas": true,
+                "itdaas2": null
+            }
+        },
+        "Step2": {
+            "Checkbox2": false,
+            "computers": "4",
+            "itPartner": "11",
+            "misc": "4356",
+            "miscNeeds": "46",
+            "networkDevices": "464",
+            "officeLocation": "123",
+            "officeSoftware": "44",
+            "servers": "464",
+            "users": "464"
+        },
+        "amandaOpportunityId": "0063E000007VrWtQAK",
+        "amount": 5000000,
+        "contextId": "0063E000007VrWtQAK",
+        "id": "a539E0000048p7ZQAQ",
+        "isdtp": "p1",
+        "layout": "lightning",
+        "name": "16_MC_account2",
+        "opportunity": {
+            "accountId": "0013E00001CqRQcQAN",
+            "amandaOpportunityId": "0063E000007VrWtQAK",
+            "amount": 5000000,
+            "autoTaskOpportunityId": "",
+            "mcSyncAutoTask": false,
+            "mc_ITDaaS_Info": null,
+            "name": "16_MC_account2",
+            "opportunityNumber": "O-515195",
+            "organizationNumber": "5563656387",
+            "ownerId": "Soho Ds SalesRep",
+            "probability": 10,
+            "projectedCloseDate": "2020-07-24"
+        },
+        "opportunityNumber": "O-515195",
+        "organizationNumber": "5563656387",
+        "ownerId": "Soho Ds SalesRep",
+        "probability": 10,
+        "projectedCloseDate": "2020-07-24",
+        "sfdcIFrameHost": "web",
+        "sfdcIFrameOrigin": "https://telia--mc33devtem--vlocity-cmt.visualforce.com",
+        "testContextId": "0063E000007VrWtQAK",
+        "timeStamp": "2021-05-12T16:04:27.482Z",
+        "userCurrencyCode": "SEK",
+        "userId": "0050Q0000052mUQQAY",
+        "userName": "pancham.verma@capgemini.com.mc33devtem",
+        "userProfile": "System Administrator",
+        "userTimeZone": 120,
+        "vlcPersistentComponent": {
+        }
+    }
+}

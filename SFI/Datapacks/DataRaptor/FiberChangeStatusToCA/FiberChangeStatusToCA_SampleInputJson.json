@@ -1,0 +1,102 @@
+{
+    "Approval": {
+        "Payback": 7
+    },
+    "Approval1": {
+        "Capex": 21,
+        "ContractTerm": 50,
+        "Line1": [
+            {
+                "Name": "Byggnation av fastighetsnät Fiber",
+                "OneTimePrice": 3922,
+                "Price": 0,
+                "Quantity": 100
+            },
+            {
+                "Name": "3play_100_Start",
+                "OneTimePrice": 0,
+                "Price": 0,
+                "Quantity": 1
+            },
+            {
+                "CRP": 1,
+                "Discount": 99.38,
+                "Name": "Bredband - 100 Mbit/s",
+                "OneTimePrice": 0,
+                "Price": 160,
+                "Quantity": 1
+            },
+            {
+                "Name": "Tv & Streaming Start",
+                "OneTimePrice": 0,
+                "Price": 8,
+                "Quantity": 1
+            },
+            {
+                "Name": "Bredbandstelefoni",
+                "OneTimePrice": 0,
+                "Price": 0,
+                "Quantity": 1
+            },
+            {
+                "Name": "Tv-box",
+                "OneTimePrice": 0,
+                "Price": 0,
+                "Quantity": 1
+            },
+            {
+                "Name": "Trådlös Router RGW - SCFast-5370",
+                "OneTimePrice": 0,
+                "Price": 0,
+                "Quantity": 1
+            },
+            {
+                "Name": "Installationshjälp",
+                "OneTimePrice": 0,
+                "Price": 0,
+                "Quantity": 1
+            },
+            {
+                "Name": "Fastighetsnät",
+                "OneTimePrice": 0,
+                "Price": 0,
+                "Quantity": 1
+            }
+        ],
+        "Line2": {
+            "Capex": "21,00",
+            "ContractTerm": 50,
+            "EBIT": "18,25",
+            "Opex": "110000,00",
+            "Payback": "7,00",
+            "Revenues": "291933,00"
+        },
+        "Opex": 110000,
+        "Revenues": 291933
+    },
+    "ApprovalData": {
+    },
+    "CapexOriginal": 21,
+    "ContextId": "0Q03M0000006Vo4SAE",
+    "EB": 18.25,
+    "EBITOriginal": 18.25,
+    "ErrorCheck": null,
+    "OpexOriginal": 110000,
+    "PaybackOriginal": 7,
+    "Quote": {
+        "Status": "Sent for Approval",
+        "TeliaSE_Approval_Count__c": 1,
+        "Type": "Individual Quote"
+    },
+    "RevenuesOriginal": 291933,
+    "discountFlag": false,
+    "isFiberFlow": true,
+    "timeStamp": "2022-11-09T14:20:59.061Z",
+    "totalMRCOfHousehold": 9,
+    "userCurrencyCode": "SEK",
+    "userId": "0050800000CeTe8AAF",
+    "userName": "sunita.tudu@teliacompany.com.uatenv",
+    "userProfile": "System Administrator",
+    "userTimeZone": "60",
+    "userTimeZoneName": "Europe/Paris"
+}

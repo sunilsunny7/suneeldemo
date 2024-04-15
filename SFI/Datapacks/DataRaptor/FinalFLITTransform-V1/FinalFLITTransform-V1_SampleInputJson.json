@@ -1,0 +1,55 @@
+{
+    "AddApartments&ComSpaces": null,
+    "Adress": "Street",
+    "Business": "test-08Nov-v2",
+    "ChildOTC": 0,
+    "ChildRTC": 8,
+    "ContactName": "Jagz Test",
+    "ContractDate": "",
+    "ContractDateWhenSigned": "",
+    "ContractId": "01778325",
+    "ContractTime": null,
+    "DateOfContractCreation": "",
+    "Leveransperiod": "Text",
+    "Line": {
+        "ChildItem1": [
+            {
+                "Name": "Kollektiv TV - Start",
+                "OTC": 0,
+                "Qn": 1,
+                "RTC": 8,
+                "TVCostMonth": 8,
+                "isTvLagom": false,
+                "isTvStart": true
+            },
+            {
+                "Name": "Fastighetsanslutning med Öppen Fiber",
+                "OTC": 0,
+                "Qn": 1,
+                "RTC": 0,
+                "TVCostMonth": 0,
+                "isTvLagom": false,
+                "isTvStart": false
+            }
+        ]
+    },
+    "NumberOfApartments": null,
+    "NumberOfComSpaces": null,
+    "OneTimeInstallationFee": 0,
+    "OrgNumber": "22222222",
+    "Place": "Stockholm",
+    "SellerEmail": "praveena.taru@capgemini.com",
+    "SellerName": "Praveena Taru",
+    "SellerPhone": "+91 8978216490",
+    "TotalOTC": 0,
+    "TotalRTC": 8,
+    "TotalRTCApartment": 0,
+    "ZipCode": "14352",
+    "isBB": false,
+    "isCoaXTV": false,
+    "isOPPEN": false,
+    "isOPPEN&isXLAN": false,
+    "isTv": true,
+    "isVoIP": false,
+    "isXLAN": false
+}

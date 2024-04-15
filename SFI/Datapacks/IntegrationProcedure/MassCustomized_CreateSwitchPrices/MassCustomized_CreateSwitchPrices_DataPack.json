@@ -1,0 +1,33 @@
+{
+    "%vlocity_namespace%__AdditionalInformation__c": "Added Error Logging(Abhishek)+Data Handling",
+    "%vlocity_namespace%__CustomJavaScript__c": "MassCustomized_CreateSwitchPrices_SampleInput.json",
+    "%vlocity_namespace%__DisableMetadataCache__c": false,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": [
+        "MassCustomized_CreateSwitchPrices_Element_RemoteActionAuthentication.json",
+        "MassCustomized_CreateSwitchPrices_Element_DRTranformAuthToken.json",
+        "MassCustomized_CreateSwitchPrices_Element_SetValuesAccessToken.json",
+        "MassCustomized_CreateSwitchPrices_Element_SetEndPoint.json",
+        "MassCustomized_CreateSwitchPrices_Element_DRExtractEndpoint.json",
+        "MassCustomized_CreateSwitchPrices_Element_DRExtractBody.json",
+        "MassCustomized_CreateSwitchPrices_Element_MockMatrix.json",
+        "MassCustomized_CreateSwitchPrices_Element_SetEndPointLink.json",
+        "MassCustomized_CreateSwitchPrices_Element_HTTPAction1.json",
+        "MassCustomized_CreateSwitchPrices_Element_DRLogRequestResponse.json",
+        "MassCustomized_CreateSwitchPrices_Element_ResponseAction1.json"
+    ],
+    "%vlocity_namespace%__IsLwcEnabled__c": false,
+    "%vlocity_namespace%__IsProcedure__c": true,
+    "%vlocity_namespace%__IsReusable__c": false,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "Procedure",
+    "%vlocity_namespace%__OmniProcessType__c": "Integration Procedure",
+    "%vlocity_namespace%__ProcedureKey__c": "MassCustomized_CreateSwitchPrices",
+    "%vlocity_namespace%__PropertySet__c": "MassCustomized_CreateSwitchPrices_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "CreateSwitchPrices",
+    "%vlocity_namespace%__Type__c": "MassCustomized",
+    "Name": "MassCustomized_CreateSwitchPrices",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/CreateSwitchPrices/Procedure"
+}

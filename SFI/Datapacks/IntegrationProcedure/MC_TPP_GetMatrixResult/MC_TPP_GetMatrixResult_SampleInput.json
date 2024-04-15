@@ -1,0 +1,120 @@
+{
+    "InputData": [
+        {
+            "$$hashKey": "object:2799",
+            "Answer": "Ja, Fristående utan IP-filter",
+            "DeveloperName": "QUES_WEBKATALOG",
+            "Id": "m0O5E0000004MVsUAM",
+            "MasterLabel": "Webkatalog",
+            "Options__c": "Nej;Ja, AD-integrerad;Ja, Fristående utan IP-filter;Ja, Fristående med IP-filter",
+            "attributes": {
+                "type": "MC_TPP_Questions__mdt",
+                "url": "/services/data/v52.0/sobjects/MC_TPP_Questions__mdt/m0O5E0000004MVsUAM"
+            }
+        },
+        {
+            "$$hashKey": "object:2800",
+            "Answer": "10 timmar",
+            "DeveloperName": "QUES_FORVALTNING",
+            "Id": "m0O5E0000004MVlUAM",
+            "MasterLabel": "Aktiv förvaltning",
+            "Options__c": "Nej;10 timmar;15 timmar;20 timmar;25 timmar",
+            "attributes": {
+                "type": "MC_TPP_Questions__mdt",
+                "url": "/services/data/v52.0/sobjects/MC_TPP_Questions__mdt/m0O5E0000004MVlUAM"
+            }
+        },
+        {
+            "$$hashKey": "object:2801",
+            "Answer": "Ja",
+            "DeveloperName": "QUES_AD_INTEGRATION",
+            "Id": "m0O5E0000004MVkUAM",
+            "MasterLabel": "AD-integration",
+            "Options__c": "Ja;Nej",
+            "attributes": {
+                "type": "MC_TPP_Questions__mdt",
+                "url": "/services/data/v52.0/sobjects/MC_TPP_Questions__mdt/m0O5E0000004MVkUAM"
+            }
+        },
+        {
+            "$$hashKey": "object:2802",
+            "Answer": "Utökad",
+            "DeveloperName": "QUES_STATISTIK",
+            "Id": "m0O5E0000004MVpUAM",
+            "MasterLabel": "Statistik",
+            "Options__c": "Bas;Utökad;Ingen",
+            "attributes": {
+                "type": "MC_TPP_Questions__mdt",
+                "url": "/services/data/v52.0/sobjects/MC_TPP_Questions__mdt/m0O5E0000004MVpUAM"
+            }
+        },
+        {
+            "$$hashKey": "object:2803",
+            "Answer": "10",
+            "DeveloperName": "QUES_SVARSSERVICE",
+            "Id": "m0O5E0000004MVqUAM",
+            "MasterLabel": "Telia Svarsservice",
+            "Options__c": "Nej;10;20;40;60;80;100;Flexibel",
+            "attributes": {
+                "type": "MC_TPP_Questions__mdt",
+                "url": "/services/data/v52.0/sobjects/MC_TPP_Questions__mdt/m0O5E0000004MVqUAM"
+            }
+        },
+        {
+            "$$hashKey": "object:2804",
+            "Answer": "Ja",
+            "DeveloperName": "QUES_TPP_SUPPORT",
+            "Id": "m0O5E0000004MVrUAM",
+            "MasterLabel": "TPP Slutanvändarsupport",
+            "Options__c": "Ja;Nej",
+            "attributes": {
+                "type": "MC_TPP_Questions__mdt",
+                "url": "/services/data/v52.0/sobjects/MC_TPP_Questions__mdt/m0O5E0000004MVrUAM"
+            }
+        },
+        {
+            "$$hashKey": "object:2805",
+            "Answer": "Ja - 2 servrar",
+            "DeveloperName": "QUES_KALENDER_INTEG",
+            "Id": "m0O5E0000004MVmUAM",
+            "MasterLabel": "Kalenderintegration",
+            "Options__c": "Ja - 1 server;Ja - 2 servrar;Ja - 3 servrar;Ja - 4 servrar;Ja - 5 servrar;Nej",
+            "attributes": {
+                "type": "MC_TPP_Questions__mdt",
+                "url": "/services/data/v52.0/sobjects/MC_TPP_Questions__mdt/m0O5E0000004MVmUAM"
+            }
+        },
+        {
+            "$$hashKey": "object:2806",
+            "Answer": "Ja - 2 servrar",
+            "DeveloperName": "QUES_SKYPE",
+            "Id": "m0O5E0000004MVoUAM",
+            "MasterLabel": "Skype for Business-integration",
+            "Options__c": "Ja - 1 server;Ja - 2 servrar;Ja - 3 servrar;Ja - 4 servrar;Ja - 5 servrar;Nej",
+            "attributes": {
+                "type": "MC_TPP_Questions__mdt",
+                "url": "/services/data/v52.0/sobjects/MC_TPP_Questions__mdt/m0O5E0000004MVoUAM"
+            }
+        },
+        {
+            "$$hashKey": "object:2807",
+            "Answer": "30 dagar",
+            "DeveloperName": "QUES_LANGRINGSTID",
+            "Id": "m0O5E0000004MVnUAM",
+            "MasterLabel": "Lagringstid för inspelning",
+            "Options__c": "Nej;30 dagar;3 år;7 år",
+            "attributes": {
+                "type": "MC_TPP_Questions__mdt",
+                "url": "/services/data/v52.0/sobjects/MC_TPP_Questions__mdt/m0O5E0000004MVnUAM"
+            }
+        }
+    ],
+    "QLI": {
+        "ApplicableQuestions": {
+            "Question": "QUES_KALENDER_INTEG"
+        },
+        "Id": "0QL5E000000j8I4WAI",
+        "NumberOfUsers": 120,
+        "ProductCode": "TPP_API_EXCHANGE_START"
+    }
+}

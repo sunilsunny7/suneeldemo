@@ -1,0 +1,32 @@
+{
+    "%vlocity_namespace%__CustomJavaScript__c": "MCONLINE_getOffersDetails_CachingV1_SampleInput.json",
+    "%vlocity_namespace%__DisableMetadataCache__c": true,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": [
+        "MCONLINE_getOffersDetails_CachingV1_Element_setAgreement.json",
+        "MCONLINE_getOffersDetails_CachingV1_Element_LoopBlock1.json",
+        "MCONLINE_getOffersDetails_CachingV1_Element_RemoteAction3.json",
+        "MCONLINE_getOffersDetails_CachingV1_Element_HA_GetOffersFromDgCommerce.json",
+        "MCONLINE_getOffersDetails_CachingV1_Element_RP_ProcessJSON.json",
+        "MCONLINE_getOffersDetails_CachingV1_Element_Condition_Error400.json",
+        "MCONLINE_getOffersDetails_CachingV1_Element_ResponseAction.json",
+        "MCONLINE_getOffersDetails_CachingV1_Element_Condition_Success200.json",
+        "MCONLINE_getOffersDetails_CachingV1_Element_ResponseAction3.json",
+        "MCONLINE_getOffersDetails_CachingV1_Element_Condition_Error500.json",
+        "MCONLINE_getOffersDetails_CachingV1_Element_ResponseAction4.json"
+    ],
+    "%vlocity_namespace%__IsLwcEnabled__c": false,
+    "%vlocity_namespace%__IsProcedure__c": true,
+    "%vlocity_namespace%__IsReusable__c": false,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "Procedure",
+    "%vlocity_namespace%__OmniProcessType__c": "Integration Procedure",
+    "%vlocity_namespace%__ProcedureKey__c": "MCONLINE_getOffersDetails_CachingV1",
+    "%vlocity_namespace%__PropertySet__c": "MCONLINE_getOffersDetails_CachingV1_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "getOffersDetails_CachingV1",
+    "%vlocity_namespace%__Type__c": "MCONLINE",
+    "Name": "MCONLINE_getOffersDetails_CachingV1",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MCONLINE/getOffersDetails_CachingV1/Procedure"
+}

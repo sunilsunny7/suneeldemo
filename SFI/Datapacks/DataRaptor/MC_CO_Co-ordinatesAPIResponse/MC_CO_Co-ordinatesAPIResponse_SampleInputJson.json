@@ -1,0 +1,50 @@
+{
+    "test": [
+        {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "id": 105256081,
+                "locality": "SOLNA",
+                "postcode": "17152",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STORGATAN",
+                "streetNr": "66",
+                "streetNrSuffix": ""
+            },
+            "geographicSubAdress": [
+                {
+                    "buildingName": "13232618",
+                    "id": 105256081,
+                    "levelNumber": "",
+                    "levelType": ""
+                }
+            ],
+            "id": 105256081,
+            "isBestMatch": false
+        },
+        {
+            "fieldedAddress": {
+                "city": "w3",
+                "country": "SE",
+                "id": 105256081,
+                "locality": "SOLNA",
+                "postcode": "17152",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STORGATAN",
+                "streetNr": "66",
+                "streetNrSuffix": ""
+            },
+            "geographicSubAdress": [
+                {
+                    "buildingName": "13232618",
+                    "id": 105256081,
+                    "levelNumber": "",
+                    "levelType": ""
+                }
+            ],
+            "id": 105256081,
+            "isBestMatch": false
+        }
+    ]
+}

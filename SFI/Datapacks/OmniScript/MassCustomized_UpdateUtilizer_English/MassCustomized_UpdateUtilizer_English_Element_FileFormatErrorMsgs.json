@@ -1,0 +1,50 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "TeliaSE_UpdateUtilizer",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer/English",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__ParentElementId__c": {
+        "%vlocity_namespace%__OmniScriptId__c": {
+            "Name": "TeliaSE_UpdateUtilizer",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer/English",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+        },
+        "Name": "UtilizerResult",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer/English/UtilizerResult",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c"
+    },
+    "%vlocity_namespace%__ParentElementName__c": "UtilizerResult",
+    "%vlocity_namespace%__ParentElementType__c": "Step",
+    "%vlocity_namespace%__PropertySet__c": {
+        "HTMLTemplateId": "",
+        "controlWidth": 12,
+        "dataJSON": false,
+        "disOnTplt": false,
+        "label": "FileFormatErrorMessage",
+        "show": {
+            "group": {
+                "operator": "AND",
+                "rules": [
+                    {
+                        "condition": "=",
+                        "data": "InvalidFormat",
+                        "field": "FileFormatError"
+                    }
+                ]
+            }
+        },
+        "text": "<p data-ccp-props=\"{&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559683&quot;:0,&quot;335559685&quot;:0,&quot;335559731&quot;:0,&quot;335559737&quot;:0,&quot;335562764&quot;:2,&quot;335562765&quot;:1,&quot;335562766&quot;:4,&quot;335562767&quot;:0,&quot;335562768&quot;:4,&quot;335562769&quot;:0}\"><strong><a href=\"/apex/%displayUtilizersInView%\" target=\"_blank\" style=\"background-color: #ffffff; color: #ff0000;\">Filformatfel</a>:&nbsp;</strong><span data-scheme-color=\"@FFFFFF,0,\" data-usefontface=\"true\" data-contrast=\"none\">%FileFormatErrorMsg%</span></p>\n<p></p>\n<p></p>\n<p></p>",
+        "textKey": ""
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": true,
+    "%vlocity_namespace%__Type__c": "Text Block",
+    "Name": "FileFormatErrorMsgs",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer/English/FileFormatErrorMsgs"
+}

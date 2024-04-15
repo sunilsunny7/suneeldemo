@@ -1,0 +1,38 @@
+{
+    "Benefit": 2,
+    "QLI": [
+        {
+            "AMMandate": 0,
+            "Id": "0QLQJ000000EcIL4A0"
+        },
+        {
+            "AMMandate": 11.9,
+            "Id": "0QLQJ000000EcIN4A0",
+            "ParentItemId": "45541e63-1cc6-3bdf-806e-2a316db6288e"
+        },
+        {
+            "AMMandate": 0,
+            "Id": "0QLQJ000000EcIQ4A0",
+            "ParentItemId": "6024e520-d88c-ef54-da15-d3d2d1526972"
+        },
+        {
+            "AMMandate": 0,
+            "Id": "0QLQJ000000EcIR4A0",
+            "ParentItemId": "6024e520-d88c-ef54-da15-d3d2d1526972"
+        },
+        {
+            "AMMandate": 0,
+            "Id": "0QLQJ000000EcIS4A0",
+            "ParentItemId": "6024e520-d88c-ef54-da15-d3d2d1526972"
+        },
+        {
+            "AMMandate": 10,
+            "Id": "0QLQJ000000EcIO4A0",
+            "ParentItemId": "45541e63-1cc6-3bdf-806e-2a316db6288e",
+            "RequestedPrice": 84
+        }
+    ],
+    "QuoteId": "0Q07a000001WUpPCAW",
+    "RepriceFlag": false,
+    "Reset": true
+}

@@ -1,0 +1,6 @@
+[
+    "DataRaptor/DRExtractOpportunityDetails",
+    "DataRaptor/DRExtractRecordType",
+    "DataRaptor/DRLoadQuote",
+    "DataRaptor/TeliaSE_DRExtractPriceList"
+]

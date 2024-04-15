@@ -1,0 +1,26 @@
+{
+    "contactDetails": {
+        "contactMethod": "email",
+        "emailAddress": "testem@test.com",
+        "firstName": "confirstnm",
+        "lastName": "conlstname",
+        "phoneNumber": "08447040"
+    },
+    "orderDescription": "description testing",
+    "orderId": "8011q000003o0I3",
+    "salesTracking": {
+        "resellerId": "res2090",
+        "retailerId": "29080",
+        "salesChannel": "portal channel",
+        "salesChannelId": "mconline channel id",
+        "userId": "user2389"
+    },
+    "shippingAddress": {
+        "shippingcity": "stockholm",
+        "shippingcountry": "Sweden",
+        "shippingpointId": "67800000",
+        "shippingpostalcode": "3999",
+        "shippingstate": "Stockholms län",
+        "shippingstreet": "765 Avenue"
+    }
+}

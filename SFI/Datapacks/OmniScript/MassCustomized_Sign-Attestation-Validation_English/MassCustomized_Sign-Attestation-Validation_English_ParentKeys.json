@@ -1,0 +1,7 @@
+[
+    "DataRaptor/ExtractPrecheckDateV1",
+    "DataRaptor/MC_ExtarctDocumentsGenerated",
+    "DataRaptor/TeliaSE_GetMCRoleApprovalMatrix",
+    "DataRaptor/TeliaSE_GetOpportunityTotalValue",
+    "DataRaptor/TeliaSE_ScriveOppo"
+]

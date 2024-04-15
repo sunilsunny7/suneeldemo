@@ -1,0 +1,673 @@
+{
+    "spockPostAgreement": {
+        "event": {
+            "agreement": {
+                "@baseType": "Agreement",
+                "@schemaLocation": "",
+                "@type": "TeliaExtendedAgreement",
+                "agreementItem": [
+                    {
+                        "agreementItemCharacteristics": [
+                            {
+                                "name": "itemInfo",
+                                "value": "Offer"
+                            },
+                            {
+                                "name": "family",
+                                "value": "WIFI/LAN Offering Spec"
+                            },
+                            {
+                                "name": "level",
+                                "value": 0
+                            },
+                            {
+                                "name": "oneTimeFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "recurringFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "subsidizedVoice",
+                                "value": ""
+                            },
+                            {
+                                "name": "commitmentPeriod",
+                                "value": "36 months"
+                            },
+                            {
+                                "name": "baseQuantity",
+                                "value": 233
+                            },
+                            {
+                                "name": "bindingTime",
+                                "value": "12 months"
+                            },
+                            {
+                                "name": "percentageDiscountMRC",
+                                "value": 0
+                            },
+                            {
+                                "name": "terminationDate",
+                                "value": "2024-06-08"
+                            }
+                        ],
+                        "productOffering": [
+                            {
+                                "@referredType": "ProductOffering",
+                                "@type": "ProductOffering",
+                                "id": "CO-CLOUDVPN-WIFI",
+                                "name": "Telia Cloud VPN Wifi/Lan"
+                            }
+                        ],
+                        "termOrCondition": [
+                            {
+                                "description": "",
+                                "validFor": {
+                                    "endDateTime": "2025-06-08T00:00:00 +0000",
+                                    "startDateTime": "2022-06-08T00:00:00 +0000"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "agreementItemCharacteristics": [
+                            {
+                                "name": "itemInfo",
+                                "value": "Bundle"
+                            },
+                            {
+                                "name": "family",
+                                "value": "WIFI/LAN Offering Spec"
+                            },
+                            {
+                                "name": "level",
+                                "value": 1
+                            },
+                            {
+                                "name": "oneTimeFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "recurringFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "subsidizedVoice",
+                                "value": ""
+                            },
+                            {
+                                "name": "commitmentPeriod",
+                                "value": "36 months"
+                            },
+                            {
+                                "name": "baseQuantity",
+                                "value": 233
+                            },
+                            {
+                                "name": "bindingTime",
+                                "value": ""
+                            },
+                            {
+                                "name": "percentageDiscountMRC",
+                                "value": 0
+                            },
+                            {
+                                "name": "terminationDate",
+                                "value": "2024-06-08"
+                            }
+                        ],
+                        "productOffering": [
+                            {
+                                "@referredType": "ProductOffering",
+                                "@type": "ProductOffering",
+                                "id": "CO-CLOUD-VPN-WIFI-LAN-ACCESS-POINT",
+                                "name": "Wifi Accesspunkt"
+                            }
+                        ],
+                        "termOrCondition": [
+                            {
+                                "description": "",
+                                "validFor": {
+                                    "endDateTime": "2025-06-08T00:00:00 +0000",
+                                    "startDateTime": "2022-06-08T00:00:00 +0000"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "agreementItemCharacteristics": [
+                            {
+                                "name": "itemInfo",
+                                "value": ""
+                            },
+                            {
+                                "name": "family",
+                                "value": "WIFI/LAN Offering Spec"
+                            },
+                            {
+                                "name": "level",
+                                "value": 2
+                            },
+                            {
+                                "name": "oneTimeFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "recurringFee",
+                                "value": 250
+                            },
+                            {
+                                "name": "subsidizedVoice",
+                                "value": ""
+                            },
+                            {
+                                "name": "commitmentPeriod",
+                                "value": "36 months"
+                            },
+                            {
+                                "name": "baseQuantity",
+                                "value": 233
+                            },
+                            {
+                                "name": "bindingTime",
+                                "value": ""
+                            },
+                            {
+                                "name": "percentageDiscountMRC",
+                                "value": 3
+                            },
+                            {
+                                "name": "terminationDate",
+                                "value": "2024-06-08"
+                            }
+                        ],
+                        "productOffering": [
+                            {
+                                "@referredType": "ProductOffering",
+                                "@type": "ProductOffering",
+                                "id": "CO-CLOUD-VPN-WIFI-LAN-WIRELESS-INDOOR-WIFI6",
+                                "name": "Wireless Indoor Wifi6 Access Point"
+                            }
+                        ],
+                        "termOrCondition": [
+                            {
+                                "description": "",
+                                "validFor": {
+                                    "endDateTime": "2025-06-08T00:00:00 +0000",
+                                    "startDateTime": "2022-06-08T00:00:00 +0000"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "agreementItemCharacteristics": [
+                            {
+                                "name": "itemInfo",
+                                "value": "Bundle"
+                            },
+                            {
+                                "name": "family",
+                                "value": "WIFI/LAN Offering Spec"
+                            },
+                            {
+                                "name": "level",
+                                "value": 1
+                            },
+                            {
+                                "name": "oneTimeFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "recurringFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "subsidizedVoice",
+                                "value": ""
+                            },
+                            {
+                                "name": "commitmentPeriod",
+                                "value": "36 months"
+                            },
+                            {
+                                "name": "baseQuantity",
+                                "value": 233
+                            },
+                            {
+                                "name": "terminationDate",
+                                "value": "2024-06-08"
+                            },
+                            {
+                                "name": "percentageDiscountMRC",
+                                "value": 0
+                            },
+                            {
+                                "name": "bindingTime",
+                                "value": ""
+                            }
+                        ],
+                        "productOffering": [
+                            {
+                                "@referredType": "ProductOffering",
+                                "@type": "ProductOffering",
+                                "id": "CO-CLOUD-VPN-WIFI-LAN-SWITCH",
+                                "name": "LAN Switch"
+                            }
+                        ],
+                        "termOrCondition": [
+                            {
+                                "description": "",
+                                "validFor": {
+                                    "endDateTime": "2025-06-08T00:00:00 +0000",
+                                    "startDateTime": "2022-06-08T00:00:00 +0000"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "agreementItemCharacteristics": [
+                            {
+                                "name": "itemInfo",
+                                "value": ""
+                            },
+                            {
+                                "name": "family",
+                                "value": "WIFI/LAN Offering Spec"
+                            },
+                            {
+                                "name": "level",
+                                "value": 2
+                            },
+                            {
+                                "name": "oneTimeFee",
+                                "value": 1500
+                            },
+                            {
+                                "name": "recurringFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "subsidizedVoice",
+                                "value": ""
+                            },
+                            {
+                                "name": "commitmentPeriod",
+                                "value": "36 months"
+                            },
+                            {
+                                "name": "baseQuantity",
+                                "value": 233
+                            },
+                            {
+                                "name": "percentageDiscountMRC",
+                                "value": 3
+                            },
+                            {
+                                "name": "terminationDate",
+                                "value": "2024-06-08"
+                            },
+                            {
+                                "name": "bindingTime",
+                                "value": ""
+                            }
+                        ],
+                        "productOffering": [
+                            {
+                                "@referredType": "ProductOffering",
+                                "@type": "ProductOffering",
+                                "id": "CO-CLOUD-VPN-WIFI-LAN-SITE-SURVEY-WIFI",
+                                "name": "Site survey Wifi"
+                            }
+                        ],
+                        "termOrCondition": [
+                            {
+                                "description": "",
+                                "validFor": {
+                                    "endDateTime": "2025-06-08T00:00:00 +0000",
+                                    "startDateTime": "2022-06-08T00:00:00 +0000"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "agreementItemCharacteristics": [
+                            {
+                                "name": "itemInfo",
+                                "value": "Bundle"
+                            },
+                            {
+                                "name": "family",
+                                "value": "Binding OTC Offering Spec"
+                            },
+                            {
+                                "name": "level",
+                                "value": 1
+                            },
+                            {
+                                "name": "oneTimeFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "recurringFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "subsidizedVoice",
+                                "value": ""
+                            },
+                            {
+                                "name": "commitmentPeriod",
+                                "value": "36 months"
+                            },
+                            {
+                                "name": "baseQuantity",
+                                "value": 233
+                            },
+                            {
+                                "name": "terminationDate",
+                                "value": "2024-06-08"
+                            },
+                            {
+                                "name": "percentageDiscountMRC",
+                                "value": 0
+                            },
+                            {
+                                "name": "bindingTime",
+                                "value": ""
+                            }
+                        ],
+                        "productOffering": [
+                            {
+                                "@referredType": "ProductOffering",
+                                "@type": "ProductOffering",
+                                "id": "CO-CLOUDVPNWIFI-BIND",
+                                "name": "Engångsavgifter"
+                            }
+                        ],
+                        "termOrCondition": [
+                            {
+                                "description": "",
+                                "validFor": {
+                                    "endDateTime": "2025-06-08T00:00:00 +0000",
+                                    "startDateTime": "2022-06-08T00:00:00 +0000"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "agreementItemCharacteristics": [
+                            {
+                                "name": "itemInfo",
+                                "value": "Product"
+                            },
+                            {
+                                "name": "family",
+                                "value": "Binding OTC Offering Spec"
+                            },
+                            {
+                                "name": "level",
+                                "value": 2
+                            },
+                            {
+                                "name": "oneTimeFee",
+                                "value": 3000
+                            },
+                            {
+                                "name": "recurringFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "subsidizedVoice",
+                                "value": ""
+                            },
+                            {
+                                "name": "commitmentPeriod",
+                                "value": "36 months"
+                            },
+                            {
+                                "name": "baseQuantity",
+                                "value": 233
+                            },
+                            {
+                                "name": "bindingTime",
+                                "value": ""
+                            },
+                            {
+                                "name": "percentageDiscountMRC",
+                                "value": 3
+                            },
+                            {
+                                "name": "terminationDate",
+                                "value": "2024-06-08"
+                            }
+                        ],
+                        "productOffering": [
+                            {
+                                "@referredType": "ProductOffering",
+                                "@type": "ProductOffering",
+                                "id": "CO-CLOUDVPNWIFI-BIND-G1-12M",
+                                "name": "Engångsavgift hårdvara 12 Mån"
+                            }
+                        ],
+                        "termOrCondition": [
+                            {
+                                "description": "",
+                                "validFor": {
+                                    "endDateTime": "2025-06-08T00:00:00 +0000",
+                                    "startDateTime": "2022-06-08T00:00:00 +0000"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "agreementItemCharacteristics": [
+                            {
+                                "name": "itemInfo",
+                                "value": "Product"
+                            },
+                            {
+                                "name": "family",
+                                "value": "Binding OTC Offering Spec"
+                            },
+                            {
+                                "name": "level",
+                                "value": 2
+                            },
+                            {
+                                "name": "oneTimeFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "recurringFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "subsidizedVoice",
+                                "value": ""
+                            },
+                            {
+                                "name": "commitmentPeriod",
+                                "value": "36 months"
+                            },
+                            {
+                                "name": "baseQuantity",
+                                "value": 233
+                            },
+                            {
+                                "name": "bindingTime",
+                                "value": ""
+                            },
+                            {
+                                "name": "percentageDiscountMRC",
+                                "value": 3
+                            },
+                            {
+                                "name": "terminationDate",
+                                "value": "2024-06-08"
+                            }
+                        ],
+                        "productOffering": [
+                            {
+                                "@referredType": "ProductOffering",
+                                "@type": "ProductOffering",
+                                "id": "CO-CLOUDVPNWIFI-BIND-G1-36M",
+                                "name": "Engångsavgift hårdvara 36 Mån"
+                            }
+                        ],
+                        "termOrCondition": [
+                            {
+                                "description": "",
+                                "validFor": {
+                                    "endDateTime": "2025-06-08T00:00:00 +0000",
+                                    "startDateTime": "2022-06-08T00:00:00 +0000"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "agreementItemCharacteristics": [
+                            {
+                                "name": "itemInfo",
+                                "value": "Bundle"
+                            },
+                            {
+                                "name": "family",
+                                "value": "WIFI/LAN Offering Spec"
+                            },
+                            {
+                                "name": "level",
+                                "value": 1
+                            },
+                            {
+                                "name": "oneTimeFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "recurringFee",
+                                "value": 0
+                            },
+                            {
+                                "name": "subsidizedVoice",
+                                "value": ""
+                            },
+                            {
+                                "name": "commitmentPeriod",
+                                "value": "36 months"
+                            },
+                            {
+                                "name": "baseQuantity",
+                                "value": 0
+                            },
+                            {
+                                "name": "bindingTime",
+                                "value": ""
+                            },
+                            {
+                                "name": "percentageDiscountMRC",
+                                "value": 0
+                            },
+                            {
+                                "name": "terminationDate",
+                                "value": "2024-06-08"
+                            }
+                        ],
+                        "productOffering": [
+                            {
+                                "@referredType": "ProductOffering",
+                                "@type": "ProductOffering",
+                                "id": "CO-CLOUD-VPN-WIFI-LAN-ENHANCED-SLA",
+                                "name": "Tillval Utökad SLA"
+                            }
+                        ],
+                        "termOrCondition": [
+                            {
+                                "description": "",
+                                "validFor": {
+                                    "endDateTime": "2025-06-08T00:00:00 +0000",
+                                    "startDateTime": "2022-06-08T00:00:00 +0000"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "agreementType": "Ramavtal",
+                "characteristic": [
+                    {
+                        "name": "initialContractNumber",
+                        "value": "RA-02733053"
+                    },
+                    {
+                        "name": "invoiceFee",
+                        "value": "Ja"
+                    },
+                    {
+                        "name": "paymentTerms",
+                        "value": 30
+                    },
+                    {
+                        "name": "customerUniqueSpecialTerms",
+                        "value": true
+                    },
+                    {
+                        "name": "customerUniqueSpecialTermsInfo",
+                        "value": "abcFreetext"
+                    },
+                    {
+                        "name": "terminationDate",
+                        "value": "2024-06-08"
+                    },
+                    {
+                        "name": "invoiceFeeInfo",
+                        "value": "test"
+                    }
+                ],
+                "completionDate": "2025-06-08T00:00:00 +0000",
+                "documentNumber": "02733053",
+                "engagedParty": [
+                    {
+                        "@baseType": "Individual",
+                        "@referredType": "Organization",
+                        "@type": "TeliaAgreementPartyContactReference",
+                        "email": "es.ds=mlejhnevfil.nirak-anel@example.com",
+                        "mobilePhoneNumber": "+46761806514",
+                        "name": "XXXX XXXXX",
+                        "role": "Ekonomichef/CFO",
+                        "sellerId": "dce513"
+                    },
+                    {
+                        "@referredType": "Organization",
+                        "id": "5590239447",
+                        "name": "AddTest AB",
+                        "role": "Utilizer",
+                        "tscId": 7068701833
+                    },
+                    {
+                        "@referredType": "Organization",
+                        "id": "5590850524",
+                        "name": "William Ryttersson",
+                        "role": "Owner",
+                        "tscId": 7068701837
+                    }
+                ],
+                "externalIds": [
+                    {
+                        "name": "autotaskContractId",
+                        "value": "80008000008lO56AAE"
+                    },
+                    {
+                        "name": "autotaskOpportunityId"
+                    }
+                ],
+                "id": "80008000008lO56AAE",
+                "initialDate": "2022-06-08T00:00:00 +0000",
+                "name": "Mass Customized RAM",
+                "status": "Active"
+            },
+            "eventId": 1661817600000,
+            "eventTime": "2022-08-30T06:43:12 +0000",
+            "eventType": "AgreementCreateEvent"
+        }
+    }
+}

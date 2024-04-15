@@ -1,0 +1,30 @@
+{
+    "%vlocity_namespace%__DisableMetadataCache__c": false,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": [
+        "MassCustomizedSingleCart_Colt_English_Element_ExtractHWLineItemsSize.json",
+        "MassCustomizedSingleCart_Colt_English_Element_NoHardwareProducts.json",
+        "MassCustomizedSingleCart_Colt_English_Element_ErrorMessageWhenNoHWItems.json",
+        "MassCustomizedSingleCart_Colt_English_Element_DoneAction1.json",
+        "MassCustomizedSingleCart_Colt_English_Element_IP_Colt.json",
+        "MassCustomizedSingleCart_Colt_English_Element_DR_ExtractQuoteDetails.json",
+        "MassCustomizedSingleCart_Colt_English_Element_DataRaptorTransformColtStaus.json",
+        "MassCustomizedSingleCart_Colt_English_Element_ColtTechnicalErrorMessage.json",
+        "MassCustomizedSingleCart_Colt_English_Element_TextBlock3.json",
+        "MassCustomizedSingleCart_Colt_English_Element_RA_UpdateQLI.json",
+        "MassCustomizedSingleCart_Colt_English_Element_DoneAction2.json"
+    ],
+    "%vlocity_namespace%__IsLwcEnabled__c": false,
+    "%vlocity_namespace%__IsProcedure__c": false,
+    "%vlocity_namespace%__IsReusable__c": true,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "English",
+    "%vlocity_namespace%__OmniProcessType__c": "OmniScript",
+    "%vlocity_namespace%__PropertySet__c": "MassCustomizedSingleCart_Colt_English_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "Colt",
+    "%vlocity_namespace%__Type__c": "MassCustomizedSingleCart",
+    "Name": "SingleCartColt",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomizedSingleCart/Colt/English"
+}

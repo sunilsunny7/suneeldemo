@@ -1,0 +1,47 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "MC_RAMMFA_DeletePrismaPlan",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MC_RAMMFA/DeletePrismaPlan/Procedure",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__PropertySet__c": {
+        "actionMessage": "",
+        "additionalInput": {
+            "Action": "PRISMA_DeleteRecords",
+            "ObjectName": "MC_PrismaPlan__c",
+            "Request": "=CONCAT('Number of records in input- ',LISTSIZE(%records%))",
+            "Response": "=IF(%DeletePrismaPlanRecordsStatus%,CONCAT('Successfully deleted records- ',LISTSIZE(%DeletePrismaPlanRecords%)),'Some error occurred during deletion')",
+            "ResponseType": "=IF(%DeletePrismaPlanRecordsStatus%,'Success','Failure')",
+            "SourceName": "MC_RAMMFA_DeletePrismaPlan",
+            "SourceType": "Integration Procedure"
+        },
+        "additionalOutput": {
+        },
+        "bundle": "MC_LoadErrorLogEntry",
+        "chainOnStep": false,
+        "disOnTplt": false,
+        "executionConditionalFormula": "DRExtractPrismaUploadLog:PrismaUpload:%vlocity_namespace%__ErrorType__c == 'Success'",
+        "failOnStepError": true,
+        "failureConditionalFormula": "",
+        "failureResponse": {
+        },
+        "label": "DataRaptorPostAction1",
+        "responseJSONNode": "",
+        "responseJSONPath": "",
+        "returnOnlyAdditionalOutput": false,
+        "returnOnlyFailureResponse": false,
+        "sendJSONNode": "",
+        "sendJSONPath": "",
+        "sendOnlyAdditionalInput": true,
+        "show": null,
+        "useFormulas": true
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": false,
+    "%vlocity_namespace%__Type__c": "DataRaptor Post Action",
+    "Name": "DRLogDeleteActionInfo",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MC_RAMMFA/DeletePrismaPlan/Procedure/DRLogDeleteActionInfo"
+}

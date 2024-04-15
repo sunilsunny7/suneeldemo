@@ -1,0 +1,16 @@
+{
+    "contactRole": [
+        {
+            "email": "test.test660@example.com",
+            "id": "a8I7Y0000008ggBUAV",
+            "mobilePhoneNumber": "+46145356123",
+            "name": "Test Contact",
+            "organizationId": "",
+            "role": "Avtalstecknare",
+            "sellerId": "SCM777",
+            "status": "",
+            "tcadId": "",
+            "type": "Contact"
+        }
+    ]
+}

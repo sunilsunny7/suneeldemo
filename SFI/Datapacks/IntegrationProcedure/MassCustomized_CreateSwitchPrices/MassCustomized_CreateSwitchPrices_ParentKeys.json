@@ -1,0 +1,7 @@
+[
+    "CalculationMatrix/MockMatrix",
+    "DataRaptor/MC_LoadErrorLogEntry",
+    "DataRaptor/TeliaSE_DRCreateSwitchPrices",
+    "DataRaptor/TeliaSE_DRExtractWebService",
+    "DataRaptor/TeliaSE_TransformAuthentication_TUPP"
+]

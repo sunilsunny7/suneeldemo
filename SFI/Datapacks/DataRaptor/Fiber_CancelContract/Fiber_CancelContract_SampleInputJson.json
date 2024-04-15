@@ -1,0 +1,20 @@
+{
+    "bundleName": "Fiber_CancelContract",
+    "objectList": {
+        "ContextId": "8005r000002nF5YAAU",
+        "Contract": {
+            "Id": "8005r000002nF5YAAU"
+        },
+        "QuoteId": "0Q05r000000ydISCAY",
+        "contextId": "8005r000002nF5YAAU",
+        "localTimeZoneName": "Asia/Calcutta",
+        "omniProcessId": "a535r000000ZyupAAC",
+        "timeStamp": "2024-03-26T17:53:21.427Z",
+        "userCurrencyCode": "SEK",
+        "userId": "0050800000CeTe8AAF",
+        "userName": "sunita.tudu@capgemini.com.ccamdev",
+        "userProfile": "System Administrator",
+        "userTimeZone": "60",
+        "userTimeZoneName": "Europe/Paris"
+    }
+}

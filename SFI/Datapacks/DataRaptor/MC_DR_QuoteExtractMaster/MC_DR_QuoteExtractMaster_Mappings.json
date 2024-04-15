@@ -1,0 +1,63 @@
+[
+    {
+        "%vlocity_namespace%__DomainObjectAPIName__c": "json",
+        "%vlocity_namespace%__DomainObjectCreationOrder__c": 0,
+        "%vlocity_namespace%__DomainObjectFieldAPIName__c": "Quote",
+        "%vlocity_namespace%__FilterGroup__c": 0,
+        "%vlocity_namespace%__FilterOperator__c": "=",
+        "%vlocity_namespace%__FilterValue__c": "quoteId",
+        "%vlocity_namespace%__InterfaceFieldAPIName__c": "Id",
+        "%vlocity_namespace%__InterfaceObjectLookupOrder__c": 1,
+        "%vlocity_namespace%__InterfaceObjectName__c": "Quote",
+        "%vlocity_namespace%__IsDisabled__c": false,
+        "%vlocity_namespace%__IsRequiredForUpsert__c": false,
+        "%vlocity_namespace%__MapId__c": "MC_DR_QuoteExtractMasterCustoma3x9E000000M5ucQACItem0",
+        "%vlocity_namespace%__OMplusSyncEnabled__c": false,
+        "%vlocity_namespace%__UpsertKey__c": false,
+        "Name": "MC_DR_QuoteExtractMaster",
+        "VlocityDataPackType": "SObject",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__DRMapItem__c"
+    },
+    {
+        "%vlocity_namespace%__DomainObjectAPIName__c": "json",
+        "%vlocity_namespace%__DomainObjectCreationOrder__c": 1,
+        "%vlocity_namespace%__DomainObjectFieldAPIName__c": "externalId",
+        "%vlocity_namespace%__DomainObjectFieldType__c": "List<Map>",
+        "%vlocity_namespace%__IsDisabled__c": false,
+        "%vlocity_namespace%__IsRequiredForUpsert__c": false,
+        "%vlocity_namespace%__MapId__c": "MC_DR_QuoteExtractMasterCustoma3x9E000000M5ucQACItem2",
+        "%vlocity_namespace%__OMplusSyncEnabled__c": false,
+        "%vlocity_namespace%__UpsertKey__c": false,
+        "Name": "MC_DR_QuoteExtractMaster",
+        "VlocityDataPackType": "SObject",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__DRMapItem__c"
+    },
+    {
+        "%vlocity_namespace%__DefaultValue__c": "autotaskQuoteId",
+        "%vlocity_namespace%__DomainObjectAPIName__c": "json",
+        "%vlocity_namespace%__DomainObjectCreationOrder__c": 1,
+        "%vlocity_namespace%__DomainObjectFieldAPIName__c": "externalId:name",
+        "%vlocity_namespace%__IsDisabled__c": false,
+        "%vlocity_namespace%__IsRequiredForUpsert__c": false,
+        "%vlocity_namespace%__MapId__c": "MC_DR_QuoteExtractMasterCustoma3x9E000000M5ucQACItem1",
+        "%vlocity_namespace%__OMplusSyncEnabled__c": false,
+        "%vlocity_namespace%__UpsertKey__c": false,
+        "Name": "MC_DR_QuoteExtractMaster",
+        "VlocityDataPackType": "SObject",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__DRMapItem__c"
+    },
+    {
+        "%vlocity_namespace%__DomainObjectAPIName__c": "json",
+        "%vlocity_namespace%__DomainObjectCreationOrder__c": 1,
+        "%vlocity_namespace%__DomainObjectFieldAPIName__c": "externalId:value",
+        "%vlocity_namespace%__InterfaceFieldAPIName__c": "Quote:TeliaSE_Autotask_QuoteId__c",
+        "%vlocity_namespace%__IsDisabled__c": false,
+        "%vlocity_namespace%__IsRequiredForUpsert__c": false,
+        "%vlocity_namespace%__MapId__c": "MC_DR_QuoteExtractMasterCustoma3x9E000000M5ucQACItem3",
+        "%vlocity_namespace%__OMplusSyncEnabled__c": false,
+        "%vlocity_namespace%__UpsertKey__c": false,
+        "Name": "MC_DR_QuoteExtractMaster",
+        "VlocityDataPackType": "SObject",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__DRMapItem__c"
+    }
+]

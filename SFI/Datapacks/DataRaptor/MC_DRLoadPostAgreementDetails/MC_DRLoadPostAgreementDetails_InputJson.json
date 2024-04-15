@@ -1,0 +1,8 @@
+{
+    "ContractId": "8009E000004uCslQAE",
+    "InterfaceName": "AgreementAttributeValueChangeEvent",
+    "Response": {
+        "message": "New Customer Agreement / Contract created.",
+        "responseCode": 401
+    }
+}

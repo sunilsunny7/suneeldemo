@@ -1,0 +1,7 @@
+[
+    "DataRaptor/MC_GetComData_Turbo",
+    "DataRaptor/MC_GetWebserviceName_Turbo",
+    "DataRaptor/TeliaSE_DRTransformMadam",
+    "DataRaptor/TeliaSE_TransformAuthentication_TUPP",
+    "DataRaptor/TeliaSE_UpdateContractFromMadam"
+]

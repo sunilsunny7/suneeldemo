@@ -1,0 +1,40 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "MassCustomized_SingleCart_CoFlow",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/singleCart_coflow/English",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__ParentElementId__c": {
+        "%vlocity_namespace%__OmniScriptId__c": {
+            "Name": "MassCustomized_SingleCart_CoFlow",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/singleCart_coflow/English",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+        },
+        "Name": "Step5_getHeraInput",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/singleCart_coflow/English/Step5_getHeraInput",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c"
+    },
+    "%vlocity_namespace%__ParentElementName__c": "Step5_getHeraInput",
+    "%vlocity_namespace%__ParentElementType__c": "Step",
+    "%vlocity_namespace%__PropertySet__c": {
+        "HTMLTemplateId": "",
+        "controlWidth": 12,
+        "dataJSON": false,
+        "disOnTplt": false,
+        "label": "AddHeraNumber",
+        "sanitize": false,
+        "show": null,
+        "text": "<p>H&auml;r anger du <strong>Hera-nummer och extra kostnader </strong>f&ouml;r de adresser d&auml;r Hera-f&ouml;rfr&aring;gan har gjorts.</p>\n<ul>\n<li>Hera-numret skrivs in i f&auml;ltet Hera-nummer p&aring; adresserna</li>\n<li>Om svaret p&aring; Hera-f&ouml;rfr&aring;gan inneh&aring;ller <strong>eng&aring;ngskostnad</strong> f&ouml;r t.ex. n&auml;tutbyggnad skrivs det in i f&auml;ltet f&ouml;r eng&aring;ngsavgift p&aring; adresserna</li>\n<li>Om svaret p&aring; Hera-f&ouml;rfr&aring;gan inneh&aring;ller <strong>ut&ouml;kad m&aring;nadskostnad </strong>skrivs den in i f&auml;ltet f&ouml;r m&aring;nadsavgift p&aring; adresserna</li>\n<li>Den extra m&aring;nadsavgiften l&auml;ggs till p&aring; m&aring;nadsavgiften fr&aring;n avtalet (m&aring;nadsavgift fr&aring;n avtalet + extra m&aring;nadsavgift fr&aring;n Hera). De extra kostnaderna som anges h&auml;r kommer att presenteras som separata rader i offertdokumentet</li>\n</ul>",
+        "textKey": ""
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": true,
+    "%vlocity_namespace%__Type__c": "Text Block",
+    "Name": "AddHeraNumber",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/singleCart_coflow/English/AddHeraNumber"
+}

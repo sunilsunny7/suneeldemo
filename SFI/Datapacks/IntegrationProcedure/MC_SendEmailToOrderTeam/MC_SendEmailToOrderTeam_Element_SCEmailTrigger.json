@@ -1,0 +1,64 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "MC_SendEmailToOrderTeam",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MC/SendEmailToOrderTeam/Procedure",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__ParentElementId__c": {
+        "%vlocity_namespace%__OmniScriptId__c": {
+            "Name": "MC_SendEmailToOrderTeam",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MC/SendEmailToOrderTeam/Procedure",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+        },
+        "Name": "Block_SCEmailTrigger",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MC/SendEmailToOrderTeam/Procedure/Block_SCEmailTrigger",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c"
+    },
+    "%vlocity_namespace%__ParentElementName__c": "Block_SCEmailTrigger",
+    "%vlocity_namespace%__ParentElementType__c": "Conditional Block",
+    "%vlocity_namespace%__PropertySet__c": {
+        "OrgWideEmailAddress": "",
+        "actionMessage": "",
+        "attachmentList": "",
+        "chainOnStep": false,
+        "contentVersionList": "%SCDocument:Id%",
+        "disOnTplt": false,
+        "emailInformation": {
+            "bccAddressList": [
+            ],
+            "ccAddressList": [
+                "%ContractDetailsToSendMail:OpportunityOwnerEmail%"
+            ],
+            "emailBody": "Hej, <br/>\n            <br/><br/>\n            Smart Connect Vägledd leverans ska beställas till nedan Kund:\n            <br/><br/>\n<p>\n<table border=\"1\" width=\"200px\" height=\"auto\" >\n      \n      <tr>\n          <td>\n              <b>Ärendenummer TUPP</b>\n          </td>\n\n          <td >\n              %ContractDetailsToSendMail:ContractCaseId%\n          </td>\n</tr><tr>\n\t\t   <td>\n              <b>Företag</b>\n          </td>\n          <td>\n              %ContractDetailsToSendMail:CompanyName%\n          </td>\n      </tr>\n      <tr>\n          <td>\n              <b>Organisationsnummer</b>\n          </td>\n          <td >\n              %ContractDetailsToSendMail:ContractOrgNr%\n          </td>\n</tr><tr>\n\t\t   <td>\n              <b>Affärsmöjlighetsägare Salesforce</b>\n          </td>\n          <td >\n              %ContractDetailsToSendMail:OwnerName%\n          </td>\n      </tr>\n      <tr>\n          <td>\n              <b>Avtalsnummer Salesforce</b>\n          </td>\n          <td >\n              %ContractDetailsToSendMail:SfContractNumber%\n          </td>\n               \n      </tr>\n      <tr>\n          <td>\n              <b>Avtalstecknare (kund)</b>\n          </td>\n          <td >\n              %ContractDetailsToSendMail:FirstnameLastname%</br>\n              %ContractDetailsToSendMail:ContactEmail%</br>\n               %ContractDetailsToSendMail:ContactMobilephno%</br>\n          </td>\n\t  <p></P>\n\t  <p></P>\n\t  </table><br/>\n           Med vänliga hälsningar\n           <br/><br/><br/>\n\n           Telia Salesforce",
+            "emailSubject": "Vägledd Leverans Smart Connect för %ContractDetailsToSendMail:contractTeliaSE_Case_Id%",
+            "setHtmlBody": true,
+            "toAddressList": [
+                "%OrderEmailId%"
+            ]
+        },
+        "emailTemplateInformation": {
+            "emailTargetObjectId": "",
+            "emailTemplateName": "",
+            "saveAsActivity": false,
+            "whatId": ""
+        },
+        "executionConditionalFormula": "",
+        "failOnStepError": true,
+        "failureConditionalFormula": "",
+        "label": "EmailAction2",
+        "show": null,
+        "staticDocList": [
+        ],
+        "useTemplate": false
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": false,
+    "%vlocity_namespace%__Type__c": "Email Action",
+    "Name": "SCEmailTrigger",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MC/SendEmailToOrderTeam/Procedure/SCEmailTrigger"
+}

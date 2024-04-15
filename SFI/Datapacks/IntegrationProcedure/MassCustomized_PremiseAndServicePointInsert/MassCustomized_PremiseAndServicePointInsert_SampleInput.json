@@ -1,0 +1,261 @@
+{
+    "ContextId": "0065E00000XOi3iQAD",
+    "OpportunityList": {
+        "AccountId": "0015E00001cr328QAA",
+        "OpportunityId": "0065E00000bK2bPQAS"
+    },
+    "bandwidth1": null,
+    "bandwidth2": null,
+    "broadbandProductsDR": null,
+    "fullPrecheck": false,
+    "omnidesignerChannelId": "omni-designer-channel-id-1628587019451",
+    "partialPrecheck": true,
+    "siteList": [
+        {
+            "accountId": "0015E00001cr328QAA",
+            "addButton": false,
+            "checkServicePoints": false,
+            "city": "solna",
+            "defaultServicePoint": true,
+            "isDeleted": false,
+            "isDisabled": true,
+            "isServicePointSelected": true,
+            "isValidated": true,
+            "opportunityId": "0065E00000XOi3iQAD",
+            "postalCode": "16979",
+            "selectedServicePoint": {
+                "servicePointId": "148573013",
+                "servicePointName": "148573013"
+            },
+            "servicePoints": [
+            ],
+            "streetName": "Stjärntorget"
+        },
+        {
+            "accountId": "0015E00001cr328QAA",
+            "addButton": false,
+            "checkServicePoints": false,
+            "city": "solna",
+            "defaultServicePoint": true,
+            "isDeleted": false,
+            "isDisabled": true,
+            "isServicePointSelected": true,
+            "isValidated": true,
+            "opportunityId": "0065E00000XOi3iQAD",
+            "postalCode": "16979",
+            "selectedServicePoint": {
+                "servicePointId": "148573012",
+                "servicePointName": "148573012"
+            },
+            "servicePoints": [
+            ],
+            "streetName": "Stjärntorget"
+        },
+        {
+            "accountId": "0015E00001cr328QAA",
+            "addButton": false,
+            "checkServicePoints": false,
+            "city": "solna",
+            "defaultServicePoint": true,
+            "isDeleted": true,
+            "isDisabled": true,
+            "isServicePointSelected": true,
+            "isValidated": true,
+            "opportunityId": "0065E00000XOi3iQAD",
+            "postalCode": "16979",
+            "selectedServicePoint": {
+                "servicePointId": "148573014",
+                "servicePointName": "148573014"
+            },
+            "servicePoints": [
+            ],
+            "streetName": "Stjärntorget"
+        },
+        {
+            "accountId": "0015E00001cr328QAA",
+            "addButton": true,
+            "aptno": "",
+            "checkServicePoints": false,
+            "city": "solna",
+            "defaultServicePoint": false,
+            "errorMessage": "",
+            "gateNumber": "",
+            "isDeleted": false,
+            "isDisabled": false,
+            "isServicePointSelected": true,
+            "isValidated": true,
+            "opportunityId": "0065E00000XOi3iQAD",
+            "postalCode": "16979",
+            "selectedServicePoint": {
+                "City": "SOLNA",
+                "Country": "SE",
+                "FTTxFlag": false,
+                "Locality": "SOLNA",
+                "Postcode": "16979",
+                "StreetName": "STJÄRNTORGET",
+                "StreetNumber": "5",
+                "servicePointId": 148573014,
+                "servicePointName": "5-148573014"
+            },
+            "servicePoints": [
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "servicePointId": 145092811,
+                    "servicePointName": "145092811"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": "1",
+                    "servicePointId": 145661978,
+                    "servicePointName": "1-145661978"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "GateNumber": "B",
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": "1",
+                    "servicePointId": 145661977,
+                    "servicePointName": "1-B-145661977"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "GateNumber": "C",
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": "1",
+                    "servicePointId": 158469563,
+                    "servicePointName": "1-C-158469563"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "GateNumber": "D",
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": "1",
+                    "servicePointId": 158469564,
+                    "servicePointName": "1-D-158469564"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": "2",
+                    "servicePointId": 145661988,
+                    "servicePointName": "2-145661988"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": "3",
+                    "servicePointId": 148573009,
+                    "servicePointName": "3-148573009"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": "4",
+                    "servicePointId": 148573012,
+                    "servicePointName": "4-148573012"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": "5",
+                    "servicePointId": 148573014,
+                    "servicePointName": "5-148573014"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "GateNumber": "A",
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": "5",
+                    "servicePointId": 148573015,
+                    "servicePointName": "5-A-148573015"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "GateNumber": "B",
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": "5",
+                    "servicePointId": 148573013,
+                    "servicePointName": "5-B-148573013"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": false,
+                    "Locality": "SOLNA",
+                    "Postcode": "16979",
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": "6",
+                    "servicePointId": 148573017,
+                    "servicePointName": "6-148573017"
+                },
+                {
+                    "City": "SOLNA",
+                    "Country": "SE",
+                    "FTTxFlag": true,
+                    "FlatNumber": "FS-WAN",
+                    "Locality": "SOLNA",
+                    "Postcode": 16979,
+                    "StreetName": "STJÄRNTORGET",
+                    "StreetNumber": 1,
+                    "servicePointId": 151643325,
+                    "servicePointName": "1-FS-WAN-151643325-FTTx"
+                }
+            ],
+            "streetName": "Stjärntorget",
+            "streetNumber": ""
+        }
+    ],
+    "timeStamp": "2021-08-10T09:25:16.745Z",
+    "totalItems": 3,
+    "userCurrencyCode": "SEK",
+    "userId": "0055E0000093t6AQAQ",
+    "userName": "vishal.d.srivastava@capgemini.com.mcdev33new",
+    "userProfile": "System Administrator",
+    "userTimeZone": "120"
+}

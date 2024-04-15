@@ -1,0 +1,162 @@
+{
+    "AddApartments&ComSpaces": 45,
+    "Adress": "",
+    "Business": "Demandala HB",
+    "ChildOTC": 0,
+    "ChildRTC": 8621,
+    "ContactName": "Nagendra Prasad",
+    "ContractDate": "2020-01-16",
+    "ContractDateWhenSigned": "2020-01-16",
+    "ContractTime": 2,
+    "DateOfContractCreation": "2020-01-16",
+    "Leveransperiod": 3,
+    "Line": {
+        "ChildItem1": [
+            {
+                "Name": "Kollektivt Bredband - 500 Mbit/s",
+                "OTC": 0,
+                "Qn": 12,
+                "RTC": 214,
+                "TVCostMonth": 0,
+                "isNoBlankOTC": "Text",
+                "isNoBlankRTC": "Text",
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Kollektivt Bredband - 10 Mbit/s",
+                "OTC": 0,
+                "Qn": 15,
+                "RTC": 110,
+                "TVCostMonth": 0,
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Kollektivt Bredband - 250/100 Mbit/s",
+                "OTC": 0,
+                "Qn": 15,
+                "RTC": 206,
+                "TVCostMonth": 0,
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Telia Kabel-tv Bas",
+                "OTC": 0,
+                "Qn": 12,
+                "RTC": 7.5,
+                "TVCostMonth": 7.5,
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Telia Kabel-tv",
+                "OTC": 0,
+                "Qn": 17,
+                "RTC": 69,
+                "TVCostMonth": 69,
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Fastighetsanslutning med Telia som exklusiv tjänsteleverantör",
+                "OTC": 0,
+                "Qn": 9,
+                "RTC": 0,
+                "TVCostMonth": 0,
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Fastighetsanslutning med Telia som exklusiv tjänsteleverantör",
+                "OTC": 0,
+                "Qn": 8,
+                "RTC": 0,
+                "TVCostMonth": 0,
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Fastighetsanslutning med Telia som exklusiv tjänsteleverantör",
+                "OTC": 0,
+                "Qn": 12,
+                "RTC": 0,
+                "TVCostMonth": 0,
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Fastighetsanslutning med Telia som exklusiv tjänsteleverantör",
+                "OTC": 0,
+                "Qn": 12,
+                "RTC": 0,
+                "TVCostMonth": 0,
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Fastighetsanslutning med Telia som exklusiv tjänsteleverantör",
+                "OTC": 0,
+                "Qn": 7,
+                "RTC": 0,
+                "TVCostMonth": 0,
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Fastighetsanslutning med Telia som exklusiv tjänsteleverantör",
+                "OTC": 0,
+                "Qn": 4,
+                "RTC": 0,
+                "TVCostMonth": 0,
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Kollektiv Installationshjälp",
+                "OTC": 0,
+                "Qn": 5,
+                "RTC": 10,
+                "TVCostMonth": 0,
+                "isTVStart": false,
+                "isTvLagom": false
+            },
+            {
+                "Name": "Kollektiv Telefoni",
+                "OTC": 0,
+                "Qn": 14,
+                "RTC": 0,
+                "TVCostMonth": 0,
+                "isTVStart": false,
+                "isTvLagom": false
+            }
+        ]
+    },
+    "NumberOfApartments": 22,
+    "NumberOfComSpaces": 23,
+    "OneTimeInstallationFee": 0,
+    "OrgNumber": "9696123430",
+    "Place": "",
+    "PropertyId": "Text",
+    "Quote": {
+        "Fastighetsnat": "Text"
+    },
+    "QuoteID": "00002539",
+    "SellerEmail": "praveena.taru@capgemini.com",
+    "SellerName": "Praveena T",
+    "SellerPhone": "+91 8978216490",
+    "TVCostMonth": 76.5,
+    "TotalOTC": 0,
+    "TotalRTC": 8621,
+    "TotalRTCApartment": 616.5,
+    "ValidationOfContract": "",
+    "ZipCode": "",
+    "isBB": true,
+    "isCoaXTV": true,
+    "isOPPEN": true,
+    "isOPPEN&isXLAN": true,
+    "isTV": true,
+    "isVoIP": true,
+    "isXLAN": false
+}

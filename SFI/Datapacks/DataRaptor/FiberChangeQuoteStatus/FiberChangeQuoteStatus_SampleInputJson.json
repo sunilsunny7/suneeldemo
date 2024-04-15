@@ -1,0 +1,57 @@
+{
+    "ContextId": "0Q03E000000SscjSAC",
+    "DRId_Quote": "0Q03E000000SscjSAC",
+    "DocumentTemplate": {
+        "Id": "a4B3E0000005tmgUAA",
+        "Name": "Telia MDU Mall Quote Document Template",
+        "TemplateType": "Microsoft Word .DOCX Template",
+        "VersionNumber": 1,
+        "useTemplateDRExtract": "yes"
+    },
+    "InitialDocumentTemplate": {
+        "useTemplateDRExtract": "yes"
+    },
+    "NewQuoteStatus": "Sent to Customer",
+    "QuoteDetails": {
+        "AccessType": "XLAN",
+        "QuoteDealType": "Telia MDU Mall Quote Document Template"
+    },
+    "Template": "Telia MDU Mall Quote Document Template",
+    "TemplateType": "Microsoft Word .DOCX Template",
+    "attachFileFormat": "DOCX, PDF",
+    "contextId": "0Q03E000000SscjSAC",
+    "docId": null,
+    "documentName": "Telia MDU Mall Quote Document Template",
+    "error": "OK",
+    "id": "a533N000000g6xTQAQ",
+    "isdtp": "p1",
+    "layout": "lightning",
+    "qId": "0Q03E000000SscjSAC",
+    "sfdcIFrameHost": "web",
+    "sfdcIFrameOrigin": "https://telia--ampancham--vlocity-cmt.visualforce.com",
+    "templateId": "a4B3E0000005tmgUAA",
+    "templateType": "Microsoft Word .DOCX Template",
+    "testContextId": "0Q03E000000SscjSAC",
+    "timeStamp": "2022-02-25T10:10:22.956Z",
+    "urlPrefix": "https://telia--ampancham--vlocity-cmt.visualforce.com/apex",
+    "userCurrencyCode": "SEK",
+    "userId": "0053N000005dbkRQAQ",
+    "userName": "pancham.verma@capgemini.com.ampancham",
+    "userProfile": "System Administrator",
+    "userTimeZone": 60,
+    "vlcPersistentComponent": {
+    },
+    "vlcTimeTracking": {
+        "CreateObjDocument": 4172,
+        "GenerateDocument": 17371,
+        "GetDocumentTemplatesForFA": 871,
+        "OmniScriptSessionToken": "64af859f-aab0-4aad-9130-ba58e2d67f5b",
+        "QuoteDetails": 2371,
+        "QuoteStatusChange": 3374,
+        "SetAccessType": 1727,
+        "SetQuoteValues": 15,
+        "SetTemplate": 5,
+        "SetTemplateType": 11,
+        "SetTemplateValues": 9
+    }
+}

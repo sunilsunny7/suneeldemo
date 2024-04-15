@@ -1,0 +1,224 @@
+[
+    {
+        "geographicAddress": {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "geographicSubAdress": [
+                ],
+                "id": 145092811,
+                "locality": "SOLNA",
+                "postcode": "16979",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STJÄRNTORGET",
+                "streetNr": "",
+                "streetNrSuffix": ""
+            }
+        },
+        "id": 145092811,
+        "siteDescription": "{\"fiber_flag\":\"\",\"copper_flag\":\"\",\"fmo_flag\":\"\"}"
+    },
+    {
+        "geographicAddress": {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "geographicSubAdress": [
+                    {
+                        "buildingName": "",
+                        "id": 151643325,
+                        "levelNumber": "",
+                        "levelType": "",
+                        "siteDescription": "{\"fiber_flag\":\"Y\",\"copper_flag\":\"\",\"fmo_flag\":\"\"}",
+                        "subUnit": [
+                            {
+                                "subUnitIdentifier": "FS-WAN",
+                                "subUnitType": "FLAT"
+                            }
+                        ]
+                    }
+                ],
+                "id": 145661978,
+                "locality": "SOLNA",
+                "postcode": "16979",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STJÄRNTORGET",
+                "streetNr": "1",
+                "streetNrSuffix": ""
+            }
+        },
+        "id": 145661978,
+        "siteDescription": "{\"fiber_flag\":\"\",\"copper_flag\":\"Y\",\"fmo_flag\":\"\"}"
+    },
+    {
+        "geographicAddress": {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "geographicSubAdress": [
+                ],
+                "id": 151643325,
+                "locality": "SOLNA",
+                "postcode": "16979",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STJÄRNTORGET",
+                "streetNr": "1",
+                "streetNrSuffix": ""
+            }
+        },
+        "id": 151643325,
+        "siteDescription": "{\"fiber_flag\":\"Y\",\"copper_flag\":\"\",\"fmo_flag\":\"\"}"
+    },
+    {
+        "geographicAddress": {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "geographicSubAdress": [
+                ],
+                "id": 145661977,
+                "locality": "SOLNA",
+                "postcode": "16979",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STJÄRNTORGET",
+                "streetNr": "1",
+                "streetNrSuffix": "B"
+            }
+        },
+        "id": 145661977,
+        "siteDescription": "{\"fiber_flag\":\"\",\"copper_flag\":\"\",\"fmo_flag\":\"\"}"
+    },
+    {
+        "geographicAddress": {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "geographicSubAdress": [
+                ],
+                "id": 145661988,
+                "locality": "SOLNA",
+                "postcode": "16979",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STJÄRNTORGET",
+                "streetNr": "2",
+                "streetNrSuffix": ""
+            }
+        },
+        "id": 145661988,
+        "siteDescription": "{\"fiber_flag\":\"\",\"copper_flag\":\"Y\",\"fmo_flag\":\"\"}"
+    },
+    {
+        "geographicAddress": {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "geographicSubAdress": [
+                ],
+                "id": 148573009,
+                "locality": "SOLNA",
+                "postcode": "16979",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STJÄRNTORGET",
+                "streetNr": "3",
+                "streetNrSuffix": ""
+            }
+        },
+        "id": 148573009,
+        "siteDescription": "{\"fiber_flag\":\"\",\"copper_flag\":\"\",\"fmo_flag\":\"\"}"
+    },
+    {
+        "geographicAddress": {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "geographicSubAdress": [
+                ],
+                "id": 148573012,
+                "locality": "SOLNA",
+                "postcode": "16979",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STJÄRNTORGET",
+                "streetNr": "4",
+                "streetNrSuffix": ""
+            }
+        },
+        "id": 148573012,
+        "siteDescription": "{\"fiber_flag\":\"\",\"copper_flag\":\"Y\",\"fmo_flag\":\"\"}"
+    },
+    {
+        "geographicAddress": {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "geographicSubAdress": [
+                ],
+                "id": 148573014,
+                "locality": "SOLNA",
+                "postcode": "16979",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STJÄRNTORGET",
+                "streetNr": "5",
+                "streetNrSuffix": ""
+            }
+        },
+        "id": 148573014,
+        "siteDescription": "{\"fiber_flag\":\"\",\"copper_flag\":\"\",\"fmo_flag\":\"\"}"
+    },
+    {
+        "geographicAddress": {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "geographicSubAdress": [
+                ],
+                "id": 148573015,
+                "locality": "SOLNA",
+                "postcode": "16979",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STJÄRNTORGET",
+                "streetNr": "5",
+                "streetNrSuffix": "A"
+            }
+        },
+        "id": 148573015,
+        "siteDescription": "{\"fiber_flag\":\"\",\"copper_flag\":\"\",\"fmo_flag\":\"\"}"
+    },
+    {
+        "geographicAddress": {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "geographicSubAdress": [
+                ],
+                "id": 148573013,
+                "locality": "SOLNA",
+                "postcode": "16979",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STJÄRNTORGET",
+                "streetNr": "5",
+                "streetNrSuffix": "B"
+            }
+        },
+        "id": 148573013,
+        "siteDescription": "{\"fiber_flag\":\"\",\"copper_flag\":\"\",\"fmo_flag\":\"\"}"
+    },
+    {
+        "geographicAddress": {
+            "fieldedAddress": {
+                "city": "SOLNA",
+                "country": "SE",
+                "geographicSubAdress": [
+                ],
+                "id": 148573017,
+                "locality": "SOLNA",
+                "postcode": "16979",
+                "stateOrProvince": "STOCKHOLMS LÄN",
+                "streetName": "STJÄRNTORGET",
+                "streetNr": "6",
+                "streetNrSuffix": ""
+            }
+        },
+        "id": 148573017,
+        "siteDescription": "{\"fiber_flag\":\"\",\"copper_flag\":\"\",\"fmo_flag\":\"\"}"
+    }
+]

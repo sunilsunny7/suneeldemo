@@ -1,0 +1,9 @@
+{
+    "ContractId": "8007Z000002VgnfQAC",
+    "InterfaceName": "PostAgreementDetails_GESB",
+    "Response": {
+        "error": "invalid_request",
+        "error_description": "Failed to parse request body.",
+        "error_origin": 0
+    }
+}

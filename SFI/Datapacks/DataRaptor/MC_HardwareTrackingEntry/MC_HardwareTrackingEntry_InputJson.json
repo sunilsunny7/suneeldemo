@@ -1,0 +1,48 @@
+{
+    "ContextId": "0067Z00000JhqD1QAJ",
+    "finalData": {
+        "AccessoriesList": [
+            {
+                "Code": "HW_HEADSET_APPLE_AIRPODS",
+                "Id": "01u4E00000EtxYfQAJ",
+                "Name": "Apple AirPods med laddningsetui Vit",
+                "ProductId": "01t4E000006fjYYQAY",
+                "checked": true
+            },
+            {
+                "Code": "HW_APPLE_IPHONE12_MINI_NAVY",
+                "Id": "01u7Z00000FDktoQAD",
+                "Name": "Apple iPhone 12 Mini Silicone Case with MagSafe Deep Navy",
+                "ProductId": "01t7Z000006uzC8QAI",
+                "checked": true
+            }
+        ],
+        "Account": {
+            "Name": "HB Kontor & Data",
+            "Status": "Active"
+        },
+        "Bindingtime": {
+            "Months": "24 Månader"
+        },
+        "PriceListSetup": {
+            "PriceList": "Månadsavgift"
+        },
+        "finalProductPriceMap": {
+            "matrixPriceMap": [
+                {
+                    "Amount": 4060,
+                    "Name": "Apple iPhone SE 64GB Svart",
+                    "OTC1": 240,
+                    "OTC2": 240,
+                    "OTC3": 240,
+                    "RTC1": 50,
+                    "RTC2": 80,
+                    "RTC3": 20
+                }
+            ],
+            "sub1": "Jobbmobil 120 GB",
+            "sub2": "Jobbmobil 15 GB",
+            "sub3": "Jobbmobil Obegränsad"
+        }
+    }
+}

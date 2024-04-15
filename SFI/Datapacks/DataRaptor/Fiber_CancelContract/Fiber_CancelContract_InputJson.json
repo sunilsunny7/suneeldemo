@@ -1,0 +1,28 @@
+{
+    "ContextId": null,
+    "QuoteId": null,
+    "Step2": {
+    },
+    "WarningBeforeDeleteOldPortfolio": {
+        "OldMessageDelete": null
+    },
+    "timeStamp": null,
+    "userId": null,
+    "userName": null,
+    "userProfile": null,
+    "userTimeZone": null,
+    "vlcPersistentComponent": {
+    },
+    "vlcTimeTracking": {
+        "DRExtractSalesflowIdentifierContract": null,
+        "DR_DeleteCaseId": null,
+        "DraftContract": null,
+        "GoToQuote": null,
+        "IP_DeleteTUPPCaseID": null,
+        "Revise": null,
+        "SV_SetTerminateContractValues": null,
+        "SetValuesQuoteID": null,
+        "Step2": null,
+        "WarningBeforeDeleteOldPortfolio": null
+    }
+}

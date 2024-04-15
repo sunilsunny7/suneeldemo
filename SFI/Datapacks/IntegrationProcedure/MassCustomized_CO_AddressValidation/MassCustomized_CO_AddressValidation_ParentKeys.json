@@ -1,0 +1,5 @@
+[
+    "DataRaptor/ServicepointResponseTransform",
+    "DataRaptor/TeliaSE_DRExtractWebService",
+    "IntegrationProcedure/MassCustomized_APIGarden"
+]

@@ -1,0 +1,24 @@
+{
+    "ContextId": null,
+    "timeStamp": null,
+    "userId": null,
+    "userName": null,
+    "userProfile": null,
+    "userTimeZone": null,
+    "vlcPersistentComponent": {
+    },
+    "vlcTimeTracking": {
+        "DRExtractEndpoint": null,
+        "DR_ContractContactExtract": null,
+        "DR_ContractExtract": null,
+        "DR_ContractLineExtract": null,
+        "DR_ContractOwner": null,
+        "DR_ContractUtilizersExtract": null,
+        "DR_GESB_PostAgreementTransform": null,
+        "DR_LoadPostAgreementDetails": null,
+        "DR_OpportunityExtract": null,
+        "GESB_PostAgreement_HTTPRequest": null,
+        "ResponsePostAgreement": null,
+        "SetEndPoint": null
+    }
+}

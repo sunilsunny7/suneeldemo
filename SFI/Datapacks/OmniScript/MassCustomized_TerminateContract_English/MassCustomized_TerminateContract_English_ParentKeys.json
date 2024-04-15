@@ -1,0 +1,13 @@
+[
+    "DataRaptor/ExtractContractLine-101-1",
+    "DataRaptor/ExtractContractLineClone",
+    "DataRaptor/GetContract",
+    "DataRaptor/InactiveSelectedContractItems-101-1",
+    "DataRaptor/TeliaSE_DRCancelContract",
+    "DataRaptor/TeliaSE_DRExtractAllContractLineItems",
+    "DataRaptor/TeliaSE_FullyTerminateAllCLI",
+    "DataRaptor/TeliaSE_SetStatus",
+    "DataRaptor/TerminateContract-101-1",
+    "VlocityUITemplate/VPL - SelectLineItems",
+    "VlocityUITemplate/VPL - SelectLineItemsCompleteTermination"
+]

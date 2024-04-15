@@ -1,0 +1,1 @@
+vm.retrieveMassProducts = function(control) { var massResult = []; control.vlcSI[control.itemsKey].map(function(item){ if(vm.allProductsvlcSelected){ item.vlcSelected = true; } massResult.push(item); }); return massResult; };

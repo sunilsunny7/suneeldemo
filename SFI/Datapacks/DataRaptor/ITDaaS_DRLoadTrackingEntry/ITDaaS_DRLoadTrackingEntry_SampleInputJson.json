@@ -1,0 +1,56 @@
+{
+    "ContextId": "0Q09E000001246ZSAQ",
+    "ElapsedTime": 170,
+    "ElapsedTimeCPU": 107,
+    "Request": {
+        "amandaQuoteId": "0Q09E000001246ZSAQ",
+        "opportunityId": "0063E000007VsIsQAK",
+        "organizationNumber": "5752725725",
+        "quoteItems": [
+            {
+                "commitmentPeriod": "24 months",
+                "id": "0QL9E000000lEhvWAE",
+                "offeringCode": "ITDAAS_PLUS",
+                "oneTimeFee": 0,
+                "productName": "IT-Avdelning som Tjänst Plus",
+                "recurringFee": 0
+            },
+            {
+                "commitmentPeriod": "24 months",
+                "id": "0QL9E000000lEhwWAE",
+                "offeringCode": "ITDAAS_PLUS_SA_BASEFEE",
+                "oneTimeFee": 0,
+                "productName": "Grundavgift",
+                "quantity": 1,
+                "recurringFee": 4500
+            },
+            {
+                "commitmentPeriod": "24 months",
+                "id": "0QL9E000000lEhxWAE",
+                "offeringCode": "ITDAAS_PLUS_ADDONS",
+                "oneTimeFee": 0,
+                "productName": "Säkerhetstjänster",
+                "recurringFee": 0
+            },
+            {
+                "commitmentPeriod": "24 months",
+                "id": "0QL9E000000lEhzWAE",
+                "offeringCode": "ITDAAS_PLUS_SA_OFFICE_TENANT",
+                "oneTimeFee": 0,
+                "productName": "Microsoft/Office 365 (Tenant)",
+                "quantity": 2,
+                "recurringFee": 1750
+            }
+        ],
+        "quoteName": "05_MC_Test__FA",
+        "quoteNumber": "00008085",
+        "status": "Approved"
+    },
+    "Response": {
+        "message": "Unable to add this quote as there is already a Primary Quote configured for this Opportunity. Please delete the primary quote from Autotask and try again.",
+        "responseCode": 409
+    },
+    "Status": true,
+    "Type": "DataRaptor Post Action",
+    "trackingCategory": "postQuoteToAutoTask"
+}

@@ -1,0 +1,227 @@
+{
+    "AccountId": "0015E00000sHxbCQAS",
+    "ContextId": "0Q05E0000004BsxSAE",
+    "ContractId": "8005E0000013D9eQAE",
+    "IPStatus": [
+        {
+            "SapId": "9087155",
+            "Status": "IN_STOCK"
+        },
+        {
+            "SapId": "SM-G960FZKDNEE",
+            "Status": "OUT_OF_STOCK"
+        },
+        {
+            "SapId": "9087154",
+            "Status": "MISSING_ARTICLE"
+        },
+        {
+            "SapId": "9087152",
+            "Status": "MISSING_ARTICLE"
+        }
+    ],
+    "QLIToBeUpdated": [
+        {
+            "Id": "0QL5E0000003U1OWAU",
+            "SapId": "9087155"
+        },
+        {
+            "Id": "0QL5E0000003U14WAE",
+            "SapId": "9087154"
+        },
+        {
+            "Id": "0QL5E0000003U1TWAU",
+            "SapId": "9087152"
+        },
+        {
+            "Id": "0QL5E000000IYYZWA4",
+            "SapId": "SM-G960FZKDNEE"
+        }
+    ],
+    "Response": {
+        "productAvailabilities": [
+            {
+                "deliveryTime": {
+                    "deliveryFrom": 1,
+                    "deliveryOption": "SE_POE",
+                    "deliveryTo": 3
+                },
+                "productCode": "9087155",
+                "status": "IN_STOCK"
+            },
+            {
+                "productCode": "SM-G960FZKDNEE",
+                "status": "OUT_OF_STOCK"
+            },
+            {
+                "productCode": "9087154",
+                "status": "MISSING_ARTICLE"
+            },
+            {
+                "productCode": "9087152",
+                "status": "MISSING_ARTICLE"
+            }
+        ]
+    },
+    "error": "OK",
+    "id": "a535E0000003dzCQAQ",
+    "isdtp": "p1",
+    "layout": "lightning",
+    "response": [
+        {
+            "Account__c": "0015E00000sHxbCQAS",
+            "Agreement__c": "78000311",
+            "Allowed_To_Bind__c": "No",
+            "Binding_Time_Left__c": "-1076 Days",
+            "Category__c": "Mobila talabonnemang",
+            "CommitmentEndDate__c": "20230430",
+            "CommitmentLength__c": "36",
+            "CommitmentStartDate__c": "2020-04-30",
+            "GPRS_Service_Allowance__c": "",
+            "Id": "a8M5E00000009yBUAQ",
+            "MSISDN__c": "46705076687",
+            "Offering_Name__c": "95",
+            "Start_Date__c": "2020-04-29",
+            "Subscription_Id__c": "0705076687",
+            "Subscription_Type__c": "VOICE",
+            "Subsidized_Subscription__c": "No",
+            "TeliaSE_Subscription_Name__c": "Jobbmobil 25 GB Ram",
+            "TeliaSE_User_Name__c": "HILLSTA HUS OCH FASTIGHETER, AB",
+            "attributes": {
+                "type": "Mobilabonnemang__c",
+                "url": "/services/data/v48.0/sobjects/Mobilabonnemang__c/a8M5E00000009yBUAQ"
+            }
+        },
+        {
+            "Account__c": "0015E00000sHxbCQAS",
+            "Agreement__c": "78000311",
+            "Allowed_To_Bind__c": "Yes",
+            "Binding_Time_Left__c": "-711 Days",
+            "Category__c": "Mobila talabonnemang",
+            "CommitmentEndDate__c": "20220430",
+            "CommitmentLength__c": "24",
+            "CommitmentStartDate__c": "2020-04-30",
+            "GPRS_Service_Allowance__c": "",
+            "Id": "a8M5E00000009yCUAQ",
+            "MSISDN__c": "46705076686",
+            "Offering_Name__c": "96",
+            "Start_Date__c": "2020-04-29",
+            "Subscription_Id__c": "0705076686",
+            "Subscription_Type__c": "VOICE",
+            "Subsidized_Subscription__c": "No",
+            "TeliaSE_Subscription_Name__c": "Jobbmobil 40 GB Ram",
+            "TeliaSE_User_Name__c": "Test 4, AB",
+            "attributes": {
+                "type": "Mobilabonnemang__c",
+                "url": "/services/data/v48.0/sobjects/Mobilabonnemang__c/a8M5E00000009yCUAQ"
+            }
+        },
+        {
+            "Account__c": "0015E00000sHxbCQAS",
+            "Agreement__c": "78000311",
+            "Allowed_To_Bind__c": "Yes",
+            "Binding_Time_Left__c": "-710 Days",
+            "Category__c": "Mobila talabonnemang",
+            "CommitmentEndDate__c": "20220429",
+            "CommitmentLength__c": "24",
+            "CommitmentStartDate__c": "2020-04-29",
+            "GPRS_Service_Allowance__c": "",
+            "Id": "a8M5E00000009yDUAQ",
+            "MSISDN__c": "46705076685",
+            "Offering_Name__c": "97",
+            "Start_Date__c": "2020-04-29",
+            "Subscription_Id__c": "0705076685",
+            "Subscription_Type__c": "VOICE",
+            "Subsidized_Subscription__c": "No",
+            "TeliaSE_Subscription_Name__c": "Jobbmobil 120 GB Ram",
+            "TeliaSE_User_Name__c": "Test 3, AB",
+            "attributes": {
+                "type": "Mobilabonnemang__c",
+                "url": "/services/data/v48.0/sobjects/Mobilabonnemang__c/a8M5E00000009yDUAQ"
+            }
+        },
+        {
+            "Account__c": "0015E00000sHxbCQAS",
+            "Agreement__c": "78000311",
+            "Allowed_To_Bind__c": "Yes",
+            "Binding_Time_Left__c": "-1066 Days",
+            "Category__c": "Mobila talabonnemang",
+            "CommitmentEndDate__c": "20230420",
+            "CommitmentLength__c": "36",
+            "CommitmentStartDate__c": "2020-04-20",
+            "GPRS_Service_Allowance__c": "",
+            "Id": "a8M5E00000009yEUAQ",
+            "MSISDN__c": "46705076684",
+            "Offering_Name__c": "98",
+            "Start_Date__c": "2020-04-29",
+            "Subscription_Id__c": "0705076684",
+            "Subscription_Type__c": "VOICE",
+            "Subsidized_Subscription__c": "No",
+            "TeliaSE_Subscription_Name__c": "Jobbmobil Obegränsad",
+            "TeliaSE_User_Name__c": "Test 2, AB",
+            "attributes": {
+                "type": "Mobilabonnemang__c",
+                "url": "/services/data/v48.0/sobjects/Mobilabonnemang__c/a8M5E00000009yEUAQ"
+            }
+        },
+        {
+            "Account__c": "0015E00000sHxbCQAS",
+            "Agreement__c": "78000311",
+            "Allowed_To_Bind__c": "No",
+            "Binding_Time_Left__c": "-417 Days",
+            "Category__c": "Mobila talabonnemang",
+            "CommitmentEndDate__c": "20200710",
+            "CommitmentLength__c": "12",
+            "CommitmentStartDate__c": "2019-07-10",
+            "GPRS_Service_Allowance__c": "",
+            "Id": "a8M5E00000009yFUAQ",
+            "MSISDN__c": "46705076683",
+            "Offering_Name__c": "91",
+            "Start_Date__c": "2019-07-10",
+            "Subscription_Id__c": "0705076683",
+            "Subscription_Type__c": "VOICE",
+            "Subsidized_Subscription__c": "Yes",
+            "TeliaSE_Subscription_Name__c": "Jobbmobil 1 GB Ram",
+            "TeliaSE_User_Name__c": "Test 1, AB",
+            "attributes": {
+                "type": "Mobilabonnemang__c",
+                "url": "/services/data/v48.0/sobjects/Mobilabonnemang__c/a8M5E00000009yFUAQ"
+            }
+        },
+        {
+            "Account__c": "0015E00000sHxbCQAS",
+            "Agreement__c": "78000311",
+            "Allowed_To_Bind__c": "Yes",
+            "Binding_Time_Left__c": "-23 Days",
+            "Category__c": "Mobila talabonnemang",
+            "CommitmentEndDate__c": "20200611",
+            "CommitmentLength__c": "12",
+            "CommitmentStartDate__c": "2019-06-11",
+            "GPRS_Service_Allowance__c": "",
+            "Id": "a8M5E00000009yGUAQ",
+            "MSISDN__c": "46705076682",
+            "Offering_Name__c": "92",
+            "Start_Date__c": "2019-06-11",
+            "Subscription_Id__c": "0705076682",
+            "Subscription_Type__c": "VOICE",
+            "Subsidized_Subscription__c": "No",
+            "TeliaSE_Subscription_Name__c": "Jobbmobil 3 GB Ram",
+            "TeliaSE_User_Name__c": "Test 7, AB",
+            "attributes": {
+                "type": "Mobilabonnemang__c",
+                "url": "/services/data/v48.0/sobjects/Mobilabonnemang__c/a8M5E00000009yGUAQ"
+            }
+        }
+    ],
+    "sfdcIFrameHost": "web",
+    "sfdcIFrameOrigin": "https://telia--mcdp2sp2--vlocity-cmt.cs84.visual.force.com",
+    "testContextId": "0Q05E0000004BsxSAE",
+    "timeStamp": "2020-05-19T11:53:46.970Z",
+    "userCurrencyCode": "SEK",
+    "userId": "0055E000005Y66sQAC",
+    "userName": "vamsi.doddapani@capgemini.com.mcdp2sp2",
+    "userProfile": "System Administrator",
+    "userTimeZone": 120,
+    "vlcPersistentComponent": {
+    }
+}

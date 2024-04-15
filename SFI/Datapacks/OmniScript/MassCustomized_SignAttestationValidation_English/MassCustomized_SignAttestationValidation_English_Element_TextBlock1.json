@@ -1,0 +1,40 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "MassCustomized Sign Attestation Validation",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/SignAttestationValidation/English",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__ParentElementId__c": {
+        "%vlocity_namespace%__OmniScriptId__c": {
+            "Name": "MassCustomized Sign Attestation Validation",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/SignAttestationValidation/English",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+        },
+        "Name": "ValidateOpportunity",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/SignAttestationValidation/English/ValidateOpportunity",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c"
+    },
+    "%vlocity_namespace%__ParentElementName__c": "ValidateOpportunity",
+    "%vlocity_namespace%__ParentElementType__c": "Step",
+    "%vlocity_namespace%__PropertySet__c": {
+        "HTMLTemplateId": "",
+        "controlWidth": 12,
+        "dataJSON": false,
+        "disOnTplt": false,
+        "label": "TextBlock1",
+        "sanitize": false,
+        "show": null,
+        "text": "<h3><em style=\"color: #ff0000; font-family: inherit;\"><strong><em>Du har inte angett n&aring;got v&auml;rde f&ouml;r den h&auml;r aff&auml;ren. Var v&auml;nlig &aring;terg&aring; till Aff&auml;rsm&ouml;jligheten och l&auml;gg till produkter</em>.</strong></em></h3>\n<p><strong><a href=\"../lightning/r/Opportunity/%Contract:OpportunityId%/view\">Klicka h&auml;r</a></strong>&nbsp;f&ouml;r att komma till aff&auml;rsm&ouml;jligheten.</p>",
+        "textKey": ""
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": false,
+    "%vlocity_namespace%__Type__c": "Text Block",
+    "Name": "TextBlock1",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/SignAttestationValidation/English/TextBlock1"
+}

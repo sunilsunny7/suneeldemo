@@ -1,0 +1,21 @@
+{
+    "%vlocity_namespace%__AdditionalInformation__c": "IP to save selected special price plan and update flags (22.11)",
+    "%vlocity_namespace%__CustomJavaScript__c": "{}",
+    "%vlocity_namespace%__DisableMetadataCache__c": false,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": "MC_AddOn_PricePlanSave_Element_RA_SavePrices.json",
+    "%vlocity_namespace%__IsLwcEnabled__c": false,
+    "%vlocity_namespace%__IsProcedure__c": true,
+    "%vlocity_namespace%__IsReusable__c": false,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "Procedure",
+    "%vlocity_namespace%__OmniProcessType__c": "Integration Procedure",
+    "%vlocity_namespace%__ProcedureKey__c": "MC_AddOn_PricePlanSave",
+    "%vlocity_namespace%__PropertySet__c": "MC_AddOn_PricePlanSave_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "PricePlanSave",
+    "%vlocity_namespace%__Type__c": "MC_AddOn",
+    "Name": "MC_AddOn_PricePlanSave",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MC_AddOn/PricePlanSave/Procedure"
+}

@@ -1,0 +1,94 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "TeliaSE Create TouchPoint Case",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/TouchPointIntegration/English",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__PropertySet__c": {
+        "HTMLTemplateId": "",
+        "cancelLabel": "Cancel",
+        "cancelMessage": "Are you sure?",
+        "chartLabel": null,
+        "completeLabel": "Complete",
+        "completeMessage": "Are you sure you want to complete the script?",
+        "conditionType": "Hide if False",
+        "disOnTplt": false,
+        "instruction": "<p>V&auml;nligen notera</p>\n<ol>\n<li><strong>Kunden m&aring;ste ha ett giltigt ramavtal</strong></li>\n<li><strong>TouchPoint erbjudandet</strong><strong>&nbsp;&nbsp;</strong><strong>beh&ouml;ver</strong>&nbsp;<strong>l&auml;ggas till i prisf&ouml;rhandlingen</strong></li>\n<li><strong>N&auml;r&nbsp;</strong><strong>ett TouchPoint-&auml;rende&nbsp;</strong><strong>&auml;r skapat i avropsofferten kan det inte &aring;terkallas</strong></li>\n</ol>",
+        "instructionKey": "",
+        "knowledgeOptions": {
+            "dataCategoryCriteria": "",
+            "keyword": "",
+            "language": "English",
+            "publishStatus": "Online",
+            "remoteTimeout": 30000,
+            "typeFilter": ""
+        },
+        "label": "Bekräfta Touchpointinformation",
+        "nextLabel": "Continue",
+        "nextWidth": 3,
+        "previousLabel": "Previous",
+        "previousWidth": 3,
+        "remoteClass": "",
+        "remoteMethod": "",
+        "remoteOptions": {
+        },
+        "remoteTimeout": 30000,
+        "saveLabel": "Save for later",
+        "saveMessage": "Are you sure you want to save it for later?",
+        "show": {
+            "group": {
+                "operator": "AND",
+                "rules": [
+                    {
+                        "condition": "=",
+                        "data": "Nonexist",
+                        "field": "Product:Exist"
+                    },
+                    {
+                        "condition": "<>",
+                        "data": "true",
+                        "field": "ErrorAlreadyCaseExist:ErrorMsgExistingCase"
+                    },
+                    {
+                        "condition": "<>",
+                        "data": "true",
+                        "field": "ContractNotValid:ContractNA"
+                    },
+                    {
+                        "condition": "<>",
+                        "data": "true",
+                        "field": "ContractCaseIdNotAvailable:CaseIdError"
+                    },
+                    {
+                        "condition": "<>",
+                        "data": "true",
+                        "field": "ErrorContact:ErrorMsgContactName"
+                    },
+                    {
+                        "condition": "<>",
+                        "data": "true",
+                        "field": "ErrorContact:ErrorMsgContactEmail"
+                    },
+                    {
+                        "condition": "<>",
+                        "data": "true",
+                        "field": "ErrorContact:ErrorMsgContactPhone"
+                    }
+                ]
+            }
+        },
+        "showPersistentComponent": [
+            false,
+            false
+        ],
+        "validationRequired": true
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": true,
+    "%vlocity_namespace%__Type__c": "Step",
+    "Name": "TouchpointValidation",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/TouchPointIntegration/English/TouchpointValidation"
+}

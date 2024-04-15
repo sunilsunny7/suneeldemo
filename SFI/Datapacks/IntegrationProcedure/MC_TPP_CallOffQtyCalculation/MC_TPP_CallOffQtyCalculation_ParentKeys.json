@@ -1,0 +1,6 @@
+[
+    "DataRaptor/DRExtractCOReadOnlyFlag",
+    "DataRaptor/MC_TPP_TransformMatrixOutput",
+    "DataRaptor/MC_TPP_UpdateQLI",
+    "IntegrationProcedure/MC_TPP_GetMatrixResult"
+]

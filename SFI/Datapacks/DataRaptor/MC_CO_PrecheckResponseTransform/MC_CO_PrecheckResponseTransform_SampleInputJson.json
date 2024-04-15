@@ -1,0 +1,481 @@
+{
+    "productOfferingQualificationItem": {
+        "id": "2131334",
+        "place": 148573013,
+        "productOfferingProposal": [
+            {
+                "id": 1,
+                "name": "BredbandStart",
+                "possibleDeliveryGroup": [
+                    {
+                        "id": "1",
+                        "name": "Fiber",
+                        "productOfferingCharacteristic": [
+                            {
+                                "accessType": "Access",
+                                "agreementId": "AO77777",
+                                "contractType": "PAI123456",
+                                "daysToDelivery": "20",
+                                "id": 1,
+                                "lanType": "FTTB",
+                                "maxbandwidth": "10000",
+                                "name": "Fttx",
+                                "offerSla": "B24B",
+                                "priority": 1,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "P5"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "name": "Wireless",
+                        "productOfferingCharacteristic": [
+                            {
+                                "accessType": "Access",
+                                "id": 1,
+                                "maxbandwidth": "400000",
+                                "name": "4G",
+                                "offerSla": "BestEffort",
+                                "priority": 2,
+                                "productPriceAlteration": "300",
+                                "qos": "",
+                                "returnCode": "000",
+                                "totalPrice": "400",
+                                "weighFactor": "P5"
+                            },
+                            {
+                                "accessType": "Access",
+                                "id": 2,
+                                "maxbandwidth": "100",
+                                "name": "5G",
+                                "offerSla": "BestEffort",
+                                "priority": 3,
+                                "productPriceAlteration": "300",
+                                "qos": "",
+                                "returnCode": "000",
+                                "totalPrice": "400",
+                                "weighFactor": "P7"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "BredbandPlus",
+                "possibleDeliveryGroup": [
+                    {
+                        "id": "1",
+                        "name": "Fiber",
+                        "productOfferingCharacteristic": [
+                            {
+                                "accessType": "Access",
+                                "agreementId": "PO12344",
+                                "contractType": "LL12345",
+                                "daysToDelivery": "20",
+                                "id": 1,
+                                "lanType": "FTTB",
+                                "maxbandwidth": "100",
+                                "name": "Fttx",
+                                "offerSla": "B24B",
+                                "priority": 1,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "P7"
+                            },
+                            {
+                                "accessType": "NW",
+                                "daysToDelivery": "20",
+                                "id": 2,
+                                "maxbandwidth": "100",
+                                "name": "FNS",
+                                "offerSla": "B12B",
+                                "priority": 5,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U10"
+                            },
+                            {
+                                "accessType": "Multi",
+                                "daysToDelivery": "20",
+                                "id": 3,
+                                "maxbandwidth": "100",
+                                "name": "WS fiber",
+                                "offerSla": "B12B",
+                                "priority": 2,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U14"
+                            },
+                            {
+                                "accessType": "Multi",
+                                "daysToDelivery": "25",
+                                "id": 4,
+                                "maxbandwidth": "100",
+                                "name": "WS fiber",
+                                "offerSla": "B12B",
+                                "priority": 3,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U16"
+                            },
+                            {
+                                "accessType": "Multi Dual",
+                                "daysToDelivery": "30",
+                                "id": 5,
+                                "maxbandwidth": "100",
+                                "name": "WS fiber",
+                                "offerSla": "B12B",
+                                "priority": 4,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U20"
+                            },
+                            {
+                                "accessType": "SF09",
+                                "daysToDelivery": "30",
+                                "id": 6,
+                                "maxbandwidth": "100",
+                                "name": "Fiber",
+                                "offerSla": "B12B",
+                                "priority": 6,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U45"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "name": "WIRELESS",
+                        "productOfferingCharacteristic": [
+                            {
+                                "accessType": "5G",
+                                "id": 1,
+                                "maxbandwidth": "400000",
+                                "name": "FWA",
+                                "offerSla": "BestEffort",
+                                "priority": 7,
+                                "productPriceAlteration": "300",
+                                "qos": "",
+                                "returnCode": "000",
+                                "totalPrice": "400",
+                                "weighFactor": "P5"
+                            },
+                            {
+                                "accessType": "4G+",
+                                "id": 2,
+                                "maxbandwidth": "10000",
+                                "name": "FWA",
+                                "offerSla": "BestEffort",
+                                "priority": 8,
+                                "productPriceAlteration": "300",
+                                "qos": "",
+                                "returnCode": "000",
+                                "totalPrice": "400",
+                                "weighFactor": "P7"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "BredbandPro",
+                "possibleDeliveryGroup": [
+                    {
+                        "id": "1",
+                        "name": "Fiber",
+                        "productOfferingCharacteristic": [
+                            {
+                                "accessType": "Access",
+                                "agreementId": "PO12344",
+                                "contractType": "LL12345",
+                                "daysToDelivery": "20",
+                                "id": 1,
+                                "lanType": "FTTB",
+                                "maxbandwidth": "100",
+                                "name": "Fttx",
+                                "offerSla": "B24B",
+                                "priority": 1,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "P7"
+                            },
+                            {
+                                "accessType": "NW",
+                                "daysToDelivery": "20",
+                                "id": 2,
+                                "maxbandwidth": "100",
+                                "name": "FNS",
+                                "offerSla": "B12B",
+                                "priority": 5,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U10"
+                            },
+                            {
+                                "accessType": "Multi",
+                                "daysToDelivery": "20",
+                                "id": 3,
+                                "maxbandwidth": "100",
+                                "name": "WS fiber",
+                                "offerSla": "B12B",
+                                "priority": 2,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U14"
+                            },
+                            {
+                                "accessType": "Multi",
+                                "daysToDelivery": "25",
+                                "id": 4,
+                                "maxbandwidth": "100",
+                                "name": "WS fiber",
+                                "offerSla": "B12B",
+                                "priority": 3,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U16"
+                            },
+                            {
+                                "accessType": "Multi Dual",
+                                "daysToDelivery": "30",
+                                "id": 5,
+                                "maxbandwidth": "100",
+                                "name": "WS fiber",
+                                "offerSla": "B12B",
+                                "priority": 4,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U20"
+                            },
+                            {
+                                "accessType": "SF09",
+                                "daysToDelivery": "30",
+                                "id": 6,
+                                "maxbandwidth": "100",
+                                "name": "Fiber",
+                                "offerSla": "B12B",
+                                "priority": 6,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U45"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "name": "WIRELESS",
+                        "productOfferingCharacteristic": [
+                            {
+                                "accessType": "5G",
+                                "id": 1,
+                                "maxbandwidth": "400000",
+                                "name": "FWA",
+                                "offerSla": "BestEffort",
+                                "priority": 7,
+                                "productPriceAlteration": "300",
+                                "qos": "",
+                                "returnCode": "000",
+                                "totalPrice": "400",
+                                "weighFactor": "P5"
+                            },
+                            {
+                                "accessType": "4G+",
+                                "id": 2,
+                                "maxbandwidth": "10000",
+                                "name": "FWA",
+                                "offerSla": "BestEffort",
+                                "priority": 8,
+                                "productPriceAlteration": "300",
+                                "qos": "",
+                                "returnCode": "000",
+                                "totalPrice": "400",
+                                "weighFactor": "P7"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "Datanet",
+                "possibleDeliveryGroup": [
+                    {
+                        "id": "1",
+                        "name": "Fiber",
+                        "productOfferingCharacteristic": [
+                            {
+                                "accessType": "Access",
+                                "agreementId": "PO12344",
+                                "contractType": "LL12345",
+                                "daysToDelivery": "20",
+                                "id": 1,
+                                "lanType": "FTTB",
+                                "maxbandwidth": "100",
+                                "name": "L3 Fttx",
+                                "offerSla": "B24B",
+                                "priority": 1,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "P7"
+                            },
+                            {
+                                "accessType": "NW",
+                                "daysToDelivery": "20",
+                                "id": 2,
+                                "maxbandwidth": "100",
+                                "name": "L3 FNS",
+                                "offerSla": "B12B",
+                                "priority": 5,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U10"
+                            },
+                            {
+                                "accessType": "Multi",
+                                "daysToDelivery": "20",
+                                "id": 3,
+                                "maxbandwidth": "100",
+                                "name": "L3 WS fiber",
+                                "offerSla": "B12B",
+                                "priority": 2,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U14"
+                            },
+                            {
+                                "accessType": "Multi",
+                                "daysToDelivery": "25",
+                                "id": 4,
+                                "maxbandwidth": "100",
+                                "name": "L3 WS fiber",
+                                "offerSla": "B12B",
+                                "priority": 3,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U16"
+                            },
+                            {
+                                "accessType": "Multi Dual",
+                                "daysToDelivery": "30",
+                                "id": 5,
+                                "maxbandwidth": "100",
+                                "name": "L3 WS fiber",
+                                "offerSla": "B12B",
+                                "priority": 4,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U20"
+                            },
+                            {
+                                "accessType": "SF09",
+                                "daysToDelivery": "30",
+                                "id": 6,
+                                "maxbandwidth": "100",
+                                "name": "L3 Fiber",
+                                "offerSla": "B12B",
+                                "priority": 6,
+                                "productPriceAlteration": [
+                                ],
+                                "qos": "RRI",
+                                "returnCode": "000",
+                                "totalPrice": "0",
+                                "weighFactor": "U45"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "name": "WIRELESS",
+                        "productOfferingCharacteristic": [
+                            {
+                                "accessType": "5G",
+                                "id": 1,
+                                "maxbandwidth": "400000",
+                                "name": "FWA",
+                                "offerSla": "BestEffort",
+                                "priority": 7,
+                                "productPriceAlteration": "300",
+                                "qos": "",
+                                "returnCode": "000",
+                                "totalPrice": "400",
+                                "weighFactor": "P5"
+                            },
+                            {
+                                "accessType": "4G+",
+                                "id": 2,
+                                "maxbandwidth": "10000",
+                                "name": "FWA",
+                                "offerSla": "BestEffort",
+                                "priority": 8,
+                                "productPriceAlteration": "300",
+                                "qos": "",
+                                "returnCode": "000",
+                                "totalPrice": "400",
+                                "weighFactor": "P7"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

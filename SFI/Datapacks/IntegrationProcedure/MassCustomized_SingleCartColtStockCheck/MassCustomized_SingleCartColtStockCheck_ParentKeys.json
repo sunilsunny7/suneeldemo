@@ -1,0 +1,6 @@
+[
+    "DataRaptor/TeliaSE_DRExtractWebService",
+    "DataRaptor/TeliaSE_MC_HardwareDRGetQuoteLineItems",
+    "DataRaptor/TeliaSE_MC_HardwareStockCheck",
+    "DataRaptor/TeliaSE_TransformAuthentication_TUPP"
+]

@@ -1,0 +1,9 @@
+{
+    "ContractId": "8007Z000002VgnfQAC",
+    "InterfaceName": "PostAgreementDetails_GESB",
+    "Response": {
+        "errorCode": "OK",
+        "errorMessage": "Success",
+        "recordId": "8000Q000003JbFdQAK"
+    }
+}

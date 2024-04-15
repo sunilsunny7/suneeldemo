@@ -1,0 +1,51 @@
+{
+    "ContextId": "8006E0000010b5IQAQ",
+    "Contract": {
+        "AccountId": "0016E00000gYEtLQAW",
+        "CurrentDate": "2019-03-31",
+        "EndDate": "2020-03-28",
+        "Id": "8006E0000010b5IQAQ",
+        "Item": [
+            {
+                "$$hashKey": "object:175",
+                "CLIEndDate": "2019-04-18T18:30:00.000Z",
+                "EndDate": "2020-03-28",
+                "Id": "a3g6E0000005VsbQAE",
+                "ProdName": "Office 365",
+                "RootProduct": "01t6E000004jDrKQAU",
+                "StartDate": "2019-04-01",
+                "vlcSelected": true
+            }
+        ],
+        "RecordType": "Ramavtal",
+        "StartDate": "2019-04-01"
+    },
+    "ContractEndDate": "2020-03-28",
+    "ContractId": "8006E0000010b5IQAQ",
+    "ContractLineId": "a3g6E0000005VsbQAE",
+    "CurrentDate": "2019-03-31",
+    "DRId_%vlocity_namespace%__ContractLineItem__c": "a3g6E0000005VsbQAE",
+    "TerminationDetails": {
+        "CheckDate": false,
+        "TerminateDate": null,
+        "TerminateDateMessage": null,
+        "TerminateOption": "Partially terminate lines in the contract",
+        "TerminateReason": "Customer Not Compliance",
+        "TerminateType": "With Cause"
+    },
+    "error": "OK",
+    "id": "a536E0000006MjmQAE",
+    "isdtp": "p1",
+    "layout": "lightning",
+    "sfdcIFrameHost": "web",
+    "sfdcIFrameOrigin": "https://telia--vlocitysp7--vlocity-cmt.cs85.visual.force.com",
+    "testContextId": "8006E0000010b5IQAQ",
+    "timeStamp": "2019-03-31T19:30:25.665Z",
+    "userCurrencyCode": "SEK",
+    "userId": "0056E000004jIlGQAU",
+    "userName": "monika.verma@capgemini.com.vlocitysp7",
+    "userProfile": "System Administrator",
+    "userTimeZone": 120,
+    "vlcPersistentComponent": {
+    }
+}

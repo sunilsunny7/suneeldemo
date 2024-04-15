@@ -1,0 +1,65 @@
+{
+    "agreement": {
+        "accountId": "165563750230",
+        "agreedAmountMobile": "230",
+        "agreedAmountTP": "345",
+        "agreementCategory": "108",
+        "agreementContactName": "BINAMRA GUHA",
+        "agreementEndDate": "2024-02-28 00:00:00",
+        "agreementItem": [
+            {
+                "subscriptionType": "XÖ",
+                "subscriptionTypeStatus": "Valid"
+            },
+            {
+                "subscriptionType": "XÄ",
+                "subscriptionTypeStatus": "Valid"
+            },
+            {
+                "subscriptionType": "XÅ",
+                "subscriptionTypeStatus": "Valid"
+            },
+            {
+                "subscriptionType": "XZ",
+                "subscriptionTypeStatus": "Valid"
+            },
+            {
+                "subscriptionType": "XY",
+                "subscriptionTypeStatus": "Valid"
+            }
+        ],
+        "agreementLevel": "RAM",
+        "agreementNumber": "12345670",
+        "agreementSignedDate": "2022-01-14 00:00:00",
+        "agreementStartDate": "2022-05-28 00:00:00",
+        "agreementStatus": "V",
+        "agreementType": "SME",
+        "agreementVersion": null,
+        "miniDebAlertType": "Active",
+        "minimumNumberSubscription": "76",
+        "mobileMiniDebWarningPercentage": "34",
+        "mobileMiniWarningActiveFlag": "Y",
+        "numberOfSubscriptionsMobile": "6",
+        "numberOfSubscriptionsTP": "8",
+        "ownerId": "BGA998",
+        "serviceContractNumber": "9993579495443",
+        "services": [
+            {
+                "serviceAvailable": "DEF",
+                "serviceCode": "RLHT",
+                "serviceStatus": "V",
+                "subscriptionType": "98"
+            }
+        ],
+        "tpMiniDebWarningPercentage": "23",
+        "tpMiniWarningActiveFlag": "N",
+        "utilizer": [
+            {
+                "name": "Test_Utilizer",
+                "organizationNumber": "5566765813",
+                "status": "V"
+            }
+        ]
+    },
+    "operation": "Insert"
+}

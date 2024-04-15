@@ -1,0 +1,25 @@
+{
+    "%vlocity_namespace%__AdditionalInformation__c": "MCSTO-7923, TPP Excel download omniscript",
+    "%vlocity_namespace%__DisableMetadataCache__c": false,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": [
+        "MassCustomized_TPPExcelDownload_English_Element_CANCEL.json",
+        "MassCustomized_TPPExcelDownload_English_Element_TPPGeneratedExcel_TurboExtract.json",
+        "MassCustomized_TPPExcelDownload_English_Element_SV_DocumentExists.json",
+        "MassCustomized_TPPExcelDownload_English_Element_DownloadExcel.json",
+        "MassCustomized_TPPExcelDownload_English_Element_NA-Contract.json"
+    ],
+    "%vlocity_namespace%__IsLwcEnabled__c": true,
+    "%vlocity_namespace%__IsProcedure__c": false,
+    "%vlocity_namespace%__IsReusable__c": false,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "English",
+    "%vlocity_namespace%__OmniProcessType__c": "OmniScript",
+    "%vlocity_namespace%__PropertySet__c": "MassCustomized_TPPExcelDownload_English_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "TPPExcelDownload",
+    "%vlocity_namespace%__Type__c": "MassCustomized",
+    "Name": "ExcelDownload",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/TPPExcelDownload/English"
+}

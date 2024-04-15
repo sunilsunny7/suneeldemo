@@ -1,0 +1,50 @@
+{
+    "Automatic case": {
+        "SinglecaseRadio": null
+    },
+    "CheckITDaaS": {
+    },
+    "CheckTouchpointMobile": {
+    },
+    "CheckUtilizerAction": {
+        "AddUtilizer": null
+    },
+    "ContextId": null,
+    "ErrorProcessing": {
+    },
+    "Quote": {
+        "Line": null
+    },
+    "UpdateContactRole": {
+    },
+    "timeStamp": null,
+    "userId": null,
+    "userName": null,
+    "userProfile": null,
+    "userTimeZone": null,
+    "vlcPersistentComponent": {
+    },
+    "vlcTimeTracking": {
+        "AddUtilizer_SetValue": null,
+        "Automatic case": null,
+        "CheckITDaaS": null,
+        "CheckTouchpointMobile": null,
+        "CheckUtilizerAction": null,
+        "CreateSA": null,
+        "CreateSAIntegrationProcedure": null,
+        "DR_ExtractContactRolefromOpportunity": null,
+        "DR_ExtractProductName": null,
+        "DR_PostIsMCOpportunity": null,
+        "DataRaptorPostAction3": null,
+        "ErrorProcessing": null,
+        "GoToQuote": null,
+        "HolidayDR": null,
+        "IP_UpdateCGAddOnBenefitData": null,
+        "IsMC": null,
+        "NavigateToUpdateUtilizer": null,
+        "Quote": null,
+        "RA_UtilizerCheck": null,
+        "SetContractId": null,
+        "UpdateContactRole": null
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "agreement": {
+        "agreementData": {
+            "agreementNumber": "11100491",
+            "agreementStatus": "",
+            "agreementType": "",
+            "agreementVersion": "",
+            "contractId": ""
+        },
+        "services": {
+            "agreementContractId": "",
+            "agreementServiceAvailability": "",
+            "agreementServiceCode": "",
+            "agreementServiceStatus": "",
+            "agreementServiceType": "",
+            "agreementSubscriptionType": "",
+            "agreementSubscriptionTypeStatus": ""
+        }
+    }
+}

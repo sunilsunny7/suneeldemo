@@ -1,0 +1,232 @@
+{
+    "productOfferingQualificationItem": {
+        "id": "2131334",
+        "place": 123456789,
+        "productOffering": [
+            {
+                "deliveryOptions": [
+                    {
+                        "Parentid": "1",
+                        "accessType": "Access",
+                        "agreementId": "AO77777",
+                        "contractType": "PAI123456",
+                        "daysToDelivery": "20",
+                        "id": 1,
+                        "lanType": "FTTB",
+                        "maxbandwidth": "100",
+                        "name": "Fiber",
+                        "offerSla": "B24B",
+                        "priority": 1,
+                        "productPriceAlteration": [
+                        ],
+                        "qos": "RRI",
+                        "returnCode": "000",
+                        "technology": "Fttx",
+                        "totalPrice": "0",
+                        "weighFactor": "P5"
+                    },
+                    {
+                        "Parentid": 2,
+                        "accessType": "Access",
+                        "id": 1,
+                        "maxbandwidth": "100",
+                        "name": "Wireless",
+                        "offerSla": "BestEffort",
+                        "priority": 2,
+                        "productPriceAlteration": "300",
+                        "qos": "",
+                        "returnCode": "000",
+                        "technology": "4G",
+                        "totalPrice": "400",
+                        "weighFactor": "P5"
+                    },
+                    {
+                        "Parentid": 2,
+                        "accessType": "Access",
+                        "id": 2,
+                        "maxbandwidth": "100",
+                        "name": "Wireless",
+                        "offerSla": "BestEffort",
+                        "priority": 3,
+                        "productPriceAlteration": "300",
+                        "qos": "",
+                        "returnCode": "000",
+                        "technology": "5G",
+                        "totalPrice": "400",
+                        "weighFactor": "P7"
+                    }
+                ],
+                "id": 1,
+                "productName": "BredbandStart"
+            },
+            {
+                "deliveryOptions": [
+                    {
+                        "Parentid": "1",
+                        "accessType": "Access",
+                        "agreementId": "AO77777",
+                        "contractType": "PAI123456",
+                        "daysToDelivery": "20",
+                        "id": 1,
+                        "lanType": "FTTB",
+                        "maxbandwidth": "100",
+                        "name": "Fiber",
+                        "offerSla": "B24B",
+                        "priority": 1,
+                        "productPriceAlteration": [
+                        ],
+                        "qos": "RRI",
+                        "returnCode": "000",
+                        "technology": "Fttx",
+                        "totalPrice": "0",
+                        "weighFactor": "P5"
+                    },
+                    {
+                        "Parentid": 2,
+                        "accessType": "Access",
+                        "id": 1,
+                        "maxbandwidth": "100",
+                        "name": "Wireless",
+                        "offerSla": "BestEffort",
+                        "priority": 2,
+                        "productPriceAlteration": "300",
+                        "qos": "",
+                        "returnCode": "000",
+                        "technology": "4G",
+                        "totalPrice": "400",
+                        "weighFactor": "P5"
+                    },
+                    {
+                        "Parentid": 2,
+                        "accessType": "Access",
+                        "id": 2,
+                        "maxbandwidth": "100",
+                        "name": "Wireless",
+                        "offerSla": "BestEffort",
+                        "priority": 3,
+                        "productPriceAlteration": "300",
+                        "qos": "",
+                        "returnCode": "000",
+                        "technology": "5G",
+                        "totalPrice": "400",
+                        "weighFactor": "P7"
+                    }
+                ],
+                "id": 2,
+                "productName": "BredbandPlus"
+            },
+            {
+                "deliveryOptions": [
+                    {
+                        "Parentid": "1",
+                        "accessType": "Access",
+                        "agreementId": "AO77777",
+                        "contractType": "PAI123456",
+                        "daysToDelivery": "20",
+                        "id": 1,
+                        "lanType": "FTTB",
+                        "maxbandwidth": "100",
+                        "name": "Fiber",
+                        "offerSla": "B24B",
+                        "priority": 1,
+                        "productPriceAlteration": [
+                        ],
+                        "qos": "RRI",
+                        "returnCode": "000",
+                        "technology": "Fttx",
+                        "totalPrice": "0",
+                        "weighFactor": "P5"
+                    },
+                    {
+                        "Parentid": 2,
+                        "accessType": "Access",
+                        "id": 1,
+                        "maxbandwidth": "100",
+                        "name": "Wireless",
+                        "offerSla": "BestEffort",
+                        "priority": 2,
+                        "productPriceAlteration": "300",
+                        "qos": "",
+                        "returnCode": "000",
+                        "technology": "4G",
+                        "totalPrice": "400",
+                        "weighFactor": "P5"
+                    },
+                    {
+                        "Parentid": 2,
+                        "accessType": "Access",
+                        "id": 2,
+                        "maxbandwidth": "100",
+                        "name": "Wireless",
+                        "offerSla": "BestEffort",
+                        "priority": 3,
+                        "productPriceAlteration": "300",
+                        "qos": "",
+                        "returnCode": "000",
+                        "technology": "5G",
+                        "totalPrice": "400",
+                        "weighFactor": "P7"
+                    }
+                ],
+                "id": 3,
+                "productName": "BredbandPro"
+            },
+            {
+                "deliveryOptions": [
+                    {
+                        "Parentid": "1",
+                        "accessType": "Access",
+                        "agreementId": "AO77777",
+                        "contractType": "PAI123456",
+                        "daysToDelivery": "20",
+                        "id": 1,
+                        "lanType": "FTTB",
+                        "maxbandwidth": "100",
+                        "name": "Fiber",
+                        "offerSla": "B24B",
+                        "priority": 1,
+                        "productPriceAlteration": [
+                        ],
+                        "qos": "RRI",
+                        "returnCode": "000",
+                        "technology": "Fttx",
+                        "totalPrice": "0",
+                        "weighFactor": "P5"
+                    },
+                    {
+                        "Parentid": 2,
+                        "accessType": "Access",
+                        "id": 1,
+                        "maxbandwidth": "100",
+                        "name": "Wireless",
+                        "offerSla": "BestEffort",
+                        "priority": 2,
+                        "productPriceAlteration": "300",
+                        "qos": "",
+                        "returnCode": "000",
+                        "technology": "4G",
+                        "totalPrice": "400",
+                        "weighFactor": "P5"
+                    },
+                    {
+                        "Parentid": 2,
+                        "accessType": "Access",
+                        "id": 2,
+                        "maxbandwidth": "100",
+                        "name": "Wireless",
+                        "offerSla": "BestEffort",
+                        "priority": 3,
+                        "productPriceAlteration": "300",
+                        "qos": "",
+                        "returnCode": "000",
+                        "technology": "5G",
+                        "totalPrice": "400",
+                        "weighFactor": "P7"
+                    }
+                ],
+                "id": 4,
+                "productName": "datanet"
+            }
+        ]
+    }
+}

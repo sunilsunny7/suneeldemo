@@ -1,0 +1,55 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "TeliaSE_UpdateUtilizer",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer/English",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__ParentElementId__c": {
+        "%vlocity_namespace%__OmniScriptId__c": {
+            "Name": "TeliaSE_UpdateUtilizer",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer/English",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+        },
+        "Name": "Error in Agreement Case creation",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer/English/Error in Agreement Case creation",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c"
+    },
+    "%vlocity_namespace%__ParentElementName__c": "Error in Agreement Case creation",
+    "%vlocity_namespace%__ParentElementType__c": "Step",
+    "%vlocity_namespace%__PropertySet__c": {
+        "HTMLTemplateId": "",
+        "controlWidth": 12,
+        "dataJSON": false,
+        "disOnTplt": false,
+        "label": "TextBlock2",
+        "show": {
+            "group": {
+                "operator": "AND",
+                "rules": [
+                    {
+                        "condition": "=",
+                        "data": "Error",
+                        "field": "Response2:result"
+                    },
+                    {
+                        "condition": "<>",
+                        "data": "Error",
+                        "field": "Response:result"
+                    }
+                ]
+            }
+        },
+        "text": "<p><span style=\"color: #ff0000;\">Det finns viss fr&aring;ga i skapandet av avtalet. V&auml;nligen kontakta din systemadministrat&ouml;r.</span></p>\n<p></p>\n<p><span style=\"color: #ff0000;\"><strong>Issue Details:</strong></span></p>\n<p><span style=\"color: #ff0000;\">Result: %Response2:result%</span></p>\n<p><span style=\"color: #ff0000;\">ResultDesk: %Response2:resultDesc%</span></p>\n<p><span style=\"color: #ff0000;\">Status: %Response2:status%</span></p>\n<p><span style=\"color: #ff0000;\">TimeStamp: %Response2:timestamp%</span></p>\n<p><span style=\"color: #ff0000;\">Field: %Response2:subErrors:field%</span></p>\n<p><span style=\"color: #ff0000;\">Rejected Value: %Response2:subErrors:rejectedValue%</span></p>\n<p><span style=\"color: #ff0000;\">Message: %Response2:subErrors:message%</span></p>",
+        "textKey": ""
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": true,
+    "%vlocity_namespace%__Type__c": "Text Block",
+    "Name": "DisplayIntegrationErrorCreateSwitchCase",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer/English/DisplayIntegrationErrorCreateSwitchCase"
+}

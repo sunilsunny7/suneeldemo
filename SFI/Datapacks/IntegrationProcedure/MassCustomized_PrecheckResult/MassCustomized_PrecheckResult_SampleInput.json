@@ -1,0 +1,20 @@
+{
+    "accountId": "0010Q00001JN3KUQA1",
+    "addButton": true,
+    "checkServicePoints": false,
+    "city": "solna",
+    "defaultServicePoint": true,
+    "isDeleted": false,
+    "isDisabled": true,
+    "isServicePointSelected": true,
+    "isValidated": true,
+    "opportunityId": "0060Q00000HCYdSQAX",
+    "postalCode": "16979",
+    "selectedServicePoint": {
+        "servicePointId": "148573013",
+        "servicePointName": "148573013"
+    },
+    "servicePoints": [
+    ],
+    "streetName": "Stjärntorget"
+}

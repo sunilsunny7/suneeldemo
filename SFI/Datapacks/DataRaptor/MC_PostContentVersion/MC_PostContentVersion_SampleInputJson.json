@@ -1,0 +1,18 @@
+{
+    "ContextId": null,
+    "timeStamp": null,
+    "userId": null,
+    "userName": null,
+    "userProfile": null,
+    "userTimeZone": null,
+    "vlcPersistentComponent": {
+    },
+    "vlcTimeTracking": {
+        "CheckJobStatus": null,
+        "DataRaptorPostAction1": null,
+        "FetchFailedResults": null,
+        "ResponseAction1": null,
+        "SetJobData": null,
+        "getUserSessionParameters": null
+    }
+}

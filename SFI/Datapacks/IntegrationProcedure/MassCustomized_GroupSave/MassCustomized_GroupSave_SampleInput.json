@@ -1,0 +1,183 @@
+{
+    "Account": {
+        "Status": "Active"
+    },
+    "AdditionalInfo": null,
+    "ApexError": false,
+    "CancelledContractExists": false,
+    "CheckCO": true,
+    "ColtTechnicalErrorMessage": null,
+    "ContextId": "0Q03E000000Sz9aSAC",
+    "Contract": [
+        {
+            "Id": "8003E000002gSHDQA2",
+            "Status": "Draft"
+        },
+        {
+            "Id": "8003E000002gSHXQA2",
+            "Status": "Draft"
+        },
+        {
+            "Id": "8003E000002gSsuQAE",
+            "Status": "Draft"
+        },
+        {
+            "Id": "8005E000002MuyzQAC",
+            "Status": "Draft"
+        },
+        {
+            "Id": "8005E000002Myr0QAC",
+            "Status": "Draft"
+        }
+    ],
+    "ContractExists": true,
+    "CountQLI": true,
+    "DocumentTemplate": null,
+    "EFSIp_Error": null,
+    "FAQuote": {
+        "Status": "Draft"
+    },
+    "FAQuoteFlagUpdated": false,
+    "GenerateDocument": {
+    },
+    "ITDaaSCondition": null,
+    "IsCallOffQtyAvailable": true,
+    "NeedsAndSolution": null,
+    "NoHardwareProducts": null,
+    "Offer": {
+    },
+    "OfferCartId": "0Q05E000001BfAZSA0",
+    "OfferQuoteExists": false,
+    "OldOfferQuote": "",
+    "OpportunityList": {
+        "AccountId": "0013E00001CnejOQAR"
+    },
+    "Pricebook2": {
+        "pricebook2Id": "01s24000000BkpHAAS",
+        "pricebookName": "Standard Price Book"
+    },
+    "QLI": [
+        {
+            "CallOffQuantity": 1
+        },
+        {
+            "CallOffQuantity": 2
+        },
+        {
+            "CallOffQuantity": 1
+        },
+        {
+            "CallOffQuantity": 3
+        },
+        {
+            "CallOffQuantity": 1
+        },
+        {
+            "CallOffQuantity": 1
+        }
+    ],
+    "Quote": {
+        "FAQuoteId": "0Q03E000000Sz9aSAC",
+        "FAQuoteName": "Test_MC_28_FA",
+        "OppoName": "Test_MC_28",
+        "OpptyId": "0063E000007VbzfQAC",
+        "PriceBookId": "01s24000000BkpHAAS",
+        "PriceListId": "a5h3E0000004fXtQAI",
+        "QTName": "Test_MC_28_Offer",
+        "inex": 10
+    },
+    "RecordType": {
+        "recordTypeId": "0121p00000114BhAAI"
+    },
+    "Step0": {
+    },
+    "Step1": {
+        "Radio1": "Yes"
+    },
+    "Step2_MANAGE_GROUPS": {
+    },
+    "Step3_Tilldela_offertkvantiet": {
+    },
+    "Step4": {
+    },
+    "Step5": {
+    },
+    "Step7": null,
+    "Step_NoSubidizedSubsReturned": null,
+    "Validation_approval": null,
+    "Validation_noQuantity": null,
+    "Warning_block": null,
+    "finalGroupList": [
+        {
+            "GroupId": "a895E000000fyuZQAQ",
+            "GroupName": "grp2",
+            "_children": [
+                {
+                    "City": "solna",
+                    "GroupId": "a895E000000fyuZQAQ",
+                    "GroupName": "grp2",
+                    "PostalCode": "16979",
+                    "QuoteMemberId": "a965E00000050fVQAQ",
+                    "ServicePointId": "a6K5E000000V3lgUAC",
+                    "SiteName": "a5f5E000000Id8J",
+                    "StreetAddress": "Stjärntorget",
+                    "checked": false
+                },
+                {
+                    "City": "solna",
+                    "GroupId": "a895E000000fyuZQAQ",
+                    "GroupName": "grp2",
+                    "PostalCode": "16979",
+                    "QuoteMemberId": "a965E00000050fWQAQ",
+                    "ServicePointId": "a6K5E000000V2YNUA0",
+                    "SiteName": "a5f5E000000Id6D",
+                    "StreetAddress": "Stjärntorget",
+                    "checked": false
+                }
+            ],
+            "checked": false
+        },
+        {
+            "GroupId": "a895E000000fyuaQAA",
+            "GroupName": "grp3",
+            "_children": [
+                {
+                    "City": "solna",
+                    "GroupId": "a895E000000fyuaQAA",
+                    "GroupName": "grp3",
+                    "PostalCode": "16979",
+                    "QuoteMemberId": "a965E00000050h0QAA",
+                    "ServicePointId": "a6K5E000000VBzHUAW",
+                    "SiteName": "a5f5E000000IfIa",
+                    "StreetAddress": "Stjärntorget",
+                    "checked": false
+                }
+            ],
+            "checked": false
+        }
+    ],
+    "isITD": false,
+    "isITDaaS": false,
+    "isLocked": true,
+    "messages": [
+    ],
+    "pricebookEntryList": {
+        "priceListName": "SoHo Standard Price List"
+    },
+    "records": [
+        {
+            "Id": "0Q05E000001BfAZSA0",
+            "Name": "Test_MC_28_Offer",
+            "displaySequence": -1,
+            "messages": [
+            ]
+        }
+    ],
+    "timeStamp": "2021-08-10T11:30:20.204Z",
+    "totalSize": 1,
+    "userCurrencyCode": "SEK",
+    "userId": "0055E0000092Gg3QAE",
+    "userName": "agraj-naman.mishra@capgemini.com.mcdev33new",
+    "userProfile": "System Administrator",
+    "userTimeZone": "120"
+}

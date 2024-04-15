@@ -1,0 +1,40 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "TeliaSE_Singlecart_OfferCreation",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/SingleCartOfferCreation/English",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__ParentElementId__c": {
+        "%vlocity_namespace%__OmniScriptId__c": {
+            "Name": "TeliaSE_Singlecart_OfferCreation",
+            "VlocityDataPackType": "VlocityMatchingKeyObject",
+            "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/SingleCartOfferCreation/English",
+            "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+        },
+        "Name": "Warning_block",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/SingleCartOfferCreation/English/Warning_block",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c"
+    },
+    "%vlocity_namespace%__ParentElementName__c": "Warning_block",
+    "%vlocity_namespace%__ParentElementType__c": "Step",
+    "%vlocity_namespace%__PropertySet__c": {
+        "HTMLTemplateId": "",
+        "controlWidth": 12,
+        "dataJSON": false,
+        "disOnTplt": false,
+        "label": "TextBlock_ShowWarning",
+        "sanitize": false,
+        "show": null,
+        "text": "<div>\n<div>Vid&nbsp;&auml;ndringar&nbsp;i&nbsp;pris/&nbsp;produkt&nbsp;s&aring;&nbsp;kommer&nbsp;ditt&nbsp;tidigare&nbsp;avtal&nbsp;att&nbsp;avbrytas&nbsp;och&nbsp;ett&nbsp;nytt&nbsp;avtal&nbsp;m&aring;ste&nbsp;skapas&nbsp;n&auml;r&nbsp;offerten&nbsp;&auml;r&nbsp;godk&auml;nd&nbsp;av&nbsp;kund.</div>\n</div>",
+        "textKey": ""
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": false,
+    "%vlocity_namespace%__Type__c": "Text Block",
+    "Name": "TextBlock_ShowWarning",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/SingleCartOfferCreation/English/TextBlock_ShowWarning"
+}

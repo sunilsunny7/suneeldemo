@@ -1,0 +1,94 @@
+{
+    "snowAgreementDetails": {
+        "event": {
+            "agreement": {
+                "@baseType": "Agreement",
+                "@schemaLocation": "https://host:port/tmf-api/agreementManagement/v1.0.0/schema/TeliaExtendedAgreement.yml",
+                "@type": "TeliaExtendedAgreement",
+                "agreementItem": [
+                    {
+                        "productOffering": [
+                            {
+                                "@referredType": "ProductOffering",
+                                "@type": "ProductOffering",
+                                "href": "https://host:port/tmf-api/productCatalogManagement/v4/productOffering/75",
+                                "id": "75",
+                                "name": "Jobbmobil 40 GB"
+                            }
+                        ]
+                    },
+                    {
+                        "termOrCondition": [
+                            {
+                                "description": "This agreement term or condition ...",
+                                "validFor": {
+                                    "endDateTime": "2023-03-18T14:37:17.000+0000",
+                                    "startDateTime": "2021-01-18T14:37:17.000+0000"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "agreementItemCharacteristics": {
+                            "@schemaLocation": "https://host:port/tmf-api/agreementManagement/v1.0.0/schema/TeliaAgreementItemCharacteristics.yml",
+                            "@type": "TeliaAgreementItemCharacteristics",
+                            "baseQuantity": "25",
+                            "commitmentPeriod": "36 months",
+                            "family": "ITDaaS",
+                            "level": 0,
+                            "oneTimeFee": 299,
+                            "recurringFee": 209,
+                            "subsidizedVoice": "No"
+                        }
+                    }
+                ],
+                "agreementType": "Ramavtal",
+                "completionDate": "2023-03-18T14:37:17.000+0000",
+                "documentNumber": "01661759",
+                "engagedParty": [
+                    {
+                        "@referredType": "Organization",
+                        "href": "https://host:port/tmf-api/partyManagement/v4/organization/5566232675",
+                        "id": "5566232675",
+                        "name": "Rabattvaruhuset i Stockholm AB",
+                        "role": "Utilizer"
+                    },
+                    {
+                        "@referredType": "Organization",
+                        "href": "https://host:port/tmf-api/partyManagement/v4/organization/5566232673",
+                        "id": "5566232673",
+                        "name": "Rabattvaruhuset AB",
+                        "role": "Owner"
+                    },
+                    {
+                        "@baseType": "Individual",
+                        "@referredType": "Contact",
+                        "@schemaLocation": "https://host:port/tmf-api/agreementManagement/v1.0.0/schema/TeliaAgreementPartyReference.yml",
+                        "@type": "TeliaAgreementPartyContactReference",
+                        "emailAddress": "test.test660@example.com",
+                        "href": "https://host:port/tmf-api/partyManagement/v4/individual/5566232678",
+                        "id": "5566232678",
+                        "name": "John Wick",
+                        "phoneNumber": "+46145356123",
+                        "role": "Technician",
+                        "sellerId": "SCM777"
+                    }
+                ],
+                "externalIds": [
+                    {
+                        "name": "autoTask",
+                        "value": "178787AAAHH777"
+                    }
+                ],
+                "href": "https://host:port/tmf-api/agreementManagement/v1.0.0/agreement/40",
+                "id": "8000Q000003JbFdQAK",
+                "initialDate": "2021-01-18T14:37:17.000+0000",
+                "name": "Don't we really have name for agreement in human readable form, maybe on another system?",
+                "status": "Active"
+            }
+        },
+        "eventId": "00001",
+        "eventTime": "2015-11-16T16:42:25-04:00",
+        "eventType": "AgreementCreateEvent"
+    }
+}

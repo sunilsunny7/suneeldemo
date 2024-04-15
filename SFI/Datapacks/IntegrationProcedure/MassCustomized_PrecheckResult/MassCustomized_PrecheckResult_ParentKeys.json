@@ -1,0 +1,7 @@
+[
+    "DataRaptor/CO_PriceAdjustmentsPSTU",
+    "DataRaptor/DR_COExtractErrorMessages",
+    "DataRaptor/DR_ExtractCOProducts",
+    "DataRaptor/MC_DRLoadSnowAgreement",
+    "DataRaptor/TeliaSE_DRExtractWebService"
+]

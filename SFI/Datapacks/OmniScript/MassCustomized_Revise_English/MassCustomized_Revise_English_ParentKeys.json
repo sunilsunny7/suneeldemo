@@ -1,0 +1,6 @@
+[
+    "DataRaptor/DRExtractSalesFlowIdentifier",
+    "DataRaptor/GetContract",
+    "DataRaptor/TeliaSE_DeleteCaseID",
+    "IntegrationProcedure/TUPP_DeleteCaseAgreement"
+]

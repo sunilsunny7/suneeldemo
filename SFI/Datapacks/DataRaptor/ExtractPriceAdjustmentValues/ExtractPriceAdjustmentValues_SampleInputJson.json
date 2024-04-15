@@ -1,0 +1,20 @@
+{
+    "adjustmentPrices": [
+        {
+            "productOfferingCode": "CO-BBPLUS",
+            "weightFactor": "P1"
+        },
+        {
+            "productOfferingCode": "CO-BBPLUS",
+            "weightFactor": "P5"
+        },
+        {
+            "productOfferingCode": "CO-DATANET",
+            "weightFactor": "P5"
+        },
+        {
+            "productOfferingCode": "CO-DATANET",
+            "weightFactor": "P110"
+        }
+    ]
+}

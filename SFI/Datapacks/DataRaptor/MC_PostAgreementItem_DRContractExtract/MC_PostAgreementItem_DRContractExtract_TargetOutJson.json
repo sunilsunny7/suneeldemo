@@ -1,0 +1,34 @@
+{
+    "Contract": {
+        "agreementType": "text",
+        "completionDate": "text",
+        "documentNumber": "text",
+        "id": "text",
+        "initialDate": "text",
+        "madamAgreementId": "text",
+        "name": "text",
+        "salesFlow": "text",
+        "status": "text",
+        "syncedSpock": "text"
+    },
+    "ContractCharacteristics": {
+        "customerUniqueSpecialTerms": "text",
+        "customerUniqueSpecialTermsInfo": "text",
+        "initialContractNumber": "text",
+        "invoiceFee": "text",
+        "invoiceFeeInfo": "text",
+        "paymentTerms": "text",
+        "terminationDate": "date"
+    },
+    "ContractOwner": {
+        "@referredType": "text",
+        "id": "organisationNumber",
+        "name": "text",
+        "role": "Owner",
+        "tscId": "account.tscId"
+    },
+    "externalIds": {
+        "autotaskContractId": "text",
+        "autotaskOpportunityId": "text"
+    }
+}

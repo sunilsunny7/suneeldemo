@@ -1,0 +1,12 @@
+[
+    "DataRaptor/TeliaSE_DRExtractCLIProductName",
+    "DataRaptor/TeliaSE_DRExtractIntegrationStatus",
+    "DataRaptor/TeliaSE_DRExtractWebService",
+    "DataRaptor/TeliaSE_DRGetAccountDetails",
+    "DataRaptor/TeliaSE_DRGetAccoutDetailsByName",
+    "DataRaptor/TeliaSE_DRUpdateAccount",
+    "DataRaptor/TeliaSE_TUPPIntegrationCaseIdUpdate",
+    "DataRaptor/TeliaSE_createSwitchPricesStatusUpdate",
+    "IntegrationProcedure/MassCustomized_CreateSwitchPrices",
+    "IntegrationProcedure/TUPP_CreateCaseAgreement"
+]

@@ -1,0 +1,8 @@
+[
+    "DataRaptor/DRP_CancelOfferQuotes",
+    "DataRaptor/DRP_UpdateContractOnOfferQuote",
+    "DataRaptor/UpdataAccountStatus",
+    "IntegrationProcedure/MassCustomized_APIGardenSync",
+    "IntegrationProcedure/MassCustomized_OfferQuoteDataLoad",
+    "IntegrationProcedure/MassCustomized_createOfferDocumentLineItems"
+]

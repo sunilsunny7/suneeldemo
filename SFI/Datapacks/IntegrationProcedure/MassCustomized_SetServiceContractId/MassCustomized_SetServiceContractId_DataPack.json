@@ -1,0 +1,31 @@
+{
+    "%vlocity_namespace%__CustomJavaScript__c": "MassCustomized_SetServiceContractId_SampleInput.json",
+    "%vlocity_namespace%__DisableMetadataCache__c": false,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": [
+        "MassCustomized_SetServiceContractId_Element_RemoteActionAuthentication.json",
+        "MassCustomized_SetServiceContractId_Element_DR_Tranform_AuthToken.json",
+        "MassCustomized_SetServiceContractId_Element_SV_URI.json",
+        "MassCustomized_SetServiceContractId_Element_DR_Turbo_GetEndPoint.json",
+        "MassCustomized_SetServiceContractId_Element_DR_Turbo_GetComdata.json",
+        "MassCustomized_SetServiceContractId_Element_DR_Transform_TransformRequest.json",
+        "MassCustomized_SetServiceContractId_Element_http_setContractNumber.json",
+        "MassCustomized_SetServiceContractId_Element_DR_Post_updateContract.json",
+        "MassCustomized_SetServiceContractId_Element_RA_LogErrorEntry.json",
+        "MassCustomized_SetServiceContractId_Element_ResponseAction.json"
+    ],
+    "%vlocity_namespace%__IsLwcEnabled__c": false,
+    "%vlocity_namespace%__IsProcedure__c": true,
+    "%vlocity_namespace%__IsReusable__c": false,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "Procedure",
+    "%vlocity_namespace%__OmniProcessType__c": "Integration Procedure",
+    "%vlocity_namespace%__ProcedureKey__c": "MassCustomized_SetServiceContractId",
+    "%vlocity_namespace%__PropertySet__c": "MassCustomized_SetServiceContractId_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "SetServiceContractId",
+    "%vlocity_namespace%__Type__c": "MassCustomized",
+    "Name": "MassCustomized_SetServiceContractId",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/SetServiceContractId/Procedure"
+}

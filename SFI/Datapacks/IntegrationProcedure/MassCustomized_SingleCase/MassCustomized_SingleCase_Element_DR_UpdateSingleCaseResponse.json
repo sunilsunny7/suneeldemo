@@ -1,0 +1,45 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "MassCustomized_InvokeSingleCase",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/SingleCase/Procedure",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__PropertySet__c": {
+        "actionMessage": "",
+        "additionalInput": {
+            "ContractId": "%ContractId%",
+            "InterfaceError": "%IP_InvokeSingleCaseIP:Response:resultDesc%",
+            "InterfaceName": "CreateSingleCase",
+            "InterfaceStatus": "=IF(%IP_InvokeSingleCaseIP:Response:result% == 'OK', 'Successful','Error')",
+            "SingleCaseId": "%IP_InvokeSingleCaseIP:Response:caseId%"
+        },
+        "additionalOutput": {
+        },
+        "bundle": "MC_DRPostSmartConnectSingleCase",
+        "chainOnStep": false,
+        "disOnTplt": false,
+        "executionConditionalFormula": "",
+        "failOnStepError": true,
+        "failureConditionalFormula": "",
+        "failureResponse": {
+        },
+        "label": "DataRaptorPostAction1",
+        "responseJSONNode": "",
+        "responseJSONPath": "",
+        "returnOnlyAdditionalOutput": false,
+        "returnOnlyFailureResponse": false,
+        "sendJSONNode": "",
+        "sendJSONPath": "",
+        "sendOnlyAdditionalInput": true,
+        "show": null,
+        "useFormulas": true
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": false,
+    "%vlocity_namespace%__Type__c": "DataRaptor Post Action",
+    "Name": "DR_UpdateSingleCaseResponse",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/SingleCase/Procedure/DR_UpdateSingleCaseResponse"
+}

@@ -1,0 +1,48 @@
+{
+    "ContextId": "0Q00Q000000BFicSAG",
+    "Pricebook2": {
+        "pricebook2Id": "01s24000000BkpHAAS",
+        "pricebookName": "Standard Price Book"
+    },
+    "Quote": {
+        "FAQuoteId": "0Q00Q000000BFicSAG",
+        "FAQuoteName": "Test_Opp_FA",
+        "OpptyId": "0060Q00000AXDg6QAH",
+        "PriceBookId": "01s24000000BkpHAAS",
+        "PriceListId": "a5h1w000000Cp4oAAC",
+        "QTName": "Test_Opp_Offer",
+        "inex": 8
+    },
+    "RecordType": {
+        "recordTypeId": "0121p00000114BhAAI"
+    },
+    "id": "a534E000000ARaYQAW",
+    "isdtp": "p1",
+    "layout": "lightning",
+    "messages": [
+    ],
+    "pricebookEntryList": {
+        "priceListName": "SoHo Standard Price List"
+    },
+    "records": [
+        {
+            "Id": "0Q04E000000Zj0NSAS",
+            "Name": "TEST_OFFR_Quote",
+            "displaySequence": -1,
+            "messages": [
+            ]
+        }
+    ],
+    "sfdcIFrameHost": "web",
+    "sfdcIFrameOrigin": "https://telia--mc2dev4--vlocity-cmt.visualforce.com",
+    "testContextId": "0Q00Q000000BFicSAG",
+    "timeStamp": "2020-08-18T10:00:36.967Z",
+    "totalSize": 1,
+    "userCurrencyCode": "SEK",
+    "userId": "0050Q000003dv1uQAA",
+    "userName": "rajat.kalra@capgemini.com.mc2dev4",
+    "userProfile": "System Administrator",
+    "userTimeZone": 120,
+    "vlcPersistentComponent": {
+    }
+}

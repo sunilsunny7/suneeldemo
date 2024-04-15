@@ -1,0 +1,81 @@
+{
+    "AddApartments&ComSpaces": 13,
+    "Adress": "",
+    "Business": "test-08Nov-v2",
+    "ChildOTC": 42720,
+    "ChildRTC": 240,
+    "ContactName": "Test Testsson",
+    "ContractTime": 5,
+    "Line": {
+        "ChildItem": [
+            {
+                "Name": "Kollektivt Bredband - 10 Mbit/s",
+                "OTC": 0,
+                "Qn": 1,
+                "RTC": 120,
+                "TVCostMonth": 120,
+                "isBB": true,
+                "isCoaXTV": false,
+                "isTV": false,
+                "isTVStart": false,
+                "isTvLagom": false,
+                "isVoIP": false
+            },
+            {
+                "Name": "Fastighetsanslutning med Öppen Fiber",
+                "OTC": 21360,
+                "Qn": 1,
+                "RTC": 0,
+                "TVCostMonth": 0,
+                "isBB": false,
+                "isCoaXTV": false,
+                "isTV": false,
+                "isTVStart": false,
+                "isTvLagom": false,
+                "isVoIP": false
+            },
+            {
+                "Name": "Kollektivt Bredband - 10 Mbit/s",
+                "OTC": 0,
+                "Qn": 1,
+                "RTC": 120,
+                "TVCostMonth": 120,
+                "isBB": true,
+                "isCoaXTV": false,
+                "isTV": false,
+                "isTVStart": false,
+                "isTvLagom": false,
+                "isVoIP": false
+            },
+            {
+                "Name": "Fastighetsanslutning med Öppen Fiber",
+                "OTC": 21360,
+                "Qn": 1,
+                "RTC": 0,
+                "TVCostMonth": 0,
+                "isBB": false,
+                "isCoaXTV": false,
+                "isTV": false,
+                "isTVStart": false,
+                "isTvLagom": false,
+                "isVoIP": false
+            }
+        ]
+    },
+    "NumberOfApartments": 10,
+    "NumberOfComSpaces": 3,
+    "OneTimeInstallationFee": 42720,
+    "OrgNumber": "22222222",
+    "Place": "",
+    "QuoteID": "0Q01l000000G0eACAS",
+    "SellerEmail": "sangram.mondal@capgemini.com",
+    "SellerName": "Sangram M",
+    "SellerPhone": "+91 9681614674",
+    "TotalOTC": 42720,
+    "TotalRTC": 240,
+    "TotalRTCApartment": 240,
+    "ZipCode": "",
+    "isOPPEN": true,
+    "isOPPEN&isXLAN": true,
+    "isXLAN": false
+}

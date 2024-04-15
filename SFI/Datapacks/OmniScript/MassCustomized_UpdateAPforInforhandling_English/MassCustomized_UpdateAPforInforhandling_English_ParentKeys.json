@@ -1,0 +1,8 @@
+[
+    "DataRaptor/TeliaSE_DRExtractCLIProductName",
+    "DataRaptor/TeliaSE_DRExtractWebService",
+    "DataRaptor/TeliaSE_DRUpdateAccount",
+    "DataRaptor/TeliaSE_TUPPIntegrationAddItemCaseIdUpdate",
+    "IntegrationProcedure/TUPP_AddItemsToAgreement",
+    "VlocityUITemplate/MC_ShowEndpointForCase"
+]

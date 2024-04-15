@@ -1,0 +1,24 @@
+{
+    "%vlocity_namespace%__CustomJavaScript__c": "MassCustomized_SingleCart_OfferQuoteCreation_SampleInput.json",
+    "%vlocity_namespace%__DisableMetadataCache__c": false,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": [
+        "MassCustomized_SingleCart_OfferQuoteCreation_Element_DR_UpdateRecordType.json",
+        "MassCustomized_SingleCart_OfferQuoteCreation_Element_RA_CreateOfferQuoteAction.json",
+        "MassCustomized_SingleCart_OfferQuoteCreation_Element_ResponseAction1.json"
+    ],
+    "%vlocity_namespace%__IsLwcEnabled__c": false,
+    "%vlocity_namespace%__IsProcedure__c": true,
+    "%vlocity_namespace%__IsReusable__c": false,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "Procedure",
+    "%vlocity_namespace%__OmniProcessType__c": "Integration Procedure",
+    "%vlocity_namespace%__ProcedureKey__c": "MassCustomized_SingleCart_OfferQuoteCreation",
+    "%vlocity_namespace%__PropertySet__c": "MassCustomized_SingleCart_OfferQuoteCreation_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "SingleCart_OfferQuoteCreation",
+    "%vlocity_namespace%__Type__c": "MassCustomized",
+    "Name": "SingleCart_OfferQuoteCreation",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/SingleCart_OfferQuoteCreation/Procedure"
+}

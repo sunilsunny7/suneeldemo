@@ -1,0 +1,30 @@
+{
+    "%vlocity_namespace%__CustomJavaScript__c": "MassCustomized_UpdateAlarmNotification_SampleInput.json",
+    "%vlocity_namespace%__DisableMetadataCache__c": false,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": [
+        "MassCustomized_UpdateAlarmNotification_Element_DataRaptorExtractAction.json",
+        "MassCustomized_UpdateAlarmNotification_Element_SetDetails.json",
+        "MassCustomized_UpdateAlarmNotification_Element_DR_DataNotFound.json",
+        "MassCustomized_UpdateAlarmNotification_Element_ResponseAction2.json",
+        "MassCustomized_UpdateAlarmNotification_Element_SV_NoContractFound.json",
+        "MassCustomized_UpdateAlarmNotification_Element_DR_UpdateContract.json",
+        "MassCustomized_UpdateAlarmNotification_Element_SettingErrorMessage.json",
+        "MassCustomized_UpdateAlarmNotification_Element_DR_TransformResponse.json",
+        "MassCustomized_UpdateAlarmNotification_Element_ResponseAction1.json"
+    ],
+    "%vlocity_namespace%__IsLwcEnabled__c": false,
+    "%vlocity_namespace%__IsProcedure__c": true,
+    "%vlocity_namespace%__IsReusable__c": false,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "Procedure",
+    "%vlocity_namespace%__OmniProcessType__c": "Integration Procedure",
+    "%vlocity_namespace%__ProcedureKey__c": "MassCustomized_UpdateAlarmNotification",
+    "%vlocity_namespace%__PropertySet__c": "MassCustomized_UpdateAlarmNotification_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "UpdateAlarmNotification",
+    "%vlocity_namespace%__Type__c": "MassCustomized",
+    "Name": "UpdateAlarmNotification",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateAlarmNotification/Procedure"
+}

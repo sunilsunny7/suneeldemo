@@ -1,0 +1,32 @@
+{
+    "%vlocity_namespace%__AdditionalInformation__c": "LWC upgrade",
+    "%vlocity_namespace%__DisableMetadataCache__c": false,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": [
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_CANCEL.json",
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_DR_ExtractLegalIdAndContractDetails.json",
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_Confirmation_SF_Madam.json",
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_confimation_text.json",
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_Confirmation.json",
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_DR_ExtractLineitems.json",
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_MadamAndEFSResponse1.json",
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_BindingTime.json",
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_HelpTextBindingTime.json",
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_Months.json",
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_SubscriptionCart3.json",
+        "MassCustomized_HardwarePricingProcess_LWC_English_Element_NavigateAction1.json"
+    ],
+    "%vlocity_namespace%__IsLwcEnabled__c": true,
+    "%vlocity_namespace%__IsProcedure__c": false,
+    "%vlocity_namespace%__IsReusable__c": false,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "English",
+    "%vlocity_namespace%__OmniProcessType__c": "OmniScript",
+    "%vlocity_namespace%__PropertySet__c": "MassCustomized_HardwarePricingProcess_LWC_English_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "HardwarePricingProcess_LWC",
+    "%vlocity_namespace%__Type__c": "MassCustomized",
+    "Name": "HardwarePricingProcess",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/HardwarePricingProcess_LWC/English"
+}

@@ -1,0 +1,9 @@
+{
+    "adjPrices": {
+        "Datanet": "Text",
+        "Telia Bredband Plus": "Text",
+        "Telia Bredband Pro": "Text",
+        "productFamilyCode": "Text",
+        "weightFactor": "Text"
+    }
+}

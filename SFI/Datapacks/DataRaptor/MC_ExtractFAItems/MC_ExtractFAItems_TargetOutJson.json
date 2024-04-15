@@ -1,0 +1,19 @@
+{
+    "Assetrefence": "text",
+    "ChildItem": [
+        {
+            "FAQuantity": "text",
+            "Initial Order": "text",
+            "Name": "text",
+            "Price": "text",
+            "ProductCode": "text"
+        }
+    ],
+    "FAQuantity": "text",
+    "Initial Order": "text",
+    "Name": "text",
+    "ParentItemId": "text",
+    "Price": "text",
+    "ProductCode": "text",
+    "RootItem": "text"
+}

@@ -1,0 +1,89 @@
+{
+    "TSCId": "01111111",
+    "agreementItem": [
+        {
+            "agreedPercentage": "50",
+            "baseQuantity": "25",
+            "campaignName": "",
+            "commitmentPeriod": "36 months",
+            "endDate": "2023-06-01",
+            "functionActive": "N",
+            "id": "8000Q000004fojhkAD",
+            "minimumCommit": "50",
+            "offeringCode": "7S",
+            "oneTimeFee": "299",
+            "productName": "Jobbmobil 5 GB",
+            "quarantineTime": "",
+            "recurringFee": "199",
+            "serviceCode": "RLHG2",
+            "startDate": "2020-06-01",
+            "subsidizedVoice": "No",
+            "warningActive": "N",
+            "warningPercentage": "50"
+        },
+        {
+            "agreedPercentage": "75",
+            "baseQuantity": "30",
+            "campaignName": "",
+            "commitmentPeriod": "24 months",
+            "endDate": "2023-09-01",
+            "functionActive": "N",
+            "id": "8000Q000004fojhkVD",
+            "minimumCommit": "75",
+            "offeringCode": "MC",
+            "oneTimeFee": "0",
+            "productName": "Jobbmobil 15 GB",
+            "quarantineTime": "",
+            "recurringFee": "399",
+            "serviceCode": "RLHG3",
+            "startDate": "2020-09-01",
+            "subsidizedVoice": "Yes",
+            "warningActive": "N",
+            "warningPercentage": "75"
+        }
+    ],
+    "agreementType": "Ramavtal",
+    "amandaContractId": "8000Q000003JbFdQAK",
+    "autotaskContractId": "8000Q000003JojhkAK",
+    "cancellationReason": "Dummy Text",
+    "contactRole": [
+        {
+            "email": "test.test660@example.com",
+            "id": "a8I7Y0000008ggBUAV",
+            "mobilePhoneNumber": "+46145356123",
+            "name": "Test Contact",
+            "organizationId": "",
+            "role": "Avtalstecknare",
+            "sellerId": "SCM777",
+            "status": "",
+            "tcadId": "",
+            "type": "Contact"
+        }
+    ],
+    "contractNumber": "01661759",
+    "endDateTime": "2023-01-14",
+    "invoiceFee": "Ja",
+    "madamAgreementId": "00004156",
+    "note": "Notes for Agreement Handler",
+    "organizationNumber": "5560541301",
+    "paymentTerms": "90",
+    "salesFlow": "New Sales",
+    "serviceContractId": "TA-00144485",
+    "startDateTime": "2020-01-15",
+    "status": "Active",
+    "syncedGESB": true,
+    "utilizers": [
+        {
+            "email": "",
+            "id": "a8I7Y0000008SaBUAU",
+            "mobilePhoneNumber": "",
+            "name": "Rabattvaruhuset i Stockholm AB",
+            "organizationNumber": "5566232673",
+            "role": "Utilizer",
+            "sellerId": "",
+            "status": "Aktiv",
+            "tcadId": "7000474219",
+            "type": "Utilizer"
+        }
+    ]
+}

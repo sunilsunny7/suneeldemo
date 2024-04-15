@@ -1,0 +1,25 @@
+{
+    "%vlocity_namespace%__AdditionalInformation__c": "Jobbmobil BAS validation",
+    "%vlocity_namespace%__DisableMetadataCache__c": false,
+    "%vlocity_namespace%__ElementTypeToHTMLTemplateList__c": "{\"ElementTypeToHTMLTemplateList\":[]}",
+    "%vlocity_namespace%__Element__c": [
+        "MassCustomized_Recalculate_English_Element_Quote.json",
+        "MassCustomized_Recalculate_English_Element_SetValues1.json",
+        "MassCustomized_Recalculate_English_Element_JobmobilBASValidation.json",
+        "MassCustomized_Recalculate_English_Element_PricingAttributeValidation.json",
+        "MassCustomized_Recalculate_English_Element_DoneAction1.json"
+    ],
+    "%vlocity_namespace%__IsLwcEnabled__c": false,
+    "%vlocity_namespace%__IsProcedure__c": false,
+    "%vlocity_namespace%__IsReusable__c": false,
+    "%vlocity_namespace%__IsTest__c": false,
+    "%vlocity_namespace%__Language__c": "English",
+    "%vlocity_namespace%__OmniProcessType__c": "OmniScript",
+    "%vlocity_namespace%__PropertySet__c": "MassCustomized_Recalculate_English_PropertySet.json",
+    "%vlocity_namespace%__SubType__c": "Recalculate",
+    "%vlocity_namespace%__Type__c": "MassCustomized",
+    "Name": "ReCalculate",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/Recalculate/English"
+}

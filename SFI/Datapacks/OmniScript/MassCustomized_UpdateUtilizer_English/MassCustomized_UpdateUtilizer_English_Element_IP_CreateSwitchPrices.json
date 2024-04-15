@@ -1,0 +1,256 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "TeliaSE_UpdateUtilizer",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer/English",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__PropertySet__c": {
+        "HTMLTemplateId": "",
+        "controlWidth": 12,
+        "disOnTplt": false,
+        "enableActionMessage": false,
+        "enableDefaultAbort": false,
+        "errorMessage": {
+            "custom": [
+            ],
+            "default": null
+        },
+        "extraPayload": {
+        },
+        "failureAbortLabel": "Abort",
+        "failureAbortMessage": "Are you sure?",
+        "failureGoBackLabel": "Go Back",
+        "failureNextLabel": "Continue",
+        "inProgressMessage": "In Progress",
+        "integrationProcedureKey": "MassCustomized_CreateSwitchPrices",
+        "label": "IP_CreateSwitchPrices",
+        "message": {
+        },
+        "postMessage": "Done",
+        "postTransformBundle": "",
+        "preTransformBundle": "",
+        "pubsub": false,
+        "redirectNextLabel": "Next",
+        "redirectNextWidth": 3,
+        "redirectPageName": "",
+        "redirectPreviousLabel": "Previous",
+        "redirectPreviousWidth": 3,
+        "redirectTemplateUrl": "vlcAcknowledge.html",
+        "remoteOptions": {
+            "chainable": false,
+            "postTransformBundle": "",
+            "preTransformBundle": "",
+            "useFuture": false
+        },
+        "remoteTimeout": 120000,
+        "responseJSONNode": "",
+        "responseJSONPath": "",
+        "sendJSONNode": "",
+        "sendJSONPath": "ContractId",
+        "show": {
+            "group": {
+                "operator": "OR",
+                "rules": [
+                    {
+                        "group": {
+                            "operator": "AND",
+                            "rules": [
+                                {
+                                    "condition": "=",
+                                    "data": "Touch Point Offer Spec",
+                                    "field": "TouchPointProduct:Name"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "On",
+                                    "field": "SwitchStatus"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "createSwitchPrices",
+                                    "field": "interfaceName"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "Error",
+                                    "field": "interfaceStatus"
+                                },
+                                {
+                                    "condition": "<>",
+                                    "data": "Mobile Offer Specification",
+                                    "field": "MobileProduct:Name"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "N",
+                                    "field": "Renegotiations"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "group": {
+                            "operator": "AND",
+                            "rules": [
+                                {
+                                    "condition": "=",
+                                    "data": "Touch Point Offer Spec",
+                                    "field": "TouchPointProduct:Name"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "On",
+                                    "field": "SwitchStatus"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "true",
+                                    "field": "Flag"
+                                },
+                                {
+                                    "condition": "<>",
+                                    "data": "Mobile Offer Specification",
+                                    "field": "MobileProduct:Name"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "N",
+                                    "field": "Renegotiations"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "group": {
+                            "operator": "AND",
+                            "rules": [
+                                {
+                                    "condition": "=",
+                                    "data": "Touch Point Offer Spec",
+                                    "field": "TouchPointProduct:Name"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "On",
+                                    "field": "SwitchStatus"
+                                },
+                                {
+                                    "condition": "<>",
+                                    "data": "",
+                                    "field": "agreementCaseExists"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "createSwitchPrices",
+                                    "field": "interfaceName"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "Error",
+                                    "field": "interfaceStatus"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "N",
+                                    "field": "Renegotiations"
+                                },
+                                {
+                                    "condition": "<>",
+                                    "data": "false",
+                                    "field": "Flag"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "group": {
+                            "operator": "AND",
+                            "rules": [
+                                {
+                                    "condition": "<>",
+                                    "data": "",
+                                    "field": "agreementCaseExists"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "Touch Point Offer Spec",
+                                    "field": "TouchPointProduct:Name"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "On",
+                                    "field": "SwitchStatus"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "createAgreementCase",
+                                    "field": "interfaceName"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "N",
+                                    "field": "Renegotiations"
+                                },
+                                {
+                                    "condition": "<>",
+                                    "data": "false",
+                                    "field": "Flag"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "group": {
+                            "operator": "AND",
+                            "rules": [
+                                {
+                                    "condition": "=",
+                                    "data": "Touch Point Offer Spec",
+                                    "field": "TouchPointProduct:Name"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "On",
+                                    "field": "SwitchStatus"
+                                },
+                                {
+                                    "condition": "=",
+                                    "data": "Y",
+                                    "field": "Renegotiations"
+                                },
+                                {
+                                    "condition": "<>",
+                                    "data": "Active",
+                                    "field": "TouchPointProduct:Status"
+                                },
+                                {
+                                    "condition": "<>",
+                                    "data": "false",
+                                    "field": "Flag"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "showPersistentComponent": [
+            false,
+            false
+        ],
+        "ssm": false,
+        "svgIcon": "",
+        "svgSprite": "",
+        "useContinuation": false,
+        "validationRequired": "Step",
+        "wpm": false
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": true,
+    "%vlocity_namespace%__Type__c": "Integration Procedure Action",
+    "Name": "IP_CreateSwitchPrices",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/UpdateUtilizer/English/IP_CreateSwitchPrices"
+}

@@ -1,0 +1,6 @@
+[
+    "DataRaptor/NoGroupHera",
+    "DataRaptor/PremiseFetch",
+    "IntegrationProcedure/MassCustomized_GroupSave",
+    "IntegrationProcedure/MassCustomized_HandleHera"
+]

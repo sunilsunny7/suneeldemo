@@ -1,0 +1,74 @@
+{
+    "%vlocity_namespace%__Active__c": true,
+    "%vlocity_namespace%__OmniScriptId__c": {
+        "Name": "AgreementSummary",
+        "VlocityDataPackType": "VlocityMatchingKeyObject",
+        "VlocityMatchingRecordSourceKey": "%vlocity_namespace%__OmniScript__c/MassCustomized/Integration/Procedure",
+        "VlocityRecordSObjectType": "%vlocity_namespace%__OmniScript__c"
+    },
+    "%vlocity_namespace%__PropertySet__c": {
+        "Type__c": {
+            "label": "Rest Action",
+            "type": "common-action"
+        },
+        "actionMessage": "",
+        "additionalInput": {
+        },
+        "additionalOutput": {
+        },
+        "chainOnStep": false,
+        "chainableCpuLimit": 2000,
+        "chainableQueriesLimit": 50,
+        "columnsPropertyMap": [
+        ],
+        "disOnTplt": false,
+        "executionConditionalFormula": "",
+        "failOnStepError": false,
+        "failureConditionalFormula": "",
+        "failureResponse": {
+        },
+        "includeAllActionsInResponse": false,
+        "label": "HTTPAction1",
+        "namedCredential": "",
+        "postActionLogging": "",
+        "preActionLogging": "%endpoint%",
+        "relationshipFieldsMap": [
+        ],
+        "responseJSONNode": "",
+        "responseJSONPath": "",
+        "restMethod": "POST",
+        "restOptions": {
+            "clientCertificateName": "",
+            "headers": {
+                "Accept": "application/json",
+                "Authorization": "%SetEndPoint:AuthToken%",
+                "Content-Type": "application/json"
+            },
+            "isCompressed": false,
+            "params": {
+            },
+            "sendBody": true,
+            "timeout": 0,
+            "xmlEscapeResponse": false
+        },
+        "restPath": "%SetEndPoint:EndpointURL%",
+        "retryCount": 0,
+        "returnOnlyAdditionalOutput": false,
+        "returnOnlyFailureResponse": false,
+        "rollbackOnError": false,
+        "sendJSONNode": "",
+        "sendJSONPath": "TransformRequest",
+        "sendOnlyAdditionalInput": false,
+        "show": null,
+        "trackingCustomData": {
+        },
+        "type": "Integration",
+        "useFormulas": true
+    },
+    "%vlocity_namespace%__ReusableOmniScript__c": false,
+    "%vlocity_namespace%__Type__c": "Rest Action",
+    "Name": "CustomerAgreementSummary",
+    "VlocityDataPackType": "SObject",
+    "VlocityRecordSObjectType": "%vlocity_namespace%__Element__c",
+    "VlocityRecordSourceKey": "%vlocity_namespace%__Element__c/%vlocity_namespace%__OmniScript__c/MassCustomized/Integration/Procedure/CustomerAgreementSummary"
+}
