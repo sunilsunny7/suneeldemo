@@ -46,8 +46,7 @@ jobs:
              cat p2.yaml >>manifest/vlocitymerged.yaml
            fi
         done
-        mkdir SFIDatapacks
-        cp -r SFI/Datapacks/DataRaptor/ExtractAccountFromContact SFIDatapacks
+      
         file_path=manifest/vlocitymerged.yaml
         if [ ! -f "$file_path" ]; then
           echo "File not found!"
@@ -58,8 +57,10 @@ jobs:
              newLine="$line"
              
          done < "$file_path"
-
-         git config --global user.email "gitbot@github.com"
+        git checkout master
+        mkdir SFIDatapacks
+        cp -r SFI/Datapacks/DataRaptor/ExtractAccountFromContact SFIDatapacks
+        git config --global user.email "gitbot@github.com"
         git config --global user.name "gitbot"
         git add  SFIDatapacks
         git commit -m "merged package xml"
