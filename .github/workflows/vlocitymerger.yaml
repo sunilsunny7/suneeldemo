@@ -71,7 +71,6 @@ jobs:
                 relpath=SFIDatapacks/"$abpath"
                 dirpath=$(echo "$relpath" | awk -F'/' '{print $1"/"$2}')
                 mkdir -p  "$dirpath"
-                mkdir -p  "$relpath"
                 cp -rp "$line" "$relpath"
              fi
          done < "$file_path"
