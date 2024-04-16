@@ -62,11 +62,13 @@ jobs:
              then
                 abpath=$(echo "$line" | awk -F'/' '{print $3"/"$4}')
                 relpath=SFIDatapacks/"$abpath"
+                mkdir -p  "$relpath"
                 cp -rp "$line" "$relpath"
              elif [ $substring == "DataRaptor" ];
              then
                 abpath=$(echo "$line" | awk -F'/' '{print $3"/"$4}')
                 relpath=SFIDatapacks/"$abpath"
+                mkdir -p  "$relpath"
                 cp -rp "$line" "$relpath"
              fi
          done < "$file_path"
