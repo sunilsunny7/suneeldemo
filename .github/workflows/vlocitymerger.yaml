@@ -61,12 +61,12 @@ jobs:
              if [ $substring == "IntegrationProcedure" ];
              then
                 abpath=$(echo "$line" | awk -F'/' '{print $3"/"$4}')
-                relpath="SFIDatapacks/"+"$abpath"
+                relpath=SFIDatapacks/"$abpath"
                 cp -rp "$line" "$relpath"
              elif [ $substring == "DataRaptor" ];
              then
                 abpath=$(echo "$line" | awk -F'/' '{print $3"/"$4}')
-                relpath="SFIDatapacks/"+"$abpath"
+                relpath=SFIDatapacks/"$abpath"
                 cp -rp "$line" "$relpath"
              fi
          done < "$file_path"
