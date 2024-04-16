@@ -56,7 +56,16 @@ jobs:
         fi
         while IFS= read -r line; do
              echo "$line"
-             cp -rp "$line" SFIDatapacks
+             substring="${line##*/}"
+             echo "$substring"
+             if [ $substring == "IntegrationProcedure" ];
+             then
+                cp -rp "$line" SFIDatapacks/IntegrationProcedure
+             fi
+             elif [ $substring == "DataRaptor" ];
+             then
+                cp -rp "$line" SFIDatapacks/DataRaptor
+             fi
          done < "$file_path"
         
         git config --global user.email "gitbot@github.com"
