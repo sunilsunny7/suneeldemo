@@ -61,7 +61,6 @@ jobs:
              if [ $substring == "IntegrationProcedure" ];
              then
                 cp -rp "$line" SFIDatapacks/IntegrationProcedure
-             fi
              elif [ $substring == "DataRaptor" ];
              then
                 cp -rp "$line" SFIDatapacks/DataRaptor
