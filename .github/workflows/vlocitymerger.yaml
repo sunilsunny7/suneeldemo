@@ -56,7 +56,7 @@ jobs:
         fi
         while IFS= read -r line; do
              echo "$line"
-             cp -p "$line" SFIDatapacks
+             cp -rp "$line" SFIDatapacks
          done < "$file_path"
         
         git config --global user.email "gitbot@github.com"
