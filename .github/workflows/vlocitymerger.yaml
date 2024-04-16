@@ -47,8 +47,9 @@ jobs:
            fi
         done
 
+        git checkout master
         mkdir SFIDatapacks
-        file_path=/sficonsolidated.txt
+        file_path=manifest/sficonsolidated.txt
         if [ ! -f "$file_path" ]; then
           echo "File not found!"
           exit 1
@@ -57,7 +58,7 @@ jobs:
              echo "$line"
              cp -r "$line" SFIDatapacks
          done < "$file_path"
-        git checkout master
+        
         git config --global user.email "gitbot@github.com"
         git config --global user.name "gitbot"
         git add  SFIDatapacks
