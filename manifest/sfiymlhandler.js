@@ -14,7 +14,6 @@ async function main() {
     try {
    
         if (fsys.existsSync(`manifest/vlocitymerged.yaml`)) {
-            console.log('here')
             const sfiMap = new Map();
             const regex = /VlocityDataPackType/
             var array = require("fs").readFileSync("manifest/vlocitymerged.yaml").toString().split(String.fromCharCode(10));
@@ -73,10 +72,8 @@ async function main() {
 
 async function saveToFile(data) {
     try {
-        await fs.writeFile(`manifest/sfimerged.yml`, Buffer.from(data));
+        //await fs.writeFile(`manifest/sfimerged.yml`, Buffer.from(data));
         console.log(data);
-        await addToGit('manifest/sfimerged.yml');
-        await commitToGit();
     } catch (error) {
         console.log('COULD NOT SAVE THE MANIFEST.');
         console.error(error);
