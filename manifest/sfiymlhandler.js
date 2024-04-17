@@ -12,7 +12,9 @@ const SUPPORTED_METADATA_TYPES = new Map([
 async function main() {
     let oldManifestData = Buffer.from('');
     try {
+        console.log('here')
         if (fsys.existsSync(`manifest/vlocitymerged.yaml`)) {
+            console.log('here1')
             const sfiMap = new Map();
             const regex = /VlocityDataPackType/
             var array = require("fs").readFileSync("manifest/vlocitymerged.yaml").toString().split(String.fromCharCode(10));
