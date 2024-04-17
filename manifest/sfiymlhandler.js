@@ -4,14 +4,14 @@ const fsys = require('fs');
 const exec = util.promisify(require('child_process').exec);
 const fs = require('fs').promises;
 
+
 const SUPPORTED_METADATA_TYPES = new Map([
-    ['IntegrationProcedure', '    query:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  true AND Name in'],
+    ['IntegrationProcedure', '    query:Select id  FROM vlocity_cmt__OmniScript__c WHERE vlocity_cmt__IsActive__c = true AND vlocity_cmt__IsProcedure__c =  true AND Name in'],
     ['DataRaptor', '    query:select id,name from vlocity_cmt__DRBundle__c where name in '],
     ['VlocityAction', '    query:select id,name from vlocity_cmt__VlocityAction__c where name in '],
     ['CalculationMatrix', '    query:select id,name from vlocity_cmt__CalculationMatrix__c  where name in '],
-    ['OmniScript', '    query:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  false AND Name in '],
+    ['OmniScript', '    query:Select id  FROM vlocity_cmt__OmniScript__c WHERE vlocity_cmt__IsActive__c = true AND vlocity_cmt__IsProcedure__c =  false AND Name in '],
     ['Rule', '    query:select id,name from vlocity_cmt__Rule__c where name  in ']])
-
 async function main() {
     let oldManifestData = Buffer.from('');
     try {
