@@ -39,7 +39,7 @@ async function main() {
                         }
                         else
                         {
-                            sfiMap.set(datapack,new Array(finalName))
+                             sfiMap.set(datapack,new Set(finalName));
                         }
                     }
                     else if(name.includes('in') || name.includes('In'))
@@ -48,7 +48,7 @@ async function main() {
                         names = names.split("'").join('');
                         names=names.split("(").join('');
                         names=names.split(")").join('').split(',');
-                        sfiMap.set(datapack,[...names]);
+                        sfiMap.set(datapack,new Set(finalName))
                     }   
                 }
             }   
