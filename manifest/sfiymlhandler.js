@@ -39,7 +39,7 @@ async function main() {
                         }
                         else
                         {
-                             sfiMap.set(datapack,new Set(finalName));
+                             sfiMap.set(datapack,new Set(new Array(finalName)))
                         }
                     }
                     else if(name.includes('in') || name.includes('In'))
