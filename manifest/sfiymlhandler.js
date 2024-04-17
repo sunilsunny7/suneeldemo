@@ -76,6 +76,7 @@ async function saveToFile(data) {
         await fs.writeFile(`manifest/sfimerged.yml`, Buffer.from(data));
         console.log(data);
         await addToGit('manifest/sfimerged.yml');
+        await commitToGit();
     } catch (error) {
         console.log('COULD NOT SAVE THE MANIFEST.');
         console.error(error);
@@ -84,6 +85,10 @@ async function saveToFile(data) {
 
 async function addToGit(fileName) {
     exec(`git add manifest/sfimerged.yml`);
+}
+
+async function commitToGit() {
+    exec(`git commit -m  'test' `);
 }
 async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
 
