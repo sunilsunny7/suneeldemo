@@ -55,5 +55,5 @@ jobs:
         git commit -m "merged package xml"
         git push -f origin master
         
-        node ./manifest/sfiymlhandler.js
+        node manifest/sfiymlhandler.js
         
