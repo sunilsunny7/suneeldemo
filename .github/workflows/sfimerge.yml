@@ -46,9 +46,11 @@ jobs:
              cat p2.yaml >>manifest/vlocitymerged.yaml
            fi
         done
- 
-        #git config --global user.email "gitbot@github.com"
-        #git config --global user.name "gitbot"
-        #git add  SFIDatapacks
-        #git commit -m "merged package xml"
-        #git push -f origin master
+        git config --global user.email "gitbot@github.com"
+        git config --global user.name "gitbot"
+        git add  manifest/vlocitymerged.yaml
+        git commit -m "merged package xml"
+        git push -f origin master
+        
+        node manifest/sfiymlhandler.js
+        
