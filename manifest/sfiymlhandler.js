@@ -12,10 +12,10 @@ const SUPPORTED_METADATA_TYPES = new Map([
 async function main() {
     let oldManifestData = Buffer.from('');
     try {
-        if (fsys.existsSync(`manifest/feature_sfi.yaml`)) {
+        if (fsys.existsSync(`manifest/vlocitymerged.yaml`)) {
             const sfiMap = new Map();
             const regex = /VlocityDataPackType/
-            var array = require("fs").readFileSync("manifest/feature_sfi.yaml").toString().split(String.fromCharCode(10));
+            var array = require("fs").readFileSync("manifest/vlocitymerged.yaml").toString().split(String.fromCharCode(10));
             for (let i = 0; i < array.length; i++) {
                 const str=array[i];
                 const trimmed=str.trim();
@@ -48,8 +48,9 @@ async function main() {
                     }   
                 }
             }   
+            let mergedString='';
             [...sfiMap.keys()].forEach(key => {
-                console.log('  - VlocityDataPackType:'+key)
+                mergedString+='  - VlocityDataPackType:'+key+'\n'
                 let queryParms=' (';
                 [...sfiMap.get(key)].forEach(value => {
                     const param='\''+value+'\''+','
@@ -58,15 +59,46 @@ async function main() {
                 queryParms=queryParms.slice(0,-1);
                 queryParms+=')';
                 let query=SUPPORTED_METADATA_TYPES.get(key)+queryParms;
-                console.log(query);
-                /*[...sfiMap.get(key)].forEach(value => {
-                    console.log('Datapacks/'+key+'/'+value)
-
-                });*/
+                
+                mergedString+=query+'\n';
             });
+            saveToFile(mergedString)
         }
     } catch (error) {
         console.error(error);
     } 
 }
+
+async function saveToFile(data) {
+    try {
+        await fs.writeFile(`manifest/sfimerged.yml`, Buffer.from(data));
+       // await addToGit(name);
+    } catch (error) {
+        console.log('COULD NOT SAVE THE MANIFEST.');
+        console.error(error);
+    }
+}
+
+async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
+
+    let oldManifestData = Buffer.from('');
+    try {
+        if (fsys.existsSync(`manifest/feature_package.xml`)) {
+            oldManifestData = await fs.readFile(`manifest/vlocitymerged.yaml`);
+            let oldManifest = parse(Buffer.from(oldManifestData).toString());
+            oldManifest.types.forEach((members, key) => {
+                members.forEach((member) => manifest.addMember(key, member, true));
+            });
+        }
+    } catch (error) {
+        console.error(error);
+    } finally {
+        if (Buffer.compare(oldManifestData, Buffer.from(manifest.toXML())) !== 0) {
+            saveToFile(manifest.toXML(), name);
+        }
+    }
+}
+
+
+
 main();
