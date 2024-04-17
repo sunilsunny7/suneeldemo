@@ -46,6 +46,9 @@ jobs:
              cat p2.yaml >>manifest/vlocitymerged.yaml
            fi
         done
+        
+   
+        git checkout master
         git config --global user.email "gitbot@github.com"
         git config --global user.name "gitbot"
         git add  manifest/vlocitymerged.yaml
