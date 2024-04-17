@@ -52,7 +52,7 @@ async function main() {
             let mergedString='';
             [...sfiMap.keys()].forEach(key => {
                 mergedString+='  - VlocityDataPackType:'+key+'\n'
-                console.log('  - VlocityDataPackType:'+key);
+                //console.log('  - VlocityDataPackType:'+key);
                 let queryParms=' (';
                 [...sfiMap.get(key)].forEach(value => {
                     const param='\''+value+'\''+','
@@ -61,7 +61,7 @@ async function main() {
                 queryParms=queryParms.slice(0,-1);
                 queryParms+=')';
                 let query=SUPPORTED_METADATA_TYPES.get(key)+queryParms;
-                console.log(query)
+                //console.log(query)
                 mergedString+=query+'\n';
             });
             saveToFile(mergedString)
@@ -74,7 +74,7 @@ async function main() {
 async function saveToFile(data) {
     try {
         //await fs.writeFile(`manifest/sfimerged.yml`, Buffer.from(data));
-        //console.log(data);
+        process.stdout.write(data);
     } catch (error) {
         console.log('COULD NOT SAVE THE MANIFEST.');
         console.error(error);
