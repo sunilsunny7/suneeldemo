@@ -1,10 +1,10 @@
   - VlocityDataPackType:IntegrationProcedure
-    queries:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  true AND Name in (' ','I','P','_','S','y','n','c','O','p','t','T','o','A','u','a','s','k',' InitialDataLoad_Opportunity/Renegotiation')
+    queries:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  true AND Name in (' IP_SyncOpptyToAutotask',' InitialDataLoad_Opportunity/Renegotiation')
   - VlocityDataPackType:OmniScript
-    queries:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  false AND Name in  (' ','S','i','n','g','l','e','C','a','r','t','Q','u','o','D','c','m',' Single Doc - DOCX (LWC)')
+    queries:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  false AND Name in  (' SingleCartQuoteDocument',' Single Doc - DOCX (LWC)')
   - VlocityDataPackType:Rule
-    queries:select id,name from vlocity_cmt__Rule__c where name  in  ('T','e','l','i','a','S','E','_','M','C','N','w','Ö','v','r','g','t')
+    queries:select id,name from vlocity_cmt__Rule__c where name  in  ('TeliaSE_MC_NewÖvrigt')
   - VlocityDataPackType:CalculationMatrix
-    queries:select id,name from vlocity_cmt__CalculationMatrix__c  where name in  ('P','r','i','c','e','M','a','t','x','_','2','4','H','d','w','PriceMatrix_36M_Hardware')
+    queries:select id,name from vlocity_cmt__CalculationMatrix__c  where name in  ('PriceMatrix_24M_Hardware','PriceMatrix_36M_Hardware')
   - VlocityDataPackType:VlocityAction
-    queries:select id,name from vlocity_cmt__VlocityAction__c where name in  ('T','e','l','i','a','S','E','_','n','d','P','C','s')
+    queries:select id,name from vlocity_cmt__VlocityAction__c where name in  ('TeliaSE_SendTPCase')
