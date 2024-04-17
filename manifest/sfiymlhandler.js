@@ -35,7 +35,7 @@ async function main() {
                         const finalName = names.split("'").join('');
                         if(sfiMap.has(datapack))
                         {
-                            sfiMap.get(datapack).push(finalName);
+                            sfiMap.get(datapack).add(finalName);
                         }
                         else
                         {
