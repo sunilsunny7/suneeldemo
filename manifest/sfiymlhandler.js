@@ -73,7 +73,6 @@ async function main() {
 
 async function saveToFile(data) {
     try {
-        console.log('here')
         await fs.writeFile(`manifest/sfimerged.yml`, Buffer.from(data));
         console.log(data);
         await addToGit('manifest/sfimerged.yml');
@@ -84,7 +83,7 @@ async function saveToFile(data) {
 }
 
 async function addToGit(fileName) {
-    exec(`git add manifest/sfimerged.xml`);
+    exec(`git add manifest/sfimerged.yml`);
 }
 async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
 
