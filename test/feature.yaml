@@ -4,10 +4,10 @@ queries:
     query: SELECT Id,vlocity_ins__SubType__c,vlocity_ins__Type__c FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  true AND Name = 'IP_SyncOpptyToAutotask'
 
   - VlocityDataPackType: OmniScript
-    SELECT Id,vlocity_ins__SubType__c,vlocity_ins__Type__c FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  false AND Name = 'SingleCartQuoteDocument'
+    query: SELECT Id,vlocity_ins__SubType__c,vlocity_ins__Type__c FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  false AND Name = 'SingleCartQuoteDocument'
 
   - VlocityDataPackType: Rule
-    select id,name from vlocity_cmt__Rule__c where name ='TeliaSE_MC_NewÖvrigt'
+    query: select id,name from vlocity_cmt__Rule__c where name ='TeliaSE_MC_NewÖvrigt'
  
 manifestOnly: true
 oauthConnection: true
