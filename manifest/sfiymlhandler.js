@@ -74,8 +74,8 @@ async function main() {
 async function saveToFile(data) {
     try {
         //await fs.writeFile(`manifest/sfimerged.yml`, Buffer.from(data));
-        let da=require("fs").readFileSync("manifest/vlocitymerged.yaml").toString();
-        process.stdout.write(da);
+        //let da=require("fs").readFileSync("manifest/vlocitymerged.yaml").toString();
+        process.stdout.write(data);
     } catch (error) {
         console.log('COULD NOT SAVE THE MANIFEST.');
         console.error(error);
