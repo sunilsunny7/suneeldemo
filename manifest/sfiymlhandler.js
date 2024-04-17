@@ -48,7 +48,7 @@ async function main() {
                         names = names.split("'").join('');
                         names=names.split("(").join('');
                         names=names.split(")").join('').split(',');
-                        sfiMap.set(datapack,new Set(finalName))
+                        sfiMap.set(datapack,[...new Set([...names])]);
                     }   
                 }
             }   
