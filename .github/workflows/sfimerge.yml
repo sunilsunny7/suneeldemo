@@ -56,5 +56,8 @@ jobs:
         git push -f origin master
         
         nodeOutput=$(node manifest/sfiymlhandler.js)
-        echo "$nodeOutput"
+        echo $nodeOutput> manifest/sfimerged.yml
+        git add  manifest/sfimerged.yaml
+        git commit -m "merged sfi  yml"
+        git push -f origin master
         
