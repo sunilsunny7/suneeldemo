@@ -12,9 +12,9 @@ const SUPPORTED_METADATA_TYPES = new Map([
 async function main() {
     let oldManifestData = Buffer.from('');
     try {
-        console.log('here')
+   
         if (fsys.existsSync(`manifest/vlocitymerged.yaml`)) {
-            console.log('here1')
+            console.log('here')
             const sfiMap = new Map();
             const regex = /VlocityDataPackType/
             var array = require("fs").readFileSync("manifest/vlocitymerged.yaml").toString().split(String.fromCharCode(10));
@@ -73,14 +73,18 @@ async function main() {
 
 async function saveToFile(data) {
     try {
+        console.log('here')
         await fs.writeFile(`manifest/sfimerged.yml`, Buffer.from(data));
-       // await addToGit(name);
+        await addToGit('manifest/sfimerged.yml');
     } catch (error) {
         console.log('COULD NOT SAVE THE MANIFEST.');
         console.error(error);
     }
 }
 
+async function addToGit(fileName) {
+    exec(`git add manifest/feature_package.xml`);
+}
 async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
 
     let oldManifestData = Buffer.from('');
