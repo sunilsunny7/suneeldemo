@@ -35,11 +35,11 @@ async function main() {
                         const finalName = names.split("'").join('');
                         if(sfiMap.has(datapack))
                         {
-                            sfiMap.get(datapack).add(finalName);
+                            sfiMap.get(datapack).add(finalName.trim());
                         }
                         else
                         {
-                             sfiMap.set(datapack,new Set(new Array(finalName)))
+                             sfiMap.set(datapack,new Set(new Array(finalName.trim())))
                         }
                     }
                     else if(name.includes('in') || name.includes('In'))
