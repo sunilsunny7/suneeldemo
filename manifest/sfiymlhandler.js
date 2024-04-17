@@ -5,12 +5,12 @@ const exec = util.promisify(require('child_process').exec);
 const fs = require('fs').promises;
 
 const SUPPORTED_METADATA_TYPES = new Map([
-    ['IntegrationProcedure', '    queries:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  true AND Name in'],
-    ['DataRaptor', '    queries:select id,name from vlocity_cmt__DRBundle__c where name in '],
-    ['VlocityAction', '    queries:select id,name from vlocity_cmt__VlocityAction__c where name in '],
-    ['CalculationMatrix', '    queries:select id,name from vlocity_cmt__CalculationMatrix__c  where name in '],
-    ['OmniScript', '    queries:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  false AND Name in '],
-    ['Rule', '    queries:select id,name from vlocity_cmt__Rule__c where name  in ']])
+    ['IntegrationProcedure', '    query:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  true AND Name in'],
+    ['DataRaptor', '    query:select id,name from vlocity_cmt__DRBundle__c where name in '],
+    ['VlocityAction', '    query:select id,name from vlocity_cmt__VlocityAction__c where name in '],
+    ['CalculationMatrix', '    query:select id,name from vlocity_cmt__CalculationMatrix__c  where name in '],
+    ['OmniScript', '    query:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  false AND Name in '],
+    ['Rule', '    query:select id,name from vlocity_cmt__Rule__c where name  in ']])
 
 async function main() {
     let oldManifestData = Buffer.from('');
