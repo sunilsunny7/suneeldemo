@@ -1,7 +1,7 @@
   - VlocityDataPackType:IntegrationProcedure
-    query:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  true AND Name in ('IP_SyncOpptyToAutotask','InitialDataLoad_Opportunity/Renegotiation')
+    query:Select id  FROM vlocity_cmt__OmniScript__c WHERE vlocity_cmt__IsActive__c = true AND vlocity_cmt__IsProcedure__c =  true AND Name in ('IP_SyncOpptyToAutotask','InitialDataLoad_Opportunity/Renegotiation')
   - VlocityDataPackType:OmniScript
-    query:Select id  FROM vlocity_ins__OmniScript__c WHERE vlocity_ins__IsActive__c = true AND vlocity_ins__IsProcedure__c =  false AND Name in  ('SingleCartQuoteDocument','Single Doc - DOCX (LWC)')
+    query:Select id  FROM vlocity_cmt__OmniScript__c WHERE vlocity_cmt__IsActive__c = true AND vlocity_cmt__IsProcedure__c =  false AND Name in  ('SingleCartQuoteDocument','Single Doc - DOCX (LWC)')
   - VlocityDataPackType:Rule
     query:select id,name from vlocity_cmt__Rule__c where name  in  ('TeliaSE_MC_NewÖvrigt')
   - VlocityDataPackType:CalculationMatrix
