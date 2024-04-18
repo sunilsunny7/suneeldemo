@@ -16,10 +16,10 @@ async function main() {
     let oldManifestData = Buffer.from('');
     try {
    
-        if (fsys.existsSync(`manifest/vlocitymerged.yaml`)) {
+        if (fsys.existsSync(`manifest/sfi_feature.yaml`)) {
             const sfiMap = new Map();
             const regex = /VlocityDataPackType/
-            var array = require("fs").readFileSync("manifest/vlocitymerged.yaml").toString().split(String.fromCharCode(10));
+            var array = require("fs").readFileSync("sfi_feature.yaml").toString().split(String.fromCharCode(10));
             for (let i = 0; i < array.length; i++) {
                 const str=array[i];
                 const trimmed=str.trim();
@@ -79,30 +79,5 @@ async function saveToFile(data) {
 async function addToGit(fileName) {
     exec(`git add manifest/sfimerged.yml`);
 }
-
-async function commitToGit() {
-    exec(`git commit -m  'test' `);
-}
-async function mergeIfManifestAlreadyExistsThenSave(manifest, name) {
-
-    let oldManifestData = Buffer.from('');
-    try {
-        if (fsys.existsSync(`manifest/feature_package.xml`)) {
-            oldManifestData = await fs.readFile(`manifest/vlocitymerged.yaml`);
-            let oldManifest = parse(Buffer.from(oldManifestData).toString());
-            oldManifest.types.forEach((members, key) => {
-                members.forEach((member) => manifest.addMember(key, member, true));
-            });
-        }
-    } catch (error) {
-        console.error(error);
-    } finally {
-        if (Buffer.compare(oldManifestData, Buffer.from(manifest.toXML())) !== 0) {
-            saveToFile(manifest.toXML(), name);
-        }
-    }
-}
-
-
 
 main();
