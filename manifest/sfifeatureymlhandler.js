@@ -19,7 +19,7 @@ async function main() {
         if (fsys.existsSync(`manifest/sfi_feature.yaml`)) {
             const sfiMap = new Map();
             const regex = /VlocityDataPackType/
-            var array = require("fs").readFileSync("sfi_feature.yaml").toString().split(String.fromCharCode(10));
+            var array = require("fs").readFileSync("manifest/sfi_feature.yaml").toString().split(String.fromCharCode(10));
             for (let i = 0; i < array.length; i++) {
                 const str=array[i];
                 const trimmed=str.trim();
