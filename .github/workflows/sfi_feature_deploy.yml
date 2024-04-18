@@ -23,31 +23,12 @@ jobs:
    
       
     - name: Merge files
-      run: |
-        if [ -f "manifest/vlocitymerged.yaml" ];  then
-           git config --global user.email "gitbot@github.com"
-           git config --global user.name "gitbot"
-           git rm manifest/vlocitymerged.yaml
-           git commit -m 'removed mergedfile'
-           git push -f 
-        else 
-           echo "no merged file"
-        fi
-        if [ -f "manifest/sfimerged.yml" ];  then
-           git config --global user.email "gitbot@github.com"
-           git config --global user.name "gitbot"
-           git rm manifest/sfimerged.yml
-           git commit -m 'removed mergedfile'
-           git push -f 
-        else 
-           echo "no sfi merged file"
-        fi
-  
-        
+      run: |  
         nodeOutput=$(node manifest/sfifeatureymlhandler.js)
         echo -e "$nodeOutput">> manifest/sfi_feature_deployment.txt
         mkdir SFIDatapacks
         file_path=manifest/sfi_feature_deployment.txt
+        #fetch required data from SFI folder
         if [ ! -f "$file_path" ]; then
           echo "File not found!"
           exit 1
@@ -62,9 +43,12 @@ jobs:
              mkdir -p  "$dirpath"
              cp -rp "$line" "$relpath"
          done < "$file_path"
+         
         git config --global user.email "gitbot@github.com"
         git config --global user.name "gitbot"
         git add  SFIDatapacks
         git commit -m "merged package xml"
         git push -f origin master
+
+
         
