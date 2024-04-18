@@ -55,7 +55,14 @@ async function main() {
             let mergedString='';
             [...sfiMap.keys()].forEach(key => {
                 [...sfiMap.get(key)].forEach(value => {
-                    mergedString+='SFI/Datapacks/'+key+'/'+value+'\n';
+                    if(key == 'OmniScript')
+                    {
+                        mergedString+='SFI/Datapacks/'+key+'/'+value+'English'+'\n';
+                    }
+                    else{
+                        mergedString+='SFI/Datapacks/'+key+'/'+value+'\n';    
+                    }
+                    
                 });
             });
             saveToFile(mergedString)
