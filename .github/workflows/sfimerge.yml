@@ -33,6 +33,15 @@ jobs:
         else 
            echo "no merged file"
         fi
+        if [ -f "manifest/sfimerged.yml" ];  then
+           git config --global user.email "gitbot@github.com"
+           git config --global user.name "gitbot"
+           git rm manifest/sfimerged.yml
+           git commit -m 'removed mergedfile'
+           git push -f 
+        else 
+           echo "no sfi merged file"
+        fi
         echo "projectPath: ./vlocity" > manifest/vlocitymerged.yaml
         echo "queries:" >> manifest/vlocitymerged.yaml
         git fetch --all
