@@ -63,10 +63,31 @@ jobs:
         git add  manifest/vlocitymerged.yaml
         git commit -m "merged package xml"
         git push -f origin master
-        
+
+        mkdir SFIDatapacks
         nodeOutput=$(node manifest/sfiymlhandler.js)
-        echo -e "$nodeOutput"> manifest/sfimerged.yml
-        git add  manifest/sfimerged.yml
-        git commit -m "merged sfi  yml"
+        echo -e "$nodeOutput">> manifest/sfi_feature_deployment.txt
+        file_path=manifest/sfi_feature_deployment.txt
+        #fetch required data from SFI folder
+        if [ ! -f "$file_path" ]; then
+          echo "File not found!"
+          exit 1
+        fi
+        while IFS= read -r line; do
+             echo "$line"
+             substring=$(echo "$line" | awk -F'/' '{print $3}')
+             echo "$substring"
+             abpath=$(echo "$line" | awk -F'/' '{print $3"/"$4}')
+             relpath=SFIDatapacks/"$abpath"
+             dirpath=$(echo "$relpath" | awk -F'/' '{print $1"/"$2}')
+             mkdir -p  "$dirpath"
+             cp -rp "$line" "$relpath"
+         done < "$file_path"
+         
+        git config --global user.email "gitbot@github.com"
+        git config --global user.name "gitbot"
+        git add  SFIDatapacks
+        git commit -m "merged package xml"
         git push -f origin master
+
         
