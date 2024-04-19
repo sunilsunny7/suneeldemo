@@ -56,7 +56,7 @@ async function main() {
             [...sfiMap.keys()].forEach(key => {
                 [...sfiMap.get(key)].forEach(value => 
                 {
-                    if
+                    if(key == 'OmniScript')
                     {
                         mergedString+='SFI/Datapacks/'+key+'/'+value+'_English'+'\n';
                     }
