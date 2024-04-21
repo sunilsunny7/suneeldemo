@@ -53,12 +53,18 @@ async function main() {
                 }
             }   
             let mergedString='';
+            const tobeChangedTypes=new Set(['VlocityAction','VlocityStateModel','OrchestrationPlanDefinition','OrchestrationItemDefinition','VlocityCard','VlocityUILayout','VlocityUITemplate']);
             [...sfiMap.keys()].forEach(key => {
                 [...sfiMap.get(key)].forEach(value => 
                 {
                     if(key == 'OmniScript')
                     {
                         mergedString+='SFI/Datapacks/'+key+'/'+value+'_English'+'\n';
+                    }
+                    else if(tobeChangedTypes.has(key))
+                    {
+                        const changedType=value.split(' ').join('-');
+                        mergedString+='SFI/Datapacks/'+key+'/'+changedType+'\n';    
                     }
                     else{
                         mergedString+='SFI/Datapacks/'+key+'/'+value+'\n';    
