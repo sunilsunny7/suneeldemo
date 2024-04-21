@@ -11,7 +11,14 @@ const SUPPORTED_METADATA_TYPES = new Map([
     ['VlocityAction', '    query:select id,name from vlocity_cmt__VlocityAction__c where name in '],
     ['CalculationMatrix', '    query:select id,name from vlocity_cmt__CalculationMatrix__c  where name in '],
     ['OmniScript', '    query:Select id  FROM vlocity_cmt__OmniScript__c WHERE vlocity_cmt__IsActive__c = true AND vlocity_cmt__IsProcedure__c =  false AND Name in '],
-    ['Rule', '    query:select id,name from vlocity_cmt__Rule__c where name  in ']])
+    ['Rule', '    query:select id,name from vlocity_cmt__Rule__c where name  in '],
+    ['VlocityStateModel', '    query:select id from vlocity_cmt__VlocityStateModel__c wher name in '],
+    ['OrchestrationPlanDefinition', '    query:select id from vlocity_cmt__OrchestrationPlanDefinition__c wher name in '],
+    ['OrchestrationItemDefinition', '    query:select id from vlocity_cmt__OrchestrationItemDefinition__c  wher name in '],
+    ['VlocityCard', '    query:select id from vlocity_cmt__VlocityCard__c where name in '],
+    ['VlocityUILayout', '    query:select id from vlocity_cmt__VlocityUILayout__c where name in '],
+    ['VlocityUITemplate', '    query:select id from vlocity_cmt__VlocityUITemplate__c where name in']]);
+
 async function main() {
     let oldManifestData = Buffer.from('');
     try {
