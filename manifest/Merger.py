@@ -24,6 +24,7 @@ def cleanXML(path):
 
 def setValidTypeNames():
     for filename in os.listdir(directory):
+        print(filename)
         if filename == 'merged.xml':
             path = directory + '/' + filename
             cleanXML(path)
@@ -35,6 +36,7 @@ def setValidTypeNames():
 
 def buildConsolitdatedManifest(filePath):
     cleanXML(filePath)
+    print(filePath)
     tree = ET.parse(r'%s' % filePath)
     root = tree.getroot()
     for child in root.findall('types'):
