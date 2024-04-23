@@ -41,7 +41,7 @@ jobs:
            if [[ $branch == "dev"* ]]; then
              git checkout $branch
              cp manifest/feature_package.xml p2.xml
-             head -n $(($(wc -l < p2.xml) - 1)) p2.xml | tail -n +3 > temp.xml && mv temp.xml p2.xml
+             head -n $(($(wc -l < p2.xml) - 2)) p2.xml | tail -n +3 > temp.xml && mv temp.xml p2.xml
              cat p2.xml >>manifest/merged.xml
              echo "" >> manifest/merged.xml
            fi
