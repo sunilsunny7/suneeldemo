@@ -36,7 +36,9 @@ def setValidTypeNames():
 
 def buildConsolitdatedManifest(filePath):
     cleanXML(filePath)
+    filePath='./manifest/merged.xml'
     print(filePath)
+    
     tree = ET.parse(r'%s' % filePath)
     root = tree.getroot()
     for child in root.findall('types'):
