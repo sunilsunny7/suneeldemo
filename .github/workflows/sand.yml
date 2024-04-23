@@ -47,6 +47,7 @@ jobs:
            fi
         done
         echo "</Package>" >> manifest/merged.xml
+        cat manifest/merged.xml
         git checkout master
         python3 manifest/Merger.py manifest/merged.xml
         git config --global user.email "gitbot@github.com"
