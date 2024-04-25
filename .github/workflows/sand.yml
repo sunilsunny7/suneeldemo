@@ -12,8 +12,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      with:
-        ref: 'master'
+
+    - name: Get username
+      run: echo "The workflow was triggered by ${{ github.actor }}"
 
 
     - uses: actions/checkout@v3
