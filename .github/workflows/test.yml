@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Print GitHub provided environment variables
         run: |
+          echo "${{ matrix.environment }}"
           if [ "${{ matrix.environment }}" == "test1" ]; then
             echo "Production Environment Variable: $BRANCHTOUSE"
           elif [ "${{ matrix.environment }}" == "test2" ]; then
