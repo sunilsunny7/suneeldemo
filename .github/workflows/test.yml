@@ -1,0 +1,20 @@
+name: test
+
+on:
+   workflow_dispatch: 
+jobs:
+  read-env:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [test1, test2]
+    steps:
+      - name: Print GitHub provided environment variables
+        run: |
+          if [ "${{ matrix.environment }}" == "test1" ]; then
+            echo "Production Environment Variable: $BRANCHTOUSE"
+          elif [ "${{ matrix.environment }}" == "test2" ]; then
+            echo "Staging Environment Variable: $BRANCHTOUSE"
+          else
+            echo "default"
+          fi
